@@ -216,7 +216,7 @@ data/CrisisMMD/
 **Pseudo-labels** (to be generated):
 
 ```
-data/pseudo-labelled/{source}/{task}/{modality}/train_pred.csv
+data/pseudo_labelled/{model}/{task}/{modality}/train_pred.tsv
 ```
 
 Columns: `tweet_id`, `tweet_text`, `predicted_label`, `confidence`
@@ -357,7 +357,7 @@ The dashboard has two tabs:
 | `--budgets` | One or more budget values | All budgets |
 | `--seed-set` | Single seed set (1, 2, 3) | All seed sets |
 | `--seed-sets` | One or more seed sets | All seed sets |
-| `--pseudo-label-source` | Pseudo-label directory name | `gpt-4o` |
+| `--pseudo-label-source` | Model that generated pseudo-labels | `llama-3.2-11b` |
 | `--output-folder` | Output folder for results | `results/` |
 | `--model-name` | HuggingFace model name | `vinai/bertweet-base` |
 | `--weight-gen-epochs` | Phase 1 epochs | `7` |
@@ -379,12 +379,14 @@ The dashboard has two tabs:
 
 ## Output Format
 
-Results are saved to `results/{task}/{modality}/{budget}_set{seed}/metrics.json`:
+Co-training results are saved to `results/cotrain/{method}/{pseudo_source}/{task}/{modality}/{budget}_set{seed}/metrics.json`:
 
 ```json
 {
   "task": "humanitarian",
   "modality": "text_only",
+  "method": "lg-cotrain",
+  "pseudo_label_source": "llama-3.2-11b",
   "budget": 5,
   "seed_set": 1,
   "test_error_rate": 35.21,

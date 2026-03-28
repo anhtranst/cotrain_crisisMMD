@@ -123,7 +123,7 @@ class TestRunAllExperiments(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             # Pre-create metrics.json for budget=5, seed=1
-            out_dir = Path(tmpdir) / "humanitarian" / "text_only" / "5_set1"
+            out_dir = Path(tmpdir) / "cotrain" / "lg-cotrain" / "llama-3.2-11b" / "humanitarian" / "text_only" / "5_set1"
             out_dir.mkdir(parents=True)
             existing = _make_result(5, 1, error_rate=99.0, macro_f1=0.99)
             (out_dir / "metrics.json").write_text(json.dumps(existing))
@@ -322,7 +322,7 @@ class TestOnExperimentDoneCallback(unittest.TestCase):
             calls.append((task, modality, budget, seed_set, status))
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            out_dir = Path(tmpdir) / "humanitarian" / "text_only" / "5_set1"
+            out_dir = Path(tmpdir) / "cotrain" / "lg-cotrain" / "llama-3.2-11b" / "humanitarian" / "text_only" / "5_set1"
             out_dir.mkdir(parents=True)
             existing = _make_result(5, 1)
             (out_dir / "metrics.json").write_text(json.dumps(existing))

@@ -8,13 +8,14 @@ from typing import Optional
 @dataclass
 class LGCoTrainConfig:
     # Experiment identifiers
-    task: str = "humanitarian"       # informative | humanitarian | damage
+    task: str = "humanitarian"       # informative | humanitarian
     modality: str = "text_only"      # text_only | image_only | text_image
+    method: str = "lg-cotrain"       # lg-cotrain | co-teaching | co-teaching-plus | vanilla-cotrain | dividemix
     budget: int = 5
     seed_set: int = 1
 
-    # Pseudo-label source directory name (under data/pseudo-labelled/)
-    pseudo_label_source: str = "gpt-4o"
+    # Pseudo-label source model (folder name under data/pseudo_labelled/)
+    pseudo_label_source: str = "llama-3.2-11b"
 
     # Model
     model_name: str = "vinai/bertweet-base"
@@ -68,7 +69,7 @@ class LGCoTrainConfig:
             / self.task / self.modality
         )
         pseudo_dir = (
-            Path(self.data_root) / "pseudo-labelled" / self.pseudo_label_source
+            Path(self.data_root) / "pseudo_labelled" / self.pseudo_label_source
             / self.task / self.modality
         )
 
@@ -78,10 +79,11 @@ class LGCoTrainConfig:
         self.unlabeled_path = str(
             task_dir / f"unlabeled_{self.budget}_set{self.seed_set}.tsv"
         )
-        self.pseudo_label_path = str(pseudo_dir / "train_pred.csv")
+        self.pseudo_label_path = str(pseudo_dir / "train_pred.tsv")
         self.dev_path = str(task_dir / "dev.tsv")
         self.test_path = str(task_dir / "test.tsv")
         self.output_dir = str(
-            Path(self.results_root) / self.task / self.modality
+            Path(self.results_root) / "cotrain" / self.method
+            / self.pseudo_label_source / self.task / self.modality
             / f"{self.budget}_set{self.seed_set}"
         )

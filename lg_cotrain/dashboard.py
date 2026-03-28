@@ -110,7 +110,7 @@ def collect_all_metrics(results_root: str) -> list:
 
 
 def collect_zeroshot_results(results_root: str) -> dict:
-    """Scan results/zeroshot/{task}/{modality}/{split}/metrics.json.
+    """Scan results/zeroshot/{model}/{task}/{modality}/{split}/metrics.json.
 
     Returns {task: [metrics_dict, ...]}.
     """
@@ -118,23 +118,29 @@ def collect_zeroshot_results(results_root: str) -> dict:
     results = {}
     if not base.exists():
         return results
-    for task_dir in sorted(base.iterdir()):
-        if not task_dir.is_dir():
+    for model_dir in sorted(base.iterdir()):
+        if not model_dir.is_dir():
             continue
-        task = task_dir.name
-        results[task] = []
-        for mod_dir in sorted(task_dir.iterdir()):
-            if not mod_dir.is_dir():
+        for task_dir in sorted(model_dir.iterdir()):
+            if not task_dir.is_dir():
                 continue
-            for split_dir in sorted(mod_dir.iterdir()):
-                if not split_dir.is_dir():
+            task = task_dir.name
+            if task not in results:
+                results[task] = []
+            for mod_dir in sorted(task_dir.iterdir()):
+                if not mod_dir.is_dir():
                     continue
-                metrics_path = split_dir / "metrics.json"
-                if metrics_path.exists():
-                    try:
-                        with open(metrics_path) as f:
-                            results[task].append(json.load(f))
-                    except (json.JSONDecodeError, OSError):
+                for split_dir in sorted(mod_dir.iterdir()):
+                    if not split_dir.is_dir():
+                        continue
+                    metrics_path = split_dir / "metrics.json"
+                    if metrics_path.exists():
+                        try:
+                            with open(metrics_path) as f:
+                                m = json.load(f)
+                                m["model_slug"] = model_dir.name
+                                results[task].append(m)
+                        except (json.JSONDecodeError, OSError):
                         pass
     return results
 
@@ -599,11 +605,11 @@ def _render_zeroshot_tab(task, task_results):
     parts.append(f'<div class="section-header"><h2>&#x1F4CB; Results by Modality &amp; Split</h2>'
                  f'<div class="tag">Zero-Shot &mdash; Llama-3.2-11B-Vision</div></div>')
     parts.append("""<table><thead>
-        <tr><th>Modality</th><th>Split</th><th class="num">Samples</th>
+        <tr><th>Model</th><th>Modality</th><th>Split</th><th class="num">Samples</th>
         <th class="num">Accuracy</th><th class="num">Weighted F1</th>
         <th class="num">Macro F1</th><th class="num">Unparseable</th></tr></thead><tbody>""")
 
-    for m in sorted(task_results, key=lambda x: (x.get("modality",""), x.get("split",""))):
+    for m in sorted(task_results, key=lambda x: (x.get("model_slug",""), x.get("modality",""), x.get("split",""))):
         acc = m.get("accuracy", 0)
         wf1 = m.get("weighted_f1", 0)
         mf1 = m.get("macro_f1", 0)
@@ -615,7 +621,8 @@ def _render_zeroshot_tab(task, task_results):
             badge = "badge-danger"
         mi = MODALITY_ICONS.get(m.get("modality", ""), "")
         parts.append(
-            f'<tr><td>{mi} {_modality_label(m.get("modality","?"))}</td>'
+            f'<tr><td><code>{m.get("model_slug","?")}</code></td>'
+            f'<td>{mi} {_modality_label(m.get("modality","?"))}</td>'
             f'<td>{m.get("split","?")}</td>'
             f'<td class="num">{m.get("num_samples", 0):,}</td>'
             f'<td class="num">{acc:.4f}</td>'
@@ -632,14 +639,15 @@ def _render_zeroshot_tab(task, task_results):
         parts.append('<div class="section">')
         parts.append('<div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>')
         parts.append('<table><thead><tr><th>Class</th>')
-        for m in sorted(test_results, key=lambda x: x.get("modality", "")):
+        for m in sorted(test_results, key=lambda x: (x.get("model_slug",""), x.get("modality", ""))):
             mi = MODALITY_ICONS.get(m.get("modality", ""), "")
-            parts.append(f'<th class="num">{mi} {_modality_label(m.get("modality",""))}</th>')
+            slug = m.get("model_slug", "")
+            parts.append(f'<th class="num">{slug}<br>{mi} {_modality_label(m.get("modality",""))}</th>')
         parts.append('</tr></thead><tbody>')
 
         for label in labels:
             parts.append(f'<tr><td><code>{label}</code></td>')
-            for m in sorted(test_results, key=lambda x: x.get("modality", "")):
+            for m in sorted(test_results, key=lambda x: (x.get("model_slug",""), x.get("modality", ""))):
                 f1 = m["per_class_f1"].get(label, 0)
                 if f1 >= 0.5:
                     cls = "hm hm-5"

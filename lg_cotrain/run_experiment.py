@@ -48,7 +48,7 @@ def main():
 
     # Pseudo-label source and output
     parser.add_argument(
-        "--pseudo-label-source", type=str, default="gpt-4o",
+        "--pseudo-label-source", type=str, default="llama-3.2-11b",
         help="Pseudo-label directory name under data/pseudo-labelled/ (default: gpt-4o)",
     )
     parser.add_argument(

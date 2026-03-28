@@ -160,7 +160,7 @@ class TestCLIValidation(unittest.TestCase):
         self.assertEqual(kwargs["model_name"], "vinai/bertweet-base")
         self.assertEqual(kwargs["lr"], 2e-5)
         self.assertEqual(kwargs["batch_size"], 32)
-        self.assertEqual(kwargs["pseudo_label_source"], "gpt-4o")
+        self.assertEqual(kwargs["pseudo_label_source"], "llama-3.2-11b")
 
     def test_phase1_seed_strategy_default(self):
         from lg_cotrain.run_experiment import main

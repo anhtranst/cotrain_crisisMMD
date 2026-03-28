@@ -96,7 +96,7 @@ try:
         cfg.pseudo_label_path = tmp_tsv_files["pseudo"]
         cfg.dev_path = tmp_tsv_files["dev"]
         cfg.test_path = tmp_tsv_files["test"]
-        cfg.output_dir = str(tmp_path / "results" / "humanitarian" / "text_only" / "5_set1")
+        cfg.output_dir = str(tmp_path / "results" / "cotrain" / "lg-cotrain" / "llama-3.2-11b" / "humanitarian" / "text_only" / "5_set1")
         return cfg
 
 except ImportError:

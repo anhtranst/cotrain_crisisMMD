@@ -89,9 +89,9 @@ class TestConfigPathComputation(unittest.TestCase):
 
     def test_pseudo_label_path(self):
         cfg = LGCoTrainConfig(task="humanitarian", modality="text_only", budget=5, seed_set=1)
-        self.assertIn("pseudo-labelled", cfg.pseudo_label_path)
-        self.assertIn("gpt-4o", cfg.pseudo_label_path)
-        self.assertTrue(cfg.pseudo_label_path.endswith("train_pred.csv"))
+        self.assertIn("pseudo_labelled", cfg.pseudo_label_path)
+        self.assertIn("llama-3.2-11b", cfg.pseudo_label_path)
+        self.assertTrue(cfg.pseudo_label_path.endswith("train_pred.tsv"))
 
     def test_dev_path(self):
         cfg = LGCoTrainConfig(task="humanitarian", modality="text_only", budget=5, seed_set=1)
@@ -103,7 +103,7 @@ class TestConfigPathComputation(unittest.TestCase):
 
     def test_output_dir(self):
         cfg = LGCoTrainConfig(task="humanitarian", modality="text_only", budget=5, seed_set=1)
-        self.assertTrue(cfg.output_dir.endswith(str(Path("humanitarian/text_only/5_set1"))))
+        self.assertTrue(cfg.output_dir.endswith(str(Path("cotrain/lg-cotrain/llama-3.2-11b/humanitarian/text_only/5_set1"))))
 
 
 class TestConfigVariousTasks(unittest.TestCase):
@@ -115,13 +115,13 @@ class TestConfigVariousTasks(unittest.TestCase):
         self.assertIn("image_only", cfg.labeled_path)
         self.assertTrue(cfg.labeled_path.endswith("labeled_25_set3.tsv"))
         self.assertTrue(cfg.unlabeled_path.endswith("unlabeled_25_set3.tsv"))
-        self.assertTrue(cfg.output_dir.endswith(str(Path("informative/image_only/25_set3"))))
+        self.assertTrue(cfg.output_dir.endswith(str(Path("cotrain/lg-cotrain/llama-3.2-11b/informative/image_only/25_set3"))))
 
     def test_budget_50_seed_2(self):
         cfg = LGCoTrainConfig(task="humanitarian", modality="text_only", budget=50, seed_set=2)
         self.assertTrue(cfg.labeled_path.endswith("labeled_50_set2.tsv"))
         self.assertTrue(cfg.unlabeled_path.endswith("unlabeled_50_set2.tsv"))
-        self.assertTrue(cfg.output_dir.endswith(str(Path("humanitarian/text_only/50_set2"))))
+        self.assertTrue(cfg.output_dir.endswith(str(Path("cotrain/lg-cotrain/llama-3.2-11b/humanitarian/text_only/50_set2"))))
 
     def test_pseudo_label_path_independent_of_budget(self):
         """Pseudo-label path depends only on task/modality, not budget/seed."""
@@ -135,23 +135,23 @@ class TestConfigPseudoLabelSource(unittest.TestCase):
 
     def test_default_is_gpt4o(self):
         cfg = LGCoTrainConfig()
-        self.assertEqual(cfg.pseudo_label_source, "gpt-4o")
+        self.assertEqual(cfg.pseudo_label_source, "llama-3.2-11b")
 
     def test_default_path_contains_gpt4o(self):
         cfg = LGCoTrainConfig()
-        self.assertIn("gpt-4o", cfg.pseudo_label_path)
+        self.assertIn("llama-3.2-11b", cfg.pseudo_label_path)
 
     def test_custom_source_changes_path(self):
         cfg = LGCoTrainConfig(pseudo_label_source="llama-3")
         self.assertIn("llama-3", cfg.pseudo_label_path)
-        self.assertNotIn("gpt-4o", cfg.pseudo_label_path)
+        self.assertNotIn("llama-3.2-11b", cfg.pseudo_label_path)
 
     def test_custom_source_preserves_task_and_filename(self):
         cfg = LGCoTrainConfig(
             task="humanitarian", modality="text_only", pseudo_label_source="llama-3"
         )
         self.assertIn("humanitarian", cfg.pseudo_label_path)
-        self.assertTrue(cfg.pseudo_label_path.endswith("train_pred.csv"))
+        self.assertTrue(cfg.pseudo_label_path.endswith("train_pred.tsv"))
 
     def test_source_independent_of_budget_and_seed(self):
         cfg1 = LGCoTrainConfig(

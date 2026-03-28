@@ -195,7 +195,7 @@ def create_per_experiment_objective(
     seed_set: int,
     device: Optional[str] = None,
     data_root: str = "/workspace/data",
-    pseudo_label_source: str = "gpt-4o",
+    pseudo_label_source: str = "llama-3.2-11b",
     _trainer_cls=None,
 ):
     """Return an Optuna objective function for a single experiment.
@@ -283,7 +283,7 @@ def run_single_study(
     device: Optional[str] = None,
     storage_dir: str = "/workspace/results/optuna/per_experiment",
     data_root: str = "/workspace/data",
-    pseudo_label_source: str = "gpt-4o",
+    pseudo_label_source: str = "llama-3.2-11b",
     on_trial_done: Optional[Callable] = None,
     _trainer_cls=None,
 ) -> dict:
@@ -429,7 +429,7 @@ def _run_study_worker(kwargs: dict) -> dict:
             device=kwargs.get("device"),
             storage_dir=kwargs["storage_dir"],
             data_root=kwargs["data_root"],
-            pseudo_label_source=kwargs.get("pseudo_label_source", "gpt-4o"),
+            pseudo_label_source=kwargs.get("pseudo_label_source", "llama-3.2-11b"),
         )
     except Exception as e:
         import traceback
@@ -469,7 +469,7 @@ def run_all_studies(
     num_gpus: int = 1,
     storage_dir: str = "/workspace/results/optuna/per_experiment",
     data_root: str = "/workspace/data",
-    pseudo_label_source: str = "gpt-4o",
+    pseudo_label_source: str = "llama-3.2-11b",
     on_study_done: Optional[Callable] = None,
 ) -> List[dict]:
     """Run per-experiment Optuna studies for all (budget, seed_set) combinations.
@@ -809,7 +809,7 @@ def main():
         help="Directory for storing study results",
     )
     parser.add_argument(
-        "--pseudo-label-source", type=str, default="gpt-4o",
+        "--pseudo-label-source", type=str, default="llama-3.2-11b",
         help="Pseudo-label directory name (default: gpt-4o)",
     )
 

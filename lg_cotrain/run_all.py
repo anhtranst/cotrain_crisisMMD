@@ -19,10 +19,11 @@ def run_all_experiments(
     task,
     modality,
     *,
+    method="lg-cotrain",
     budgets=None,
     seed_sets=None,
     num_gpus=1,
-    pseudo_label_source="gpt-4o",
+    pseudo_label_source="llama-3.2-11b",
     model_name="vinai/bertweet-base",
     weight_gen_epochs=7,
     cotrain_epochs=10,
@@ -50,7 +51,7 @@ def run_all_experiments(
         modality: Modality name (text_only, image_only, text_image).
         budgets: List of budgets to run. Defaults to BUDGETS ([5, 10, 25, 50]).
         seed_sets: List of seed sets to run. Defaults to SEED_SETS ([1, 2, 3]).
-        pseudo_label_source: Pseudo-label directory name (default "gpt-4o").
+        pseudo_label_source: Pseudo-label directory name (default "llama-3.2-11b").
         num_gpus: Number of GPUs for parallel execution (default 1 = sequential).
 
     If *_on_experiment_done* is provided, it is called after each experiment
@@ -62,6 +63,7 @@ def run_all_experiments(
 
     # Common config kwargs for building experiment configs
     _common_kwargs = dict(
+        method=method,
         pseudo_label_source=pseudo_label_source,
         model_name=model_name,
         weight_gen_epochs=weight_gen_epochs,
@@ -106,7 +108,8 @@ def run_all_experiments(
         for seed_set in seed_sets:
             idx = completed + skipped + failed + 1
             metrics_path = (
-                Path(results_root) / task / modality
+                Path(results_root) / "cotrain" / method
+                / pseudo_label_source / task / modality
                 / f"{budget}_set{seed_set}" / "metrics.json"
             )
 
@@ -197,7 +200,8 @@ def _run_all_parallel(
     for budget in budgets:
         for seed_set in seed_sets:
             metrics_path = (
-                Path(results_root) / task / modality
+                Path(results_root) / "cotrain" / method
+                / pseudo_label_source / task / modality
                 / f"{budget}_set{seed_set}" / "metrics.json"
             )
             if metrics_path.exists():
@@ -336,7 +340,7 @@ def main():
         help="Seed sets to run (default: all [1, 2, 3])",
     )
     parser.add_argument(
-        "--pseudo-label-source", type=str, default="gpt-4o",
+        "--pseudo-label-source", type=str, default="llama-3.2-11b",
         help="Pseudo-label directory name (default: gpt-4o)",
     )
     parser.add_argument("--model-name", type=str, default="vinai/bertweet-base")

@@ -200,6 +200,26 @@ PROMPTS = {
 }
 
 # ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def model_slug(model_id: str) -> str:
+    """Derive a short folder name from a HuggingFace model ID.
+
+    e.g. 'meta-llama/Llama-3.2-11B-Vision-Instruct' -> 'llama-3.2-11b'
+         'Qwen/Qwen2-VL-7B-Instruct' -> 'qwen2-vl-7b'
+    """
+    name = model_id.split("/")[-1]           # drop org prefix
+    name = name.lower()
+    # Remove common suffixes
+    for suffix in ["-vision-instruct", "-instruct", "-chat", "-vision"]:
+        if name.endswith(suffix):
+            name = name[: -len(suffix)]
+            break
+    return name
+
+
+# ---------------------------------------------------------------------------
 # Label parsing
 # ---------------------------------------------------------------------------
 
@@ -485,7 +505,7 @@ def run_zeroshot(
     }
 
     # Save results
-    out_path = Path(output_dir) / task / modality / split
+    out_path = Path(output_dir) / model_slug(model_id) / task / modality / split
     out_path.mkdir(parents=True, exist_ok=True)
 
     pred_path = out_path / "predictions.tsv"

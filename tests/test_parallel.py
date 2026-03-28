@@ -168,7 +168,7 @@ class TestResumeInParallelMode(unittest.TestCase):
         from lg_cotrain.run_all import run_all_experiments
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            out_dir = Path(tmpdir) / "humanitarian" / "text_only" / "5_set1"
+            out_dir = Path(tmpdir) / "cotrain" / "lg-cotrain" / "llama-3.2-11b" / "humanitarian" / "text_only" / "5_set1"
             out_dir.mkdir(parents=True)
             existing = _make_result(budget=5, seed_set=1, test_error_rate=99.0)
             (out_dir / "metrics.json").write_text(json.dumps(existing))
@@ -197,7 +197,7 @@ class TestResumeInParallelMode(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             for seed_set in [1, 2]:
-                out_dir = Path(tmpdir) / "humanitarian" / "text_only" / f"5_set{seed_set}"
+                out_dir = Path(tmpdir) / "cotrain" / "lg-cotrain" / "llama-3.2-11b" / "humanitarian" / "text_only" / f"5_set{seed_set}"
                 out_dir.mkdir(parents=True)
                 result = _make_result(budget=5, seed_set=seed_set)
                 (out_dir / "metrics.json").write_text(json.dumps(result))
