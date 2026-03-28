@@ -1,0 +1,11 @@
+image_id	image_path	class_label
+930389869167198210_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\iraq_iran_earthquake\14_11_2017\930389869167198210_0.jpg	informative
+901688227647684609_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_harvey\27_8_2017\901688227647684609_0.jpg	informative
+910745969163161600_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\mexico_earthquake\21_9_2017\910745969163161600_0.jpg	informative
+931258352272838656_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\iraq_iran_earthquake\16_11_2017\931258352272838656_0.jpg	informative
+920202485926637568_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\california_wildfires\17_10_2017\920202485926637568_0.jpg	informative
+909893860788228097_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\18_9_2017\909893860788228097_0.jpg	not_informative
+931514548288401408_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\iraq_iran_earthquake\17_11_2017\931514548288401408_0.jpg	not_informative
+909431953434251264_1	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\17_9_2017\909431953434251264_1.jpg	not_informative
+909320029753274369_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_harvey\17_9_2017\909320029753274369_0.jpg	not_informative
+909382682613813248_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\17_9_2017\909382682613813248_0.jpg	not_informative

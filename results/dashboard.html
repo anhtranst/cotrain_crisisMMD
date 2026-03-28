@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LG-CoTrain CrisisMMD Dashboard</title>
+<style>
+:root {
+    --bg: #f5f6fa; --card-bg: #fff; --header-bg: #1a1a2e;
+    --accent: #4361ee; --text: #2b2d42; --muted: #8d99ae;
+    --border: #dee2e6; --high: #2ecc71; --mid: #f1c40f;
+    --low: #e67e22; --vlow: #e74c3c; --pending: #bdc3c7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+       background: var(--bg); color: var(--text); font-size: 14px; }
+header { background: linear-gradient(135deg, var(--header-bg), #16213e);
+         color: #fff; padding: 24px 32px; }
+header h1 { font-size: 22px; font-weight: 600; }
+header p { color: #adb5bd; font-size: 13px; margin-top: 4px; }
+.tab-bar { display: flex; gap: 2px; background: #e9ecef; padding: 4px 8px 0; }
+.tab-bar button { padding: 8px 18px; border: none; background: transparent;
+    cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted);
+    border-bottom: 2px solid transparent; transition: all .2s; }
+.tab-bar button:hover { color: var(--text); }
+.tab-bar button.active { color: var(--accent); border-bottom-color: var(--accent);
+    background: var(--card-bg); }
+.tab-content { display: none; padding: 24px 32px; }
+.tab-content.active { display: block; }
+.cards { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.card { background: var(--card-bg); border-radius: 8px; padding: 16px 20px;
+        min-width: 150px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.card .value { font-size: 24px; font-weight: 700; color: var(--accent); }
+.card .label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 20px;
+        background: var(--card-bg); border-radius: 8px; overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+th { background: #f8f9fa; padding: 10px 12px; text-align: left;
+     font-size: 12px; font-weight: 600; color: var(--muted);
+     text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); }
+td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+tr:last-child td { border-bottom: none; }
+.total-row td { font-weight: 600; background: #f8f9fa; }
+.section-title { font-size: 16px; font-weight: 600; margin: 24px 0 12px; }
+.sub-title { font-size: 14px; font-weight: 500; color: var(--muted); margin: 16px 0 8px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px;
+         font-size: 11px; font-weight: 600; }
+.badge-high { background: #d4edda; color: #155724; }
+.badge-mid { background: #fff3cd; color: #856404; }
+.badge-low { background: #f8d7da; color: #721c24; }
+.heat { padding: 6px 10px; text-align: right; font-variant-numeric: tabular-nums; }
+.heat-5 { background: rgba(67,97,238,.10); }
+.heat-4 { background: rgba(67,97,238,.08); }
+.heat-3 { background: rgba(67,97,238,.05); }
+.heat-2 { background: rgba(67,97,238,.03); }
+.heat-1 { background: rgba(67,97,238,.01); }
+.note { background: #fff3cd; padding: 12px 16px; border-radius: 6px;
+        border-left: 4px solid #ffc107; margin: 16px 0; font-size: 13px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+    <h1>LG-CoTrain &mdash; CrisisMMD v2.0 Dashboard</h1>
+    <p>Generated 2026-03-27 23:12:13 &bull; 3 tasks &bull; 3 modalities &bull; 0 experiment results</p>
+</header>
+
+<nav class="tab-bar">
+    <button class="active" onclick="showTab('tab-data')">Dataset Exploration</button>
+    <button onclick="showTab('tab-results')">Experiment Results</button>
+</nav>
+
+<div id="tab-data" class="tab-content active">
+    
+    <div class="cards">
+        <div class="card"><div class="value">3</div><div class="label">Tasks</div></div>
+        <div class="card"><div class="value">3</div><div class="label">Modalities</div></div>
+        <div class="card"><div class="value">7</div><div class="label">Disaster Events</div></div>
+        <div class="card"><div class="value">13</div><div class="label">Total Classes (across tasks)</div></div>
+    </div>
+    
+<div class="section-title">Event Distribution (Humanitarian Task)</div>
+<table><tr><th>Event</th><th>Train Samples</th><th>% of Total</th><th>Bar</th></tr>
+<tr><td>Hurricane Maria</td><td class="heat heat-5">3,453</td><td>25.4%</td><td><div style="background:var(--accent);height:14px;width:200px;border-radius:3px;opacity:.6"></div></td></tr>
+<tr><td>Hurricane Irma</td><td class="heat heat-5">3,390</td><td>24.9%</td><td><div style="background:var(--accent);height:14px;width:196px;border-radius:3px;opacity:.6"></div></td></tr>
+<tr><td>Hurricane Harvey</td><td class="heat heat-5">3,337</td><td>24.5%</td><td><div style="background:var(--accent);height:14px;width:193px;border-radius:3px;opacity:.6"></div></td></tr>
+<tr><td>California Wildfires</td><td class="heat heat-4">1,156</td><td>8.5%</td><td><div style="background:var(--accent);height:14px;width:67px;border-radius:3px;opacity:.6"></div></td></tr>
+<tr><td>Mexico Earthquake</td><td class="heat heat-3">1,027</td><td>7.5%</td><td><div style="background:var(--accent);height:14px;width:59px;border-radius:3px;opacity:.6"></div></td></tr>
+<tr><td>Srilanka Floods</td><td class="heat heat-3">788</td><td>5.8%</td><td><div style="background:var(--accent);height:14px;width:46px;border-radius:3px;opacity:.6"></div></td></tr>
+<tr><td>Iraq Iran Earthquake</td><td class="heat heat-2">457</td><td>3.4%</td><td><div style="background:var(--accent);height:14px;width:26px;border-radius:3px;opacity:.6"></div></td></tr>
+<tr class="total-row"><td>Total</td><td>13,608</td><td>100%</td><td></td></tr>
+</table>
+<div class="section-title">Task: Informative (2 classes)</div>
+<div class="sub-title">Text Only</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>informative</code></td>
+<td class="heat heat-5">8,285</td>
+<td class="heat heat-3">1,612</td>
+<td class="heat heat-3">1,612</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">8,280</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">8,275</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">8,260</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">8,235</td>
+</tr>
+<tr><td><code>not_informative</code></td>
+<td class="heat heat-4">3,299</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">3,294</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">3,289</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">3,274</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">3,249</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>11,584</td>
+<td>2,237</td>
+<td>2,237</td>
+<td>10</td>
+<td>11,574</td>
+<td>20</td>
+<td>11,564</td>
+<td>50</td>
+<td>11,534</td>
+<td>100</td>
+<td>11,484</td>
+</tr></table>
+<div class="sub-title">Image Only</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>informative</code></td>
+<td class="heat heat-5">7,059</td>
+<td class="heat heat-3">1,164</td>
+<td class="heat heat-3">1,151</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">7,054</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">7,049</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">7,034</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">7,009</td>
+</tr>
+<tr><td><code>not_informative</code></td>
+<td class="heat heat-5">6,549</td>
+<td class="heat heat-3">1,073</td>
+<td class="heat heat-3">1,086</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">6,544</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">6,539</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">6,524</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">6,499</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>13,608</td>
+<td>2,237</td>
+<td>2,237</td>
+<td>10</td>
+<td>13,598</td>
+<td>20</td>
+<td>13,588</td>
+<td>50</td>
+<td>13,558</td>
+<td>100</td>
+<td>13,508</td>
+</tr></table>
+<div class="sub-title">Text Image</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>informative</code></td>
+<td class="heat heat-5">9,638</td>
+<td class="heat heat-3">1,612</td>
+<td class="heat heat-3">1,612</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">9,633</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">9,628</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">9,613</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">9,588</td>
+</tr>
+<tr><td><code>not_informative</code></td>
+<td class="heat heat-4">3,970</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">3,965</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">3,960</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">3,945</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">3,920</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>13,608</td>
+<td>2,237</td>
+<td>2,237</td>
+<td>10</td>
+<td>13,598</td>
+<td>20</td>
+<td>13,588</td>
+<td>50</td>
+<td>13,558</td>
+<td>100</td>
+<td>13,508</td>
+</tr></table>
+<div class="section-title">Task: Humanitarian (8 classes)</div>
+<div class="sub-title">Text Only</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>affected_individuals</code></td>
+<td class="heat heat-2">338</td>
+<td class="heat heat-1">67</td>
+<td class="heat heat-1">67</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-2">333</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-2">328</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-2">313</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-2">288</td>
+</tr>
+<tr><td><code>infrastructure_and_utility_damage</code></td>
+<td class="heat heat-3">882</td>
+<td class="heat heat-1">164</td>
+<td class="heat heat-1">164</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-3">877</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-3">872</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-3">857</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-3">832</td>
+</tr>
+<tr><td><code>injured_or_dead_people</code></td>
+<td class="heat heat-2">346</td>
+<td class="heat heat-1">70</td>
+<td class="heat heat-1">70</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-2">341</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-2">336</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-2">321</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-2">296</td>
+</tr>
+<tr><td><code>missing_or_found_people</code></td>
+<td class="heat heat-1">28</td>
+<td class="heat heat-1">6</td>
+<td class="heat heat-1">6</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-1">23</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-1">18</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-1">3</td>
+<td class="heat heat-1">28</td>
+<td class="heat heat-1">0</td>
+</tr>
+<tr><td><code>not_humanitarian</code></td>
+<td class="heat heat-5">3,299</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">3,294</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">3,289</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">3,274</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">3,249</td>
+</tr>
+<tr><td><code>other_relevant_information</code></td>
+<td class="heat heat-5">4,266</td>
+<td class="heat heat-3">844</td>
+<td class="heat heat-3">844</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">4,261</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">4,256</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">4,241</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">4,216</td>
+</tr>
+<tr><td><code>rescue_volunteering_or_donation_effort</code></td>
+<td class="heat heat-4">2,386</td>
+<td class="heat heat-2">453</td>
+<td class="heat heat-2">454</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">2,381</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">2,376</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">2,361</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">2,336</td>
+</tr>
+<tr><td><code>vehicle_damage</code></td>
+<td class="heat heat-1">39</td>
+<td class="heat heat-1">8</td>
+<td class="heat heat-1">7</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-1">34</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-1">29</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-1">14</td>
+<td class="heat heat-1">39</td>
+<td class="heat heat-1">0</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>11,584</td>
+<td>2,237</td>
+<td>2,237</td>
+<td>40</td>
+<td>11,544</td>
+<td>80</td>
+<td>11,504</td>
+<td>200</td>
+<td>11,384</td>
+<td>367</td>
+<td>11,217</td>
+</tr></table>
+<div class="sub-title">Image Only</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>affected_individuals</code></td>
+<td class="heat heat-2">397</td>
+<td class="heat heat-1">77</td>
+<td class="heat heat-1">88</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-2">392</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-2">387</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-2">372</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-2">347</td>
+</tr>
+<tr><td><code>infrastructure_and_utility_damage</code></td>
+<td class="heat heat-4">2,761</td>
+<td class="heat heat-2">405</td>
+<td class="heat heat-2">458</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">2,756</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">2,751</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">2,736</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">2,711</td>
+</tr>
+<tr><td><code>injured_or_dead_people</code></td>
+<td class="heat heat-1">92</td>
+<td class="heat heat-1">8</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-1">87</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-1">82</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-1">67</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-1">42</td>
+</tr>
+<tr><td><code>missing_or_found_people</code></td>
+<td class="heat heat-1">9</td>
+<td class="heat heat-1">2</td>
+<td class="heat heat-1">3</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-1">4</td>
+<td class="heat heat-1">9</td>
+<td class="heat heat-1">0</td>
+<td class="heat heat-1">9</td>
+<td class="heat heat-1">0</td>
+<td class="heat heat-1">9</td>
+<td class="heat heat-1">0</td>
+</tr>
+<tr><td><code>not_humanitarian</code></td>
+<td class="heat heat-5">6,565</td>
+<td class="heat heat-3">1,088</td>
+<td class="heat heat-3">1,055</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">6,560</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">6,555</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">6,540</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">6,515</td>
+</tr>
+<tr><td><code>other_relevant_information</code></td>
+<td class="heat heat-3">1,860</td>
+<td class="heat heat-2">338</td>
+<td class="heat heat-2">331</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-3">1,855</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-3">1,850</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-3">1,835</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-3">1,810</td>
+</tr>
+<tr><td><code>rescue_volunteering_or_donation_effort</code></td>
+<td class="heat heat-3">1,694</td>
+<td class="heat heat-1">281</td>
+<td class="heat heat-1">256</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-3">1,689</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-3">1,684</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-3">1,669</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-3">1,644</td>
+</tr>
+<tr><td><code>vehicle_damage</code></td>
+<td class="heat heat-1">230</td>
+<td class="heat heat-1">38</td>
+<td class="heat heat-1">36</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-1">225</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-1">220</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-1">205</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-1">180</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>13,608</td>
+<td>2,237</td>
+<td>2,237</td>
+<td>40</td>
+<td>13,568</td>
+<td>79</td>
+<td>13,529</td>
+<td>184</td>
+<td>13,424</td>
+<td>359</td>
+<td>13,249</td>
+</tr></table>
+<div class="sub-title">Text Image</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>affected_individuals</code></td>
+<td class="heat heat-2">384</td>
+<td class="heat heat-1">67</td>
+<td class="heat heat-1">67</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-2">379</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-2">374</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-2">359</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-2">334</td>
+</tr>
+<tr><td><code>infrastructure_and_utility_damage</code></td>
+<td class="heat heat-3">1,102</td>
+<td class="heat heat-1">164</td>
+<td class="heat heat-1">164</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-3">1,097</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-3">1,092</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-3">1,077</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-3">1,052</td>
+</tr>
+<tr><td><code>injured_or_dead_people</code></td>
+<td class="heat heat-2">393</td>
+<td class="heat heat-1">70</td>
+<td class="heat heat-1">70</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-2">388</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-2">383</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-2">368</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-2">343</td>
+</tr>
+<tr><td><code>missing_or_found_people</code></td>
+<td class="heat heat-1">29</td>
+<td class="heat heat-1">6</td>
+<td class="heat heat-1">6</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-1">24</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-1">19</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-1">4</td>
+<td class="heat heat-1">29</td>
+<td class="heat heat-1">0</td>
+</tr>
+<tr><td><code>not_humanitarian</code></td>
+<td class="heat heat-5">3,970</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-2">625</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">3,965</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">3,960</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">3,945</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">3,920</td>
+</tr>
+<tr><td><code>other_relevant_information</code></td>
+<td class="heat heat-5">4,817</td>
+<td class="heat heat-3">844</td>
+<td class="heat heat-3">844</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">4,812</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">4,807</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">4,792</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">4,767</td>
+</tr>
+<tr><td><code>rescue_volunteering_or_donation_effort</code></td>
+<td class="heat heat-4">2,867</td>
+<td class="heat heat-2">453</td>
+<td class="heat heat-2">454</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">2,862</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">2,857</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">2,842</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">2,817</td>
+</tr>
+<tr><td><code>vehicle_damage</code></td>
+<td class="heat heat-1">46</td>
+<td class="heat heat-1">8</td>
+<td class="heat heat-1">7</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-1">41</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-1">36</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-1">21</td>
+<td class="heat heat-1">46</td>
+<td class="heat heat-1">0</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>13,608</td>
+<td>2,237</td>
+<td>2,237</td>
+<td>40</td>
+<td>13,568</td>
+<td>80</td>
+<td>13,528</td>
+<td>200</td>
+<td>13,408</td>
+<td>375</td>
+<td>13,233</td>
+</tr></table>
+<div class="section-title">Task: Damage (3 classes)</div>
+<div class="sub-title">Text Only</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>little_or_no_damage</code></td>
+<td class="heat heat-3">303</td>
+<td class="heat heat-1">70</td>
+<td class="heat heat-1">70</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-3">298</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-3">293</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-3">278</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-3">253</td>
+</tr>
+<tr><td><code>mild_damage</code></td>
+<td class="heat heat-4">529</td>
+<td class="heat heat-2">122</td>
+<td class="heat heat-2">124</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">524</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">519</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">504</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">479</td>
+</tr>
+<tr><td><code>severe_damage</code></td>
+<td class="heat heat-5">1,454</td>
+<td class="heat heat-3">327</td>
+<td class="heat heat-3">329</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">1,449</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">1,444</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">1,429</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">1,404</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>2,286</td>
+<td>519</td>
+<td>523</td>
+<td>15</td>
+<td>2,271</td>
+<td>30</td>
+<td>2,256</td>
+<td>75</td>
+<td>2,211</td>
+<td>150</td>
+<td>2,136</td>
+</tr></table>
+<div class="sub-title">Image Only</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>little_or_no_damage</code></td>
+<td class="heat heat-3">333</td>
+<td class="heat heat-1">71</td>
+<td class="heat heat-1">71</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-3">328</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-3">323</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-3">308</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-3">283</td>
+</tr>
+<tr><td><code>mild_damage</code></td>
+<td class="heat heat-4">587</td>
+<td class="heat heat-2">126</td>
+<td class="heat heat-2">126</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">582</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">577</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">562</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">537</td>
+</tr>
+<tr><td><code>severe_damage</code></td>
+<td class="heat heat-5">1,548</td>
+<td class="heat heat-3">332</td>
+<td class="heat heat-3">332</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">1,543</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">1,538</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">1,523</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">1,498</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>2,468</td>
+<td>529</td>
+<td>529</td>
+<td>15</td>
+<td>2,453</td>
+<td>30</td>
+<td>2,438</td>
+<td>75</td>
+<td>2,393</td>
+<td>150</td>
+<td>2,318</td>
+</tr></table>
+<div class="sub-title">Text Image</div>
+<table><tr><th>Class</th>
+<th>Train</th>
+<th>Dev</th>
+<th>Test</th>
+<th>L5</th><th>U5</th>
+<th>L10</th><th>U10</th>
+<th>L25</th><th>U25</th>
+<th>L50</th><th>U50</th>
+</tr>
+<tr><td><code>little_or_no_damage</code></td>
+<td class="heat heat-3">333</td>
+<td class="heat heat-1">71</td>
+<td class="heat heat-1">71</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-3">328</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-3">323</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-3">308</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-3">283</td>
+</tr>
+<tr><td><code>mild_damage</code></td>
+<td class="heat heat-4">587</td>
+<td class="heat heat-2">126</td>
+<td class="heat heat-2">126</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-4">582</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-4">577</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-4">562</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-4">537</td>
+</tr>
+<tr><td><code>severe_damage</code></td>
+<td class="heat heat-5">1,548</td>
+<td class="heat heat-3">332</td>
+<td class="heat heat-3">332</td>
+<td class="heat heat-1">5</td>
+<td class="heat heat-5">1,543</td>
+<td class="heat heat-1">10</td>
+<td class="heat heat-5">1,538</td>
+<td class="heat heat-1">25</td>
+<td class="heat heat-5">1,523</td>
+<td class="heat heat-1">50</td>
+<td class="heat heat-5">1,498</td>
+</tr>
+<tr class="total-row"><td>Total</td>
+<td>2,468</td>
+<td>529</td>
+<td>529</td>
+<td>15</td>
+<td>2,453</td>
+<td>30</td>
+<td>2,438</td>
+<td>75</td>
+<td>2,393</td>
+<td>150</td>
+<td>2,318</td>
+</tr></table>
+
+    <div class="note">
+        <strong>Label source notes:</strong>
+        For informative and humanitarian tasks, <code>text_only</code> and <code>text_image</code> use
+        <code>label_text</code> (text annotation), <code>image_only</code> uses <code>label_image</code>
+        (image annotation). For the damage task, all modalities use the single <code>label</code> column.
+        Budget columns (L5, U5, etc.) show seed=1 splits. L = labeled, U = unlabeled.
+    </div>
+    
+</div>
+
+<div id="tab-results" class="tab-content">
+    <div class="note">No experiment results found yet. Run experiments with <code>python -m lg_cotrain.run_experiment</code> to populate this tab.</div>
+</div>
+
+<script>
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-bar button').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

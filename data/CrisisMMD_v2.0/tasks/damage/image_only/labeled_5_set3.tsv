@@ -1,0 +1,16 @@
+image_id	image_path	class_label
+909778959189016578_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\18_9_2017\909778959189016578_0.jpg	little_or_no_damage
+909862843947868160_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\18_9_2017\909862843947868160_0.jpg	little_or_no_damage
+905664172809117697_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\7_9_2017\905664172809117697_0.jpg	little_or_no_damage
+909902707028316161_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\18_9_2017\909902707028316161_0.jpg	little_or_no_damage
+909833411598209024_1	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\18_9_2017\909833411598209024_1.jpg	little_or_no_damage
+909867927511486464_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\18_9_2017\909867927511486464_0.jpg	mild_damage
+870013706935119872_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\srilanka_floods\31_5_2017\870013706935119872_0.jpg	mild_damage
+918111395555749893_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\california_wildfires\11_10_2017\918111395555749893_0.jpg	mild_damage
+921370720931684357_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_maria\20_10_2017\921370720931684357_0.jpg	mild_damage
+905852980376866816_1	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_harvey\7_9_2017\905852980376866816_1.jpg	mild_damage
+921767804860235776_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\california_wildfires\21_10_2017\921767804860235776_0.jpg	severe_damage
+910698946514771969_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\mexico_earthquake\21_9_2017\910698946514771969_0.jpg	severe_damage
+901692764575989760_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_harvey\27_8_2017\901692764575989760_0.jpg	severe_damage
+914111723824705536_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_maria\30_9_2017\914111723824705536_0.jpg	severe_damage
+909920437479624704_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD_v2.0\data_image\hurricane_irma\18_9_2017\909920437479624704_0.jpg	severe_damage
