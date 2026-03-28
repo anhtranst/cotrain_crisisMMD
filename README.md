@@ -2,8 +2,8 @@
 
 **LLM-Guided Co-Training for Crisis Tweet Classification**
 
-> **Dashboard** — View dataset exploration and experiment results: [results/dashboard.html](results/dashboard.html)
-> _(Open locally in a browser; rebuild anytime with `python -m lg_cotrain.dashboard`)_
+> **Dashboard** — View dataset exploration and experiment results: [results/dashboard.html](https://htmlpreview.github.io/?https://github.com/anhtranst/cotrain_crisisMMD/blob/main/results/dashboard.html)
+> _(Rebuild anytime with `python -m lg_cotrain.dashboard`)_
 
 A semi-supervised co-training pipeline that classifies crisis tweets. It combines a small set of human-labeled tweets with LLM pseudo-labeled tweets (e.g., from GPT-4o) using a 3-phase training approach with two models. Now adapted for the **CrisisMMD v2.0** dataset with support for three tasks and three modalities.
 
