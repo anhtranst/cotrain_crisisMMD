@@ -3,832 +3,1021 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LG-CoTrain CrisisMMD Dashboard</title>
+<title>LG-CoTrain &mdash; CrisisMMD v2.0 Dashboard</title>
 <style>
 :root {
-    --bg: #f5f6fa; --card-bg: #fff; --header-bg: #1a1a2e;
-    --accent: #4361ee; --text: #2b2d42; --muted: #8d99ae;
-    --border: #dee2e6; --high: #2ecc71; --mid: #f1c40f;
-    --low: #e67e22; --vlow: #e74c3c; --pending: #bdc3c7;
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --header-from: #0f0c29;
+    --header-via: #302b63;
+    --header-to: #24243e;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+    --accent-bg: rgba(99,102,241,.08);
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 6px rgba(0,0,0,.05), 0 2px 4px rgba(0,0,0,.03);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-       background: var(--bg); color: var(--text); font-size: 14px; }
-header { background: linear-gradient(135deg, var(--header-bg), #16213e);
-         color: #fff; padding: 24px 32px; }
-header h1 { font-size: 22px; font-weight: 600; }
-header p { color: #adb5bd; font-size: 13px; margin-top: 4px; }
-.tab-bar { display: flex; gap: 2px; background: #e9ecef; padding: 4px 8px 0; }
-.tab-bar button { padding: 8px 18px; border: none; background: transparent;
-    cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted);
-    border-bottom: 2px solid transparent; transition: all .2s; }
-.tab-bar button:hover { color: var(--text); }
-.tab-bar button.active { color: var(--accent); border-bottom-color: var(--accent);
-    background: var(--card-bg); }
-.tab-content { display: none; padding: 24px 32px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--header-from), var(--header-via), var(--header-to));
+    color: #fff; padding: 32px 40px; position: relative; overflow: hidden;
+}
+header::after {
+    content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%);
+    border-radius: 50%;
+}
+header h1 { font-size: 26px; font-weight: 700; letter-spacing: -.5px; position: relative; }
+header .subtitle { color: rgba(255,255,255,.6); font-size: 13px; margin-top: 6px; position: relative; }
+header .subtitle span { color: rgba(255,255,255,.85); font-weight: 500; }
+
+/* Tab bar */
+.tab-bar {
+    display: flex; gap: 0; background: var(--card); padding: 0 40px;
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+}
+.tab-bar button {
+    padding: 14px 24px; border: none; background: transparent; cursor: pointer;
+    font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    border-bottom: 2px solid transparent; transition: all .2s ease;
+    position: relative;
+}
+.tab-bar button:hover { color: var(--text); background: var(--accent-bg); }
+.tab-bar button.active {
+    color: var(--accent); border-bottom-color: var(--accent); font-weight: 600;
+}
+.tab-content { display: none; padding: 32px 40px; max-width: 1400px; }
 .tab-content.active { display: block; }
-.cards { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
-.card { background: var(--card-bg); border-radius: 8px; padding: 16px 20px;
-        min-width: 150px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
-.card .value { font-size: 24px; font-weight: 700; color: var(--accent); }
-.card .label { font-size: 12px; color: var(--muted); margin-top: 2px; }
-table { border-collapse: collapse; width: 100%; margin-bottom: 20px;
-        background: var(--card-bg); border-radius: 8px; overflow: hidden;
-        box-shadow: 0 1px 3px rgba(0,0,0,.06); }
-th { background: #f8f9fa; padding: 10px 12px; text-align: left;
-     font-size: 12px; font-weight: 600; color: var(--muted);
-     text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); }
-td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
-tr:last-child td { border-bottom: none; }
-.total-row td { font-weight: 600; background: #f8f9fa; }
-.section-title { font-size: 16px; font-weight: 600; margin: 24px 0 12px; }
-.sub-title { font-size: 14px; font-weight: 500; color: var(--muted); margin: 16px 0 8px; }
-.badge { display: inline-block; padding: 2px 8px; border-radius: 10px;
-         font-size: 11px; font-weight: 600; }
-.badge-high { background: #d4edda; color: #155724; }
-.badge-mid { background: #fff3cd; color: #856404; }
-.badge-low { background: #f8d7da; color: #721c24; }
-.heat { padding: 6px 10px; text-align: right; font-variant-numeric: tabular-nums; }
-.heat-5 { background: rgba(67,97,238,.10); }
-.heat-4 { background: rgba(67,97,238,.08); }
-.heat-3 { background: rgba(67,97,238,.05); }
-.heat-2 { background: rgba(67,97,238,.03); }
-.heat-1 { background: rgba(67,97,238,.01); }
-.note { background: #fff3cd; padding: 12px 16px; border-radius: 6px;
-        border-left: 4px solid #ffc107; margin: 16px 0; font-size: 13px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+
+/* Cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.card {
+    background: var(--card); border-radius: var(--radius); padding: 20px 24px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.card .icon { font-size: 20px; margin-bottom: 8px; }
+.card .value { font-size: 28px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+.card .label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
+
+/* Sections */
+.section {
+    background: var(--card); border-radius: var(--radius); padding: 24px 28px;
+    margin-bottom: 24px; box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.section-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+}
+.section-header h2 { font-size: 18px; font-weight: 700; }
+.section-header .tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+    background: var(--accent-bg); color: var(--accent);
+}
+
+/* Collapsible task/modality sections */
+.collapse-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px; background: #f8fafc; border-radius: 8px;
+    cursor: pointer; margin-bottom: 8px; border: 1px solid var(--border);
+    transition: background .15s;
+}
+.collapse-toggle:hover { background: #f1f5f9; }
+.collapse-toggle h3 { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.collapse-toggle .arrow { transition: transform .2s; font-size: 12px; color: var(--text-secondary); }
+.collapse-toggle.open .arrow { transform: rotate(90deg); }
+.collapse-body { display: none; padding: 16px 0 8px; }
+.collapse-body.open { display: block; }
+
+/* Tables */
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+thead th {
+    background: #f8fafc; padding: 10px 14px; text-align: left;
+    font-size: 11px; font-weight: 700; color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: .6px;
+    border-bottom: 2px solid var(--border); position: sticky; top: 0;
+}
+thead th.num { text-align: right; }
+tbody td { padding: 9px 14px; border-bottom: 1px solid #f1f5f9; }
+tbody td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'Cascadia Code', monospace; font-size: 12.5px; }
+tbody tr:hover { background: #fafbfe; }
+tbody tr:last-child td { border-bottom: none; }
+.total-row td { font-weight: 700; background: #f8fafc; border-top: 2px solid var(--border); }
+td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius: 4px; color: #475569; }
+
+/* Bar inside table */
+.bar-cell { padding: 9px 14px; }
+.bar-outer { background: #f1f5f9; border-radius: 6px; height: 22px; overflow: hidden; position: relative; min-width: 60px; }
+.bar-inner { height: 100%; border-radius: 6px; transition: width .3s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; }
+.bar-inner span { font-size: 10px; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.bar-purple { background: linear-gradient(90deg, #818cf8, #6366f1); }
+.bar-blue { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
+.bar-green { background: linear-gradient(90deg, #34d399, #10b981); }
+
+/* Heat map cells */
+.hm { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', monospace; font-size: 12px; }
+.hm-5 { background: rgba(99,102,241,.14); color: #4338ca; font-weight: 600; }
+.hm-4 { background: rgba(99,102,241,.09); color: #4f46e5; }
+.hm-3 { background: rgba(99,102,241,.05); }
+.hm-2 { background: rgba(99,102,241,.025); }
+.hm-1 { color: #94a3b8; }
+.hm-0 { color: #cbd5e1; }
+
+/* Badges */
+.badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-success { background: #d1fae5; color: #065f46; }
+.badge-warning { background: #fef3c7; color: #92400e; }
+.badge-danger { background: #fee2e2; color: #991b1b; }
+.badge-info { background: var(--accent-bg); color: var(--accent); }
+
+/* Notes */
+.note {
+    display: flex; gap: 12px; padding: 16px 20px; border-radius: 8px;
+    border: 1px solid #e2e8f0; margin: 20px 0; font-size: 13px;
+    background: linear-gradient(135deg, #fffbeb, #fef9c3); border-left: 4px solid var(--warning);
+}
+.note-icon { font-size: 18px; flex-shrink: 0; }
+.note-body { line-height: 1.7; }
+.note-body strong { color: #92400e; }
+.note-body code { font-size: 12px; padding: 1px 5px; background: rgba(0,0,0,.06); border-radius: 3px; }
+
+/* Empty state */
+.empty-state {
+    text-align: center; padding: 60px 20px; color: var(--text-secondary);
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
+.empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.empty-state p { max-width: 400px; margin: 0 auto; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    header, .tab-bar, .tab-content { padding-left: 20px; padding-right: 20px; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+}
 </style>
 </head>
 <body>
 <header>
-    <h1>LG-CoTrain &mdash; CrisisMMD v2.0 Dashboard</h1>
-    <p>Generated 2026-03-27 23:24:59 &bull; 3 tasks &bull; 3 modalities &bull; 0 experiment results</p>
+    <h1>LG-CoTrain &mdash; CrisisMMD v2.0</h1>
+    <p class="subtitle">
+        Generated <span>2026-03-27 23:35:44</span> &bull;
+        <span>3 tasks</span> &bull;
+        <span>3 modalities</span> &bull;
+        <span>0 experiments</span>
+    </p>
 </header>
 
 <nav class="tab-bar">
-    <button class="active" onclick="showTab('tab-data')">Dataset Exploration</button>
-    <button onclick="showTab('tab-results')">Experiment Results</button>
+    <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
+    <button onclick="showTab('tab-results', this)">&#x1F4CA; Experiment Results</button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
-    
+
     <div class="cards">
-        <div class="card"><div class="value">3</div><div class="label">Tasks</div></div>
-        <div class="card"><div class="value">3</div><div class="label">Modalities</div></div>
-        <div class="card"><div class="value">7</div><div class="label">Disaster Events</div></div>
-        <div class="card"><div class="value">13</div><div class="label">Total Classes (across tasks)</div></div>
+        <div class="card">
+            <div class="icon">&#x1F30D;</div>
+            <div class="value">7</div>
+            <div class="label">Disaster Events</div>
+        </div>
+        <div class="card">
+            <div class="icon">&#x1F4CA;</div>
+            <div class="value">3</div>
+            <div class="label">Annotation Tasks</div>
+        </div>
+        <div class="card">
+            <div class="icon">&#x1F50D;</div>
+            <div class="value">3</div>
+            <div class="label">Modalities</div>
+        </div>
+        <div class="card">
+            <div class="icon">&#x1F3F7;</div>
+            <div class="value">13</div>
+            <div class="label">Total Classes</div>
+        </div>
+        <div class="card">
+            <div class="icon">&#x1F4E6;</div>
+            <div class="value">114,824</div>
+            <div class="label">Total Samples</div>
+        </div>
     </div>
     
-<div class="section-title">Event Distribution (Humanitarian Task)</div>
-<table><tr><th>Event</th><th>Train Samples</th><th>% of Total</th><th>Bar</th></tr>
-<tr><td>Hurricane Maria</td><td class="heat heat-5">3,453</td><td>25.4%</td><td><div style="background:var(--accent);height:14px;width:200px;border-radius:3px;opacity:.6"></div></td></tr>
-<tr><td>Hurricane Irma</td><td class="heat heat-5">3,390</td><td>24.9%</td><td><div style="background:var(--accent);height:14px;width:196px;border-radius:3px;opacity:.6"></div></td></tr>
-<tr><td>Hurricane Harvey</td><td class="heat heat-5">3,337</td><td>24.5%</td><td><div style="background:var(--accent);height:14px;width:193px;border-radius:3px;opacity:.6"></div></td></tr>
-<tr><td>California Wildfires</td><td class="heat heat-4">1,156</td><td>8.5%</td><td><div style="background:var(--accent);height:14px;width:67px;border-radius:3px;opacity:.6"></div></td></tr>
-<tr><td>Mexico Earthquake</td><td class="heat heat-3">1,027</td><td>7.5%</td><td><div style="background:var(--accent);height:14px;width:59px;border-radius:3px;opacity:.6"></div></td></tr>
-<tr><td>Srilanka Floods</td><td class="heat heat-3">788</td><td>5.8%</td><td><div style="background:var(--accent);height:14px;width:46px;border-radius:3px;opacity:.6"></div></td></tr>
-<tr><td>Iraq Iran Earthquake</td><td class="heat heat-2">457</td><td>3.4%</td><td><div style="background:var(--accent);height:14px;width:26px;border-radius:3px;opacity:.6"></div></td></tr>
-<tr class="total-row"><td>Total</td><td>13,608</td><td>100%</td><td></td></tr>
-</table>
-<div class="section-title">Task: Informative (2 classes)</div>
-<div class="sub-title">Text Only</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<div class="section">
+<div class="section-header"><h2>&#x1F30D; Event Distribution</h2><div class="tag">Humanitarian Task &mdash; Training Set</div></div>
+<table><thead><tr><th>Event</th><th class="num">Samples</th><th class="num">Share</th><th style="min-width:250px">Distribution</th></tr></thead><tbody>
+<tr><td><strong>Hurricane Maria</strong></td><td class="num">3,453</td><td class="num">25.4%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:100.0%"><span>25%</span></div></div></td></tr>
+<tr><td><strong>Hurricane Irma</strong></td><td class="num">3,390</td><td class="num">24.9%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:98.2%"><span>25%</span></div></div></td></tr>
+<tr><td><strong>Hurricane Harvey</strong></td><td class="num">3,337</td><td class="num">24.5%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:96.6%"><span>25%</span></div></div></td></tr>
+<tr><td><strong>California Wildfires</strong></td><td class="num">1,156</td><td class="num">8.5%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:33.5%"><span>8%</span></div></div></td></tr>
+<tr><td><strong>Mexico Earthquake</strong></td><td class="num">1,027</td><td class="num">7.5%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:29.7%"><span>8%</span></div></div></td></tr>
+<tr><td><strong>Srilanka Floods</strong></td><td class="num">788</td><td class="num">5.8%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:22.8%"><span>6%</span></div></div></td></tr>
+<tr><td><strong>Iraq Iran Earthquake</strong></td><td class="num">457</td><td class="num">3.4%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-green" style="width:13.2%"><span>3%</span></div></div></td></tr>
+<tr class="total-row"><td>Total</td><td class="num">13,608</td><td class="num">100%</td><td></td></tr>
+</tbody></table>
+</div>
+<div class="section">
+<div class="section-header"><h2>&#x1F4CB; Informative Task</h2><div class="tag">2 classes</div></div>
+<table><thead><tr><th>Modality</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th class="num">Total</th></tr></thead><tbody>
+<tr><td>&#x1F4DD; Text Only</td><td class="num">11,584</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>16,058</strong></td></tr>
+<tr><td>&#x1F5BC; Image Only</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
+<tr><td>&#x1F4F7; Text Image</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
+</tbody></table>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-1')"><h3>&#x1F4DD; Text Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-1">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>informative</code></td>
-<td class="heat heat-5">8,285</td>
-<td class="heat heat-3">1,612</td>
-<td class="heat heat-3">1,612</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">8,280</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">8,275</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">8,260</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">8,235</td>
+<td class="hm hm-5">8,285</td>
+<td class="hm hm-3">1,612</td>
+<td class="hm hm-3">1,612</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">8,280</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">8,275</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">8,260</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">8,235</td>
 </tr>
 <tr><td><code>not_informative</code></td>
-<td class="heat heat-4">3,299</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">3,294</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">3,289</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">3,274</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">3,249</td>
+<td class="hm hm-4">3,299</td>
+<td class="hm hm-2">625</td>
+<td class="hm hm-2">625</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">3,294</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">3,289</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">3,274</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-4">3,249</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>11,584</td>
-<td>2,237</td>
-<td>2,237</td>
-<td>10</td>
-<td>11,574</td>
-<td>20</td>
-<td>11,564</td>
-<td>50</td>
-<td>11,534</td>
-<td>100</td>
-<td>11,484</td>
-</tr></table>
-<div class="sub-title">Image Only</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">11,584</td>
+<td class="num">2,237</td>
+<td class="num">2,237</td>
+<td class="num">10</td>
+<td class="num">11,574</td>
+<td class="num">20</td>
+<td class="num">11,564</td>
+<td class="num">50</td>
+<td class="num">11,534</td>
+<td class="num">100</td>
+<td class="num">11,484</td>
+</tr></tbody></table>
+</div>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-2')"><h3>&#x1F5BC; Image Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-2">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>informative</code></td>
-<td class="heat heat-5">7,059</td>
-<td class="heat heat-3">1,164</td>
-<td class="heat heat-3">1,151</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">7,054</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">7,049</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">7,034</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">7,009</td>
+<td class="hm hm-5">7,059</td>
+<td class="hm hm-3">1,164</td>
+<td class="hm hm-3">1,151</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">7,054</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">7,049</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">7,034</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">7,009</td>
 </tr>
 <tr><td><code>not_informative</code></td>
-<td class="heat heat-5">6,549</td>
-<td class="heat heat-3">1,073</td>
-<td class="heat heat-3">1,086</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">6,544</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">6,539</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">6,524</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">6,499</td>
+<td class="hm hm-5">6,549</td>
+<td class="hm hm-3">1,073</td>
+<td class="hm hm-3">1,086</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">6,544</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">6,539</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">6,524</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">6,499</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>13,608</td>
-<td>2,237</td>
-<td>2,237</td>
-<td>10</td>
-<td>13,598</td>
-<td>20</td>
-<td>13,588</td>
-<td>50</td>
-<td>13,558</td>
-<td>100</td>
-<td>13,508</td>
-</tr></table>
-<div class="sub-title">Text Image</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">13,608</td>
+<td class="num">2,237</td>
+<td class="num">2,237</td>
+<td class="num">10</td>
+<td class="num">13,598</td>
+<td class="num">20</td>
+<td class="num">13,588</td>
+<td class="num">50</td>
+<td class="num">13,558</td>
+<td class="num">100</td>
+<td class="num">13,508</td>
+</tr></tbody></table>
+</div>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-3')"><h3>&#x1F4F7; Text Image &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-3">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>informative</code></td>
-<td class="heat heat-5">9,638</td>
-<td class="heat heat-3">1,612</td>
-<td class="heat heat-3">1,612</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">9,633</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">9,628</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">9,613</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">9,588</td>
+<td class="hm hm-5">9,638</td>
+<td class="hm hm-3">1,612</td>
+<td class="hm hm-3">1,612</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">9,633</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">9,628</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">9,613</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">9,588</td>
 </tr>
 <tr><td><code>not_informative</code></td>
-<td class="heat heat-4">3,970</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">3,965</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">3,960</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">3,945</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">3,920</td>
+<td class="hm hm-4">3,970</td>
+<td class="hm hm-2">625</td>
+<td class="hm hm-2">625</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">3,965</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">3,960</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">3,945</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-4">3,920</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>13,608</td>
-<td>2,237</td>
-<td>2,237</td>
-<td>10</td>
-<td>13,598</td>
-<td>20</td>
-<td>13,588</td>
-<td>50</td>
-<td>13,558</td>
-<td>100</td>
-<td>13,508</td>
-</tr></table>
-<div class="section-title">Task: Humanitarian (8 classes)</div>
-<div class="sub-title">Text Only</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">13,608</td>
+<td class="num">2,237</td>
+<td class="num">2,237</td>
+<td class="num">10</td>
+<td class="num">13,598</td>
+<td class="num">20</td>
+<td class="num">13,588</td>
+<td class="num">50</td>
+<td class="num">13,558</td>
+<td class="num">100</td>
+<td class="num">13,508</td>
+</tr></tbody></table>
+</div>
+</div>
+<div class="section">
+<div class="section-header"><h2>&#x1F6D1; Humanitarian Task</h2><div class="tag">8 classes</div></div>
+<table><thead><tr><th>Modality</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th class="num">Total</th></tr></thead><tbody>
+<tr><td>&#x1F4DD; Text Only</td><td class="num">11,584</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>16,058</strong></td></tr>
+<tr><td>&#x1F5BC; Image Only</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
+<tr><td>&#x1F4F7; Text Image</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
+</tbody></table>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-4')"><h3>&#x1F4DD; Text Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-4">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>affected_individuals</code></td>
-<td class="heat heat-2">338</td>
-<td class="heat heat-1">67</td>
-<td class="heat heat-1">67</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-2">333</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-2">328</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-2">313</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-2">288</td>
+<td class="hm hm-2">338</td>
+<td class="hm hm-1">67</td>
+<td class="hm hm-1">67</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-2">333</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-2">328</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-2">313</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-2">288</td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
-<td class="heat heat-3">882</td>
-<td class="heat heat-1">164</td>
-<td class="heat heat-1">164</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-3">877</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-3">872</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-3">857</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-3">832</td>
+<td class="hm hm-3">882</td>
+<td class="hm hm-2">164</td>
+<td class="hm hm-2">164</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-3">877</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-3">872</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-3">857</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-3">832</td>
 </tr>
 <tr><td><code>injured_or_dead_people</code></td>
-<td class="heat heat-2">346</td>
-<td class="heat heat-1">70</td>
-<td class="heat heat-1">70</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-2">341</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-2">336</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-2">321</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-2">296</td>
+<td class="hm hm-2">346</td>
+<td class="hm hm-1">70</td>
+<td class="hm hm-1">70</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-2">341</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-2">336</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-2">321</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-2">296</td>
 </tr>
-<tr><td><code>missing_or_found_people</code></td>
-<td class="heat heat-1">28</td>
-<td class="heat heat-1">6</td>
-<td class="heat heat-1">6</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-1">23</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-1">18</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-1">3</td>
-<td class="heat heat-1">28</td>
-<td class="heat heat-1">0</td>
+<tr><td><code>missing_or_found_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
+<td class="hm hm-1">28</td>
+<td class="hm hm-1">6</td>
+<td class="hm hm-1">6</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-1">23</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-1">18</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-1">3</td>
+<td class="hm hm-1">28</td>
+<td class="hm hm-0">0</td>
 </tr>
 <tr><td><code>not_humanitarian</code></td>
-<td class="heat heat-5">3,299</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">3,294</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">3,289</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">3,274</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">3,249</td>
+<td class="hm hm-5">3,299</td>
+<td class="hm hm-3">625</td>
+<td class="hm hm-3">625</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">3,294</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">3,289</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">3,274</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">3,249</td>
 </tr>
 <tr><td><code>other_relevant_information</code></td>
-<td class="heat heat-5">4,266</td>
-<td class="heat heat-3">844</td>
-<td class="heat heat-3">844</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">4,261</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">4,256</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">4,241</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">4,216</td>
+<td class="hm hm-5">4,266</td>
+<td class="hm hm-3">844</td>
+<td class="hm hm-3">844</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">4,261</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">4,256</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">4,241</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">4,216</td>
 </tr>
 <tr><td><code>rescue_volunteering_or_donation_effort</code></td>
-<td class="heat heat-4">2,386</td>
-<td class="heat heat-2">453</td>
-<td class="heat heat-2">454</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">2,381</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">2,376</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">2,361</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">2,336</td>
+<td class="hm hm-5">2,386</td>
+<td class="hm hm-3">453</td>
+<td class="hm hm-3">454</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">2,381</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">2,376</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">2,361</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">2,336</td>
 </tr>
-<tr><td><code>vehicle_damage</code></td>
-<td class="heat heat-1">39</td>
-<td class="heat heat-1">8</td>
-<td class="heat heat-1">7</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-1">34</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-1">29</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-1">14</td>
-<td class="heat heat-1">39</td>
-<td class="heat heat-1">0</td>
+<tr><td><code>vehicle_damage</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
+<td class="hm hm-1">39</td>
+<td class="hm hm-1">8</td>
+<td class="hm hm-1">7</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-1">34</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-1">29</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-1">14</td>
+<td class="hm hm-1">39</td>
+<td class="hm hm-0">0</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>11,584</td>
-<td>2,237</td>
-<td>2,237</td>
-<td>40</td>
-<td>11,544</td>
-<td>80</td>
-<td>11,504</td>
-<td>200</td>
-<td>11,384</td>
-<td>367</td>
-<td>11,217</td>
-</tr></table>
-<div class="sub-title">Image Only</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">11,584</td>
+<td class="num">2,237</td>
+<td class="num">2,237</td>
+<td class="num">40</td>
+<td class="num">11,544</td>
+<td class="num">80</td>
+<td class="num">11,504</td>
+<td class="num">200</td>
+<td class="num">11,384</td>
+<td class="num">367</td>
+<td class="num">11,217</td>
+</tr></tbody></table>
+</div>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-5')"><h3>&#x1F5BC; Image Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-5">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>affected_individuals</code></td>
-<td class="heat heat-2">397</td>
-<td class="heat heat-1">77</td>
-<td class="heat heat-1">88</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-2">392</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-2">387</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-2">372</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-2">347</td>
+<td class="hm hm-2">397</td>
+<td class="hm hm-1">77</td>
+<td class="hm hm-1">88</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-2">392</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-2">387</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-2">372</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-2">347</td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
-<td class="heat heat-4">2,761</td>
-<td class="heat heat-2">405</td>
-<td class="heat heat-2">458</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">2,756</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">2,751</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">2,736</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">2,711</td>
+<td class="hm hm-4">2,761</td>
+<td class="hm hm-2">405</td>
+<td class="hm hm-2">458</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">2,756</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">2,751</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">2,736</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-4">2,711</td>
 </tr>
-<tr><td><code>injured_or_dead_people</code></td>
-<td class="heat heat-1">92</td>
-<td class="heat heat-1">8</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-1">87</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-1">82</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-1">67</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-1">42</td>
+<tr><td><code>injured_or_dead_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
+<td class="hm hm-1">92</td>
+<td class="hm hm-1">8</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-1">87</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-1">82</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-1">67</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-1">42</td>
 </tr>
-<tr><td><code>missing_or_found_people</code></td>
-<td class="heat heat-1">9</td>
-<td class="heat heat-1">2</td>
-<td class="heat heat-1">3</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-1">4</td>
-<td class="heat heat-1">9</td>
-<td class="heat heat-1">0</td>
-<td class="heat heat-1">9</td>
-<td class="heat heat-1">0</td>
-<td class="heat heat-1">9</td>
-<td class="heat heat-1">0</td>
+<tr><td><code>missing_or_found_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
+<td class="hm hm-1">9</td>
+<td class="hm hm-1">2</td>
+<td class="hm hm-1">3</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-1">4</td>
+<td class="hm hm-1">9</td>
+<td class="hm hm-0">0</td>
+<td class="hm hm-1">9</td>
+<td class="hm hm-0">0</td>
+<td class="hm hm-1">9</td>
+<td class="hm hm-0">0</td>
 </tr>
 <tr><td><code>not_humanitarian</code></td>
-<td class="heat heat-5">6,565</td>
-<td class="heat heat-3">1,088</td>
-<td class="heat heat-3">1,055</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">6,560</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">6,555</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">6,540</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">6,515</td>
+<td class="hm hm-5">6,565</td>
+<td class="hm hm-3">1,088</td>
+<td class="hm hm-3">1,055</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">6,560</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">6,555</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">6,540</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">6,515</td>
 </tr>
 <tr><td><code>other_relevant_information</code></td>
-<td class="heat heat-3">1,860</td>
-<td class="heat heat-2">338</td>
-<td class="heat heat-2">331</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-3">1,855</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-3">1,850</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-3">1,835</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-3">1,810</td>
+<td class="hm hm-4">1,860</td>
+<td class="hm hm-2">338</td>
+<td class="hm hm-2">331</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">1,855</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">1,850</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">1,835</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-4">1,810</td>
 </tr>
 <tr><td><code>rescue_volunteering_or_donation_effort</code></td>
-<td class="heat heat-3">1,694</td>
-<td class="heat heat-1">281</td>
-<td class="heat heat-1">256</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-3">1,689</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-3">1,684</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-3">1,669</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-3">1,644</td>
+<td class="hm hm-4">1,694</td>
+<td class="hm hm-2">281</td>
+<td class="hm hm-2">256</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">1,689</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">1,684</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">1,669</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-4">1,644</td>
 </tr>
 <tr><td><code>vehicle_damage</code></td>
-<td class="heat heat-1">230</td>
-<td class="heat heat-1">38</td>
-<td class="heat heat-1">36</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-1">225</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-1">220</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-1">205</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-1">180</td>
+<td class="hm hm-2">230</td>
+<td class="hm hm-1">38</td>
+<td class="hm hm-1">36</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-2">225</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-2">220</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-2">205</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-1">180</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>13,608</td>
-<td>2,237</td>
-<td>2,237</td>
-<td>40</td>
-<td>13,568</td>
-<td>79</td>
-<td>13,529</td>
-<td>184</td>
-<td>13,424</td>
-<td>359</td>
-<td>13,249</td>
-</tr></table>
-<div class="sub-title">Text Image</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">13,608</td>
+<td class="num">2,237</td>
+<td class="num">2,237</td>
+<td class="num">40</td>
+<td class="num">13,568</td>
+<td class="num">79</td>
+<td class="num">13,529</td>
+<td class="num">184</td>
+<td class="num">13,424</td>
+<td class="num">359</td>
+<td class="num">13,249</td>
+</tr></tbody></table>
+</div>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-6')"><h3>&#x1F4F7; Text Image &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-6">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>affected_individuals</code></td>
-<td class="heat heat-2">384</td>
-<td class="heat heat-1">67</td>
-<td class="heat heat-1">67</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-2">379</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-2">374</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-2">359</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-2">334</td>
+<td class="hm hm-2">384</td>
+<td class="hm hm-1">67</td>
+<td class="hm hm-1">67</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-2">379</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-2">374</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-2">359</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-2">334</td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
-<td class="heat heat-3">1,102</td>
-<td class="heat heat-1">164</td>
-<td class="heat heat-1">164</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-3">1,097</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-3">1,092</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-3">1,077</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-3">1,052</td>
+<td class="hm hm-3">1,102</td>
+<td class="hm hm-2">164</td>
+<td class="hm hm-2">164</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-3">1,097</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-3">1,092</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-3">1,077</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-3">1,052</td>
 </tr>
 <tr><td><code>injured_or_dead_people</code></td>
-<td class="heat heat-2">393</td>
-<td class="heat heat-1">70</td>
-<td class="heat heat-1">70</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-2">388</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-2">383</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-2">368</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-2">343</td>
+<td class="hm hm-2">393</td>
+<td class="hm hm-1">70</td>
+<td class="hm hm-1">70</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-2">388</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-2">383</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-2">368</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-2">343</td>
 </tr>
-<tr><td><code>missing_or_found_people</code></td>
-<td class="heat heat-1">29</td>
-<td class="heat heat-1">6</td>
-<td class="heat heat-1">6</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-1">24</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-1">19</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-1">4</td>
-<td class="heat heat-1">29</td>
-<td class="heat heat-1">0</td>
+<tr><td><code>missing_or_found_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
+<td class="hm hm-1">29</td>
+<td class="hm hm-1">6</td>
+<td class="hm hm-1">6</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-1">24</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-1">19</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-1">4</td>
+<td class="hm hm-1">29</td>
+<td class="hm hm-0">0</td>
 </tr>
 <tr><td><code>not_humanitarian</code></td>
-<td class="heat heat-5">3,970</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-2">625</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">3,965</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">3,960</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">3,945</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">3,920</td>
+<td class="hm hm-5">3,970</td>
+<td class="hm hm-3">625</td>
+<td class="hm hm-3">625</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">3,965</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">3,960</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">3,945</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">3,920</td>
 </tr>
 <tr><td><code>other_relevant_information</code></td>
-<td class="heat heat-5">4,817</td>
-<td class="heat heat-3">844</td>
-<td class="heat heat-3">844</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">4,812</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">4,807</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">4,792</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">4,767</td>
+<td class="hm hm-5">4,817</td>
+<td class="hm hm-3">844</td>
+<td class="hm hm-3">844</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">4,812</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">4,807</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">4,792</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">4,767</td>
 </tr>
 <tr><td><code>rescue_volunteering_or_donation_effort</code></td>
-<td class="heat heat-4">2,867</td>
-<td class="heat heat-2">453</td>
-<td class="heat heat-2">454</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">2,862</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">2,857</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">2,842</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">2,817</td>
+<td class="hm hm-5">2,867</td>
+<td class="hm hm-2">453</td>
+<td class="hm hm-2">454</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">2,862</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">2,857</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">2,842</td>
+<td class="hm hm-1">50</td>
+<td class="hm hm-5">2,817</td>
 </tr>
-<tr><td><code>vehicle_damage</code></td>
-<td class="heat heat-1">46</td>
-<td class="heat heat-1">8</td>
-<td class="heat heat-1">7</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-1">41</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-1">36</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-1">21</td>
-<td class="heat heat-1">46</td>
-<td class="heat heat-1">0</td>
+<tr><td><code>vehicle_damage</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
+<td class="hm hm-1">46</td>
+<td class="hm hm-1">8</td>
+<td class="hm hm-1">7</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-1">41</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-1">36</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-1">21</td>
+<td class="hm hm-1">46</td>
+<td class="hm hm-0">0</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>13,608</td>
-<td>2,237</td>
-<td>2,237</td>
-<td>40</td>
-<td>13,568</td>
-<td>80</td>
-<td>13,528</td>
-<td>200</td>
-<td>13,408</td>
-<td>375</td>
-<td>13,233</td>
-</tr></table>
-<div class="section-title">Task: Damage (3 classes)</div>
-<div class="sub-title">Text Only</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">13,608</td>
+<td class="num">2,237</td>
+<td class="num">2,237</td>
+<td class="num">40</td>
+<td class="num">13,568</td>
+<td class="num">80</td>
+<td class="num">13,528</td>
+<td class="num">200</td>
+<td class="num">13,408</td>
+<td class="num">375</td>
+<td class="num">13,233</td>
+</tr></tbody></table>
+</div>
+</div>
+<div class="section">
+<div class="section-header"><h2>&#x1F3DA; Damage Task</h2><div class="tag">3 classes</div></div>
+<table><thead><tr><th>Modality</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th class="num">Total</th></tr></thead><tbody>
+<tr><td>&#x1F4DD; Text Only</td><td class="num">2,286</td><td class="num">519</td><td class="num">523</td><td class="num"><strong>3,328</strong></td></tr>
+<tr><td>&#x1F5BC; Image Only</td><td class="num">2,468</td><td class="num">529</td><td class="num">529</td><td class="num"><strong>3,526</strong></td></tr>
+<tr><td>&#x1F4F7; Text Image</td><td class="num">2,468</td><td class="num">529</td><td class="num">529</td><td class="num"><strong>3,526</strong></td></tr>
+</tbody></table>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-7')"><h3>&#x1F4DD; Text Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-7">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>little_or_no_damage</code></td>
-<td class="heat heat-3">303</td>
-<td class="heat heat-1">70</td>
-<td class="heat heat-1">70</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-3">298</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-3">293</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-3">278</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-3">253</td>
+<td class="hm hm-3">303</td>
+<td class="hm hm-2">70</td>
+<td class="hm hm-2">70</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-3">298</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-3">293</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-3">278</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-3">253</td>
 </tr>
 <tr><td><code>mild_damage</code></td>
-<td class="heat heat-4">529</td>
-<td class="heat heat-2">122</td>
-<td class="heat heat-2">124</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">524</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">519</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">504</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">479</td>
+<td class="hm hm-4">529</td>
+<td class="hm hm-2">122</td>
+<td class="hm hm-2">124</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">524</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">519</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">504</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-4">479</td>
 </tr>
 <tr><td><code>severe_damage</code></td>
-<td class="heat heat-5">1,454</td>
-<td class="heat heat-3">327</td>
-<td class="heat heat-3">329</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">1,449</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">1,444</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">1,429</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">1,404</td>
+<td class="hm hm-5">1,454</td>
+<td class="hm hm-3">327</td>
+<td class="hm hm-3">329</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">1,449</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">1,444</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">1,429</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-5">1,404</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>2,286</td>
-<td>519</td>
-<td>523</td>
-<td>15</td>
-<td>2,271</td>
-<td>30</td>
-<td>2,256</td>
-<td>75</td>
-<td>2,211</td>
-<td>150</td>
-<td>2,136</td>
-</tr></table>
-<div class="sub-title">Image Only</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">2,286</td>
+<td class="num">519</td>
+<td class="num">523</td>
+<td class="num">15</td>
+<td class="num">2,271</td>
+<td class="num">30</td>
+<td class="num">2,256</td>
+<td class="num">75</td>
+<td class="num">2,211</td>
+<td class="num">150</td>
+<td class="num">2,136</td>
+</tr></tbody></table>
+</div>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-8')"><h3>&#x1F5BC; Image Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-8">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>little_or_no_damage</code></td>
-<td class="heat heat-3">333</td>
-<td class="heat heat-1">71</td>
-<td class="heat heat-1">71</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-3">328</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-3">323</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-3">308</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-3">283</td>
+<td class="hm hm-3">333</td>
+<td class="hm hm-2">71</td>
+<td class="hm hm-2">71</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-3">328</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-3">323</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-3">308</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-3">283</td>
 </tr>
 <tr><td><code>mild_damage</code></td>
-<td class="heat heat-4">587</td>
-<td class="heat heat-2">126</td>
-<td class="heat heat-2">126</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">582</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">577</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">562</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">537</td>
+<td class="hm hm-4">587</td>
+<td class="hm hm-2">126</td>
+<td class="hm hm-2">126</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">582</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">577</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">562</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-4">537</td>
 </tr>
 <tr><td><code>severe_damage</code></td>
-<td class="heat heat-5">1,548</td>
-<td class="heat heat-3">332</td>
-<td class="heat heat-3">332</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">1,543</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">1,538</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">1,523</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">1,498</td>
+<td class="hm hm-5">1,548</td>
+<td class="hm hm-3">332</td>
+<td class="hm hm-3">332</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">1,543</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">1,538</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">1,523</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-5">1,498</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>2,468</td>
-<td>529</td>
-<td>529</td>
-<td>15</td>
-<td>2,453</td>
-<td>30</td>
-<td>2,438</td>
-<td>75</td>
-<td>2,393</td>
-<td>150</td>
-<td>2,318</td>
-</tr></table>
-<div class="sub-title">Text Image</div>
-<table><tr><th>Class</th>
-<th>Train</th>
-<th>Dev</th>
-<th>Test</th>
-<th>L5</th><th>U5</th>
-<th>L10</th><th>U10</th>
-<th>L25</th><th>U25</th>
-<th>L50</th><th>U50</th>
-</tr>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">2,468</td>
+<td class="num">529</td>
+<td class="num">529</td>
+<td class="num">15</td>
+<td class="num">2,453</td>
+<td class="num">30</td>
+<td class="num">2,438</td>
+<td class="num">75</td>
+<td class="num">2,393</td>
+<td class="num">150</td>
+<td class="num">2,318</td>
+</tr></tbody></table>
+</div>
+<div class="collapse-toggle" onclick="toggleCollapse('collapse-9')"><h3>&#x1F4F7; Text Image &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-9">
+<table><thead><tr><th>Class</th>
+<th class="num">Train</th>
+<th class="num">Dev</th>
+<th class="num">Test</th>
+<th class="num">L5</th><th class="num">U5</th>
+<th class="num">L10</th><th class="num">U10</th>
+<th class="num">L25</th><th class="num">U25</th>
+<th class="num">L50</th><th class="num">U50</th>
+</tr></thead><tbody>
 <tr><td><code>little_or_no_damage</code></td>
-<td class="heat heat-3">333</td>
-<td class="heat heat-1">71</td>
-<td class="heat heat-1">71</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-3">328</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-3">323</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-3">308</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-3">283</td>
+<td class="hm hm-3">333</td>
+<td class="hm hm-2">71</td>
+<td class="hm hm-2">71</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-3">328</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-3">323</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-3">308</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-3">283</td>
 </tr>
 <tr><td><code>mild_damage</code></td>
-<td class="heat heat-4">587</td>
-<td class="heat heat-2">126</td>
-<td class="heat heat-2">126</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-4">582</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-4">577</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-4">562</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-4">537</td>
+<td class="hm hm-4">587</td>
+<td class="hm hm-2">126</td>
+<td class="hm hm-2">126</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-4">582</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-4">577</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-4">562</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-4">537</td>
 </tr>
 <tr><td><code>severe_damage</code></td>
-<td class="heat heat-5">1,548</td>
-<td class="heat heat-3">332</td>
-<td class="heat heat-3">332</td>
-<td class="heat heat-1">5</td>
-<td class="heat heat-5">1,543</td>
-<td class="heat heat-1">10</td>
-<td class="heat heat-5">1,538</td>
-<td class="heat heat-1">25</td>
-<td class="heat heat-5">1,523</td>
-<td class="heat heat-1">50</td>
-<td class="heat heat-5">1,498</td>
+<td class="hm hm-5">1,548</td>
+<td class="hm hm-3">332</td>
+<td class="hm hm-3">332</td>
+<td class="hm hm-1">5</td>
+<td class="hm hm-5">1,543</td>
+<td class="hm hm-1">10</td>
+<td class="hm hm-5">1,538</td>
+<td class="hm hm-1">25</td>
+<td class="hm hm-5">1,523</td>
+<td class="hm hm-2">50</td>
+<td class="hm hm-5">1,498</td>
 </tr>
-<tr class="total-row"><td>Total</td>
-<td>2,468</td>
-<td>529</td>
-<td>529</td>
-<td>15</td>
-<td>2,453</td>
-<td>30</td>
-<td>2,438</td>
-<td>75</td>
-<td>2,393</td>
-<td>150</td>
-<td>2,318</td>
-</tr></table>
+<tr class="total-row"><td><strong>Total</strong></td>
+<td class="num">2,468</td>
+<td class="num">529</td>
+<td class="num">529</td>
+<td class="num">15</td>
+<td class="num">2,453</td>
+<td class="num">30</td>
+<td class="num">2,438</td>
+<td class="num">75</td>
+<td class="num">2,393</td>
+<td class="num">150</td>
+<td class="num">2,318</td>
+</tr></tbody></table>
+</div>
+</div>
 
     <div class="note">
-        <strong>Label source notes:</strong>
-        For informative and humanitarian tasks, <code>text_only</code> and <code>text_image</code> use
-        <code>label_text</code> (text annotation), <code>image_only</code> uses <code>label_image</code>
-        (image annotation). For the damage task, all modalities use the single <code>label</code> column.
-        Budget columns (L5, U5, etc.) show seed=1 splits. L = labeled, U = unlabeled.
+        <div class="note-icon">&#x1F4DD;</div>
+        <div class="note-body">
+            <strong>Label source notes:</strong>
+            For informative and humanitarian tasks, <code>text_only</code> and <code>text_image</code>
+            use <code>label_text</code> (text annotation), while <code>image_only</code> uses
+            <code>label_image</code> (image annotation). For the damage task, all modalities use the
+            single <code>label</code> column.
+            Budget columns (L5, U5, etc.) show seed=1 splits. <strong>L</strong> = labeled,
+            <strong>U</strong> = unlabeled. &#x26A0; marks classes with &lt;1% of training data.
+        </div>
     </div>
     
 </div>
 
 <div id="tab-results" class="tab-content">
-    <div class="note">No experiment results found yet. Run experiments with <code>python -m lg_cotrain.run_experiment</code> to populate this tab.</div>
+
+        <div class="empty-state">
+            <div class="icon">&#x1F4CA;</div>
+            <h3>No Experiment Results Yet</h3>
+            <p>Run experiments to populate this tab:<br>
+            <code>python -m lg_cotrain.run_experiment --task humanitarian --modality text_only --budget 5 --seed-set 1</code></p>
+        </div>
 </div>
 
 <script>
-function showTab(tabId) {
+function showTab(tabId, btn) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-bar button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
-    event.target.classList.add('active');
+    btn.classList.add('active');
+}
+
+function toggleCollapse(id) {
+    const body = document.getElementById(id);
+    const toggle = body.previousElementSibling;
+    body.classList.toggle('open');
+    toggle.classList.toggle('open');
 }
 </script>
 </body>
