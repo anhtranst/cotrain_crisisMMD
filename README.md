@@ -5,7 +5,7 @@
 > **Dashboard** — View dataset exploration and experiment results: [results/dashboard.html](https://htmlpreview.github.io/?https://github.com/anhtranst/cotrain_crisisMMD/blob/main/results/dashboard.html)
 > _(Rebuild anytime with `python -m lg_cotrain.dashboard`)_
 
-A semi-supervised co-training pipeline that classifies crisis tweets. It combines a small set of human-labeled tweets with LLM pseudo-labeled tweets (e.g., from GPT-4o) using a 3-phase training approach with two models. Now adapted for the **CrisisMMD v2.0** dataset with support for three tasks and three modalities.
+A semi-supervised co-training pipeline that classifies crisis tweets. It combines a small set of human-labeled tweets with LLM pseudo-labeled tweets (e.g., from GPT-4o) using a 3-phase training approach with two models. Now adapted for the **CrisisMMD** dataset with support for three tasks and three modalities.
 
 ---
 
@@ -16,7 +16,7 @@ A semi-supervised co-training pipeline that classifies crisis tweets. It combine
   - [Phase 1 — Weight Generation](#phase-1--weight-generation)
   - [Phase 2 — Co-Training](#phase-2--co-training)
   - [Phase 3 — Fine-Tuning](#phase-3--fine-tuning)
-- [Dataset: CrisisMMD v2.0](#dataset-crisismmd-v20)
+- [Dataset: CrisisMMD](#dataset-crisismmd-v20)
 - [Data Layout](#data-layout)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -147,7 +147,7 @@ Six strategies are available via `--stopping-strategy`:
 
 ---
 
-## Dataset: CrisisMMD v2.0
+## Dataset: CrisisMMD
 
 The dataset contains tweets and images from **7 natural disasters** in 2017, with three annotation tasks:
 
@@ -155,9 +155,8 @@ The dataset contains tweets and images from **7 natural disasters** in 2017, wit
 
 | Task | Classes | Labels |
 | --- | --- | --- |
-| **humanitarian** (8 classes) | `affected_individuals`, `infrastructure_and_utility_damage`, `injured_or_dead_people`, `missing_or_found_people`, `not_humanitarian`, `other_relevant_information`, `rescue_volunteering_or_donation_effort`, `vehicle_damage` |
+| **humanitarian** (5 classes) | `affected_individuals`, `infrastructure_and_utility_damage`, `not_humanitarian`, `other_relevant_information`, `rescue_volunteering_or_donation_effort` |
 | **informative** (2 classes) | `informative`, `not_informative` |
-| **damage** (3 classes) | `little_or_no_damage`, `mild_damage`, `severe_damage` |
 
 ### Modalities
 
@@ -167,7 +166,7 @@ The dataset contains tweets and images from **7 natural disasters** in 2017, wit
 | `image_only` | One row per image_id | CLIP ViT (`openai/clip-vit-base-patch32`) — future |
 | `text_image` | Text + image paired | BERTweet + CLIP fusion — future |
 
-Note: the damage task uses a single `label` column for all modalities (no separate text/image annotations), while informative and humanitarian tasks have separate `label_text` and `label_image` columns.
+Note: the dataset uses the agreed-label subset where text and image annotators agreed on the label.
 
 ### Events (7 disasters, combined in one dataset)
 
@@ -188,16 +187,16 @@ Each task/modality has **4 budget levels** (5, 10, 25, 50 labeled per class) and
 ## Data Layout
 
 ```
-data/CrisisMMD_v2.0/
+data/CrisisMMD/
 ├── original/                          # Raw source TSVs (keep as-is)
 │   ├── task_humanitarian_text_img_{train,dev,test}.tsv
 │   ├── task_informative_text_img_{train,dev,test}.tsv
-│   ├── task_damage_text_img_{train,dev,test}.tsv
+│   ├── task_*_agreed_lab_{train,dev,test}.tsv
 │   └── Readme.txt
 ├── data_image/                        # Images organized by event/date
 │   └── {event}/{date}/{image_id}.jpg
 └── tasks/                             # Preprocessed per-task, per-modality
-    └── {task}/                        # informative | humanitarian | damage
+    └── {task}/                        # informative | humanitarian
         └── {modality}/                # text_only | image_only | text_image
             ├── train.tsv
             ├── dev.tsv
@@ -238,7 +237,7 @@ pip install -r lg_cotrain/requirements.txt
 
 ### Preprocessing
 
-Convert raw CrisisMMD v2.0 TSVs into per-task, per-modality datasets with budget splits:
+Convert raw CrisisMMD TSVs into per-task, per-modality datasets with budget splits:
 
 ```bash
 # Process all tasks (informative, humanitarian, damage)
@@ -426,7 +425,7 @@ lg_cotrain/                          # Main package
 └── requirements.txt                 # Python dependencies
 
 scripts/
-├── prepare_crisismmd.py             # Preprocess CrisisMMD v2.0 into per-task/modality datasets
+├── prepare_crisismmd.py             # Preprocess CrisisMMD into per-task/modality datasets
 ├── check_progress.py                # Standalone Optuna progress checker (study.log scanner)
 ├── extract_optuna_test_results.py   # Extract best Optuna params + test metrics
 └── merge_optuna_results.py          # Merge Optuna results from multiple PCs
@@ -455,7 +454,7 @@ docs/
 ├── Cornelia etal2025-Cotraining.pdf # Reference paper
 └── Data Analysis.pdf                # CrisisMMD data analysis
 
-data/CrisisMMD_v2.0/                # Dataset (see Data Layout above)
+data/CrisisMMD/                # Dataset (see Data Layout above)
 backup/                              # CrisisMMD archive
 ```
 

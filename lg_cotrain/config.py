@@ -18,7 +18,7 @@ class LGCoTrainConfig:
 
     # Model
     model_name: str = "vinai/bertweet-base"
-    num_labels: int = 8
+    num_labels: int = 5
     max_seq_length: int = 128
 
     # Phase 1: Weight generation
@@ -64,7 +64,7 @@ class LGCoTrainConfig:
 
     def __post_init__(self):
         task_dir = (
-            Path(self.data_root) / "CrisisMMD_v2.0" / "tasks"
+            Path(self.data_root) / "CrisisMMD" / "tasks"
             / self.task / self.modality
         )
         pseudo_dir = (

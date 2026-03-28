@@ -6,26 +6,18 @@ from typing import Dict, List, Tuple
 
 logger = logging.getLogger("lg_cotrain")
 
-# Per-task label sets for CrisisMMD v2.0.
+# Per-task label sets for CrisisMMD (agreed-label subset).
 TASK_LABELS = {
     "humanitarian": sorted([
         "affected_individuals",
         "infrastructure_and_utility_damage",
-        "injured_or_dead_people",
-        "missing_or_found_people",
         "not_humanitarian",
         "other_relevant_information",
         "rescue_volunteering_or_donation_effort",
-        "vehicle_damage",
     ]),
     "informative": sorted([
         "informative",
         "not_informative",
-    ]),
-    "damage": sorted([
-        "little_or_no_damage",
-        "mild_damage",
-        "severe_damage",
     ]),
 }
 

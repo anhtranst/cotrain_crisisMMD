@@ -1,4 +1,4 @@
-"""Generate an interactive HTML dashboard for CrisisMMD v2.0 experiments.
+"""Generate an interactive HTML dashboard for CrisisMMD experiments.
 
 Tab 1: Dataset Exploration — class distributions, event breakdown, budget splits.
 Tab 2+: Experiment Results — pivot tables and all-results (when metrics exist).
@@ -20,7 +20,7 @@ else:
     from .data_loading import TASK_LABELS
     from .run_all import BUDGETS, SEED_SETS
 
-TASKS = ["informative", "humanitarian", "damage"]
+TASKS = ["informative", "humanitarian"]
 MODALITIES = ["text_only", "image_only", "text_image"]
 
 TASK_ICONS = {"informative": "&#x1F4CB;", "humanitarian": "&#x1F6D1;", "damage": "&#x1F3DA;"}
@@ -33,7 +33,7 @@ MODALITY_ICONS = {"text_only": "&#x1F4DD;", "image_only": "&#x1F5BC;", "text_ima
 
 def collect_dataset_stats(data_root: str) -> dict:
     """Scan preprocessed CrisisMMD data and collect class distributions."""
-    base = Path(data_root) / "CrisisMMD_v2.0" / "tasks"
+    base = Path(data_root) / "CrisisMMD" / "tasks"
     stats = {}
     for task in TASKS:
         stats[task] = {}
@@ -57,7 +57,7 @@ def collect_dataset_stats(data_root: str) -> dict:
 
 def collect_event_stats(data_root: str) -> dict:
     """Count samples per event from the original source files."""
-    base = Path(data_root) / "CrisisMMD_v2.0" / "original"
+    base = Path(data_root) / "CrisisMMD" / "original"
     prefixes = {
         "informative": "task_informative_text_img",
         "humanitarian": "task_humanitarian_text_img",
@@ -98,12 +98,45 @@ def collect_all_metrics(results_root: str) -> list:
     root = Path(results_root)
     if root.exists():
         for p in sorted(root.rglob("metrics.json")):
+            # Skip zeroshot results (handled separately)
+            if "zeroshot" in str(p):
+                continue
             try:
                 with open(p) as f:
                     metrics.append(json.load(f))
             except (json.JSONDecodeError, OSError):
                 pass
     return metrics
+
+
+def collect_zeroshot_results(results_root: str) -> dict:
+    """Scan results/zeroshot/{task}/{modality}/{split}/metrics.json.
+
+    Returns {task: [metrics_dict, ...]}.
+    """
+    base = Path(results_root) / "zeroshot"
+    results = {}
+    if not base.exists():
+        return results
+    for task_dir in sorted(base.iterdir()):
+        if not task_dir.is_dir():
+            continue
+        task = task_dir.name
+        results[task] = []
+        for mod_dir in sorted(task_dir.iterdir()):
+            if not mod_dir.is_dir():
+                continue
+            for split_dir in sorted(mod_dir.iterdir()):
+                if not split_dir.is_dir():
+                    continue
+                metrics_path = split_dir / "metrics.json"
+                if metrics_path.exists():
+                    try:
+                        with open(metrics_path) as f:
+                            results[task].append(json.load(f))
+                    except (json.JSONDecodeError, OSError):
+                        pass
+    return results
 
 
 # ---------------------------------------------------------------------------
@@ -533,7 +566,100 @@ def _render_dataset_overview(ds_stats, event_stats):
 
 
 # ---------------------------------------------------------------------------
-# Results Tab
+# Zero-Shot Results Tab (per-task)
+# ---------------------------------------------------------------------------
+
+def _render_zeroshot_tab(task, task_results):
+    """Render a zero-shot results tab for one task."""
+    if not task_results:
+        return f"""
+        <div class="empty-state">
+            <div class="icon">&#x1F4CA;</div>
+            <h3>No Zero-Shot Results for {task.title()}</h3>
+            <p>Run the notebook or CLI to generate results.</p>
+        </div>"""
+
+    parts = []
+    n = len(task_results)
+    accs = [m["accuracy"] for m in task_results]
+    wf1s = [m["weighted_f1"] for m in task_results]
+    mf1s = [m["macro_f1"] for m in task_results]
+
+    parts.append(f"""
+    <div class="cards">
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">{n}</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">{statistics.mean(accs):.4f}</div><div class="label">Avg Accuracy</div></div>
+        <div class="card"><div class="icon">&#x1F4CA;</div><div class="value">{statistics.mean(wf1s):.4f}</div><div class="label">Avg Weighted F1</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">{statistics.mean(mf1s):.4f}</div><div class="label">Avg Macro F1</div></div>
+    </div>
+    """)
+
+    # Summary table
+    parts.append('<div class="section">')
+    parts.append(f'<div class="section-header"><h2>&#x1F4CB; Results by Modality &amp; Split</h2>'
+                 f'<div class="tag">Zero-Shot &mdash; Llama-3.2-11B-Vision</div></div>')
+    parts.append("""<table><thead>
+        <tr><th>Modality</th><th>Split</th><th class="num">Samples</th>
+        <th class="num">Accuracy</th><th class="num">Weighted F1</th>
+        <th class="num">Macro F1</th><th class="num">Unparseable</th></tr></thead><tbody>""")
+
+    for m in sorted(task_results, key=lambda x: (x.get("modality",""), x.get("split",""))):
+        acc = m.get("accuracy", 0)
+        wf1 = m.get("weighted_f1", 0)
+        mf1 = m.get("macro_f1", 0)
+        if mf1 >= 0.5:
+            badge = "badge-success"
+        elif mf1 >= 0.3:
+            badge = "badge-warning"
+        else:
+            badge = "badge-danger"
+        mi = MODALITY_ICONS.get(m.get("modality", ""), "")
+        parts.append(
+            f'<tr><td>{mi} {_modality_label(m.get("modality","?"))}</td>'
+            f'<td>{m.get("split","?")}</td>'
+            f'<td class="num">{m.get("num_samples", 0):,}</td>'
+            f'<td class="num">{acc:.4f}</td>'
+            f'<td class="num">{wf1:.4f}</td>'
+            f'<td class="num"><span class="badge {badge}">{mf1:.4f}</span></td>'
+            f'<td class="num">{m.get("num_unparseable", 0)}</td></tr>'
+        )
+    parts.append("</tbody></table></div>")
+
+    # Per-class F1 table (test sets only)
+    test_results = [m for m in task_results if m.get("split") == "test" and m.get("per_class_f1")]
+    if test_results:
+        labels = sorted(test_results[0]["per_class_f1"].keys())
+        parts.append('<div class="section">')
+        parts.append('<div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>')
+        parts.append('<table><thead><tr><th>Class</th>')
+        for m in sorted(test_results, key=lambda x: x.get("modality", "")):
+            mi = MODALITY_ICONS.get(m.get("modality", ""), "")
+            parts.append(f'<th class="num">{mi} {_modality_label(m.get("modality",""))}</th>')
+        parts.append('</tr></thead><tbody>')
+
+        for label in labels:
+            parts.append(f'<tr><td><code>{label}</code></td>')
+            for m in sorted(test_results, key=lambda x: x.get("modality", "")):
+                f1 = m["per_class_f1"].get(label, 0)
+                if f1 >= 0.5:
+                    cls = "hm hm-5"
+                elif f1 >= 0.3:
+                    cls = "hm hm-4"
+                elif f1 >= 0.1:
+                    cls = "hm hm-3"
+                elif f1 > 0:
+                    cls = "hm hm-2"
+                else:
+                    cls = "hm hm-0"
+                parts.append(f'<td class="{cls}">{f1:.4f}</td>')
+            parts.append('</tr>')
+        parts.append('</tbody></table></div>')
+
+    return "\n".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# Co-Training Results Tab
 # ---------------------------------------------------------------------------
 
 def _render_results_tab(metrics):
@@ -597,40 +723,58 @@ def generate_html(data_root: str, results_root: str) -> str:
     ds_stats = collect_dataset_stats(data_root)
     event_stats = collect_event_stats(data_root)
     metrics = collect_all_metrics(results_root)
+    zeroshot = collect_zeroshot_results(results_root)
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    total_zs = sum(len(v) for v in zeroshot.values())
+    total_exp = len(metrics) + total_zs
+
     dataset_html = _render_dataset_overview(ds_stats, event_stats)
     results_html = _render_results_tab(metrics)
-    results_badge = f' <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">{len(metrics)}</span>' if metrics else ''
+
+    # Build tab buttons and content for zero-shot task tabs
+    zs_tab_buttons = ""
+    zs_tab_contents = ""
+    for task in TASKS:
+        task_results = zeroshot.get(task, [])
+        if not task_results:
+            continue
+        tab_id = f"tab-zs-{task}"
+        icon = TASK_ICONS.get(task, "")
+        badge = f' <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">{len(task_results)}</span>'
+        zs_tab_buttons += f'    <button onclick="showTab(\'{tab_id}\', this)">{icon} {task.title()}{badge}</button>\n'
+        zs_tab_contents += f'\n<div id="{tab_id}" class="tab-content">\n{_render_zeroshot_tab(task, task_results)}\n</div>\n'
+
+    cotrain_badge = f' <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">{len(metrics)}</span>' if metrics else ''
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LG-CoTrain &mdash; CrisisMMD v2.0 Dashboard</title>
+<title>LG-CoTrain &mdash; CrisisMMD Dashboard</title>
 <style>{_CSS}</style>
 </head>
 <body>
 <header>
-    <h1>LG-CoTrain &mdash; CrisisMMD v2.0</h1>
+    <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
         Generated <span>{now}</span> &bull;
         <span>{len(TASKS)} tasks</span> &bull;
         <span>{len(MODALITIES)} modalities</span> &bull;
-        <span>{len(metrics)} experiments</span>
+        <span>{total_exp} experiments</span>
     </p>
 </header>
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
-    <button onclick="showTab('tab-results', this)">&#x1F4CA; Experiment Results{results_badge}</button>
+{zs_tab_buttons}    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results{cotrain_badge}</button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
 {dataset_html}
 </div>
-
+{zs_tab_contents}
 <div id="tab-results" class="tab-content">
 {results_html}
 </div>
@@ -671,7 +815,7 @@ def main():
 
     metrics = collect_all_metrics(results_root)
     print(f"Dashboard written to: {output}")
-    print(f"  Dataset: CrisisMMD v2.0 ({len(TASKS)} tasks, {len(MODALITIES)} modalities)")
+    print(f"  Dataset: CrisisMMD ({len(TASKS)} tasks, {len(MODALITIES)} modalities)")
     print(f"  Experiments: {len(metrics)} results found")
 
 

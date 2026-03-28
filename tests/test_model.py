@@ -28,7 +28,7 @@ class TestBertClassifierForward(unittest.TestCase):
         from lg_cotrain.model import create_fresh_model
         from lg_cotrain.config import LGCoTrainConfig
         import torch
-        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=8)
+        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=5)
         model = create_fresh_model(cfg)
         input_ids = torch.randint(0, 1000, (4, 16))
         attention_mask = torch.ones(4, 16, dtype=torch.long)
@@ -40,7 +40,7 @@ class TestBertClassifierForward(unittest.TestCase):
         from lg_cotrain.model import create_fresh_model
         from lg_cotrain.config import LGCoTrainConfig
         import torch
-        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=8)
+        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=5)
         model = create_fresh_model(cfg)
         model.eval()
         input_ids = torch.randint(0, 1000, (4, 16))
@@ -55,7 +55,7 @@ class TestBertClassifierForward(unittest.TestCase):
         from lg_cotrain.model import create_fresh_model
         from lg_cotrain.config import LGCoTrainConfig
         import torch
-        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=8)
+        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=5)
         model = create_fresh_model(cfg)
         model.eval()
         input_ids = torch.randint(0, 1000, (2, 16))
@@ -67,7 +67,7 @@ class TestBertClassifierForward(unittest.TestCase):
     def test_create_fresh_returns_new_instance(self):
         from lg_cotrain.model import create_fresh_model
         from lg_cotrain.config import LGCoTrainConfig
-        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=8)
+        cfg = LGCoTrainConfig(model_name="prajjwal1/bert-tiny", num_labels=5)
         m1 = create_fresh_model(cfg)
         m2 = create_fresh_model(cfg)
         self.assertIsNot(m1, m2)

@@ -1,0 +1,11 @@
+image_id	image_path	class_label
+922754789699497985_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\california_wildfires\24_10_2017\922754789699497985_0.jpg	informative
+916332585537728513_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\hurricane_maria\6_10_2017\916332585537728513_0.jpg	informative
+913519193009487872_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\hurricane_maria\28_9_2017\913519193009487872_0.jpg	informative
+930922979189510145_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\iraq_iran_earthquake\15_11_2017\930922979189510145_0.jpg	informative
+908114012222529536_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\hurricane_harvey\13_9_2017\908114012222529536_0.jpg	informative
+921890291648524289_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\hurricane_maria\22_10_2017\921890291648524289_0.jpg	not_informative
+909416031118086144_1	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\hurricane_irma\17_9_2017\909416031118086144_1.jpg	not_informative
+874250450815471621_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\srilanka_floods\12_6_2017\874250450815471621_0.jpg	not_informative
+911975789473787906_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\mexico_earthquake\24_9_2017\911975789473787906_0.jpg	not_informative
+910182907058245639_0	D:\Workspace\Cotrain_CrisisMMD\data\CrisisMMD\data_image\hurricane_irma\19_9_2017\910182907058245639_0.jpg	not_informative

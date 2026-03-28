@@ -23,7 +23,7 @@ class TestClassLabels(unittest.TestCase):
     """CLASS_LABELS constant is correct."""
 
     def test_count(self):
-        self.assertEqual(len(CLASS_LABELS), 8)
+        self.assertEqual(len(CLASS_LABELS), 5)
 
     def test_sorted(self):
         self.assertEqual(CLASS_LABELS, sorted(CLASS_LABELS))
@@ -32,12 +32,9 @@ class TestClassLabels(unittest.TestCase):
         expected = {
             "affected_individuals",
             "infrastructure_and_utility_damage",
-            "injured_or_dead_people",
-            "missing_or_found_people",
             "not_humanitarian",
             "other_relevant_information",
             "rescue_volunteering_or_donation_effort",
-            "vehicle_damage",
         }
         self.assertEqual(set(CLASS_LABELS), expected)
 
@@ -46,13 +43,13 @@ class TestTaskLabels(unittest.TestCase):
     """TASK_LABELS mapping is correct."""
 
     def test_humanitarian_count(self):
-        self.assertEqual(len(TASK_LABELS["humanitarian"]), 8)
+        self.assertEqual(len(TASK_LABELS["humanitarian"]), 5)
 
     def test_informative_count(self):
         self.assertEqual(len(TASK_LABELS["informative"]), 2)
 
-    def test_damage_count(self):
-        self.assertEqual(len(TASK_LABELS["damage"]), 3)
+    def test_two_tasks(self):
+        self.assertEqual(set(TASK_LABELS.keys()), {"humanitarian", "informative"})
 
     def test_all_sorted(self):
         for task, labels in TASK_LABELS.items():
@@ -67,11 +64,11 @@ class TestBuildLabelEncoder(unittest.TestCase):
 
     def test_label2id_length(self):
         label2id, _ = build_label_encoder()
-        self.assertEqual(len(label2id), 8)
+        self.assertEqual(len(label2id), 5)
 
     def test_id2label_length(self):
         _, id2label = build_label_encoder()
-        self.assertEqual(len(id2label), 8)
+        self.assertEqual(len(id2label), 5)
 
     def test_alphabetical_order(self):
         label2id, id2label = build_label_encoder()
@@ -91,14 +88,14 @@ class TestBuildLabelEncoder(unittest.TestCase):
 
     def test_custom_labels_subset(self):
         """build_label_encoder with a custom subset produces matching-size mappings."""
-        subset = ["not_humanitarian", "vehicle_damage"]
+        subset = ["not_humanitarian", "other_relevant_information"]
         label2id, id2label = build_label_encoder(labels=subset)
         self.assertEqual(len(label2id), 2)
         self.assertEqual(len(id2label), 2)
         self.assertEqual(label2id["not_humanitarian"], 0)
-        self.assertEqual(label2id["vehicle_damage"], 1)
+        self.assertEqual(label2id["other_relevant_information"], 1)
         self.assertEqual(id2label[0], "not_humanitarian")
-        self.assertEqual(id2label[1], "vehicle_damage")
+        self.assertEqual(id2label[1], "other_relevant_information")
 
     def test_custom_labels_roundtrip(self):
         """Roundtrip works for custom label list."""
@@ -108,9 +105,9 @@ class TestBuildLabelEncoder(unittest.TestCase):
             self.assertEqual(id2label[label2id[label]], label)
 
     def test_default_labels_unchanged(self):
-        """Calling with labels=None still uses all 8 CLASS_LABELS."""
+        """Calling with labels=None still uses all 5 CLASS_LABELS."""
         label2id, _ = build_label_encoder(labels=None)
-        self.assertEqual(len(label2id), 8)
+        self.assertEqual(len(label2id), 5)
 
 
 class TestDetectClasses(unittest.TestCase):
@@ -251,7 +248,7 @@ class TestSplitLabeledSetPure(unittest.TestCase):
         records = self._make_records(per_class=1)  # 1 per class
         d1, d2 = _split_labeled_set_pure(records, seed=42)
         # Each class in d1 has 1 sample, d2 has 0
-        self.assertEqual(len(d1), 8)
+        self.assertEqual(len(d1), 5)
         self.assertEqual(len(d2), 0)
 
 

@@ -1,12 +1,11 @@
-"""Preprocess CrisisMMD v2.0 into per-task, per-modality datasets.
+"""Preprocess CrisisMMD into per-task, per-modality datasets.
 
-Reads the raw CrisisMMD v2.0 TSV files and produces cleaned datasets
-organised as: data/CrisisMMD_v2.0/tasks/{task}/{modality}/{split}.tsv
+Reads the raw CrisisMMD TSV files (agreed-label subset) and produces
+cleaned datasets at: data/CrisisMMD/tasks/{task}/{modality}/{split}.tsv
 
-Three tasks:
+Two tasks:
   - informative  (2 classes, has label_text and label_image)
-  - humanitarian (8 classes, has label_text and label_image)
-  - damage       (3 classes, only has label — image-based annotation)
+  - humanitarian (5 classes, has label_text and label_image)
 
 Three modalities:
   - text_only   — deduplicated by tweet_id
@@ -27,22 +26,18 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
 # Source directory
-SOURCE_DIR = Path(__file__).parent.parent / "data" / "CrisisMMD_v2.0"
+SOURCE_DIR = Path(__file__).parent.parent / "data" / "CrisisMMD"
 ORIGINAL_DIR = SOURCE_DIR / "original"
 OUTPUT_DIR = SOURCE_DIR / "tasks"
 
 TASKS = {
     "informative": {
-        "prefix": "task_informative_text_img",
-        "has_label_text": True,  # has label_text, label_image columns
+        "prefix": "task_informative_text_img_agreed_lab",
+        "has_label_text": True,
     },
     "humanitarian": {
-        "prefix": "task_humanitarian_text_img",
-        "has_label_text": True,  # has label_text, label_image columns
-    },
-    "damage": {
-        "prefix": "task_damage_text_img",
-        "has_label_text": False,  # single 'label' column (applies to all modalities)
+        "prefix": "task_humanitarian_text_img_agreed_lab",
+        "has_label_text": True,
     },
 }
 

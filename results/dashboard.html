@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LG-CoTrain &mdash; CrisisMMD v2.0 Dashboard</title>
+<title>LG-CoTrain &mdash; CrisisMMD Dashboard</title>
 <style>
 :root {
     --bg: #f0f2f5;
@@ -175,10 +175,10 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 </head>
 <body>
 <header>
-    <h1>LG-CoTrain &mdash; CrisisMMD v2.0</h1>
+    <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
-        Generated <span>2026-03-27 23:35:44</span> &bull;
-        <span>3 tasks</span> &bull;
+        Generated <span>2026-03-28 12:31:58</span> &bull;
+        <span>2 tasks</span> &bull;
         <span>3 modalities</span> &bull;
         <span>0 experiments</span>
     </p>
@@ -186,7 +186,7 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
-    <button onclick="showTab('tab-results', this)">&#x1F4CA; Experiment Results</button>
+    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results</button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
@@ -194,12 +194,12 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
     <div class="cards">
         <div class="card">
             <div class="icon">&#x1F30D;</div>
-            <div class="value">7</div>
+            <div class="value">0</div>
             <div class="label">Disaster Events</div>
         </div>
         <div class="card">
             <div class="icon">&#x1F4CA;</div>
-            <div class="value">3</div>
+            <div class="value">2</div>
             <div class="label">Annotation Tasks</div>
         </div>
         <div class="card">
@@ -209,35 +209,25 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
         </div>
         <div class="card">
             <div class="icon">&#x1F3F7;</div>
-            <div class="value">13</div>
+            <div class="value">7</div>
             <div class="label">Total Classes</div>
         </div>
         <div class="card">
             <div class="icon">&#x1F4E6;</div>
-            <div class="value">114,824</div>
+            <div class="value">60,190</div>
             <div class="label">Total Samples</div>
         </div>
     </div>
     
 <div class="section">
 <div class="section-header"><h2>&#x1F30D; Event Distribution</h2><div class="tag">Humanitarian Task &mdash; Training Set</div></div>
-<table><thead><tr><th>Event</th><th class="num">Samples</th><th class="num">Share</th><th style="min-width:250px">Distribution</th></tr></thead><tbody>
-<tr><td><strong>Hurricane Maria</strong></td><td class="num">3,453</td><td class="num">25.4%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:100.0%"><span>25%</span></div></div></td></tr>
-<tr><td><strong>Hurricane Irma</strong></td><td class="num">3,390</td><td class="num">24.9%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:98.2%"><span>25%</span></div></div></td></tr>
-<tr><td><strong>Hurricane Harvey</strong></td><td class="num">3,337</td><td class="num">24.5%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:96.6%"><span>25%</span></div></div></td></tr>
-<tr><td><strong>California Wildfires</strong></td><td class="num">1,156</td><td class="num">8.5%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:33.5%"><span>8%</span></div></div></td></tr>
-<tr><td><strong>Mexico Earthquake</strong></td><td class="num">1,027</td><td class="num">7.5%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:29.7%"><span>8%</span></div></div></td></tr>
-<tr><td><strong>Srilanka Floods</strong></td><td class="num">788</td><td class="num">5.8%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:22.8%"><span>6%</span></div></div></td></tr>
-<tr><td><strong>Iraq Iran Earthquake</strong></td><td class="num">457</td><td class="num">3.4%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-green" style="width:13.2%"><span>3%</span></div></div></td></tr>
-<tr class="total-row"><td>Total</td><td class="num">13,608</td><td class="num">100%</td><td></td></tr>
-</tbody></table>
 </div>
 <div class="section">
 <div class="section-header"><h2>&#x1F4CB; Informative Task</h2><div class="tag">2 classes</div></div>
 <table><thead><tr><th>Modality</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th class="num">Total</th></tr></thead><tbody>
-<tr><td>&#x1F4DD; Text Only</td><td class="num">11,584</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>16,058</strong></td></tr>
-<tr><td>&#x1F5BC; Image Only</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
-<tr><td>&#x1F4F7; Text Image</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
+<tr><td>&#x1F4DD; Text Only</td><td class="num">8,293</td><td class="num">1,573</td><td class="num">1,534</td><td class="num"><strong>11,400</strong></td></tr>
+<tr><td>&#x1F5BC; Image Only</td><td class="num">9,601</td><td class="num">1,573</td><td class="num">1,534</td><td class="num"><strong>12,708</strong></td></tr>
+<tr><td>&#x1F4F7; Text Image</td><td class="num">9,601</td><td class="num">1,573</td><td class="num">1,534</td><td class="num"><strong>12,708</strong></td></tr>
 </tbody></table>
 <div class="collapse-toggle" onclick="toggleCollapse('collapse-1')"><h3>&#x1F4DD; Text Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-1">
 <table><thead><tr><th>Class</th>
@@ -250,43 +240,43 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <th class="num">L50</th><th class="num">U50</th>
 </tr></thead><tbody>
 <tr><td><code>informative</code></td>
-<td class="hm hm-5">8,285</td>
-<td class="hm hm-3">1,612</td>
-<td class="hm hm-3">1,612</td>
+<td class="hm hm-5">5,546</td>
+<td class="hm hm-3">1,056</td>
+<td class="hm hm-3">1,030</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">8,280</td>
+<td class="hm hm-5">5,541</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">8,275</td>
+<td class="hm hm-5">5,536</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">8,260</td>
+<td class="hm hm-5">5,521</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">8,235</td>
+<td class="hm hm-5">5,496</td>
 </tr>
 <tr><td><code>not_informative</code></td>
-<td class="hm hm-4">3,299</td>
-<td class="hm hm-2">625</td>
-<td class="hm hm-2">625</td>
+<td class="hm hm-4">2,747</td>
+<td class="hm hm-2">517</td>
+<td class="hm hm-2">504</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-4">3,294</td>
+<td class="hm hm-4">2,742</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-4">3,289</td>
+<td class="hm hm-4">2,737</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-4">3,274</td>
+<td class="hm hm-4">2,722</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-4">3,249</td>
+<td class="hm hm-4">2,697</td>
 </tr>
 <tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">11,584</td>
-<td class="num">2,237</td>
-<td class="num">2,237</td>
+<td class="num">8,293</td>
+<td class="num">1,573</td>
+<td class="num">1,534</td>
 <td class="num">10</td>
-<td class="num">11,574</td>
+<td class="num">8,283</td>
 <td class="num">20</td>
-<td class="num">11,564</td>
+<td class="num">8,273</td>
 <td class="num">50</td>
-<td class="num">11,534</td>
+<td class="num">8,243</td>
 <td class="num">100</td>
-<td class="num">11,484</td>
+<td class="num">8,193</td>
 </tr></tbody></table>
 </div>
 <div class="collapse-toggle" onclick="toggleCollapse('collapse-2')"><h3>&#x1F5BC; Image Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-2">
@@ -300,43 +290,43 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <th class="num">L50</th><th class="num">U50</th>
 </tr></thead><tbody>
 <tr><td><code>informative</code></td>
-<td class="hm hm-5">7,059</td>
-<td class="hm hm-3">1,164</td>
-<td class="hm hm-3">1,151</td>
+<td class="hm hm-5">6,345</td>
+<td class="hm hm-3">1,056</td>
+<td class="hm hm-3">1,030</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">7,054</td>
+<td class="hm hm-5">6,340</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">7,049</td>
+<td class="hm hm-5">6,335</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">7,034</td>
+<td class="hm hm-5">6,320</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">7,009</td>
+<td class="hm hm-5">6,295</td>
 </tr>
 <tr><td><code>not_informative</code></td>
-<td class="hm hm-5">6,549</td>
-<td class="hm hm-3">1,073</td>
-<td class="hm hm-3">1,086</td>
+<td class="hm hm-5">3,256</td>
+<td class="hm hm-2">517</td>
+<td class="hm hm-2">504</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">6,544</td>
+<td class="hm hm-5">3,251</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">6,539</td>
+<td class="hm hm-5">3,246</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">6,524</td>
+<td class="hm hm-5">3,231</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">6,499</td>
+<td class="hm hm-5">3,206</td>
 </tr>
 <tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">13,608</td>
-<td class="num">2,237</td>
-<td class="num">2,237</td>
+<td class="num">9,601</td>
+<td class="num">1,573</td>
+<td class="num">1,534</td>
 <td class="num">10</td>
-<td class="num">13,598</td>
+<td class="num">9,591</td>
 <td class="num">20</td>
-<td class="num">13,588</td>
+<td class="num">9,581</td>
 <td class="num">50</td>
-<td class="num">13,558</td>
+<td class="num">9,551</td>
 <td class="num">100</td>
-<td class="num">13,508</td>
+<td class="num">9,501</td>
 </tr></tbody></table>
 </div>
 <div class="collapse-toggle" onclick="toggleCollapse('collapse-3')"><h3>&#x1F4F7; Text Image &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-3">
@@ -350,52 +340,52 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <th class="num">L50</th><th class="num">U50</th>
 </tr></thead><tbody>
 <tr><td><code>informative</code></td>
-<td class="hm hm-5">9,638</td>
-<td class="hm hm-3">1,612</td>
-<td class="hm hm-3">1,612</td>
+<td class="hm hm-5">6,345</td>
+<td class="hm hm-3">1,056</td>
+<td class="hm hm-3">1,030</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">9,633</td>
+<td class="hm hm-5">6,340</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">9,628</td>
+<td class="hm hm-5">6,335</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">9,613</td>
+<td class="hm hm-5">6,320</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">9,588</td>
+<td class="hm hm-5">6,295</td>
 </tr>
 <tr><td><code>not_informative</code></td>
-<td class="hm hm-4">3,970</td>
-<td class="hm hm-2">625</td>
-<td class="hm hm-2">625</td>
+<td class="hm hm-5">3,256</td>
+<td class="hm hm-2">517</td>
+<td class="hm hm-2">504</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-4">3,965</td>
+<td class="hm hm-5">3,251</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-4">3,960</td>
+<td class="hm hm-5">3,246</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-4">3,945</td>
+<td class="hm hm-5">3,231</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-4">3,920</td>
+<td class="hm hm-5">3,206</td>
 </tr>
 <tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">13,608</td>
-<td class="num">2,237</td>
-<td class="num">2,237</td>
+<td class="num">9,601</td>
+<td class="num">1,573</td>
+<td class="num">1,534</td>
 <td class="num">10</td>
-<td class="num">13,598</td>
+<td class="num">9,591</td>
 <td class="num">20</td>
-<td class="num">13,588</td>
+<td class="num">9,581</td>
 <td class="num">50</td>
-<td class="num">13,558</td>
+<td class="num">9,551</td>
 <td class="num">100</td>
-<td class="num">13,508</td>
+<td class="num">9,501</td>
 </tr></tbody></table>
 </div>
 </div>
 <div class="section">
-<div class="section-header"><h2>&#x1F6D1; Humanitarian Task</h2><div class="tag">8 classes</div></div>
+<div class="section-header"><h2>&#x1F6D1; Humanitarian Task</h2><div class="tag">5 classes</div></div>
 <table><thead><tr><th>Modality</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th class="num">Total</th></tr></thead><tbody>
-<tr><td>&#x1F4DD; Text Only</td><td class="num">11,584</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>16,058</strong></td></tr>
-<tr><td>&#x1F5BC; Image Only</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
-<tr><td>&#x1F4F7; Text Image</td><td class="num">13,608</td><td class="num">2,237</td><td class="num">2,237</td><td class="num"><strong>18,082</strong></td></tr>
+<tr><td>&#x1F4DD; Text Only</td><td class="num">5,263</td><td class="num">998</td><td class="num">955</td><td class="num"><strong>7,216</strong></td></tr>
+<tr><td>&#x1F5BC; Image Only</td><td class="num">6,126</td><td class="num">998</td><td class="num">955</td><td class="num"><strong>8,079</strong></td></tr>
+<tr><td>&#x1F4F7; Text Image</td><td class="num">6,126</td><td class="num">998</td><td class="num">955</td><td class="num"><strong>8,079</strong></td></tr>
 </tbody></table>
 <div class="collapse-toggle" onclick="toggleCollapse('collapse-4')"><h3>&#x1F4DD; Text Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-4">
 <table><thead><tr><th>Class</th>
@@ -408,121 +398,82 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <th class="num">L50</th><th class="num">U50</th>
 </tr></thead><tbody>
 <tr><td><code>affected_individuals</code></td>
-<td class="hm hm-2">338</td>
-<td class="hm hm-1">67</td>
-<td class="hm hm-1">67</td>
+<td class="hm hm-1">70</td>
+<td class="hm hm-1">9</td>
+<td class="hm hm-1">9</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-2">333</td>
+<td class="hm hm-1">65</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-2">328</td>
+<td class="hm hm-1">60</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-2">313</td>
+<td class="hm hm-1">45</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-2">288</td>
+<td class="hm hm-1">20</td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
-<td class="hm hm-3">882</td>
-<td class="hm hm-2">164</td>
-<td class="hm hm-2">164</td>
+<td class="hm hm-3">496</td>
+<td class="hm hm-1">80</td>
+<td class="hm hm-1">81</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-3">877</td>
+<td class="hm hm-3">491</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-3">872</td>
+<td class="hm hm-3">486</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-3">857</td>
+<td class="hm hm-3">471</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-3">832</td>
-</tr>
-<tr><td><code>injured_or_dead_people</code></td>
-<td class="hm hm-2">346</td>
-<td class="hm hm-1">70</td>
-<td class="hm hm-1">70</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-2">341</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-2">336</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-2">321</td>
-<td class="hm hm-1">50</td>
-<td class="hm hm-2">296</td>
-</tr>
-<tr><td><code>missing_or_found_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
-<td class="hm hm-1">28</td>
-<td class="hm hm-1">6</td>
-<td class="hm hm-1">6</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-1">23</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-1">18</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-1">3</td>
-<td class="hm hm-1">28</td>
-<td class="hm hm-0">0</td>
+<td class="hm hm-3">446</td>
 </tr>
 <tr><td><code>not_humanitarian</code></td>
-<td class="hm hm-5">3,299</td>
-<td class="hm hm-3">625</td>
-<td class="hm hm-3">625</td>
+<td class="hm hm-5">2,743</td>
+<td class="hm hm-3">521</td>
+<td class="hm hm-3">504</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">3,294</td>
+<td class="hm hm-5">2,738</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">3,289</td>
+<td class="hm hm-5">2,733</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">3,274</td>
+<td class="hm hm-5">2,718</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">3,249</td>
+<td class="hm hm-5">2,693</td>
 </tr>
 <tr><td><code>other_relevant_information</code></td>
-<td class="hm hm-5">4,266</td>
-<td class="hm hm-3">844</td>
-<td class="hm hm-3">844</td>
+<td class="hm hm-4">1,192</td>
+<td class="hm hm-2">239</td>
+<td class="hm hm-2">235</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">4,261</td>
+<td class="hm hm-4">1,187</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">4,256</td>
+<td class="hm hm-4">1,182</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">4,241</td>
+<td class="hm hm-4">1,167</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">4,216</td>
+<td class="hm hm-4">1,142</td>
 </tr>
 <tr><td><code>rescue_volunteering_or_donation_effort</code></td>
-<td class="hm hm-5">2,386</td>
-<td class="hm hm-3">453</td>
-<td class="hm hm-3">454</td>
+<td class="hm hm-4">762</td>
+<td class="hm hm-2">149</td>
+<td class="hm hm-2">126</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">2,381</td>
+<td class="hm hm-4">757</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">2,376</td>
+<td class="hm hm-4">752</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">2,361</td>
+<td class="hm hm-4">737</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">2,336</td>
-</tr>
-<tr><td><code>vehicle_damage</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
-<td class="hm hm-1">39</td>
-<td class="hm hm-1">8</td>
-<td class="hm hm-1">7</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-1">34</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-1">29</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-1">14</td>
-<td class="hm hm-1">39</td>
-<td class="hm hm-0">0</td>
+<td class="hm hm-4">712</td>
 </tr>
 <tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">11,584</td>
-<td class="num">2,237</td>
-<td class="num">2,237</td>
-<td class="num">40</td>
-<td class="num">11,544</td>
-<td class="num">80</td>
-<td class="num">11,504</td>
-<td class="num">200</td>
-<td class="num">11,384</td>
-<td class="num">367</td>
-<td class="num">11,217</td>
+<td class="num">5,263</td>
+<td class="num">998</td>
+<td class="num">955</td>
+<td class="num">25</td>
+<td class="num">5,238</td>
+<td class="num">50</td>
+<td class="num">5,213</td>
+<td class="num">125</td>
+<td class="num">5,138</td>
+<td class="num">250</td>
+<td class="num">5,013</td>
 </tr></tbody></table>
 </div>
 <div class="collapse-toggle" onclick="toggleCollapse('collapse-5')"><h3>&#x1F5BC; Image Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-5">
@@ -536,121 +487,82 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <th class="num">L50</th><th class="num">U50</th>
 </tr></thead><tbody>
 <tr><td><code>affected_individuals</code></td>
-<td class="hm hm-2">397</td>
-<td class="hm hm-1">77</td>
-<td class="hm hm-1">88</td>
+<td class="hm hm-1">71</td>
+<td class="hm hm-1">9</td>
+<td class="hm hm-1">9</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-2">392</td>
+<td class="hm hm-1">66</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-2">387</td>
+<td class="hm hm-1">61</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-2">372</td>
+<td class="hm hm-1">46</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-2">347</td>
+<td class="hm hm-1">21</td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
-<td class="hm hm-4">2,761</td>
-<td class="hm hm-2">405</td>
-<td class="hm hm-2">458</td>
+<td class="hm hm-3">612</td>
+<td class="hm hm-1">80</td>
+<td class="hm hm-1">81</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-4">2,756</td>
+<td class="hm hm-3">607</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-4">2,751</td>
+<td class="hm hm-3">602</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-4">2,736</td>
+<td class="hm hm-3">587</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-4">2,711</td>
-</tr>
-<tr><td><code>injured_or_dead_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
-<td class="hm hm-1">92</td>
-<td class="hm hm-1">8</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-1">87</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-1">82</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-1">67</td>
-<td class="hm hm-1">50</td>
-<td class="hm hm-1">42</td>
-</tr>
-<tr><td><code>missing_or_found_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
-<td class="hm hm-1">9</td>
-<td class="hm hm-1">2</td>
-<td class="hm hm-1">3</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-1">4</td>
-<td class="hm hm-1">9</td>
-<td class="hm hm-0">0</td>
-<td class="hm hm-1">9</td>
-<td class="hm hm-0">0</td>
-<td class="hm hm-1">9</td>
-<td class="hm hm-0">0</td>
+<td class="hm hm-3">562</td>
 </tr>
 <tr><td><code>not_humanitarian</code></td>
-<td class="hm hm-5">6,565</td>
-<td class="hm hm-3">1,088</td>
-<td class="hm hm-3">1,055</td>
+<td class="hm hm-5">3,252</td>
+<td class="hm hm-3">521</td>
+<td class="hm hm-3">504</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">6,560</td>
+<td class="hm hm-5">3,247</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">6,555</td>
+<td class="hm hm-5">3,242</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">6,540</td>
+<td class="hm hm-5">3,227</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">6,515</td>
+<td class="hm hm-5">3,202</td>
 </tr>
 <tr><td><code>other_relevant_information</code></td>
-<td class="hm hm-4">1,860</td>
-<td class="hm hm-2">338</td>
-<td class="hm hm-2">331</td>
+<td class="hm hm-4">1,279</td>
+<td class="hm hm-2">239</td>
+<td class="hm hm-2">235</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-4">1,855</td>
+<td class="hm hm-4">1,274</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-4">1,850</td>
+<td class="hm hm-4">1,269</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-4">1,835</td>
+<td class="hm hm-4">1,254</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-4">1,810</td>
+<td class="hm hm-4">1,229</td>
 </tr>
 <tr><td><code>rescue_volunteering_or_donation_effort</code></td>
-<td class="hm hm-4">1,694</td>
-<td class="hm hm-2">281</td>
-<td class="hm hm-2">256</td>
+<td class="hm hm-4">912</td>
+<td class="hm hm-2">149</td>
+<td class="hm hm-2">126</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-4">1,689</td>
+<td class="hm hm-4">907</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-4">1,684</td>
+<td class="hm hm-4">902</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-4">1,669</td>
+<td class="hm hm-4">887</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-4">1,644</td>
-</tr>
-<tr><td><code>vehicle_damage</code></td>
-<td class="hm hm-2">230</td>
-<td class="hm hm-1">38</td>
-<td class="hm hm-1">36</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-2">225</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-2">220</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-2">205</td>
-<td class="hm hm-1">50</td>
-<td class="hm hm-1">180</td>
+<td class="hm hm-4">862</td>
 </tr>
 <tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">13,608</td>
-<td class="num">2,237</td>
-<td class="num">2,237</td>
-<td class="num">40</td>
-<td class="num">13,568</td>
-<td class="num">79</td>
-<td class="num">13,529</td>
-<td class="num">184</td>
-<td class="num">13,424</td>
-<td class="num">359</td>
-<td class="num">13,249</td>
+<td class="num">6,126</td>
+<td class="num">998</td>
+<td class="num">955</td>
+<td class="num">25</td>
+<td class="num">6,101</td>
+<td class="num">50</td>
+<td class="num">6,076</td>
+<td class="num">125</td>
+<td class="num">6,001</td>
+<td class="num">250</td>
+<td class="num">5,876</td>
 </tr></tbody></table>
 </div>
 <div class="collapse-toggle" onclick="toggleCollapse('collapse-6')"><h3>&#x1F4F7; Text Image &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-6">
@@ -664,318 +576,82 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <th class="num">L50</th><th class="num">U50</th>
 </tr></thead><tbody>
 <tr><td><code>affected_individuals</code></td>
-<td class="hm hm-2">384</td>
-<td class="hm hm-1">67</td>
-<td class="hm hm-1">67</td>
+<td class="hm hm-1">71</td>
+<td class="hm hm-1">9</td>
+<td class="hm hm-1">9</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-2">379</td>
+<td class="hm hm-1">66</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-2">374</td>
+<td class="hm hm-1">61</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-2">359</td>
+<td class="hm hm-1">46</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-2">334</td>
+<td class="hm hm-1">21</td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
-<td class="hm hm-3">1,102</td>
-<td class="hm hm-2">164</td>
-<td class="hm hm-2">164</td>
+<td class="hm hm-3">612</td>
+<td class="hm hm-1">80</td>
+<td class="hm hm-1">81</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-3">1,097</td>
+<td class="hm hm-3">607</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-3">1,092</td>
+<td class="hm hm-3">602</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-3">1,077</td>
+<td class="hm hm-3">587</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-3">1,052</td>
-</tr>
-<tr><td><code>injured_or_dead_people</code></td>
-<td class="hm hm-2">393</td>
-<td class="hm hm-1">70</td>
-<td class="hm hm-1">70</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-2">388</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-2">383</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-2">368</td>
-<td class="hm hm-1">50</td>
-<td class="hm hm-2">343</td>
-</tr>
-<tr><td><code>missing_or_found_people</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
-<td class="hm hm-1">29</td>
-<td class="hm hm-1">6</td>
-<td class="hm hm-1">6</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-1">24</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-1">19</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-1">4</td>
-<td class="hm hm-1">29</td>
-<td class="hm hm-0">0</td>
+<td class="hm hm-3">562</td>
 </tr>
 <tr><td><code>not_humanitarian</code></td>
-<td class="hm hm-5">3,970</td>
-<td class="hm hm-3">625</td>
-<td class="hm hm-3">625</td>
+<td class="hm hm-5">3,252</td>
+<td class="hm hm-3">521</td>
+<td class="hm hm-3">504</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">3,965</td>
+<td class="hm hm-5">3,247</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">3,960</td>
+<td class="hm hm-5">3,242</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">3,945</td>
+<td class="hm hm-5">3,227</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">3,920</td>
+<td class="hm hm-5">3,202</td>
 </tr>
 <tr><td><code>other_relevant_information</code></td>
-<td class="hm hm-5">4,817</td>
-<td class="hm hm-3">844</td>
-<td class="hm hm-3">844</td>
+<td class="hm hm-4">1,279</td>
+<td class="hm hm-2">239</td>
+<td class="hm hm-2">235</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">4,812</td>
+<td class="hm hm-4">1,274</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">4,807</td>
+<td class="hm hm-4">1,269</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">4,792</td>
+<td class="hm hm-4">1,254</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">4,767</td>
+<td class="hm hm-4">1,229</td>
 </tr>
 <tr><td><code>rescue_volunteering_or_donation_effort</code></td>
-<td class="hm hm-5">2,867</td>
-<td class="hm hm-2">453</td>
-<td class="hm hm-2">454</td>
+<td class="hm hm-4">912</td>
+<td class="hm hm-2">149</td>
+<td class="hm hm-2">126</td>
 <td class="hm hm-1">5</td>
-<td class="hm hm-5">2,862</td>
+<td class="hm hm-4">907</td>
 <td class="hm hm-1">10</td>
-<td class="hm hm-5">2,857</td>
+<td class="hm hm-4">902</td>
 <td class="hm hm-1">25</td>
-<td class="hm hm-5">2,842</td>
+<td class="hm hm-4">887</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-5">2,817</td>
-</tr>
-<tr><td><code>vehicle_damage</code> <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span></td>
-<td class="hm hm-1">46</td>
-<td class="hm hm-1">8</td>
-<td class="hm hm-1">7</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-1">41</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-1">36</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-1">21</td>
-<td class="hm hm-1">46</td>
-<td class="hm hm-0">0</td>
+<td class="hm hm-4">862</td>
 </tr>
 <tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">13,608</td>
-<td class="num">2,237</td>
-<td class="num">2,237</td>
-<td class="num">40</td>
-<td class="num">13,568</td>
-<td class="num">80</td>
-<td class="num">13,528</td>
-<td class="num">200</td>
-<td class="num">13,408</td>
-<td class="num">375</td>
-<td class="num">13,233</td>
-</tr></tbody></table>
-</div>
-</div>
-<div class="section">
-<div class="section-header"><h2>&#x1F3DA; Damage Task</h2><div class="tag">3 classes</div></div>
-<table><thead><tr><th>Modality</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th class="num">Total</th></tr></thead><tbody>
-<tr><td>&#x1F4DD; Text Only</td><td class="num">2,286</td><td class="num">519</td><td class="num">523</td><td class="num"><strong>3,328</strong></td></tr>
-<tr><td>&#x1F5BC; Image Only</td><td class="num">2,468</td><td class="num">529</td><td class="num">529</td><td class="num"><strong>3,526</strong></td></tr>
-<tr><td>&#x1F4F7; Text Image</td><td class="num">2,468</td><td class="num">529</td><td class="num">529</td><td class="num"><strong>3,526</strong></td></tr>
-</tbody></table>
-<div class="collapse-toggle" onclick="toggleCollapse('collapse-7')"><h3>&#x1F4DD; Text Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-7">
-<table><thead><tr><th>Class</th>
-<th class="num">Train</th>
-<th class="num">Dev</th>
-<th class="num">Test</th>
-<th class="num">L5</th><th class="num">U5</th>
-<th class="num">L10</th><th class="num">U10</th>
-<th class="num">L25</th><th class="num">U25</th>
-<th class="num">L50</th><th class="num">U50</th>
-</tr></thead><tbody>
-<tr><td><code>little_or_no_damage</code></td>
-<td class="hm hm-3">303</td>
-<td class="hm hm-2">70</td>
-<td class="hm hm-2">70</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-3">298</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-3">293</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-3">278</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-3">253</td>
-</tr>
-<tr><td><code>mild_damage</code></td>
-<td class="hm hm-4">529</td>
-<td class="hm hm-2">122</td>
-<td class="hm hm-2">124</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-4">524</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-4">519</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-4">504</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-4">479</td>
-</tr>
-<tr><td><code>severe_damage</code></td>
-<td class="hm hm-5">1,454</td>
-<td class="hm hm-3">327</td>
-<td class="hm hm-3">329</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-5">1,449</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-5">1,444</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-5">1,429</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-5">1,404</td>
-</tr>
-<tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">2,286</td>
-<td class="num">519</td>
-<td class="num">523</td>
-<td class="num">15</td>
-<td class="num">2,271</td>
-<td class="num">30</td>
-<td class="num">2,256</td>
-<td class="num">75</td>
-<td class="num">2,211</td>
-<td class="num">150</td>
-<td class="num">2,136</td>
-</tr></tbody></table>
-</div>
-<div class="collapse-toggle" onclick="toggleCollapse('collapse-8')"><h3>&#x1F5BC; Image Only &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-8">
-<table><thead><tr><th>Class</th>
-<th class="num">Train</th>
-<th class="num">Dev</th>
-<th class="num">Test</th>
-<th class="num">L5</th><th class="num">U5</th>
-<th class="num">L10</th><th class="num">U10</th>
-<th class="num">L25</th><th class="num">U25</th>
-<th class="num">L50</th><th class="num">U50</th>
-</tr></thead><tbody>
-<tr><td><code>little_or_no_damage</code></td>
-<td class="hm hm-3">333</td>
-<td class="hm hm-2">71</td>
-<td class="hm hm-2">71</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-3">328</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-3">323</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-3">308</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-3">283</td>
-</tr>
-<tr><td><code>mild_damage</code></td>
-<td class="hm hm-4">587</td>
-<td class="hm hm-2">126</td>
-<td class="hm hm-2">126</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-4">582</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-4">577</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-4">562</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-4">537</td>
-</tr>
-<tr><td><code>severe_damage</code></td>
-<td class="hm hm-5">1,548</td>
-<td class="hm hm-3">332</td>
-<td class="hm hm-3">332</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-5">1,543</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-5">1,538</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-5">1,523</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-5">1,498</td>
-</tr>
-<tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">2,468</td>
-<td class="num">529</td>
-<td class="num">529</td>
-<td class="num">15</td>
-<td class="num">2,453</td>
-<td class="num">30</td>
-<td class="num">2,438</td>
-<td class="num">75</td>
-<td class="num">2,393</td>
-<td class="num">150</td>
-<td class="num">2,318</td>
-</tr></tbody></table>
-</div>
-<div class="collapse-toggle" onclick="toggleCollapse('collapse-9')"><h3>&#x1F4F7; Text Image &mdash; Class Distribution</h3><span class="arrow">&#x25B6;</span></div><div class="collapse-body" id="collapse-9">
-<table><thead><tr><th>Class</th>
-<th class="num">Train</th>
-<th class="num">Dev</th>
-<th class="num">Test</th>
-<th class="num">L5</th><th class="num">U5</th>
-<th class="num">L10</th><th class="num">U10</th>
-<th class="num">L25</th><th class="num">U25</th>
-<th class="num">L50</th><th class="num">U50</th>
-</tr></thead><tbody>
-<tr><td><code>little_or_no_damage</code></td>
-<td class="hm hm-3">333</td>
-<td class="hm hm-2">71</td>
-<td class="hm hm-2">71</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-3">328</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-3">323</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-3">308</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-3">283</td>
-</tr>
-<tr><td><code>mild_damage</code></td>
-<td class="hm hm-4">587</td>
-<td class="hm hm-2">126</td>
-<td class="hm hm-2">126</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-4">582</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-4">577</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-4">562</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-4">537</td>
-</tr>
-<tr><td><code>severe_damage</code></td>
-<td class="hm hm-5">1,548</td>
-<td class="hm hm-3">332</td>
-<td class="hm hm-3">332</td>
-<td class="hm hm-1">5</td>
-<td class="hm hm-5">1,543</td>
-<td class="hm hm-1">10</td>
-<td class="hm hm-5">1,538</td>
-<td class="hm hm-1">25</td>
-<td class="hm hm-5">1,523</td>
-<td class="hm hm-2">50</td>
-<td class="hm hm-5">1,498</td>
-</tr>
-<tr class="total-row"><td><strong>Total</strong></td>
-<td class="num">2,468</td>
-<td class="num">529</td>
-<td class="num">529</td>
-<td class="num">15</td>
-<td class="num">2,453</td>
-<td class="num">30</td>
-<td class="num">2,438</td>
-<td class="num">75</td>
-<td class="num">2,393</td>
-<td class="num">150</td>
-<td class="num">2,318</td>
+<td class="num">6,126</td>
+<td class="num">998</td>
+<td class="num">955</td>
+<td class="num">25</td>
+<td class="num">6,101</td>
+<td class="num">50</td>
+<td class="num">6,076</td>
+<td class="num">125</td>
+<td class="num">6,001</td>
+<td class="num">250</td>
+<td class="num">5,876</td>
 </tr></tbody></table>
 </div>
 </div>

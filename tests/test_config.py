@@ -18,7 +18,7 @@ class TestConfigDefaults(unittest.TestCase):
 
     def test_default_num_labels(self):
         cfg = LGCoTrainConfig()
-        self.assertEqual(cfg.num_labels, 8)
+        self.assertEqual(cfg.num_labels, 5)
 
     def test_default_task(self):
         cfg = LGCoTrainConfig()
@@ -78,7 +78,7 @@ class TestConfigPathComputation(unittest.TestCase):
 
     def test_labeled_path(self):
         cfg = LGCoTrainConfig(task="humanitarian", modality="text_only", budget=5, seed_set=1)
-        self.assertIn("CrisisMMD_v2.0", cfg.labeled_path)
+        self.assertIn("CrisisMMD", cfg.labeled_path)
         self.assertIn("humanitarian", cfg.labeled_path)
         self.assertIn("text_only", cfg.labeled_path)
         self.assertTrue(cfg.labeled_path.endswith("labeled_5_set1.tsv"))
