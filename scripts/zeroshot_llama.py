@@ -368,7 +368,7 @@ def predict_single(model, processor, messages, images, task):
 
     with torch.no_grad(), warnings.catch_warnings():
         warnings.filterwarnings("ignore", message=".*do_sample.*")
-        output_ids = model.generate(
+        gen_output = model.generate(
             **inputs,
             max_new_tokens=20,
             min_new_tokens=1,
@@ -376,11 +376,27 @@ def predict_single(model, processor, messages, images, task):
             num_beams=1,
             pad_token_id=processor.tokenizer.pad_token_id,
             eos_token_id=processor.tokenizer.eos_token_id,
+            output_scores=True,
+            return_dict_in_generate=True,
         )
 
+    output_ids = gen_output.sequences
     raw_output = processor.decode(output_ids[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
     predicted_label = parse_response(raw_output, task)
-    return predicted_label, raw_output
+
+    # Extract confidence and entropy from first generated token's softmax
+    confidence = 0.0
+    entropy = 0.0
+    if gen_output.scores:
+        first_token_logits = gen_output.scores[0][0]  # logits for first generated token
+        first_token_probs = torch.softmax(first_token_logits, dim=-1)
+        predicted_token_id = output_ids[0, -len(gen_output.scores)]
+        confidence = round(first_token_probs[predicted_token_id].item(), 4)
+        # Shannon entropy: -sum(p * log(p)) — higher = more uncertain
+        log_probs = torch.log(first_token_probs + 1e-10)
+        entropy = round(-(first_token_probs * log_probs).sum().item(), 4)
+
+    return predicted_label, raw_output, confidence, entropy
 
 
 # ---------------------------------------------------------------------------
@@ -456,7 +472,7 @@ def run_zeroshot(
         messages, images = build_messages(
             prompt, task, text=item.get("tweet_text"), image_obj=image_obj, modality=modality,
         )
-        pred_label, raw_output = predict_single(model, processor, messages, images, task)
+        pred_label, raw_output, confidence, entropy = predict_single(model, processor, messages, images, task)
 
         if pred_label == "UNPARSEABLE" or pred_label not in valid_labels:
             n_unparseable += 1
@@ -464,6 +480,8 @@ def run_zeroshot(
         # Copy original row and append prediction columns
         row = dict(item)
         row["predicted_label"] = pred_label
+        row["confidence"] = confidence
+        row["entropy"] = entropy
         row["raw_output"] = raw_output
         predictions.append(row)
 
@@ -528,7 +546,7 @@ def run_zeroshot(
     out_path.mkdir(parents=True, exist_ok=True)
 
     pred_path = out_path / "predictions.tsv"
-    out_fieldnames = orig_fieldnames + ["predicted_label", "raw_output"]
+    out_fieldnames = orig_fieldnames + ["predicted_label", "confidence", "entropy", "raw_output"]
     with open(pred_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=out_fieldnames, delimiter="\t")
         writer.writeheader()

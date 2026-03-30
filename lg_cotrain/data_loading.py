@@ -69,13 +69,14 @@ def load_tsv(path: str):
 
 
 def load_pseudo_labels(path: str):
-    """Load GPT-4o pseudo-label CSV with predicted_label, confidence, etc."""
+    """Load pseudo-label TSV/CSV with predicted_label, confidence, etc."""
     import pandas as pd
-    df = pd.read_csv(path, dtype={"tweet_id": str})
-    required = {"tweet_id", "tweet_text", "predicted_label", "confidence"}
+    sep = "\t" if path.endswith(".tsv") else ","
+    df = pd.read_csv(path, sep=sep, dtype={"tweet_id": str, "image_id": str})
+    required = {"predicted_label"}
     if not required.issubset(set(df.columns)):
         raise ValueError(
-            f"Pseudo-label CSV at {path} missing columns. Found: {list(df.columns)}"
+            f"Pseudo-label file at {path} missing columns. Found: {list(df.columns)}"
         )
     return df
 
