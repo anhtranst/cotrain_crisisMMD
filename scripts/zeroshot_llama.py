@@ -24,11 +24,11 @@ from pathlib import Path
 # Label mappings (matching reference notebook numeric schemes)
 # ---------------------------------------------------------------------------
 
-# Informative: 0=not_informative, 1=informative (notebook convention)
+# Informative: 0=not_informative, 1=informative
 INFO_ID2LABEL = {0: "not_informative", 1: "informative"}
 INFO_LABEL2ID = {v: k for k, v in INFO_ID2LABEL.items()}
 
-# Humanitarian: 5-class scheme (notebook convention)
+# Humanitarian: 5-class scheme
 HUMA_ID2LABEL = {
     0: "affected_individuals",
     1: "rescue_volunteering_or_donation_effort",
@@ -40,19 +40,19 @@ HUMA_LABEL2ID = {v: k for k, v in HUMA_ID2LABEL.items()}
 
 # ---------------------------------------------------------------------------
 # Prompts — Informative (binary: 0/1)
-# Exact prompts from temp/llama-3-fewshot-Informative.ipynb
 # ---------------------------------------------------------------------------
 
-INFO_TEXT_ONLY_PROMPT = """You are an AI model that classifies the given text into one of two categories based on its informational value. \
-Your task is to analyze the given text to determine whether it contains relevant or informative content about a crisis.
-Our goal is to collect as much useful information as possible about crises, so your classification should prioritize identifying texts that provide relevant details, even if they are brief or incomplete. \
-Avoid being overly restrictive. If the text has any relevant crisis-related information, classify it as informative.
-Classify the text delimited by triple quotes (\\"\\"\\" \\"\\"\\"\\") into one of the following categories:
-  - **1 (positive):** The text provide details, updates, or any relevant information about a crisis.
-  - **0 (not positive):** The text do not contain relevant details or information about a crisis.
-Return only the classification label (1 or 0) without any extra text or explanation.
-
-Here is the test Text that you need to classify: \\"\\"\\"{}\\"\\"\\". The category of this test Text is: """
+INFO_TEXT_ONLY_PROMPT = (
+    'You are an AI model that classifies the given text into one of two categories based on its informational value. '
+    'Your task is to analyze the given text to determine whether it contains relevant or informative content about a crisis.\n'
+    'Our goal is to collect as much useful information as possible about crises, so your classification should prioritize identifying texts that provide relevant details, even if they are brief or incomplete. '
+    'Avoid being overly restrictive. If the text has any relevant crisis-related information, classify it as informative.\n'
+    'Classify the text delimited by triple quotes (""" """) into one of the following categories:\n'
+    '  - **1 (positive):** The text provide details, updates, or any relevant information about a crisis.\n'
+    '  - **0 (not positive):** The text do not contain relevant details or information about a crisis.\n'
+    'Return only the classification label (1 or 0) without any extra text or explanation.\n\n'
+    'Here is the test Text that you need to classify: """{}""". The category of this test Text is: '
+)
 
 INFO_IMAGE_ONLY_PROMPT = """Does the image give useful information that could help during a crisis?
 Respond with '1' if this image provides any information or details about a crisis, and '0' if it does not.
@@ -62,8 +62,7 @@ Instructions:
   - Avoid being overly restrictive. If the text has any relevant crisis-related information, response with '1'.
   - When the meaning of the image is unclear, response with '0'.
   - Do not output any extra text.
-
-Above is the test image that you need to classify. The category of this test image is: """
+"""
 
 INFO_TEXT_IMAGE_PROMPT = """Do the given text and the given image give useful information that could help during a crisis?
 Respond with '1' if the text and the image provide any information or details about a crisis, and '0' if they do not.
@@ -73,121 +72,119 @@ Instructions:
   - Avoid being overly restrictive. If the text and image have any relevant crisis-related information, response with '1'.
   - When the meaning of the image and the text are unclear, response with '0'.
   - Do not output any extra text.
-
-Above is the given image, and here is the given Text: {}.
-The category of this image and Text is: """
+"""
 
 # ---------------------------------------------------------------------------
 # Prompts — Humanitarian (5 classes: 0-4)
 # Exact prompts from temp/llama-3-fewshot-Humanitarian.ipynb
 # ---------------------------------------------------------------------------
 
-HUMA_TEXT_ONLY_PROMPT = """You are an expert in disaster response and humanitarian aid data analysis. Examine this text delimited by triple quotes (\\"\\"\\" \\"\\"\\"\\") carefully and classify it into exactly one of these categories (0-4). Respond with ONLY the number, no other text or explanation.
+HUMA_TEXT_ONLY_PROMPT = (
+    'You are an expert in disaster response and humanitarian aid data analysis. '
+    'Examine this text delimited by triple quotes (""" """) carefully and classify it into exactly one of these categories (0-4). '
+    'Respond with ONLY the number, no other text or explanation.\n\n'
+    'Categories:\n'
+    '0: HUMAN IMPACT - Must show direct human suffering or hardship:\n'
+    '- Deaths, injuries, or missing people\n'
+    '- People struggling without basic needs (food, water, shelter)\n'
+    '- Displaced or evacuated people\n'
+    '- Personal stories of survival or loss\n'
+    '- People stranded or waiting for rescue\n'
+    '1: RESPONSE EFFORTS - Any organized help effort, no matter how small:\n'
+    '- Rescue operations and emergency response\n'
+    '- Aid collection or distribution activities\n'
+    '- Donations of money, supplies, or services\n'
+    '- Volunteer work and relief efforts\n'
+    '- Medical assistance\n'
+    '- Fundraising events for disaster relief\n'
+    '2: INFRASTRUCTURE DAMAGE - Must describe specific physical destruction:\n'
+    '- Destroyed or damaged buildings and homes\n'
+    '- Damaged roads, bridges, or transportation systems\n'
+    '- Disrupted power lines or water systems\n'
+    '- Damaged vehicles or equipment\n'
+    '- Before/after comparisons showing destruction\n'
+    '3: CRISIS UPDATES - Must be specific to the crisis but not fit above categories:\n'
+    '- Weather forecasts and disaster warnings\n'
+    '- Maps or descriptions of impact areas\n'
+    '- Official announcements about the disaster\n'
+    '- Statistics and data about crisis impact\n'
+    '- Crisis reporting without specific damage/casualties/response\n'
+    '4: NOT CRISIS-RELATED - Use when no other category clearly fits:\n'
+    '- General discussion without crisis specifics\n'
+    '- Personal opinions about non-crisis aspects\n'
+    '- Promotional or commercial content\n'
+    '- Unclear connection to crisis\n'
+    '- Content that could apply to non-crisis situations\n\n'
+    'Important Decision Rules:\n'
+    u'- If you see ANY mention of help, rescue, or donations \u2192 Pick 1\n'
+    u'- If you see ANY mention of human casualties, suffering, or displacement but not related to volunteer, rescue, donation... \u2192 Pick 0\n'
+    u'- If you see ANY specific physical destruction of properties \u2192 Pick 2\n'
+    u"- If it\u2019s clearly about the crisis but doesn\u2019t fit 0-2 \u2192 Pick 3\n"
+    '- If multiple categories could apply, use the one BEST FITS the text\n'
+    '- Only use 4 when you are COMPLETELY SURE no other category fits\n'
+    u'Answer with just a single digit (0\u20134).'
+    '\nHere is the test Text that you need to classify: """{}""". The category of this test Text is: '
+)
 
-Categories:
-0: HUMAN IMPACT - Must show direct human suffering or hardship:
-- Deaths, injuries, or missing people
-- People struggling without basic needs (food, water, shelter)
-- Displaced or evacuated people
-- Personal stories of survival or loss
-- People stranded or waiting for rescue
+HUMA_IMAGE_ONLY_PROMPT = (
+    "You are an expert in disaster response and humanitarian aid image analysis. "
+    "Examine the first image carefully and classify it into exactly one of these categories (0-4). "
+    "Respond with ONLY the number, no other text or explanation.\n\n"
+    "Categories:\n"
+    "0: HUMAN IMPACT - Must show PEOPLE who are clearly affected by the disaster: injured, displaced, "
+    "evacuated, in temporary shelters, or waiting in lines for aid. People must be visibly impacted.\n"
+    "1: RESPONSE EFFORTS - Must show active RESCUE operations, aid distribution, medical treatment, "
+    "VOLUNTEER work, DONATION, or evacuation in progress. Look for emergency responders, relief workers, or "
+    "organized aid activities.\n"
+    "2: INFRASTRUCTURE DAMAGE - Must show clear physical damage to buildings, roads, bridges, power lines, "
+    "VEHICLES or other structures that was caused by the disaster. The damage should be obvious and significant.\n"
+    "3: OTHER CRISIS INFO - Shows verified crisis-related content that doesn't fit above categories: "
+    "maps of affected areas, emergency warnings, official updates, or documentation of crisis conditions. "
+    "Must have clear connection to the current disaster.\n"
+    "4: NOT CRISIS-RELATED - Use this for:\n"
+    "- Images where you're unsure if it's related to the crisis\n"
+    "- General photos that could be from any time/place\n"
+    "- Images without clear crisis impact or response\n"
+    "- Stock photos or promotional images\n"
+    "- Any image that doesn't definitively fit categories 0-3\n\n"
+    "Important:\n"
+    "- If there's ANY sign of rescue or donation, pick 1.\n"
+    "- If there's ANY sign of damage, pick 2.\n"
+    "- If there's ANY sign of obviously distressed or harmed people, pick 0.\n"
+    "- If it's definitely about a crisis but you DO NOT see rescue/damage/impacted people, pick 3.\n"
+    "- Otherwise, pick 4. Also, when you are not sure which number to pick, pick 4.\n"
+    u"Answer with just a single digit (0\u20134)."
+)
 
-1: RESPONSE EFFORTS - Any organized help effort, no matter how small:
-- Rescue operations and emergency response
-- Aid collection or distribution activities
-- Donations of money, supplies, or services
-- Volunteer work and relief efforts
-- Medical assistance
-- Fundraising events for disaster relief
-
-2: INFRASTRUCTURE DAMAGE - Must describe specific physical destruction:
-- Destroyed or damaged buildings and homes
-- Damaged roads, bridges, or transportation systems
-- Disrupted power lines or water systems
-- Damaged vehicles or equipment
-- Before/after comparisons showing destruction
-
-3: CRISIS UPDATES - Must be specific to the crisis but not fit above categories:
-- Weather forecasts and disaster warnings
-- Maps or descriptions of impact areas
-- Official announcements about the disaster
-- Statistics and data about crisis impact
-- Crisis reporting without specific damage/casualties/response
-
-4: NOT CRISIS-RELATED - Use when no other category clearly fits:
-- General discussion without crisis specifics
-- Personal opinions about non-crisis aspects
-- Promotional or commercial content
-- Unclear connection to crisis
-- Content that could apply to non-crisis situations
-
-Important Decision Rules:
-- If you see ANY mention of help, rescue, or donations -> Pick 1
-- If you see ANY mention of human casualties, suffering, or displacement but not related to volunteer, rescue, donation... -> Pick 0
-- If you see ANY specific physical destruction of properties -> Pick 2
-- If it's clearly about the crisis but doesn't fit 0-2 -> Pick 3
-- If multiple categories could apply, use the one BEST FITS the text
-- Only use 4 when you are COMPLETELY SURE no other category fits
-Answer with just a single digit (0-4).
-
-Here is the test Text that you need to classify: \\"\\"\\"{}\\"\\"\\". The category of this test Text is: """
-
-HUMA_IMAGE_ONLY_PROMPT = """You are an expert in disaster response and humanitarian aid image analysis. Examine the first image carefully and classify it into exactly one of these categories (0-4). Respond with ONLY the number, no other text or explanation.
-
-Categories:
-0: HUMAN IMPACT - Must show PEOPLE who are clearly affected by the disaster: injured, displaced, evacuated, in temporary shelters, or waiting in lines for aid. People must be visibly impacted.
-
-1: RESPONSE EFFORTS - Must show active RESCUE operations, aid distribution, medical treatment, VOLUNTEER work, DONATION, or evacuation in progress. Look for emergency responders, relief workers, or organized aid activities.
-
-2: INFRASTRUCTURE DAMAGE - Must show clear physical damage to buildings, roads, bridges, power lines, VEHICLES or other structures that was caused by the disaster. The damage should be obvious and significant.
-
-3: OTHER CRISIS INFO - Shows verified crisis-related content that doesn't fit above categories: maps of affected areas, emergency warnings, official updates, or documentation of crisis conditions. Must have clear connection to the current disaster.
-
-4: NOT CRISIS-RELATED - Use this for:
-- Images where you're unsure if it's related to the crisis
-- General photos that could be from any time/place
-- Images without clear crisis impact or response
-- Stock photos or promotional images
-- Any image that doesn't definitively fit categories 0-3
-
-Important:
-- If there's ANY sign of rescue or donation, pick 1.
-- If there's ANY sign of damage, pick 2.
-- If there's ANY sign of obviously distressed or harmed people, pick 0.
-- If it's definitely about a crisis but you DO NOT see rescue/damage/impacted people, pick 3.
-- Otherwise, pick 4. Also, when you are not sure which number to pick, pick 4.
-Answer with just a single digit (0-4).
-
-Above is the test image that you need to classify. The category of this test image is: """
-
-HUMA_TEXT_IMAGE_PROMPT = """You are an expert in disaster response and humanitarian aid data analysis. Examine the given text and image carefully and classify them into exactly one of these categories (0-4). Respond with ONLY the number, no other text or explanation.
-
-Categories:
-0: HUMAN IMPACT - Must be about PEOPLE who are clearly affected by the disaster: injured, displaced, evacuated, in temporary shelters, or waiting in lines for aid. People must be visibly impacted.
-
-1: RESPONSE EFFORTS - Must be about active RESCUE operations, aid distribution, medical treatment, VOLUNTEER work, DONATION, or evacuation in progress. Look for emergency responders, relief workers, or organized aid activities.
-
-2: INFRASTRUCTURE DAMAGE - Must be about clear physical damage to buildings, roads, bridges, power lines, VEHICLES or other structures that was caused by the disaster. The damage should be obvious and significant.
-
-3: OTHER CRISIS INFO - Must be about verified crisis-related content that doesn't fit above categories: maps of affected areas, emergency warnings, official updates, or documentation of crisis conditions. Must have clear connection to the current disaster.
-
-4: NOT CRISIS-RELATED - Use this for:
-- Images and text where you're unsure if they are related to the crisis
-- General texts and photos that could be from any time/place
-- Texts and images without clear crisis impact or response
-- Texts are not related to a crisis with stock photos or promotional images
-- Any text and image that doesn't definitively fit categories 0-3
-
-Important:
-- If there's ANY sign of rescue or donation, pick 1.
-- If there's ANY sign of damage, pick 2.
-- If there's ANY sign of obviously distressed or harmed people, pick 0.
-- If the text and image are definitely about a crisis but you DO NOT see rescue/damage/impacted people, pick 3.
-- Otherwise, pick 4. Also, when you are not sure which number to pick, pick 4.
-Answer with just a single digit (0-4).
-
-Above is the given image, and here is the given Text: {}.
-The category of this image and Text is: """
+HUMA_TEXT_IMAGE_PROMPT = (
+    "You are an expert in disaster response and humanitarian aid data analysis. "
+    "Examine the given text and image carefully and classify them into exactly one of these categories (0-4). "
+    "Respond with ONLY the number, no other text or explanation.\n\n"
+    "Categories:\n"
+    "0: HUMAN IMPACT - Must be about PEOPLE who are clearly affected by the disaster: injured, displaced, "
+    "evacuated, in temporary shelters, or waiting in lines for aid. People must be visibly impacted.\n"
+    "1: RESPONSE EFFORTS - Must be about active RESCUE operations, aid distribution, medical treatment, "
+    "VOLUNTEER work, DONATION, or evacuation in progress. Look for emergency responders, relief workers, or "
+    "organized aid activities.\n"
+    "2: INFRASTRUCTURE DAMAGE - Must be about clear physical damage to buildings, roads, bridges, power lines, "
+    "VEHICLES or other structures that was caused by the disaster. The damage should be obvious and significant.\n"
+    "3: OTHER CRISIS INFO - Must be about verified crisis-related content that doesn't fit above categories: "
+    "maps of affected areas, emergency warnings, official updates, or documentation of crisis conditions. "
+    "Must have clear connection to the current disaster.\n"
+    "4: NOT CRISIS-RELATED - Use this for:\n"
+    "- Images and text where you're unsure if they are related to the crisis\n"
+    "- General texts and photos that could be from any time/place\n"
+    "- Texts and images without clear crisis impact or response\n"
+    "- Texts are not related to a crisis with stock photos or promotional images\n"
+    "- Any text and image that doesn't definitively fit categories 0-3\n\n"
+    "Important:\n"
+    "- If there's ANY sign of rescue or donation, pick 1.\n"
+    "- If there's ANY sign of damage, pick 2.\n"
+    "- If there's ANY sign of obviously distressed or harmed people, pick 0.\n"
+    "- If the text and image are definitely about a crisis but you DO NOT see rescue/damage/impacted people, pick 3.\n"
+    "- Otherwise, pick 4. Also, when you are not sure which number to pick, pick 4.\n"
+    u"Answer with just a single digit (0\u20134)."
+)
 
 # Prompt lookup: (task, modality) -> prompt template
 PROMPTS = {
@@ -309,26 +306,35 @@ def load_data(task, modality, split, data_root):
 # Message construction
 # ---------------------------------------------------------------------------
 
-def build_messages(prompt, text=None, image_obj=None, modality="text_only"):
+def build_messages(prompt, task, text=None, image_obj=None, modality="text_only"):
     """Build chat messages for the model (zero-shot).
 
-    Returns (messages, images_list).
+    Returns (messages, images).
+    Images is a single PIL image (not a list) matching the reference notebook,
+    or None for text-only.
     """
     user_content = []
 
     if modality == "text_only":
+        # Suffix is baked into the prompt via .format(text)
         user_content.append({"type": "text", "text": prompt.format(text)})
         images = None
 
     elif modality == "image_only":
-        user_content.append({"type": "image"})
-        user_content.append({"type": "text", "text": prompt})
-        images = [image_obj]
+        user_content.append({"type": "image", "image": image_obj})
+        txt = f"{prompt}\nAbove is the test image that you need to classify. The category of this test image is: "
+        user_content.append({"type": "text", "text": txt})
+        images = image_obj
 
     elif modality == "text_image":
-        user_content.append({"type": "image"})
-        user_content.append({"type": "text", "text": prompt.format(text)})
-        images = [image_obj]
+        user_content.append({"type": "image", "image": image_obj})
+        if task == "informative":
+            txt = f"{prompt}\nAbove is the given image, and here is the given Text: {text}.\nThe category of this image and Text is: "
+        else:
+            # Humanitarian uses different wording with triple-quoted text
+            txt = f'{prompt}\nAbove is the test image, and here is the test Text that you need to classify: """{text}""". The category of this test image and test Text is: '
+        user_content.append({"type": "text", "text": txt})
+        images = image_obj
 
     messages = [{"role": "user", "content": user_content}]
     return messages, images
@@ -340,6 +346,7 @@ def build_messages(prompt, text=None, image_obj=None, modality="text_only"):
 
 def predict_single(model, processor, messages, images, task):
     """Run inference on a single sample. Returns (predicted_label, raw_output)."""
+    import warnings
     import torch
 
     input_text = processor.apply_chat_template(messages, add_generation_prompt=True)
@@ -355,7 +362,12 @@ def predict_single(model, processor, messages, images, task):
             return_tensors="pt", truncation=False,
         ).to(model.device)
 
-    with torch.no_grad():
+    # Remove processor-injected sampling params that conflict with do_sample=False
+    for key in ("temperature", "top_p"):
+        inputs.pop(key, None)
+
+    with torch.no_grad(), warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*do_sample.*")
         output_ids = model.generate(
             **inputs,
             max_new_tokens=20,
@@ -366,7 +378,7 @@ def predict_single(model, processor, messages, images, task):
             eos_token_id=processor.tokenizer.eos_token_id,
         )
 
-    raw_output = processor.decode(output_ids[0], skip_special_tokens=True)
+    raw_output = processor.decode(output_ids[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
     predicted_label = parse_response(raw_output, task)
     return predicted_label, raw_output
 
@@ -435,13 +447,14 @@ def run_zeroshot(
         image_obj = None
         if modality in ("image_only", "text_image") and item.get("image_path"):
             try:
-                image_obj = PILImage.open(item["image_path"]).convert("RGB")
+                img = PILImage.open(item["image_path"])
+                image_obj = img.convert("RGBA").convert("RGB") if img.mode == "P" else img.convert("RGB")
             except Exception as e:
                 print(f"  WARNING: Could not load image {item['image_path']}: {e}")
                 continue
 
         messages, images = build_messages(
-            prompt, text=item.get("tweet_text"), image_obj=image_obj, modality=modality,
+            prompt, task, text=item.get("tweet_text"), image_obj=image_obj, modality=modality,
         )
         pred_label, raw_output = predict_single(model, processor, messages, images, task)
 
@@ -453,6 +466,12 @@ def run_zeroshot(
         row["predicted_label"] = pred_label
         row["raw_output"] = raw_output
         predictions.append(row)
+
+        # Periodically free GPU memory to avoid OOM on large datasets
+        if (i + 1) % 100 == 0:
+            import torch
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
 
         y_true.append(item["class_label"])
         y_pred.append(pred_label)
@@ -520,10 +539,14 @@ def run_zeroshot(
         json.dump(metrics, f, indent=2)
 
     print(f"\nResults saved to {out_path}")
-    print(f"  Accuracy:    {accuracy:.4f}")
-    print(f"  Weighted F1: {w_f1:.4f}")
-    print(f"  Macro F1:    {m_f1:.4f}")
-    print(f"  Unparseable: {n_unparseable}")
+    print(f"  Accuracy:           {accuracy:.4f}")
+    print(f"  Weighted Precision: {w_prec:.4f}")
+    print(f"  Weighted Recall:    {w_rec:.4f}")
+    print(f"  Weighted F1:        {w_f1:.4f}")
+    print(f"  Macro Precision:    {m_prec:.4f}")
+    print(f"  Macro Recall:       {m_rec:.4f}")
+    print(f"  Macro F1:           {m_f1:.4f}")
+    print(f"  Unparseable:        {n_unparseable}")
 
     # Cleanup if we loaded the model
     if own_model:

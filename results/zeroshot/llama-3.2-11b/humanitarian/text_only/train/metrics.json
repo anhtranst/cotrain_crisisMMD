@@ -1,0 +1,22 @@
+{
+  "task": "humanitarian",
+  "modality": "text_only",
+  "split": "train",
+  "model_id": "meta-llama/Llama-3.2-11B-Vision-Instruct",
+  "num_samples": 5263,
+  "num_unparseable": 0,
+  "accuracy": 0.7378,
+  "weighted_precision": 0.7843,
+  "weighted_recall": 0.7378,
+  "weighted_f1": 0.7335,
+  "macro_precision": 0.7056,
+  "macro_recall": 0.6333,
+  "macro_f1": 0.6186,
+  "per_class_f1": {
+    "affected_individuals": 0.4364,
+    "infrastructure_and_utility_damage": 0.3722,
+    "not_humanitarian": 0.8244,
+    "other_relevant_information": 0.6303,
+    "rescue_volunteering_or_donation_effort": 0.8299
+  }
+}

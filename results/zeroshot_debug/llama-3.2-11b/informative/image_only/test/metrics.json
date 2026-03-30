@@ -1,0 +1,19 @@
+{
+  "task": "informative",
+  "modality": "image_only",
+  "split": "test",
+  "model_id": "meta-llama/Llama-3.2-11B-Vision-Instruct",
+  "num_samples": 1534,
+  "num_unparseable": 0,
+  "accuracy": 0.8605,
+  "weighted_precision": 0.863,
+  "weighted_recall": 0.8605,
+  "weighted_f1": 0.8546,
+  "macro_precision": 0.8683,
+  "macro_recall": 0.81,
+  "macro_f1": 0.8297,
+  "per_class_f1": {
+    "informative": 0.9021,
+    "not_informative": 0.7574
+  }
+}

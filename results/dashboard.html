@@ -177,15 +177,17 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <header>
     <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
-        Generated <span>2026-03-28 12:31:58</span> &bull;
+        Generated <span>2026-03-29 20:42:38</span> &bull;
         <span>2 tasks</span> &bull;
         <span>3 modalities</span> &bull;
-        <span>0 experiments</span>
+        <span>12 experiments</span>
     </p>
 </header>
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
+    <button onclick="showTab('tab-zs-informative', this)">&#x1F4CB; Informative <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">6</span></button>
+    <button onclick="showTab('tab-zs-humanitarian', this)">&#x1F6D1; Humanitarian <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">6</span></button>
     <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results</button>
 </nav>
 
@@ -669,6 +671,105 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
         </div>
     </div>
     
+</div>
+
+<div id="tab-zs-informative" class="tab-content">
+
+    <div class="cards">
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">6</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8376</div><div class="label">Avg Accuracy</div></div>
+        <div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.8278</div><div class="label">Avg Weighted F1</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.7979</div><div class="label">Avg Macro F1</div></div>
+    </div>
+    
+<div class="section">
+<div class="section-header"><h2>&#x1F4CB; Results by Modality &amp; Split</h2><div class="tag">Zero-Shot &mdash; Llama-3.2-11B-Vision</div></div>
+<table><thead>
+        <tr><th>Model</th><th>Modality</th><th>Split</th><th class="num">Samples</th>
+        <th class="num">Accuracy</th><th class="num">Weighted F1</th>
+        <th class="num">Macro F1</th><th class="num">Unparseable</th></tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>test</td><td class="num">1,534</td><td class="num">0.8605</td><td class="num">0.8546</td><td class="num"><span class="badge badge-success">0.8297</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>train</td><td class="num">9,601</td><td class="num">0.8591</td><td class="num">0.8537</td><td class="num"><span class="badge badge-success">0.8320</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>test</td><td class="num">1,534</td><td class="num">0.8233</td><td class="num">0.8027</td><td class="num"><span class="badge badge-success">0.7607</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>train</td><td class="num">9,601</td><td class="num">0.8248</td><td class="num">0.8069</td><td class="num"><span class="badge badge-success">0.7713</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>test</td><td class="num">1,534</td><td class="num">0.8383</td><td class="num">0.8337</td><td class="num"><span class="badge badge-success">0.8070</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>train</td><td class="num">8,293</td><td class="num">0.8194</td><td class="num">0.8150</td><td class="num"><span class="badge badge-success">0.7869</span></td><td class="num">0</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>
+<table><thead><tr><th>Class</th>
+<th class="num">llama-3.2-11b<br>&#x1F5BC; Image Only</th>
+<th class="num">llama-3.2-11b<br>&#x1F4F7; Text Image</th>
+<th class="num">llama-3.2-11b<br>&#x1F4DD; Text Only</th>
+</tr></thead><tbody>
+<tr><td><code>informative</code></td>
+<td class="hm hm-5">0.9021</td>
+<td class="hm hm-5">0.8831</td>
+<td class="hm hm-5">0.8848</td>
+</tr>
+<tr><td><code>not_informative</code></td>
+<td class="hm hm-5">0.7574</td>
+<td class="hm hm-5">0.6382</td>
+<td class="hm hm-5">0.7293</td>
+</tr>
+</tbody></table></div>
+</div>
+
+<div id="tab-zs-humanitarian" class="tab-content">
+
+    <div class="cards">
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">6</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.7533</div><div class="label">Avg Accuracy</div></div>
+        <div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.7481</div><div class="label">Avg Weighted F1</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.6283</div><div class="label">Avg Macro F1</div></div>
+    </div>
+    
+<div class="section">
+<div class="section-header"><h2>&#x1F4CB; Results by Modality &amp; Split</h2><div class="tag">Zero-Shot &mdash; Llama-3.2-11B-Vision</div></div>
+<table><thead>
+        <tr><th>Model</th><th>Modality</th><th>Split</th><th class="num">Samples</th>
+        <th class="num">Accuracy</th><th class="num">Weighted F1</th>
+        <th class="num">Macro F1</th><th class="num">Unparseable</th></tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>test</td><td class="num">955</td><td class="num">0.7654</td><td class="num">0.7571</td><td class="num"><span class="badge badge-success">0.6275</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>train</td><td class="num">6,126</td><td class="num">0.7729</td><td class="num">0.7679</td><td class="num"><span class="badge badge-success">0.6694</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>test</td><td class="num">955</td><td class="num">0.7424</td><td class="num">0.7360</td><td class="num"><span class="badge badge-success">0.5947</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>train</td><td class="num">6,126</td><td class="num">0.7613</td><td class="num">0.7567</td><td class="num"><span class="badge badge-success">0.6292</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>test</td><td class="num">955</td><td class="num">0.7403</td><td class="num">0.7374</td><td class="num"><span class="badge badge-success">0.6302</span></td><td class="num">0</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>train</td><td class="num">5,263</td><td class="num">0.7378</td><td class="num">0.7335</td><td class="num"><span class="badge badge-success">0.6186</span></td><td class="num">0</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>
+<table><thead><tr><th>Class</th>
+<th class="num">llama-3.2-11b<br>&#x1F5BC; Image Only</th>
+<th class="num">llama-3.2-11b<br>&#x1F4F7; Text Image</th>
+<th class="num">llama-3.2-11b<br>&#x1F4DD; Text Only</th>
+</tr></thead><tbody>
+<tr><td><code>affected_individuals</code></td>
+<td class="hm hm-4">0.3200</td>
+<td class="hm hm-3">0.2727</td>
+<td class="hm hm-4">0.4444</td>
+</tr>
+<tr><td><code>infrastructure_and_utility_damage</code></td>
+<td class="hm hm-5">0.6795</td>
+<td class="hm hm-4">0.4860</td>
+<td class="hm hm-4">0.4272</td>
+</tr>
+<tr><td><code>not_humanitarian</code></td>
+<td class="hm hm-5">0.8348</td>
+<td class="hm hm-5">0.8170</td>
+<td class="hm hm-5">0.8126</td>
+</tr>
+<tr><td><code>other_relevant_information</code></td>
+<td class="hm hm-5">0.7349</td>
+<td class="hm hm-5">0.6707</td>
+<td class="hm hm-5">0.6535</td>
+</tr>
+<tr><td><code>rescue_volunteering_or_donation_effort</code></td>
+<td class="hm hm-5">0.5685</td>
+<td class="hm hm-5">0.7273</td>
+<td class="hm hm-5">0.8134</td>
+</tr>
+</tbody></table></div>
 </div>
 
 <div id="tab-results" class="tab-content">

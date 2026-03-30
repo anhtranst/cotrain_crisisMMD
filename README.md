@@ -226,7 +226,7 @@ Columns: `tweet_id`, `tweet_text`, `predicted_label`, `confidence`
 ## Installation
 
 ```bash
-pip install -r lg_cotrain/requirements.txt
+pip install -r requirements.txt
 ```
 
 **Dependencies**: `torch`, `transformers`, `pandas`, `scikit-learn`, `numpy`, `optuna`, `pytest`

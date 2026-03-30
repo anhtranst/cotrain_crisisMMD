@@ -1,0 +1,27 @@
+# LG-CoTrain CrisisMMD — Python Dependencies
+#
+# NOTE: PyTorch must be installed separately based on your CUDA version.
+# See https://pytorch.org/get-started/locally/ for instructions.
+# Example for CUDA 12.6:
+#   pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+
+# Core ML
+transformers>=4.40.0
+numpy>=1.24.0
+
+# Data processing
+pandas>=2.0.0
+Pillow>=9.0.0
+
+# Evaluation metrics
+scikit-learn>=1.3.0
+
+# Hyperparameter tuning
+optuna>=3.0.0
+
+# Testing
+pytest>=7.0.0
+
+# Jupyter notebooks
+jupyter
+ipywidgets

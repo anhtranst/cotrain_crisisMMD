@@ -141,7 +141,7 @@ def collect_zeroshot_results(results_root: str) -> dict:
                                 m["model_slug"] = model_dir.name
                                 results[task].append(m)
                         except (json.JSONDecodeError, OSError):
-                        pass
+                            pass
     return results
 
 
