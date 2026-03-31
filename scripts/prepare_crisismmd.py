@@ -56,8 +56,14 @@ def load_source(task_name: str, split: str) -> pd.DataFrame:
 
 
 def resolve_image_path(relative_path: str) -> str:
-    """Convert relative image path to absolute path."""
-    return str(SOURCE_DIR / relative_path)
+    """Convert CrisisMMD-relative image path to repo-relative path.
+
+    The raw TSVs store paths like ``data_image/event/date/img.jpg``
+    relative to the CrisisMMD directory.  We prepend the standard
+    prefix so the stored path is relative to the repo root, e.g.
+    ``data/CrisisMMD/data_image/event/date/img.jpg``.
+    """
+    return "data/CrisisMMD/" + relative_path.replace("\\", "/")
 
 
 def extract_class_label(df: pd.DataFrame, task_name: str, modality: str) -> pd.Series:

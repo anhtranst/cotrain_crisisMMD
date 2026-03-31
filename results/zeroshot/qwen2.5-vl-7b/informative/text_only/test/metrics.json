@@ -1,0 +1,19 @@
+{
+  "task": "informative",
+  "modality": "text_only",
+  "split": "test",
+  "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "num_samples": 1534,
+  "num_unparseable": 0,
+  "accuracy": 0.7027,
+  "weighted_precision": 0.7825,
+  "weighted_recall": 0.7027,
+  "weighted_f1": 0.7112,
+  "macro_precision": 0.7178,
+  "macro_recall": 0.7452,
+  "macro_f1": 0.6975,
+  "per_class_f1": {
+    "informative": 0.7373,
+    "not_informative": 0.6577
+  }
+}

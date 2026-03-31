@@ -49,7 +49,10 @@ def debug_one(task, modality, model, processor, data_root):
     # Load image if needed
     image_obj = None
     if modality in ("image_only", "text_image") and item.get("image_path"):
-        img = PILImage.open(item["image_path"])
+        img_path = Path(item["image_path"])
+        if not img_path.is_absolute():
+            img_path = Path(data_root).parent / img_path
+        img = PILImage.open(img_path)
         image_obj = img.convert("RGBA").convert("RGB") if img.mode == "P" else img.convert("RGB")
         print(f"\n  [Image loaded: {img.size}, mode={img.mode}]")
 

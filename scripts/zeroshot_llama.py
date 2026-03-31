@@ -452,6 +452,9 @@ def run_zeroshot(
     prompt = PROMPTS[(task, modality)]
     valid_labels = set(INFO_ID2LABEL.values()) if task == "informative" else set(HUMA_ID2LABEL.values())
 
+    # Repo root for resolving relative image paths stored in TSVs
+    repo_root = Path(data_root).parent
+
     predictions = []
     y_true = []
     y_pred = []
@@ -463,7 +466,10 @@ def run_zeroshot(
         image_obj = None
         if modality in ("image_only", "text_image") and item.get("image_path"):
             try:
-                img = PILImage.open(item["image_path"])
+                img_path = Path(item["image_path"])
+                if not img_path.is_absolute():
+                    img_path = repo_root / img_path
+                img = PILImage.open(img_path)
                 image_obj = img.convert("RGBA").convert("RGB") if img.mode == "P" else img.convert("RGB")
             except Exception as e:
                 print(f"  WARNING: Could not load image {item['image_path']}: {e}")
@@ -482,7 +488,6 @@ def run_zeroshot(
         row["predicted_label"] = pred_label
         row["confidence"] = confidence
         row["entropy"] = entropy
-        row["raw_output"] = raw_output
         predictions.append(row)
 
         # Periodically free GPU memory to avoid OOM on large datasets
@@ -546,7 +551,7 @@ def run_zeroshot(
     out_path.mkdir(parents=True, exist_ok=True)
 
     pred_path = out_path / "predictions.tsv"
-    out_fieldnames = orig_fieldnames + ["predicted_label", "confidence", "entropy", "raw_output"]
+    out_fieldnames = orig_fieldnames + ["predicted_label", "confidence", "entropy"]
     with open(pred_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=out_fieldnames, delimiter="\t")
         writer.writeheader()

@@ -213,11 +213,13 @@ data/CrisisMMD/
 | image_only | `image_id`, `image_path`, `class_label` |
 | text_image | `tweet_id`, `image_id`, `tweet_text`, `image_path`, `class_label` |
 
-**Pseudo-labels** (to be generated):
+**Pseudo-labels** (generated from zero-shot predictions):
 
 ```
 data/pseudo_labelled/{model}/{task}/{modality}/train_pred.tsv
 ```
+
+Where `{model}` is `llama-3.2-11b` or `qwen2.5-vl-7b`.
 
 Columns: `tweet_id`, `tweet_text`, `predicted_label`, `confidence`
 
@@ -347,6 +349,37 @@ The dashboard has two tabs:
 - **Dataset Exploration** — class distributions per task/modality, event breakdown, budget split sizes with heat-map visualization
 - **Experiment Results** — all metrics with summary cards (appears when experiments have been run)
 
+### Zero-Shot Classification
+
+Run zero-shot classification with vision-language models to generate pseudo-labels:
+
+#### Llama-3.2-11B-Vision-Instruct
+
+```bash
+python scripts/zeroshot_llama.py --task informative --modality text_only --split test
+python scripts/zeroshot_llama.py --task humanitarian --modality image_only --split train
+```
+
+#### Qwen2.5-VL-7B-Instruct
+
+```bash
+python scripts/zeroshot_qwen.py --task informative --modality text_only --split test
+python scripts/zeroshot_qwen.py --task humanitarian --modality image_only --split train
+```
+
+Both scripts support `--max-samples N` for debugging. Results are saved to `results/zeroshot/{model}/{task}/{modality}/{split}/` with `predictions.tsv` (including confidence and entropy) and `metrics.json`.
+
+Jupyter notebooks are also available for running all 6 experiments per task:
+- **Llama**: `Notebooks/01_zeroshot_informative.ipynb`, `02_zeroshot_humanitarian.ipynb`
+- **Qwen**: `Notebooks/03_zeroshot_informative_qwen.ipynb`, `04_zeroshot_humanitarian_qwen.ipynb`
+
+#### Generate pseudo-labels from zero-shot results
+
+```bash
+python scripts/create_pseudo_labels.py --model llama-3.2-11b
+python scripts/create_pseudo_labels.py --model qwen2.5-vl-7b
+```
+
 ### All CLI Options
 
 | Option | Description | Default |
@@ -428,9 +461,18 @@ lg_cotrain/                          # Main package
 
 scripts/
 ├── prepare_crisismmd.py             # Preprocess CrisisMMD into per-task/modality datasets
+├── zeroshot_llama.py                # Zero-shot classification with Llama-3.2-11B-Vision-Instruct
+├── zeroshot_qwen.py                 # Zero-shot classification with Qwen2.5-VL-7B-Instruct
+├── create_pseudo_labels.py          # Convert zero-shot predictions to pseudo-label TSVs
 ├── check_progress.py                # Standalone Optuna progress checker (study.log scanner)
 ├── extract_optuna_test_results.py   # Extract best Optuna params + test metrics
 └── merge_optuna_results.py          # Merge Optuna results from multiple PCs
+
+Notebooks/
+├── 01_zeroshot_informative.ipynb    # Llama zero-shot — informative task (6 experiments)
+├── 02_zeroshot_humanitarian.ipynb   # Llama zero-shot — humanitarian task (6 experiments)
+├── 03_zeroshot_informative_qwen.ipynb # Qwen zero-shot — informative task (6 experiments)
+└── 04_zeroshot_humanitarian_qwen.ipynb # Qwen zero-shot — humanitarian task (6 experiments)
 
 tests/                               # Test suite
 ├── conftest.py                      # Shared pytest fixtures
@@ -453,11 +495,9 @@ tests/                               # Test suite
 └── test_dashboard.py                # Dashboard generation
 
 docs/
-├── Cornelia etal2025-Cotraining.pdf # Reference paper
-└── Data Analysis.pdf                # CrisisMMD data analysis
+└── Cornelia etal2025-Cotraining.pdf # Reference paper
 
-data/CrisisMMD/                # Dataset (see Data Layout above)
-backup/                              # CrisisMMD archive
+data/CrisisMMD/                      # Dataset (see Data Layout above)
 ```
 
 ---
