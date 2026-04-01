@@ -56,9 +56,18 @@ def main():
         help="Output folder for results (overrides --results-root). "
              "E.g. results/gpt-4o-1st-run",
     )
+    parser.add_argument(
+        "--run-id", type=str, default=None,
+        help="Run identifier (e.g. run-1). Inserted into output path before task.",
+    )
 
     # Model hyperparameters
-    parser.add_argument("--model-name", type=str, default="vinai/bertweet-base")
+    parser.add_argument("--model-name", type=str, default="vinai/bertweet-base",
+                        help="Text model (default: vinai/bertweet-base)")
+    parser.add_argument("--image-model-name", type=str, default="openai/clip-vit-base-patch32",
+                        help="Image model for image_only/text_image (default: openai/clip-vit-base-patch32)")
+    parser.add_argument("--image-size", type=int, default=224,
+                        help="Image input size (default: 224)")
     parser.add_argument("--weight-gen-epochs", type=int, default=7)
     parser.add_argument("--cotrain-epochs", type=int, default=10)
     parser.add_argument("--finetune-max-epochs", type=int, default=100)
@@ -101,7 +110,10 @@ def main():
     # Common hyperparameter kwargs
     hyperparams = dict(
         pseudo_label_source=args.pseudo_label_source,
+        run_id=args.run_id,
         model_name=args.model_name,
+        image_model_name=args.image_model_name,
+        image_size=args.image_size,
         weight_gen_epochs=args.weight_gen_epochs,
         cotrain_epochs=args.cotrain_epochs,
         finetune_max_epochs=args.finetune_max_epochs,

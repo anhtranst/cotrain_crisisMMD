@@ -382,5 +382,170 @@ class TestBuildDLG(unittest.TestCase):
 
 
 
+class TestLoadTsvModalities(unittest.TestCase):
+    """Test load_tsv with different modality column expectations."""
+
+    def _write_tsv(self, path, headers, rows):
+        with open(path, "w", newline="") as f:
+            writer = csv.writer(f, delimiter="\t")
+            writer.writerow(headers)
+            for row in rows:
+                writer.writerow(row)
+
+    def test_load_image_only_tsv(self):
+        try:
+            import pandas  # noqa: F401
+        except ImportError:
+            self.skipTest("pandas not available")
+        from lg_cotrain.data_loading import load_tsv
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".tsv", delete=False) as f:
+            path = f.name
+        try:
+            self._write_tsv(path,
+                ["image_id", "image_path", "class_label"],
+                [["img_1", "data/img1.jpg", "affected_individuals"]])
+            df = load_tsv(path, modality="image_only")
+            self.assertEqual(len(df), 1)
+            self.assertIn("image_id", df.columns)
+            self.assertIn("image_path", df.columns)
+        finally:
+            os.unlink(path)
+
+    def test_load_text_image_tsv(self):
+        try:
+            import pandas  # noqa: F401
+        except ImportError:
+            self.skipTest("pandas not available")
+        from lg_cotrain.data_loading import load_tsv
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".tsv", delete=False) as f:
+            path = f.name
+        try:
+            self._write_tsv(path,
+                ["tweet_id", "image_id", "tweet_text", "image_path", "class_label"],
+                [["1", "img_1", "hello", "data/img1.jpg", "affected_individuals"]])
+            df = load_tsv(path, modality="text_image")
+            self.assertEqual(len(df), 1)
+            self.assertIn("tweet_id", df.columns)
+            self.assertIn("image_id", df.columns)
+            self.assertIn("tweet_text", df.columns)
+            self.assertIn("image_path", df.columns)
+        finally:
+            os.unlink(path)
+
+    def test_image_only_rejects_text_only_columns(self):
+        try:
+            import pandas  # noqa: F401
+        except ImportError:
+            self.skipTest("pandas not available")
+        from lg_cotrain.data_loading import load_tsv
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".tsv", delete=False) as f:
+            path = f.name
+        try:
+            self._write_tsv(path,
+                ["tweet_id", "tweet_text", "class_label"],
+                [["1", "hello", "affected_individuals"]])
+            with self.assertRaises(ValueError):
+                load_tsv(path, modality="image_only")
+        finally:
+            os.unlink(path)
+
+    def test_text_only_default_backward_compat(self):
+        """load_tsv without modality arg works as before."""
+        try:
+            import pandas  # noqa: F401
+        except ImportError:
+            self.skipTest("pandas not available")
+        from lg_cotrain.data_loading import load_tsv
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".tsv", delete=False) as f:
+            path = f.name
+        try:
+            self._write_tsv(path,
+                ["tweet_id", "tweet_text", "class_label"],
+                [["1", "hello", "affected_individuals"]])
+            df = load_tsv(path)  # no modality arg
+            self.assertEqual(len(df), 1)
+        finally:
+            os.unlink(path)
+
+
+class TestBuildDLGModalities(unittest.TestCase):
+    """Test build_d_lg with different modalities."""
+
+    def test_image_only_join(self):
+        try:
+            import pandas as pd
+            from lg_cotrain.data_loading import build_d_lg
+        except ImportError:
+            self.skipTest("pandas not available")
+
+        df_unl = pd.DataFrame({
+            "image_id": ["img_1", "img_2"],
+            "image_path": ["data/1.jpg", "data/2.jpg"],
+            "class_label": ["x", "y"],
+        })
+        df_pseudo = pd.DataFrame({
+            "image_id": ["img_1", "img_2"],
+            "image_path": ["data/1.jpg", "data/2.jpg"],
+            "predicted_label": ["x", "z"],
+            "confidence": [0.9, 0.8],
+        })
+        merged = build_d_lg(df_unl, df_pseudo, modality="image_only")
+        self.assertEqual(len(merged), 2)
+        self.assertIn("predicted_label", merged.columns)
+        self.assertNotIn("image_path_pseudo", merged.columns)
+
+    def test_text_image_join_on_image_id(self):
+        try:
+            import pandas as pd
+            from lg_cotrain.data_loading import build_d_lg
+        except ImportError:
+            self.skipTest("pandas not available")
+
+        df_unl = pd.DataFrame({
+            "tweet_id": ["1", "1"],
+            "image_id": ["img_1", "img_2"],
+            "tweet_text": ["hello", "hello"],
+            "image_path": ["data/1.jpg", "data/2.jpg"],
+            "class_label": ["x", "y"],
+        })
+        df_pseudo = pd.DataFrame({
+            "tweet_id": ["1", "1"],
+            "image_id": ["img_1", "img_2"],
+            "tweet_text": ["hello", "hello"],
+            "image_path": ["data/1.jpg", "data/2.jpg"],
+            "predicted_label": ["x", "z"],
+            "confidence": [0.9, 0.8],
+        })
+        merged = build_d_lg(df_unl, df_pseudo, modality="text_image")
+        self.assertEqual(len(merged), 2)
+        self.assertIn("predicted_label", merged.columns)
+
+    def test_text_only_backward_compat(self):
+        """build_d_lg without modality arg works as before."""
+        try:
+            import pandas as pd
+            from lg_cotrain.data_loading import build_d_lg
+        except ImportError:
+            self.skipTest("pandas not available")
+
+        df_unl = pd.DataFrame({
+            "tweet_id": ["1", "2"],
+            "tweet_text": ["a", "b"],
+            "class_label": ["x", "y"],
+        })
+        df_pseudo = pd.DataFrame({
+            "tweet_id": ["1", "2"],
+            "tweet_text": ["a", "b"],
+            "predicted_label": ["x", "z"],
+            "confidence": [0.9, 0.8],
+        })
+        merged = build_d_lg(df_unl, df_pseudo)  # no modality arg
+        self.assertEqual(len(merged), 2)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

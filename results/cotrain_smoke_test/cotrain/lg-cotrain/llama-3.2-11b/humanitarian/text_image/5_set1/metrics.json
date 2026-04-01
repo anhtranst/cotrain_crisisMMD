@@ -1,0 +1,26 @@
+{
+  "task": "humanitarian",
+  "modality": "text_image",
+  "budget": 5,
+  "seed_set": 1,
+  "test_error_rate": 26.910994764397913,
+  "test_macro_f1": 0.40834471236167447,
+  "test_ece": 0.040962699508167666,
+  "test_per_class_f1": [
+    0.0,
+    0.0,
+    0.8257839721254355,
+    0.7327935222672065,
+    0.48314606741573035
+  ],
+  "dev_error_rate": 27.254509018036078,
+  "dev_macro_f1": 0.41564254141675094,
+  "dev_ece": 0.04657018062227475,
+  "stopping_strategy": "baseline",
+  "phase1_seed_strategy": "last",
+  "phase1_best_epoch": null,
+  "lambda1_mean": 0.8044015912339378,
+  "lambda1_std": 0.24801503317750517,
+  "lambda2_mean": 0.3025590901830262,
+  "lambda2_std": 0.11286249133315815
+}

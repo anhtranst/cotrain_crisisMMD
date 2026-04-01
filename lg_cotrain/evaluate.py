@@ -123,7 +123,24 @@ def _compute_ece_pure(y_true, y_probs, n_bins=15):
     return ece
 
 
-def ensemble_predict(model1, model2, loader, device):
+def _predict_proba_batch(model, batch, device, modality="text_only"):
+    """Call model.predict_proba with the right inputs for the modality."""
+    if modality == "image_only":
+        return model.predict_proba(batch["pixel_values"].to(device))
+    elif modality == "text_image":
+        return model.predict_proba(
+            batch["input_ids"].to(device),
+            batch["attention_mask"].to(device),
+            batch["pixel_values"].to(device),
+        )
+    else:  # text_only
+        return model.predict_proba(
+            batch["input_ids"].to(device),
+            batch["attention_mask"].to(device),
+        )
+
+
+def ensemble_predict(model1, model2, loader, device, modality="text_only"):
     """Ensemble prediction: average softmax of two models, then argmax.
 
     Requires torch. Returns (predictions, true_labels, probabilities) as
@@ -140,12 +157,10 @@ def ensemble_predict(model1, model2, loader, device):
 
     with torch.no_grad():
         for batch in loader:
-            input_ids = batch["input_ids"].to(device)
-            attention_mask = batch["attention_mask"].to(device)
             labels = batch["labels"]
 
-            probs1 = model1.predict_proba(input_ids, attention_mask)
-            probs2 = model2.predict_proba(input_ids, attention_mask)
+            probs1 = _predict_proba_batch(model1, batch, device, modality)
+            probs2 = _predict_proba_batch(model2, batch, device, modality)
 
             avg_probs = (probs1 + probs2) / 2.0
             preds = avg_probs.argmax(dim=-1).cpu().numpy()

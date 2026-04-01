@@ -73,5 +73,137 @@ class TestBertClassifierForward(unittest.TestCase):
         self.assertIsNot(m1, m2)
 
 
+class TestImageClassifierForward(unittest.TestCase):
+    """ImageClassifier forward pass shape tests."""
+
+    @_requires_torch
+    def test_output_shape(self):
+        from lg_cotrain.model import create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        import torch
+        cfg = LGCoTrainConfig(modality="image_only", num_labels=5)
+        model = create_fresh_model(cfg)
+        pixel_values = torch.randn(2, 3, 224, 224)
+        logits = model(pixel_values)
+        self.assertEqual(logits.shape, (2, 5))
+
+    @_requires_torch
+    def test_predict_proba_sums_to_one(self):
+        from lg_cotrain.model import create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        import torch
+        cfg = LGCoTrainConfig(modality="image_only", num_labels=5)
+        model = create_fresh_model(cfg)
+        model.eval()
+        pixel_values = torch.randn(2, 3, 224, 224)
+        probs = model.predict_proba(pixel_values)
+        self.assertEqual(probs.shape, (2, 5))
+        sums = probs.sum(dim=-1)
+        torch.testing.assert_close(sums, torch.ones(2), atol=1e-5, rtol=1e-5)
+
+    @_requires_torch
+    def test_predict_proba_no_grad(self):
+        from lg_cotrain.model import create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        import torch
+        cfg = LGCoTrainConfig(modality="image_only", num_labels=5)
+        model = create_fresh_model(cfg)
+        model.eval()
+        pixel_values = torch.randn(2, 3, 224, 224)
+        probs = model.predict_proba(pixel_values)
+        self.assertFalse(probs.requires_grad)
+
+
+class TestMultimodalClassifierForward(unittest.TestCase):
+    """MultimodalClassifier forward pass shape tests."""
+
+    @_requires_torch
+    def test_output_shape(self):
+        from lg_cotrain.model import create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        import torch
+        cfg = LGCoTrainConfig(
+            modality="text_image",
+            model_name="prajjwal1/bert-tiny",
+            num_labels=5,
+        )
+        model = create_fresh_model(cfg)
+        input_ids = torch.randint(0, 1000, (2, 16))
+        attention_mask = torch.ones(2, 16, dtype=torch.long)
+        pixel_values = torch.randn(2, 3, 224, 224)
+        logits = model(input_ids, attention_mask, pixel_values)
+        self.assertEqual(logits.shape, (2, 5))
+
+    @_requires_torch
+    def test_predict_proba_sums_to_one(self):
+        from lg_cotrain.model import create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        import torch
+        cfg = LGCoTrainConfig(
+            modality="text_image",
+            model_name="prajjwal1/bert-tiny",
+            num_labels=5,
+        )
+        model = create_fresh_model(cfg)
+        model.eval()
+        input_ids = torch.randint(0, 1000, (2, 16))
+        attention_mask = torch.ones(2, 16, dtype=torch.long)
+        pixel_values = torch.randn(2, 3, 224, 224)
+        probs = model.predict_proba(input_ids, attention_mask, pixel_values)
+        self.assertEqual(probs.shape, (2, 5))
+        sums = probs.sum(dim=-1)
+        torch.testing.assert_close(sums, torch.ones(2), atol=1e-5, rtol=1e-5)
+
+    @_requires_torch
+    def test_predict_proba_no_grad(self):
+        from lg_cotrain.model import create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        import torch
+        cfg = LGCoTrainConfig(
+            modality="text_image",
+            model_name="prajjwal1/bert-tiny",
+            num_labels=5,
+        )
+        model = create_fresh_model(cfg)
+        model.eval()
+        input_ids = torch.randint(0, 1000, (2, 16))
+        attention_mask = torch.ones(2, 16, dtype=torch.long)
+        pixel_values = torch.randn(2, 3, 224, 224)
+        probs = model.predict_proba(input_ids, attention_mask, pixel_values)
+        self.assertFalse(probs.requires_grad)
+
+
+class TestCreateFreshModelDispatch(unittest.TestCase):
+    """create_fresh_model dispatches correctly by modality."""
+
+    @_requires_torch
+    def test_text_only_returns_bert_classifier(self):
+        from lg_cotrain.model import BertClassifier, create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        cfg = LGCoTrainConfig(modality="text_only", model_name="prajjwal1/bert-tiny", num_labels=5)
+        model = create_fresh_model(cfg)
+        self.assertIsInstance(model, BertClassifier)
+
+    @_requires_torch
+    def test_image_only_returns_image_classifier(self):
+        from lg_cotrain.model import ImageClassifier, create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        cfg = LGCoTrainConfig(modality="image_only", num_labels=5)
+        model = create_fresh_model(cfg)
+        self.assertIsInstance(model, ImageClassifier)
+
+    @_requires_torch
+    def test_text_image_returns_multimodal_classifier(self):
+        from lg_cotrain.model import MultimodalClassifier, create_fresh_model
+        from lg_cotrain.config import LGCoTrainConfig
+        cfg = LGCoTrainConfig(
+            modality="text_image",
+            model_name="prajjwal1/bert-tiny",
+            num_labels=5,
+        )
+        model = create_fresh_model(cfg)
+        self.assertIsInstance(model, MultimodalClassifier)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

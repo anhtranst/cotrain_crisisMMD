@@ -215,5 +215,37 @@ class TestConfigCustomRoots(unittest.TestCase):
         self.assertIn("custom", cfg.output_dir)
 
 
+class TestConfigImageFields(unittest.TestCase):
+    """Image-related config fields for multimodal support."""
+
+    def test_default_image_model_name(self):
+        cfg = LGCoTrainConfig()
+        self.assertEqual(cfg.image_model_name, "openai/clip-vit-base-patch32")
+
+    def test_default_image_size(self):
+        cfg = LGCoTrainConfig()
+        self.assertEqual(cfg.image_size, 224)
+
+    def test_custom_image_model_name(self):
+        cfg = LGCoTrainConfig(image_model_name="openai/clip-vit-large-patch14")
+        self.assertEqual(cfg.image_model_name, "openai/clip-vit-large-patch14")
+
+    def test_project_root_exists(self):
+        cfg = LGCoTrainConfig()
+        self.assertTrue(hasattr(cfg, "project_root"))
+        self.assertTrue(len(cfg.project_root) > 0)
+
+    def test_project_root_is_parent_of_data_root(self):
+        cfg = LGCoTrainConfig()
+        self.assertTrue(cfg.data_root.startswith(cfg.project_root))
+
+    def test_image_fields_do_not_affect_paths(self):
+        cfg1 = LGCoTrainConfig(task="humanitarian", modality="image_only", budget=5, seed_set=1)
+        cfg2 = LGCoTrainConfig(task="humanitarian", modality="image_only", budget=5, seed_set=1,
+                                image_model_name="custom/model", image_size=384)
+        self.assertEqual(cfg1.labeled_path, cfg2.labeled_path)
+        self.assertEqual(cfg1.output_dir, cfg2.output_dir)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
