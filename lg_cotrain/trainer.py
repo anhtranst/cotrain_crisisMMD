@@ -165,7 +165,7 @@ class LGCoTrainer:
     def run(self) -> Dict:
         """Run the full 3-phase pipeline and return metrics."""
         cfg = self.config
-        setup_logging(cfg.output_dir)
+        setup_logging(cfg.log_dir)
         set_seed(cfg.seed_set)
         logger.info(f"Starting LG-CoTrain: task={cfg.task}, modality={cfg.modality}, budget={cfg.budget}, seed_set={cfg.seed_set}")
 

@@ -76,6 +76,7 @@ class LGCoTrainConfig:
     dev_path: str = field(init=False, default="")
     test_path: str = field(init=False, default="")
     output_dir: str = field(init=False, default="")
+    log_dir: str = field(init=False, default="")
 
     def __post_init__(self):
         task_dir = (
@@ -102,6 +103,7 @@ class LGCoTrainConfig:
         )
         if self.run_id is not None:
             output_base = output_base / self.run_id
+        self.log_dir = str(output_base / self.task / self.modality)
         self.output_dir = str(
             output_base / self.task / self.modality
             / f"{self.budget}_set{self.seed_set}"
