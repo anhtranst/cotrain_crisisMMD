@@ -29,9 +29,8 @@ def create_pseudo_labels(model, task, modality, results_root, data_root):
     The co-training pipeline expects columns:
         tweet_id, tweet_text, predicted_label, confidence
 
-    Since zero-shot doesn't produce confidence scores, we set confidence=1.0
-    for all predictions (the co-training pipeline uses its own weight
-    computation via WeightTracker, so this value is not critical).
+    Confidence scores are carried over from the zero-shot predictions.
+    Falls back to 1.0 if not present in the source predictions.
     """
     pred_path = (
         Path(results_root) / "zeroshot" / model / task / modality
@@ -65,7 +64,7 @@ def create_pseudo_labels(model, task, modality, results_root, data_root):
                 out_row["image_path"] = row["image_path"]
             # Add pseudo-label columns
             out_row["predicted_label"] = row["predicted_label"]
-            out_row["confidence"] = 1.0
+            out_row["confidence"] = row.get("confidence", 1.0)
             rows.append(out_row)
 
     # Write output

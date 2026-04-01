@@ -5,15 +5,15 @@
   "model_id": "meta-llama/Llama-3.2-11B-Vision-Instruct",
   "num_samples": 8293,
   "num_unparseable": 0,
-  "accuracy": 0.8194,
-  "weighted_precision": 0.8158,
-  "weighted_recall": 0.8194,
-  "weighted_f1": 0.815,
-  "macro_precision": 0.8043,
-  "macro_recall": 0.7761,
-  "macro_f1": 0.7869,
+  "accuracy": 0.8184,
+  "weighted_precision": 0.8148,
+  "weighted_recall": 0.8184,
+  "weighted_f1": 0.8141,
+  "macro_precision": 0.8029,
+  "macro_recall": 0.7754,
+  "macro_f1": 0.786,
   "per_class_f1": {
-    "informative": 0.8701,
-    "not_informative": 0.7038
+    "informative": 0.8693,
+    "not_informative": 0.7027
   }
 }

@@ -5,18 +5,18 @@
   "model_id": "meta-llama/Llama-3.2-11B-Vision-Instruct",
   "num_samples": 955,
   "num_unparseable": 0,
-  "accuracy": 0.7424,
-  "weighted_precision": 0.7843,
-  "weighted_recall": 0.7424,
-  "weighted_f1": 0.7393,
-  "macro_precision": 0.7066,
-  "macro_recall": 0.672,
-  "macro_f1": 0.632,
+  "accuracy": 0.7414,
+  "weighted_precision": 0.7836,
+  "weighted_recall": 0.7414,
+  "weighted_f1": 0.7382,
+  "macro_precision": 0.7097,
+  "macro_recall": 0.6708,
+  "macro_f1": 0.6343,
   "per_class_f1": {
-    "affected_individuals": 0.4444,
+    "affected_individuals": 0.4615,
     "infrastructure_and_utility_damage": 0.4272,
-    "not_humanitarian": 0.8134,
+    "not_humanitarian": 0.8122,
     "other_relevant_information": 0.6571,
-    "rescue_volunteering_or_donation_effort": 0.8178
+    "rescue_volunteering_or_donation_effort": 0.8134
   }
 }

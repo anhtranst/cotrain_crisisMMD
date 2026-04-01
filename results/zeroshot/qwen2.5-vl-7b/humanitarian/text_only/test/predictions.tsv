@@ -1,0 +1,956 @@
+tweet_id	tweet_text	class_label	predicted_label	confidence	entropy
+905952332923338752	.@Lendio has a great event tomorrow for both #BYU and #Utah fans to support Hurricane Harvey relief. https://t.co/nL2ZzKEIfy	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7812	0.7157
+912022130396672000	Now @ReposadoBar also Carlo surf band at 8pm #pwyc #MexicoEarthquake #fund https://t.co/up1lkfiUXf	not_humanitarian	not_humanitarian	0.8649	0.5704
+927758858776465408	Guaynabo resident Efrain Diaz stands by a bridge washed out by rains carrying debris from Hurricane Maria. (CNN) https://t.co/M3aSh8qocx	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.7959	0.7329
+907654309587779584	After Harvey, Irma Leaves Its Own Trail of Destruction https://t.co/iOuBouqatw #metals https://t.co/cBdOnn1wz5	other_relevant_information	infrastructure_and_utility_damage	0.8714	0.4976
+913745586104528898	Dawn just won $400 and we're gonna match the amount for Hurricane Maria Relief! https://t.co/Aa2AWFpBOH	not_humanitarian	rescue_volunteering_or_donation_effort	0.7624	0.7259
+904545370549694464	Harvey forces National Weather Service to add new color to its rainfall map https://t.co/pr7qt2whkq https://t.co/SUa4e0KmK8	other_relevant_information	other_relevant_information	0.7767	0.6022
+905817543503437824	#Hurrican #Harvey transposed over #Illinois to show widespread #heavyrain @watersurvey https://t.co/c2MPrmx1H8 https://t.co/xFVJ8G5lXt	other_relevant_information	not_humanitarian	0.8442	0.5435
+907006307433148417	Harvey bashes Texas coast, leaving homes damaged, residents injured &amp; without power https://t.co/PYtAkfXVXf https://t.co/AfvT7Dnw1j	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.4148	1.3328
+916154437202096128	So many faves on one track for Puerto Rico á¼Ÿ5á¼Ÿ7 #AlmostLikePraying #SupportPR https://t.co/6WyUqTBpwW	not_humanitarian	not_humanitarian	0.9632	0.1968
+921538011514404865	Puerto Rico power: Massive logistics challenge: The commander of the U.S. A.. #usa #news https://t.co/sVpxUAec71 https://t.co/AdSBBaeo2h	not_humanitarian	other_relevant_information	0.4366	1.0902
+913620638799196160	"M5.6 earthquake 119km SSW of Tres Picos, Mexico 2017-09-29T04:00:22Z depth 21.66km 94Â° 2' 47"" W 14Â° 54' 14"" N https://t.co/SyN2NDOzXv"	other_relevant_information	not_humanitarian	0.8017	0.7283
+910537811220078593	How to help Mexico recover from its devastating earthquake from wherever you are https://t.co/I1KLycokky https://t.co/rZTUrRpf4p	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9738	0.1551
+909751107018280960	Schools Feed Students‚Äô Need after Hurricane Irma https://t.co/lEMdgZfMj3 https://t.co/57ZXXDNdJP	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7151	0.9455
+909718650403393539	.@ualbany hurricane experts on #Harvey, #Irma and what's next. https://t.co/JTF7vagBrm https://t.co/ZPRcAwAUgb	other_relevant_information	not_humanitarian	0.934	0.3076
+919611571583713280	Are California forest fire memes worth investing in? https://t.co/zUex5lVuJU	not_humanitarian	not_humanitarian	0.9954	0.0336
+907044300680159233	North Woodlands Area Church of Christ delivers nearly $95K in supplies to Harvey victims https://t.co/Ve2WL5wtWz https://t.co/sb3NmJLT0F	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9865	0.0907
+910252249250697216	#MONEY #IRMA business It‚Äôs not just Toys 'R' Us. More credit weak spots are emerging https://t.co/l3iv0ZCqLh https://t.co/c7zv0P1nw6 ‚Äî ‚Ä¶	not_humanitarian	not_humanitarian	0.9868	0.0814
+923254754888777733	Wheel Wednesday all the way from Puerto Rico á¼Ÿ5á¼Ÿ7á½¤F #jeepwrangler #offroad #wheelwednesday https://t.co/CwWNZL1SPH https://t.co/dpynH1cZGE	not_humanitarian	not_humanitarian	0.9893	0.0655
+906948664643420160	Tornado signature right outside of polygon moving inland from the coast. #FLWX #hurricaneirma https://t.co/iBWFThZ53t	other_relevant_information	not_humanitarian	0.7486	0.6706
+929339215351111680	Good morning Puerto Rico! #OldSanJuan #SaturdayVibes https://t.co/lVwLw0F1ue	not_humanitarian	not_humanitarian	0.9791	0.1208
+909688082911203328	First Harvey, Then Irma and Jose. Why? It’s the Season. https://t.co/LWOrXWhFWN https://t.co/R32Wqmx615	not_humanitarian	not_humanitarian	0.9566	0.222
+910566671148085251	RT @WESH: Video shows dog being pulled to safety following earthquake in Mexico https://t.co/uYPguwBw1A https://t.co/bhMNHM8Chr	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.572	1.2646
+914096124776058880	@realDonaldTrump And @fema ahead of #HurricaneMaria and #HurracaineIrma !! The #FakeNewsMedia never reported this !! https://t.co/Lb9DPaay3A	not_humanitarian	not_humanitarian	0.9066	0.4147
+908359896994926596	INBOX: @SpeakerStraus issues #Harvey-related interim charges: #txlege https://t.co/Y8t7Skz92M	not_humanitarian	not_humanitarian	0.9733	0.1569
+910775673572216834	Talkback With CBS' Manuel Bojorquez From Mexico City Following Devastating Earthquake - https://t.co/xlz6btHfS4 https://t.co/4Ye4CjIlP9	other_relevant_information	not_humanitarian	0.6118	0.9829
+927613500192641026	Missing Puerto Rico &amp; watching the sun sets at the beach #PRSeLevanta â¤ï¸á¼Ÿ5á¼Ÿ7 https://t.co/yZEnVpUJOo	not_humanitarian	not_humanitarian	0.9365	0.3144
+915287727599378432	RT @kathrynw5: Trump at a church in Puerto Rico, from @Reuters' Jonathan Ernst https://t.co/jrAl83ewHz	not_humanitarian	not_humanitarian	0.8834	0.5076
+907794445063598081	@realDonaldTrump grabbing Hurricane Harvey by the pussy. #FakeNews CAN'T keep ignoring this heroism! https://t.co/dSHiEK4cLs	not_humanitarian	not_humanitarian	0.9552	0.2418
+911787200479682560	Badass Rescue Dog Who Has Rescued 52 Lives Is Now Saving People Affected Byâ€¦ https://t.co/AIZPgsw7OI https://t.co/bcDfrjRKrk	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9342	0.3355
+905729873557078016	Nations lean on Pacific Disaster Center to prepare for Hurricane Irma https://t.co/tiDnxruUec #hawaii https://t.co/xFP5gTd1dl	other_relevant_information	not_humanitarian	0.5508	0.9453
+880988166219497476	an iconic mora's icon https://t.co/lLloWrMhmW	not_humanitarian	not_humanitarian	0.9854	0.0941
+904499126913695744	I think these new MHTs are going to do just fine! á½¡C#jnj @donateaphoto #HurricaneHarvey https://t.co/1IgwA2o4qz https://t.co/ZNzCxpeLKz	not_humanitarian	not_humanitarian	0.7181	0.9074
+910235214164713479	Harvey has got a busy footballing week, football twice today, football twice on Thursday and once Sunday. https://t.co/jD9RIO0fiv	not_humanitarian	not_humanitarian	0.9915	0.0573
+928498940286324736	Over half of Puerto Rico's schools remain closed https://t.co/qd6CR1ZOjI https://t.co/NgC0NCkCML	infrastructure_and_utility_damage	other_relevant_information	0.4439	1.2083
+920143388590080001	@DonaldJTrumpJr @DonaldJTrump45 @POTUS So was California.Wild fire w/ trees standing, cars burned w/melted rims B.S. https://t.co/KA28imi98x	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.354	1.397
+904445042391166976	RT @MCSalma: Babies and Stress: The Facts #babies #harvey #ECE https://t.co/zNtZXSBmzs https://t.co/ipX7TS4IiX	not_humanitarian	not_humanitarian	0.8477	0.6042
+909838200218275840	9/18/ Post Irma information. Please continue to handle storm waste safely, In the event of an emergency dial 911… https://t.co/3w8GJkT0EA	other_relevant_information	not_humanitarian	0.7963	0.687
+912987337906360320	Maria looks more post-tropical this morning. Look for the storm to begin moving out to sea later. Thanks @AMHQ! https://t.co/egs5lre02W	other_relevant_information	other_relevant_information	0.4937	0.7654
+905327206234185728	Tornado of Learning - Learn powerfully like the vacuum of a tornado, involving knowledge that you need. https://t.co/X6WkjlZ9	not_humanitarian	not_humanitarian	0.99	0.0638
+921542156304527360	Hernandez's big game means Dodgers owner owes $1M for PR relief https://t.co/QgxEfAMnRI https://t.co/NQmM6xe1Ki	not_humanitarian	not_humanitarian	0.9803	0.1178
+915987607032434688	@realDonaldTrump Stop playing golf...sit your fat ass (well....it is) down and figure out a way to help Puerto Rico. https://t.co/PSNiLWuT9U	not_humanitarian	rescue_volunteering_or_donation_effort	0.5936	1.1491
+916181485689782272	#Femail - Rosie Perez: Trump 'tweets nonsense', Puerto Rico suffers, The 53-year-old Aca... https://t.co/pMBBMddYTO https://t.co/EPEPBNmK5A	not_humanitarian	not_humanitarian	0.7401	0.9099
+905664446072102913	TX Diaper Bank in urgent need of volunteers for Harvey victims https://t.co/j8uTBWlF5Q https://t.co/rWc9bPxHib	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9766	0.1425
+910533216993456130	RT @MargaretOrr: Look at this very dangerous hurricane #Maria with winds of 175 mph. @wdsu https://t.co/rDPKuNERAm	other_relevant_information	other_relevant_information	0.5087	0.8782
+910134535135940608	Irma evacuees find shelter in Demopolis; Locals lend helping hand https://t.co/ruEpYddJ44 https://t.co/jhp7vr5apO	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9771	0.1409
+876714985937883137	Listening to Beni Mora by Gustav Holst on Gustav Holst - Orchestral Works. https://t.co/yWhkp14P53 https://t.co/nTdwpozEFF	not_humanitarian	not_humanitarian	0.9944	0.0386
+911697447822462978	Breaking News: Second Earthquake Rattles Central Mexico in 4 Days. #Breakingâ€¦ https://t.co/1MxS2s7l8P https://t.co/6kGnyFcTJB	other_relevant_information	not_humanitarian	0.7015	0.8277
+910771942067785728	Denver7 journalist recounts Mexico earthquake first-hand; fund set up for Denver's ... - https://t.co/ii6fNGYKAe https://t.co/26FNS4b8Dd	other_relevant_information	not_humanitarian	0.4262	1.2962
+912082791243948035	Hurricane Maria's Eye remains 485 miles from Miami (and slowly moving north). https://t.co/3cKUkBI0QX	other_relevant_information	other_relevant_information	0.7781	0.5923
+909916456950816768	ALERT: Tornado warning near Columbia River mouth. https://t.co/7zIlh7UQ1g	other_relevant_information	other_relevant_information	0.8294	0.5257
+921231688277024768	https://t.co/9x7uWBq57E ILLEGAL STARTED CALI FIRES https://t.co/SUY8sUcyBS	not_humanitarian	not_humanitarian	0.7313	0.902
+917868035423080449	Colorado-based SuperTanker takes on California wildfires: https://t.co/I26TV6hefI https://t.co/HgtU7Dw9dx	other_relevant_information	not_humanitarian	0.4137	1.3088
+923184826462507008	Metallica To Perform At Northern California Wildfire | https://t.co/XH3WvUdTaE | #ConcertAnnouncementCharityConcert https://t.co/mcot1IOt3Y	not_humanitarian	not_humanitarian	0.9483	0.265
+912065273380798465	NEW: Tropical Storm Watches posted for coastal North Carolina, with winds that could gust 60+ MPH: #ncwx #Maria https://t.co/3G4HiAdq2H	other_relevant_information	other_relevant_information	0.8131	0.5508
+912389353674088448	GFS has quite the ET cyclone over the UK and Ireland from the remnants of Maria. https://t.co/hMyrdCXk2r	other_relevant_information	not_humanitarian	0.7827	0.6437
+907007895581081600	Know where to go in case of a #Tornado ἲA #HurricaneIrma #Irma https://t.co/Yu21e5BVDI	other_relevant_information	not_humanitarian	0.8373	0.6014
+922874068965249025	RT @splinter_news: How Donald Trump's failure to help Puerto Rico could haunt him in 2020 https://t.co/4t84o6wGc1 https://t.co/LB41GQk9yE	not_humanitarian	not_humanitarian	0.9072	0.4105
+908162986291818496	I ❤️ TEXAS! Hog hunters, private pilots provide airlift to hurricane victims ἟A἟8 https://t.co/mvciqfekU5 https://t.co/6LaRa2pX26	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.785	0.7875
+907698699572273155	Fifteen Days.....just over two weeks since Harvey came to town https://t.co/uttITXhz6h https://t.co/fTkcB1FMAL	not_humanitarian	not_humanitarian	0.7811	0.703
+912391398506328065	What it Means to be a Community. In the Wake of Hurricane Maria. https://t.co/Yba7ZT2p04 https://t.co/y4RZfNUysE	not_humanitarian	not_humanitarian	0.8666	0.5324
+906207529662742528	Biggest Beneficiary From Harvey And Irma: Floor &amp; Decor https://t.co/UTgO9KxODv #TTS #FND https://t.co/lo3UaM9zj0	not_humanitarian	not_humanitarian	0.986	0.0897
+914780744546947072	Help CENOTAPH Drummer Rebuild His Home, Destroyed By Earthquake In MexicoÂ City https://t.co/Kdslz1Fkr3 https://t.co/QH3oJO9PSM	not_humanitarian	rescue_volunteering_or_donation_effort	0.9004	0.4684
+909401579220062208	We're focused on recovery efforts after Irma - learn how the work continues, even after the storm has passed:… https://t.co/JfkevMm506	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9849	0.0986
+878192678512582656	Black Scout Reviews - Mora Bushcraft Survival Black Knife https://t.co/YhJtJ8LK2j https://t.co/qTVhNb28oe	not_humanitarian	not_humanitarian	0.9913	0.0568
+908381041664118784	Helping to pack personal-care kits at @RedCross warehouse. Those gallon Ziploc bags hold a lot! #Harvey https://t.co/OasxqJhgRN	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9946	0.0425
+875817545902821376	A homage to early New York spiritual house Valentino Mora - Body Nostalgia https://t.co/cI3S5vordq https://t.co/NgEwmT1Vvl	not_humanitarian	not_humanitarian	0.9952	0.0352
+916037888357302272	Help to close the zoo located in MayagÃ¼ez, Puerto Rico for animal mistreatment! Plz sign: https://t.co/sPeGcdSYQm https://t.co/gi3hyJWAbc	other_relevant_information	not_humanitarian	0.8798	0.5211
+906055762316857345	Harvey Trailers Sells Utility, Car, Enclosed, Dump, Snowmobile Trailers in Maine #trailerâ€¦ https://t.co/iRkeSKOnxL https://t.co/ajNXOWgGjR	not_humanitarian	not_humanitarian	0.9921	0.0532
+906653885053333504	#BREAKING: Large and extremely dangerous tornado on the ground in Broward County, Florida #Irma - @BSchuermanWBOY https://t.co/yu5h2bRMWb	other_relevant_information	other_relevant_information	0.4767	0.907
+872486971796598785	Fabric of #SriLanka torn apart by #CycloneMora: @UNICEF https://t.co/nDt7vvZPiw https://t.co/88sYg0fvCe	infrastructure_and_utility_damage	other_relevant_information	0.4284	1.3438
+917830113529618433	HOW MANY FIRE FIGHTERS ARE ILLEGAL ALIENS IN CALIFORNIA? JERRY BROWN? USE YOU DEAR LOVED CITIZENS. https://t.co/9Lsj838Plg	not_humanitarian	not_humanitarian	0.9939	0.0436
+923656875970789377	Take a trip to Spanish Speaking Caribbean #Cuba # Dominican Republic # Puerto Rico https://t.co/CsoDUJYxQ4 https://t.co/CqITjhm0W1	not_humanitarian	not_humanitarian	0.9916	0.0571
+910563637445750792	Please help.....Westie found after Mexico's Earthquake ! :( https://t.co/20QITsB3X6	not_humanitarian	rescue_volunteering_or_donation_effort	0.7526	0.892
+905749423455686657	Hurricane Irma terrifying path: Latest models show it WILL hit Miami as Category 5 storm https://t.co/xKAcgt58C5 https://t.co/vOeE6KDJro	other_relevant_information	other_relevant_information	0.776	0.6056
+901714497332809728	Hurricane Harvey Threatens Largest Flood Insurer https://t.co/9ZVWdqtWtR https://t.co/S8GqyBWA37	infrastructure_and_utility_damage	not_humanitarian	0.9349	0.2959
+929000938580439041	#Orlando schools welcome students from Puerto Rico https://t.co/8z3pCiptPL #edchat #hurricanemaria https://t.co/HhIJvKuWfl	not_humanitarian	not_humanitarian	0.7809	0.7919
+904488944389292032	"Evelyn says her neighbor Javier, who doesn't speak English, rescued her from #harvey. Javier: ""we are all family"" https://t.co/AVikq611b7"	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9856	0.0972
+921565262238887937	Puerto Rico getting the food out to the forgotten. Citizens https://t.co/5E1PVTlHpK	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9377	0.3181
+904818897970495488	Good friend of mine found this in his #HurricaneHarvey cleanup. á½¡E https://t.co/6h5yJucq4w	not_humanitarian	rescue_volunteering_or_donation_effort	0.5342	1.2461
+918110217023442944	Seen From Above: Entire California Communities Reduced to Ash https://t.co/KNyyjddSnZ https://t.co/L5fbBgju05	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.8709	0.517
+909872700637708289	#MONEY #IRMA FoxBusiness Emmys ratings crater; Trump-bashing to blame? https://t.co/ph0WHOx6N6 #FoxNews https://t.co/66LF0s1KM0 — FOX B…	not_humanitarian	not_humanitarian	0.9871	0.0819
+909470884532047874	Fees waived at landfill for Hurricane Irma debris. MORE INFO&gt;&gt;&gt;https://t.co/upYUzw6t6z https://t.co/v6bMqIFi4N	infrastructure_and_utility_damage	not_humanitarian	0.5364	1.1612
+909787731005526021	.@UKDefenceIrma : 9.4 tonnes of tin on route to Anguilla to help after the destruction of #Irma https://t.co/xKnXiDt2Ev	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.602	1.0738
+913066515041325057	Scientists have run out of adjectives to describe Hurricane Maria's devastating power https://t.co/4x9O2kbHm4 https://t.co/c05ZgcupDN	other_relevant_information	other_relevant_information	0.4817	1.3361
+923334977760190464	Yaaas! Finally bought it! I haven't felt this happy since before Hurricane Maria!á½ 2 I can't wait to start reading! https://t.co/evsToaNJ58	not_humanitarian	not_humanitarian	0.9858	0.0856
+907079009187581952	Irma poses US$1.45bn sales hit to US retailers, worse than Harvey https://t.co/IbmM7fnbdf https://t.co/229YMkcFtZ	other_relevant_information	not_humanitarian	0.9573	0.2208
+870469371856072704	Isso porque a dona do post n mora em svp TRISTE REALIDADE https://t.co/Msm28EzHRz	not_humanitarian	not_humanitarian	0.9082	0.4263
+906547211009499136	Well, that's new. Good for you, James Harvey Hylton. #ARCA https://t.co/f4olOhpQfa	not_humanitarian	not_humanitarian	0.9848	0.094
+921555485572165633	Iâ€™m so Proud to Be Born in Puerto Rico!!! https://t.co/VAaYqAC4Pq	not_humanitarian	not_humanitarian	0.9781	0.123
+870415244258160640	John Mora doubles and scores in the 1st! 1-0 Mets top 3. #STLMets https://t.co/p4dD3atlHR	not_humanitarian	not_humanitarian	0.9854	0.0892
+912013825863557121	Hurricane Maria damages Dominica’s main hospital, leaves ‘war zone’ conditions https://t.co/rYammNVB8y https://t.co/meAHPR6Zet	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9423	0.2706
+912123133968216065	SEASON OVER???? WE COULD USE ABLE BODIES AT EARTHQUAKE IN MEXICO! DIG IN.... https://t.co/QlnYHtv9AI	not_humanitarian	rescue_volunteering_or_donation_effort	0.9199	0.3793
+920282888364535808	The Eric and Andre show featuring special guest, The California forest fire https://t.co/3J5N42NM7B	not_humanitarian	not_humanitarian	0.974	0.1519
+910083948071579649	Helping the #Keys this AM. Calvary Church in #Jupiter sending a team down w/ supplies post #Irma @WPBF25News https://t.co/JD3KYLGQAB	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9559	0.2424
+921032859850125313	"CALM is here with a California newt, also called a ""fire belly""! https://t.co/2lPVXnIijZ"	not_humanitarian	not_humanitarian	0.9902	0.0649
+921580829519650816	#news Startling Footage Shows California Wildfire Impact https://t.co/eF9LKJc7J9 https://t.co/YOW5shIpUB	infrastructure_and_utility_damage	other_relevant_information	0.7039	0.8202
+905700072259690496	RT @htTweets: Passenger jet races against Hurricane Irma. Guess who won https://t.co/pP4PUomESe @Nisheeth_U reports https://t.co/NYCrf2Sc3L	other_relevant_information	not_humanitarian	0.6104	0.8855
+906551249121812485	Tornado Watch for most of south Florida until 12AM Sept 10th https://t.co/jsC3W71b1h	not_humanitarian	other_relevant_information	0.736	0.6416
+921783125323145216	Despite the rain, WyEast middle school yard sale in the 'Couv goes til 4:00! Raising money for trip &amp; Puerto Rico https://t.co/hEor4opmbq	rescue_volunteering_or_donation_effort	not_humanitarian	0.9534	0.2473
+919600201538658310	Video shows California #family reuniting with pet dog presumed dead in #wildfire https://t.co/VdGu9M3v2i https://t.co/EnWGMMVbhw	not_humanitarian	rescue_volunteering_or_donation_effort	0.5859	1.2263
+910128042902560768	Guest attacks man who let him stay during Hurricane Irma, Florida police say. https://t.co/0VSa0aCa3D #abc15 https://t.co/zXDmbMqgW5	not_humanitarian	not_humanitarian	0.3729	1.3395
+909948405488656384	UN Migration Agency Appeals for USD 4.95 Million to Support Communities in Wake of Irma,‚Ä¶ https://t.co/oe3CSrBGiV https://t.co/S8VuLNeel9	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.4548	1.2575
+928026345673838593	@HRVY You’re trending in Puerto Rico! i miss you :( ἟5἟7 #HRVYPreOrder https://t.co/F7rjBkyghG	not_humanitarian	not_humanitarian	0.9793	0.1174
+931302097575956480	Iran used #HAARP technology which caused #earthquake in #Kurdistan. https://t.co/4qvy0SzZiu	not_humanitarian	not_humanitarian	0.8084	0.7305
+909773698433011713	"Harvey &amp; Irma came... ""Diesel generators instantly kicked in"".,keeping internet ops uninterrpted. @nytimes‚Ä¶ https://t.co/AneBP5kTIB"	not_humanitarian	not_humanitarian	0.5367	1.2086
+921821681018200064	RT @Stands: We are #Indivisible. 100% of profits benefit aid for Puerto Rico. https://t.co/PjMJwIzYLO https://t.co/akquHOES6Q	rescue_volunteering_or_donation_effort	not_humanitarian	0.8382	0.634
+910029277642543104	Modular #container home is D fastest &amp;most efficient way 2 build strong durable #Buildings anywhere‚Ä¶ https://t.co/29onOiMUTK	not_humanitarian	not_humanitarian	0.9868	0.0842
+909479929049501702	@DIRECTV the wait continues #irma https://t.co/b98jCNnVCO	not_humanitarian	not_humanitarian	0.8657	0.5629
+906482104581603328	First Harvey And Now Irma; Relentless Storms Strain Rescue Workers https://t.co/MN0zlrvw2F https://t.co/bEIfMQ644s	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7141	0.919
+909402859011235845	6 scenes of SENTINEL ingested to HDDS for event 201709_Hurricane_Irma #Irma #Hurricane https://t.co/G4TIpD42Fe https://t.co/f78qB3X434	not_humanitarian	not_humanitarian	0.9559	0.2352
+905433688367816708	Harvey Nash: HR Business Partner https://t.co/1IbWRCTpJx https://t.co/Olel2PSJdV	not_humanitarian	not_humanitarian	0.9892	0.0725
+906927848648212481	RT @WPTV: Sheriff: Suspect shot, wounded during Irma burglary https://t.co/S0dhFoHxjT https://t.co/PrPxU5Aflf	not_humanitarian	not_humanitarian	0.7591	0.834
+910786546445537280	RT @CNNweather: Major Hurricane #Maria has now strengthened 60 mph in 24 hours. https://t.co/CzWvPqib9P https://t.co/Y9U3YbJu0B	other_relevant_information	other_relevant_information	0.6838	0.7223
+901822202022125571	Here's a mid-morning update on Harvey's future forecast in the Houston area @SpaceCityWX https://t.co/aP9iqf4VmO https://t.co/ZbzYZC0gZH	other_relevant_information	other_relevant_information	0.9351	0.2643
+904429336505278465	S&amp;C Week 6 for Harvey, Today's focus was Explosive Power á¼¼Bá¼¿D I#strengthandconditioning #Basketball #Rugby #Athlete https://t.co/HjKS4Fs6fp	not_humanitarian	not_humanitarian	0.9868	0.083
+905252739109724160	FEMA approves loans to keep Harvey damaged cities working to repair damage https://t.co/FW5lhjhfEM https://t.co/zWZnbWEw00	rescue_volunteering_or_donation_effort	infrastructure_and_utility_damage	0.6146	1.0567
+911695824731635713	This is what stupid looks like #earthquake #HurricaneMaria #HurricaneIrma https://t.co/P5B9ou836E	not_humanitarian	not_humanitarian	0.8653	0.5397
+917827226372132864	GoFundMe: How to Immediately Help Those Impacted by the California Wildfires #webdesignâ€¦ https://t.co/zfxatzvQWY https://t.co/Dlp5iL7rww	not_humanitarian	rescue_volunteering_or_donation_effort	0.8992	0.4365
+923274296293720066	love seeing my kiddos in puerto rico! https://t.co/PECaNG4F7X	not_humanitarian	not_humanitarian	0.9665	0.1809
+909943984692367360	Thanks to Uncle Sam and Hurricane Irma for the best 10 days ever!! See you in 2 months friend #keep #rockin https://t.co/W7KLtIrbl9	not_humanitarian	not_humanitarian	0.9743	0.1445
+910541703521685505	New activation [#EMSR244]: Earthquake in Central Mexico https://t.co/3lcYxNNh4f #Copernicus #Earthquake #EUCivPro https://t.co/7VjkOPOda0	not_humanitarian	not_humanitarian	0.6252	1.0622
+909898545494462464	@LADowd And not one irma model was right. Only one was close but it had her hit Miami and the panhandle. https://t.co/zXMesr30kb	other_relevant_information	not_humanitarian	0.9015	0.3971
+910243047568560128	Hurricane #Irma ‚Äì ‚ÄòWonder Girls‚Äô Help in Georgia Shelter #RedCross https://t.co/GBslr0w6dg #RedCrosser https://t.co/Ibrih8BuzP	not_humanitarian	rescue_volunteering_or_donation_effort	0.8978	0.4663
+905730111944712193	Look at @RobynKing_news9 with a great graphic on how big Hurricane Irma is compared to the state of Oklahoma. @NEWS9 https://t.co/y4Dc6n1Tbv	other_relevant_information	not_humanitarian	0.8917	0.4043
+909487391924211713	RT @NWSWPC: Hurricane #Irma minute-by-minute animation https://t.co/rFOxHAhN0m https://t.co/I8PMQe9cLE	other_relevant_information	other_relevant_information	0.5218	0.7807
+905719175271915520	Hurricane Irma path and track LIVE: NOAA update as models show DIRECT hit on Florida https://t.co/p1rjY6AysO https://t.co/F7pwl26NF0	other_relevant_information	other_relevant_information	0.8955	0.3886
+909767570240278529	Why Irma and Harvey Could Finally Get Republicans to Care About Climate Change https://t.co/z0WwQoA3i7 https://t.co/7YvHUp30uz	other_relevant_information	not_humanitarian	0.9859	0.0914
+907813703281758208	Harvey looks to slow Cubs in 3rd start off DL https://t.co/EdYR7o4lgM #mlb #mets #baseball https://t.co/LmfVxaRSmR	not_humanitarian	not_humanitarian	0.986	0.0895
+907523892763172864	Is that a shark in Naples? Houston? Whatever, someone is jumping it! #Irma #Harvey #ImpeachTrump https://t.co/AOljl7VMgf	not_humanitarian	not_humanitarian	0.9772	0.1336
+916069788102914048	S/O to @wearemitu for holding @RaquelReichard and I down while we report from Puerto Rico á¼Ÿ5á¼Ÿ7 https://t.co/HP9DT44m4I	not_humanitarian	not_humanitarian	0.9315	0.3331
+915972623019819008	Bill Clinton also shared a pretty awkward puberty photo for Puerto Rico hurricane relief https://t.co/qMcNfrj58t https://t.co/GHFRDQtv4Z	not_humanitarian	not_humanitarian	0.6496	1.0339
+906085025967255552	In case you missed it: New Story: Rolling Hills to Collect Items for Harvey Victoms https://t.co/GzqI9qUeqk https://t.co/AXI0mvzIFy	not_humanitarian	rescue_volunteering_or_donation_effort	0.9682	0.183
+922203477819969537	This was actually taken at a benefit for Puerto Rico. Gaga is wearing a white pantsuit...yes, on purpose. https://t.co/iHyM6W3KUg	not_humanitarian	not_humanitarian	0.9923	0.0537
+910131343350206466	@ScottAdamsSays WRT Irma forming over cool water, here's Judith Curry (an expert on hurricanes): (‚Ä¶ https://t.co/R6L1qlslcJ	other_relevant_information	not_humanitarian	0.9631	0.2038
+905200278294626309	Harvey Cancels Houston Wedding; Louisiana City Donates 1 - U.S. News &amp; World Report https://t.co/2GvctwDKlX https://t.co/UWql1z9OWu	not_humanitarian	not_humanitarian	0.6788	1.0283
+905164508561321988	Steve Harvey tells @LaceyVRose how YouTube has changed the daytime talk show. https://t.co/8WlZ0MmXfU https://t.co/mvsJ5wpwpq	not_humanitarian	not_humanitarian	0.9949	0.0362
+909910136092790784	RT @LincolnOBarry: .@MiamiPD in Marathon Key #Irma on search &amp; rescue mission and bringing aid. https://t.co/osjRpgUTn0	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9967	0.0273
+922658961937108992	Northern California fire survivors: â€œItâ€™s shameful they didnâ€™t warn usâ€ https://t.co/GYZ6Xyptu9 https://t.co/tDkpjiJOko	not_humanitarian	affected_individuals	0.5625	1.2188
+877618041097510913	SABANâ€™S GO GO POWER RANGERS #3 Arte de Dan Mora https://t.co/balGl5l2M4	not_humanitarian	not_humanitarian	0.9934	0.0464
+907240299847589888	I will never tire of this photo!#jnj @donateaphoto #HurricaneHarvey https://t.co/fg8kYoX5NQ https://t.co/17eqBarUlO	not_humanitarian	not_humanitarian	0.9714	0.1652
+927429066390671360	Scranton woman returns home from aid trip to Puerto Rico - Scranton Times-Tribune https://t.co/oM0jz1z2it https://t.co/u7MTUCy8da	not_humanitarian	rescue_volunteering_or_donation_effort	0.8748	0.5394
+905445939573252097	Collecting items in Parker for Harvey Relief Drive. @kdvr @channel2kwgn https://t.co/h3IbZnUtOj	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9943	0.0437
+923699979826315264	Two new #Inquiries into #Controversial #Puerto #Rico #Power ... - https://t.co/OKtGOPiYiF - #Topstories https://t.co/OoKdRtC1Ib	not_humanitarian	not_humanitarian	0.9897	0.0682
+908021370705018880	Wish I could find out are these tornado clouds Rolls around Coral Springs often @wsvn Very bad trees down from Irma https://t.co/H857g3xySC	other_relevant_information	other_relevant_information	0.3751	1.3371
+906927980072632320	"RT @freakygemini__: South Floridians: Irma the ppl in Tampa say ""GIT"" and not ""JIT"" ὢ1 Irma: ""IGHT BET""❗️ https://t.co/I1HQFWMzr1"	other_relevant_information	not_humanitarian	0.9643	0.1977
+907680311143800833	Taking supplies to all of those affected by Harvey! #harvey #relief #donations #appraisalmc #houston https://t.co/uTXDIoCqdZ	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9939	0.0464
+905744291196231680	RT @4colorsofmoney: Hurricane Irma reminds us of an important truth about financial models. https://t.co/tLmorFeHL7 https://t.co/KdYPvw2TVm	other_relevant_information	not_humanitarian	0.9936	0.0464
+909379299874099201	RT @WESH: More Florida Keys residents return home to survey Irma's destruction https://t.co/VnyhkMcht9 https://t.co/Jp6tXyrCQv	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9302	0.3096
+910196061414789120	#MONEY #IRMA business A government crisis gives Iceland‚Äôs Pirate Party a second chance https://t.co/pmvNYNma5A https://t.co/AWPr0vb5zd ‚Ä¶	not_humanitarian	not_humanitarian	0.9904	0.0622
+909458087735468033	Sign Language Interpreter at Press Conference Sparks Outrage https://t.co/xRodJS0JGs https://t.co/wnYnnQi0E4	not_humanitarian	not_humanitarian	0.9803	0.1205
+912069255918735360	5pm Sunday #Maria update... cat 2 storm centered WELL EAST of the #Jacksonville #Florida coast... heading north. https://t.co/AgIvF2ZwVP	other_relevant_information	other_relevant_information	0.8494	0.4667
+880166436563546114	RT @djoycici: Portrait double exposure â¤ï¸â­ï¸â¤ï¸â­ï¸â¤ï¸Antonio Mora â¤ï¸ https://t.co/5KQi1keCWI	not_humanitarian	not_humanitarian	0.9871	0.0822
+915987728776302592	President #DonaldTrump push back when it comes to Puerto Rico. https://t.co/DtuqtaEwIu https://t.co/hMIeWXOeS6	not_humanitarian	not_humanitarian	0.9761	0.1431
+928279847939526657	@BTS_twt I LOVE YOU ὡ8 FROM Puerto Rico is Biutiful so cute. https://t.co/u7DGGtvySN	not_humanitarian	not_humanitarian	0.9762	0.1336
+930315477741551617	Quake leaves trail of death and destructions #Iraq #earthquake #Bahrain https://t.co/z2rvTluuBK https://t.co/T4NUJONCCc	infrastructure_and_utility_damage	affected_individuals	0.8249	0.6787
+874695391794663425	the Gekko Files: the QB and the coach try to get UCLA righted. We preview the 2017 Bruins https://t.co/gGkPtzcuwg https://t.co/gc8pi8AiY7	not_humanitarian	not_humanitarian	0.9908	0.0588
+910119332478320641	Goodbye Hurricane Irma - Click link to view &amp; comment: https://t.co/q7psmntGd8 https://t.co/oiCtcIOVM6	not_humanitarian	not_humanitarian	0.952	0.2491
+911790457864237056	RT @seismicupdate: USGS:M 4.1 - 51km WSW of Paredon, Mexico https://t.co/TI9Zqddj03 #earthquake https://t.co/7daCiCQvf3	not_humanitarian	not_humanitarian	0.6005	0.8001
+906661647577645056	BIYCH I just got the text for tornado warning pray for me and all my Floridian people rip https://t.co/CUTOwejbk7	other_relevant_information	not_humanitarian	0.4891	1.0963
+908341048568680448	Brandi Harvey Live tonight Downtown at The 40 East Grill! https://t.co/TVLlbSqiTY	not_humanitarian	not_humanitarian	0.9926	0.0516
+881339441087959040	Leonel cardenas mora campeon panamericano jr de Squash 2017 orgullosamente CDMX https://t.co/T934zqF2hX	not_humanitarian	not_humanitarian	0.9889	0.0721
+906058645158469633	Raising Funds to Put Rockport, Texas, Back Together After Hurricane Harvey https://t.co/1wOxRMvk5A	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8046	0.7031
+910089439770226689	RT @RealDera: Hurricane Irma? Bring it bitch.·ΩÑA https://t.co/4z6afuQdLZ	not_humanitarian	not_humanitarian	0.9531	0.2454
+913025036960829440	Don't forget us!#usvi #HurricaneMaria https://t.co/ksDHHB2u7A	not_humanitarian	not_humanitarian	0.9128	0.4048
+917858042615656448	Join us in praying for those affected by the California wildfires. Psalm 91:1 (ESV) https://t.co/bt3H0EcEow	other_relevant_information	not_humanitarian	0.8452	0.5934
+905720120642650112	Hurricane Irma's trail of havoc in Sint-Maarten https://t.co/a38Ywfb8Dt https://t.co/DmTIn73gxx	infrastructure_and_utility_damage	other_relevant_information	0.474	1.2979
+920830416541683718	Hellish California wildfires inspire haunting web comic https://t.co/2V4QiM3Zs1 https://t.co/DlBdPxLORe	not_humanitarian	not_humanitarian	0.9194	0.376
+911634250755133441	Hurricane Maria's track shifting closer to Mid-Atlantic coast https://t.co/UzSzHHgwHC via @MikeStoneCBS6 https://t.co/YjVud4Cvgn	other_relevant_information	other_relevant_information	0.5798	0.7647
+909130989544329216	West Bank Flea Market in Harvey. https://t.co/qDChGDJA80	not_humanitarian	not_humanitarian	0.9615	0.2127
+905375783232950273	As a class apostolic project, PK3 / PK4 collected items for Hurricane Harvey evacuees in Irving shelters. https://t.co/kDmZeSZbyR	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9865	0.0912
+911865255793451008	#SkyNews | Hurricane Maria's path along the coast of the... #UnitedStates https://t.co/Rk7Ix4v6OX https://t.co/VNw4nOEGPe	other_relevant_information	not_humanitarian	0.6442	0.83
+878137481417310209	Flood risks will be mitigated considerably by 2020 - Patali Read more: https://t.co/1fIi4Ul1S4 #lka #srilanka https://t.co/dOqAUQ8EBK	other_relevant_information	not_humanitarian	0.9779	0.1318
+923514092651982849	Bond insurer proposes timeout for Puerto Rico litigation https://t.co/0mqbZgj58J ($) https://t.co/xIEPLfcMum	not_humanitarian	not_humanitarian	0.9882	0.0775
+870277875861037060	RT @Pami1090: A Tamil-English translator needed. #FloodSL #SriLanka https://t.co/izrqinsm1p	not_humanitarian	not_humanitarian	0.9834	0.1043
+930173464824176641	Is it true that An earthquake will reach kuwait soon ??? @USGS @USGSLandCover https://t.co/lZGmpXh9kU	not_humanitarian	not_humanitarian	0.9354	0.2881
+911763540268191744	Hey, world! This is the REAL #BatmanDay #MexicoEarthquake #MexicoEstaDePie https://t.co/CflGSm9lfi	not_humanitarian	not_humanitarian	0.8836	0.5007
+921840763553697792	Thing you can rndmly find at @engine4cws best coworking space in Puerto Rico https://t.co/6m5j45d3sW	not_humanitarian	not_humanitarian	0.9945	0.0399
+877474219898150920	1105 Lake Moraine Pl, Raleigh, NCÂ 27607 https://t.co/r7X8PBCX6s https://t.co/jXOawmc2tb	not_humanitarian	not_humanitarian	0.9799	0.122
+910706984281952256	"@realDonaldTrump @ricardorossello ""Lebst du notch?""@realDonaldTrump #Mexico earthquake #Puert Rico #Dominca https://t.co/zDXxLsmFdb"	not_humanitarian	not_humanitarian	0.89	0.4838
+909461663631495168	RT @mottiseligson: A @Chabad rabbi aid drive after Irma devestation on @usvirginislands by @nypost https://t.co/EP5O6uTACO	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.968	0.1836
+905883426787557377	Redditors Donate Wedding Dresses to Houston Brides Following Hurricane Harvey: https://t.co/YNJ0YycJ0L https://t.co/pOxnduNRBT	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9639	0.2014
+910126622736560130	History shows we don't need big Government to clean up after #Harvey and #Irma https://t.co/Eu9CksMMgw https://t.co/nIveB5S8k9	other_relevant_information	not_humanitarian	0.9693	0.1704
+921455634939293698	Our power, our future: Puerto Ricoâ€™s road to a #JustRecovery https://t.co/vKKf5ZRdzh https://t.co/mQsfGdzfR4	not_humanitarian	not_humanitarian	0.8844	0.4927
+921602685983367168	California pizza kitchen... shits fire af https://t.co/CscZUiDwAn	not_humanitarian	not_humanitarian	0.9402	0.2977
+922925956725014528	Google's Project Loon seems to be having trouble with stationkeeping above Puerto Rico https://t.co/bI80GU8VHU	not_humanitarian	not_humanitarian	0.9752	0.1475
+911760035457503233	A team of American experts is in Mexico to assist with search and rescue efforts followingâ€¦ https://t.co/kK7WKmV3OP https://t.co/u5CRHxJ2mW	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9971	0.0241
+921990361140080640	This is a mirrored image from a wild fire in California...... THIS.... THIS IS A SUSANO!!!!!!! @AlmightyUzumaki https://t.co/dEiTSWcny9	rescue_volunteering_or_donation_effort	not_humanitarian	0.7357	0.9169
+919949345914421249	California Wildfire Probes Hammer PG&amp;Eâ€™s Value https://t.co/A6SR4CACa3 https://t.co/HIqCSY0S1D	not_humanitarian	not_humanitarian	0.9808	0.1197
+910013579662782464	Hillary Caught On Tape Laughing About Irma ‘Wiping Out All Of Those Florida Hillbillies’ https://t.co/vs4vfZnFXj	not_humanitarian	not_humanitarian	0.9743	0.1515
+910199848569380864	#Irma flooding: Last week @SFWMD pumped more H2o into #LakeO than #ArmyCorp released. That stops today.… https://t.co/8sBt1nnxKV	not_humanitarian	not_humanitarian	0.6513	1.0231
+911915332629143552	SUN 7AM: Maria is no longer a major hurricane. Winds have dropped to 110mph. Heading toward Cape Hatteras, NC. @nbc6 https://t.co/5k9OaZ1CKh	other_relevant_information	other_relevant_information	0.7039	0.7226
+908892878990073856	eating tornado potato and drinking beer while waiting for taeyeon #AlbMusicFest #albatrossmusicfestival https://t.co/AtgyW6jqL3	not_humanitarian	not_humanitarian	0.9892	0.0699
+904713943653818368	Harvey: City Asks Residents To Remove Parked Cars From Street For Debris Pickup https://t.co/yIwbKmahwB https://t.co/yJ4F9RktFh	infrastructure_and_utility_damage	not_humanitarian	0.7019	0.9262
+919782952032071680	@Mikel_Jollett Even Governor Moonbeam is sight unseen https://t.co/ZIt59EWs3e https://t.co/9ECg010bWd	not_humanitarian	not_humanitarian	0.9738	0.1512
+905055726183124993	13 Toxic Waste Sites Damaged by Harvey, Houston Awash in Chemicals https://t.co/eXqFdUN7kp https://t.co/XgN4x2xkzZ	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.6368	0.9871
+904825942887059456	RT @NEWS9: Pioneer Woman Ree Drummond Holding Harvey Fundraiser https://t.co/cIXJgO5Dzu #News9 https://t.co/Y8fGlOZThT	not_humanitarian	rescue_volunteering_or_donation_effort	0.899	0.4412
+909477370515648513	ὠBὠB I just been eating like crazy since Irma had me home for two weeks https://t.co/rBrhQ47XHs	not_humanitarian	not_humanitarian	0.9199	0.3673
+921473619888402432	Eastside Fire spent week helping California crews https://t.co/SnrUob2uoB https://t.co/ZXMPgiRpVY	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8414	0.6256
+908721695799824384	RT @MikeNash15: @ConnorJRogers Look at Harvey simply embracing it https://t.co/xNctl7GedZ	not_humanitarian	not_humanitarian	0.9315	0.3315
+909397291060088832	Hurricane Irma: Orlando assesses the damage (PHOTOS) https://t.co/plsI7RdLxw https://t.co/1UP0CO0YhK	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.7249	0.7712
+908370312785362946	Claudia Harvey of Dig It Apparel to be Featured on CUTV News Radio https://t.co/X4dQun4uK9 https://t.co/5g03A0pLQo	not_humanitarian	not_humanitarian	0.9956	0.0321
+906832179036073984	The cone of uncertain continues to shift WEST putting #ATL on E side of #Irma meaning greater tornado threat #gawx https://t.co/LweqvIFHH8	other_relevant_information	not_humanitarian	0.5187	0.8025
+914506490060427264	Do good today. Stop Hogan Street by from 11am-6pm to donate supplies to help Puerto Rico after Hurricane Maria! https://t.co/io89vsGqWk	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9901	0.0691
+905636739758292993	RT @GreggDoyelStar: That's Indiana. And that's how large Hurricane Irma is. Oh my. https://t.co/dF3DKTorQ7 https://t.co/ojeuCeucCm	other_relevant_information	not_humanitarian	0.7574	0.702
+910142833897689088	Been a rough 3 weeks in the Antilles. Back-to-back-to-back major hurricanes. #Irma #Jose #Maria. https://t.co/Akymx0j431	other_relevant_information	other_relevant_information	0.6621	0.9869
+909725772142784513	Student asks to bring dog to class before Hurricane Irma, professor has the best response via /r/UpliftingNews… https://t.co/FWkcSFxr7i	other_relevant_information	not_humanitarian	0.9748	0.1448
+917951521358274560	Pray for all those families in California.why? How did this fire start.so very sad.á½‰B https://t.co/6Nk74JdBe0	not_humanitarian	not_humanitarian	0.7031	0.901
+909810241189109761	In Key West... stayed for Irma..this is our tree in the back of our townhouse. https://t.co/VJ9CJFMRgK	infrastructure_and_utility_damage	not_humanitarian	0.6025	1.1845
+910579624857522176	Houses damaged, roofs blown off as Hurricane Maria batters USVI https://t.co/bP9jU23bwS https://t.co/ZRUOhXm5CN	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9924	0.0506
+904492536273805313	Here is the new #GuyHarvey #Aruba Long Sleeve https://t.co/P1nbYMH4P1 Guy's tribute to that enchanting island! https://t.co/bFUNCKUGsn	not_humanitarian	not_humanitarian	0.9954	0.0345
+876815453276000256	Watch @fiu_sipa expert Frank Mora discuss U.S.-Cuba Policy on @CPSAN https://t.co/FI6dA0cGZc https://t.co/yyD2kw4IBP	not_humanitarian	not_humanitarian	0.9917	0.0569
+905630589276917760	RT @royalnorman: If Hurricane Irma's eye was over Phoenix. That's scary. #azfamily https://t.co/66OJtzoc07	other_relevant_information	not_humanitarian	0.8835	0.4659
+905625106583609344	.@LDSchurch releases statement on Hurricane #Irma https://t.co/rpfq2VDUmO	other_relevant_information	not_humanitarian	0.8812	0.4926
+876289315290173440	Put your hands up if ur not workn the mora https://t.co/fdsMVpKpDi	not_humanitarian	not_humanitarian	0.9808	0.1169
+905630828188852224	Pray for all in the path of Hurricane Irma. We are worried. https://t.co/XWsv4pBRq0	other_relevant_information	not_humanitarian	0.9142	0.3801
+904943410880098305	RT @NOLAnews: John Besh delivers hot bowls of gumbo and red beans to #Harvey evacuees https://t.co/d1LfaofRzD https://t.co/W37MBDZ7rv	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9893	0.0747
+930026663856963584	Seismograms from yesterday’s #earthquake on the #Iran / #Iraq border @BGSseismology https://t.co/ddEVHqQI4c	other_relevant_information	not_humanitarian	0.5681	1.0612
+913417707009249280	Tropical Storm #Maria still making waves but will pick up speed over next few days and continue to move away. https://t.co/P0q30Ed00q	other_relevant_information	other_relevant_information	0.5818	0.7472
+910028818592677888	An earthquake just shook LA. After Mexico, now we get hit. After Irma now Maria-5 hitting the Caribbean but argue w… https://t.co/K29r93xiQh	other_relevant_information	not_humanitarian	0.7101	0.8472
+905905349437399041	RT @ideaofthemoment: 12 years ago my parents opened a #museum. A week ago it looked like this á½¢7 #harvey #harveyflood https://t.co/jnT3Ro8Qi5	infrastructure_and_utility_damage	not_humanitarian	0.4572	1.3177
+910172438708842496	#IRMA NFL : Right on the ·Ωã0·Ωã0·Ωã0. Top 5 throws of Week 2! https://t.co/genadus6zk (via Twitter https://t.co/JtUuax6AyS) https://t.co/KsfZHkaWxC	not_humanitarian	not_humanitarian	0.991	0.0585
+913584048496295937	Mexico: We are the Crack, They are the Collapse https://t.co/vm4tWc1nx1 #mexicoearthquake #SismosMexico2017 https://t.co/x2yUMUQoKG	not_humanitarian	not_humanitarian	0.5704	1.1309
+905625115941068800	Hurricane Irma: storm batters Caribbean islands as Florida emergency declared - https://t.co/dOoFXmQc7s https://t.co/WLvOMk16Q1	other_relevant_information	other_relevant_information	0.7433	0.706
+919884891654893568	Chef @GuyFieri cooks barbecue for California wildfire victims: https://t.co/9fCKaS5o0y https://t.co/CxahIQuLFu	not_humanitarian	rescue_volunteering_or_donation_effort	0.9433	0.2907
+912076440811790336	Familiar weather pattern for FL although satellite shows Hurricane Maria in distant E &amp; upper low pressure in Gulf. https://t.co/9s7TtqXz4l	other_relevant_information	other_relevant_information	0.6887	0.6882
+909481840733491200	We're on the road to Jacksonville to coordinate our response to #Irma in Florida. See you soon! https://t.co/ML5lyjsxg3	not_humanitarian	rescue_volunteering_or_donation_effort	0.9491	0.2648
+910100420156157952	#PNNL scientists weigh the factors that power a #hurricane like #Harvey or #Irma | https://t.co/YTAoHpNE1d https://t.co/rDIx7StdDw	other_relevant_information	not_humanitarian	0.9818	0.1118
+874622437605986304	Photographer Spotlight // Nick Leggio Owner (IG): mike.mora | Photo by: apin1k Full Feature: https://t.co/eSOXOA3wCc https://t.co/GdAfBu5tyJ	not_humanitarian	not_humanitarian	0.9891	0.0666
+905723999082225665	Forecast models indicated Hurricane #Irma will turn North &amp; move over or near #SouthFlorida Sunday @CBSMiami #CBS4 https://t.co/S4WaITcGz7	other_relevant_information	other_relevant_information	0.7774	0.5973
+912074139753619456	Rescue work suspended at earthquake collapse site in Mexico City (AP) https://t.co/csmP4l5May https://t.co/32Xj7vYom3	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.891	0.4847
+910263822740533249	A reminder of what happened as @Delta evacuated passengers ahead of Irma earlier this month. https://t.co/cxhDFehPkm https://t.co/xTUaO2x45J	other_relevant_information	other_relevant_information	0.3179	1.5481
+907351418717302791	Harvey disaster food boxes available in impacted areas. Visit https://t.co/lrNEorvzfE to learn more. https://t.co/1rEmtm070f	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9742	0.1549
+916060901169664005	President Trump on Tuesday raised the prospect of wiping out hurricane-ravaged Puerto Rico's https://t.co/OH97Au0PtE https://t.co/cyw8Wv9Gri	not_humanitarian	not_humanitarian	0.7096	0.9373
+910533045400231936	VW, Audi, Nissan production hit by Mexico earthquake https://t.co/g1uvEHGCjj https://t.co/r0Q08LspVR	infrastructure_and_utility_damage	not_humanitarian	0.7015	0.8995
+905630847893692416	NEW: 11pm advisory from the NHC. No change, Irma still a very dangerous storm heading toward FL &amp; GA https://t.co/JrkkWUG8yE	other_relevant_information	other_relevant_information	0.7812	0.5706
+919700496583049216	#TubbsFire victim Karen Aycock, 54, 'wouldnâ€™t leave the house without her animals.' https://t.co/EG2GfhXWX5 https://t.co/b0PhTrTEJb	not_humanitarian	affected_individuals	0.8751	0.5442
+912042097963929600	Mexico earthquake leaves historical churches in countryÂ hit https://t.co/Aorvcny38n https://t.co/cq7uyj4Jfj	not_humanitarian	infrastructure_and_utility_damage	0.7131	0.8888
+904791464382791680	It takes no compromise to give people their rights... - Harvey Milk https://t.co/r6rtF8R33R	not_humanitarian	not_humanitarian	0.984	0.1007
+905541138941083649	RT @joycewrice: ❗️a list of what u can donate and where u can send your donations to for hurricane harvey victims❗️ https://t.co/foZZlvNtpW	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9809	0.1208
+905486990279397382	RT @512tech: Austin’s TurnKey Vacation Rentals takes a hit from Harvey on Texas coast https://t.co/RbpMCTOiir https://t.co/wJYG4PHu1s	infrastructure_and_utility_damage	not_humanitarian	0.7692	0.8041
+907092076608868352	As expected, one 12hr #Tornado Watch expires, another is issued. #Hurricane #IRMA #JAXwx #SAVwx #FLwx #GAwx https://t.co/t7rOJ0F6vy	other_relevant_information	not_humanitarian	0.5789	0.7667
+923601566220935168	Chefs Aiding Puerto Rico Find Redients Difficult To Come … : https://t.co/l8A7m0PiRe .,,,, https://t.co/jaRlYeJP2R	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7512	0.8677
+909383732775153664	RT @JeffBaskinFOX16: #TD15 expected to become #hurricaneMaria next week threatening parts of Caribbean hit by #Irma https://t.co/vFcJgeXV3k	other_relevant_information	not_humanitarian	0.6568	0.747
+908133070620028933	HURRICANE HARVEY WAS NO MATCH FOR THE BOXING FAMILY - https://t.co/mQqQWNQqHh #FightNewsAsia #FightNews https://t.co/PGD65xUizA	not_humanitarian	not_humanitarian	0.9775	0.1234
+909723430781677568	The same islands that took a direct hit from #Irma will NOT take a direct hit from #Maria. However, #PuertoRico is‚Ä¶ https://t.co/ZPWAxXZpCJ	other_relevant_information	not_humanitarian	0.8626	0.4905
+931061818554019841	Strong earthquake in #Iran had no effect on yesterday's earthquake in #Azerbaijan - https://t.co/fcRMEVEAPj https://t.co/hL0dQHcynv	other_relevant_information	not_humanitarian	0.978	0.1323
+907769556999032832	Yeah I've BEEN ready to go...#jnj @donateaphoto #HurricaneHarvey https://t.co/xta8VBcUfl https://t.co/Q5MDZv6URn	not_humanitarian	not_humanitarian	0.5191	1.1996
+881157973292310528	Sandy beach Mora Psaria at the northern coastline of Rizokarpaso - Cyprus https://t.co/NpODVFjRBG	not_humanitarian	not_humanitarian	0.9579	0.2322
+912293191155617793	Virginia Beach woman chartered plane to rescue 300 animals as Hurricane Maria bore dow https://t.co/ge0Jh6ySeo... https://t.co/BWpe750yjp	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8102	0.7236
+909794803814105088	How Irma got her own wifi https://t.co/D9QKI4CDe6	not_humanitarian	not_humanitarian	0.9858	0.0903
+906566375518429184	.this is the most adorable pic I've seen from @Beyonce visit á½ Dâ¤ï¸ #Houston #BeyGood #HurricaneHarvey https://t.co/dLOue6J23L	not_humanitarian	not_humanitarian	0.9829	0.1061
+908827775066394625	#Workplace #gratitude in action: helping #Harvey &amp; #Irma hurricane victims. https://t.co/V3ejRVj2ot #BeInspired https://t.co/hZC5GTBZPB	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8371	0.6217
+880834003984457731	Sine Mora EX dev on the new co-op mode https://t.co/ikpidTz5yv https://t.co/DHtVuJHClB	not_humanitarian	not_humanitarian	0.9947	0.0384
+901717268199067648	Hurricane Harvey downgraded to Category 1, will likely become a tropical storm... #D27 https://t.co/pYdvKYmTBw https://t.co/ei8kNxBjlr	other_relevant_information	other_relevant_information	0.4912	0.7933
+905724400867135488	Tracking #Irma this morning as it passes north of Dominican Republic. Dangerous category 5 storm --&gt; https://t.co/jro3SwbeWy	other_relevant_information	other_relevant_information	0.6029	0.7867
+906938176337580033	Copped tho right before my mom forced me to sit in the bathroom for tornado warning. https://t.co/VqcECMMMfi	not_humanitarian	not_humanitarian	0.6792	1.005
+910259418314547200	#Irma #Maria #Jose #Forestfires #Earthquakes, @BobMarley's song: So Much Trouble In The World. So true. Where's the… https://t.co/UNIqiHAydV	not_humanitarian	not_humanitarian	0.9769	0.1363
+912049707085594624	Hurricane Maria Left Puerto Rico Absolutely Devastated https://t.co/TwCgNFTbc5	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.8298	0.6319
+907622459444285441	Family Houston Young Professionals volunteered at the Giving Hub to help families in need after Harvey! https://t.co/pEclLf7Z1k	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.991	0.065
+907217422553436160	20% of EVERY ORDER at #squeezedonline goes towards Hurricane Harvey Relief until Sep 14th! https://t.co/b2fzOxOFyQ https://t.co/OfyRjVmoqM	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8803	0.4746
+905161596519018497	#BREAKING #Tornado #Warning for #Adams and #YorkCounties in PA until 4:45 PM EDT https://t.co/2xT9ZnAi8e … https://t.co/ZAATXXrFFB	other_relevant_information	other_relevant_information	0.7765	0.6033
+921852791592706048	Lin-Manuel Miranda Talks Helping Puerto Rico &amp; Notching First Top 40 Hit: Exclusive https://t.co/DCLAEPw4BL https://t.co/U6hn6GTAZU	not_humanitarian	not_humanitarian	0.9822	0.106
+918112104070156288	Northern California #Wildfire Interactive Map https://t.co/G3EriwqIi2 #Esri #GIS #Waze https://t.co/3LWrwaWNaG	other_relevant_information	not_humanitarian	0.7692	0.6465
+910078085986422785	Good Tuesday morning! We hope things are back to normal at your home following Irma.Join us now until 7am @EricNBC6… https://t.co/7C02eo44UK	other_relevant_information	not_humanitarian	0.9595	0.2199
+909380267999207424	Click HERE➡️https://t.co/aRfmgMnaH4 #Finance #Politics #Business ▶️Three storms raging in Atlantic -- with one aimi… https://t.co/FPbWDFpFEg	other_relevant_information	not_humanitarian	0.9688	0.178
+916104120972595200	State aid to Puerto Rico has also been delayed by a mix of slow requests and money woes https://t.co/iwsg2lE0QJ https://t.co/gQAGVXhOvI	rescue_volunteering_or_donation_effort	not_humanitarian	0.6767	1.0224
+876106387708837889	Everybody go give Eagle Alum á½‹0Mora a follow at @ADRiAN45MORA. https://t.co/f7D4GFjox3	not_humanitarian	not_humanitarian	0.9919	0.0536
+909212569935728641	@hhrichardson14 @alliejay24 @GenevaAthletics @GenevaCollege enjoying the Golden tornado band from home in erie!! https://t.co/jmin37pc1x	not_humanitarian	not_humanitarian	0.979	0.1177
+923066445872889856	Democrat mocks Trump with paper towels in Congress after Puerto Rico fiasco https://t.co/c9R2Tq14FJ https://t.co/6dX9ZsdNO4	not_humanitarian	not_humanitarian	0.9829	0.1045
+881714673157980160	Get to mora and try the whole menu https://t.co/We0JHsl5PC	not_humanitarian	not_humanitarian	0.9913	0.0579
+872872669628080128	#RainierWildflower One of the first flowers of spring, Coltsfoot, already gone to seed! https://t.co/FWOn1nGIt5 -kl https://t.co/pqiFffmS4x	not_humanitarian	not_humanitarian	0.9876	0.0749
+917961969122017282	Hillary Clinton links climate change to wildfires, hurricanes in California speech https://t.co/TrsAAVfkW9 https://t.co/JGGpCwrHxp	not_humanitarian	not_humanitarian	0.9407	0.287
+910524557483798529	RT @BIUK: This drone footage shows the devastation caused by the 7.1 magnitude earthquake in Mexico. https://t.co/zI9IbOXFPE	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9764	0.1284
+904358058649952256	Bun B on Hurricane Harvey: â€˜Itâ€™s Worse Than Everyone... https://t.co/ThFzREmyUj #music https://t.co/v4wihGUg40	not_humanitarian	not_humanitarian	0.9327	0.3267
+905636044024016897	Latest update on Hurricane Irma with links to resources https://t.co/eBOCfBxdIU https://t.co/r9XdGLPbG4	other_relevant_information	other_relevant_information	0.633	0.7541
+909493161596260352	Still haven't taken down the plywood from #Irma, I'm waiting to see what #Maria does. ὤF Pray she heads north after… https://t.co/fzbKjU4JRe	other_relevant_information	not_humanitarian	0.9361	0.3183
+905630657497280512	RT @AFPgraphics: #NEWSGRAPHIC Satellite view of Hurricane Irma traversing the Caribbean on Wednesday @AFP https://t.co/CzgTlMxmIC	other_relevant_information	not_humanitarian	0.5611	0.8907
+927107008959934465	Orlando City wins friendly 6-1, helps Puerto Rico https://t.co/15TlfcB1T4 #OrlandoCity https://t.co/JUcpWfUYUo	not_humanitarian	not_humanitarian	0.9793	0.1166
+910159334004359170	Irma's twisted sister. #HurricaneMaria #Maria2017 #Wx #Weather #PrayForPuertoRico https://t.co/ftVdf3akKc	other_relevant_information	not_humanitarian	0.9351	0.2971
+870034558737145857	@theroyaltiex @MatheusSimass @Cynestesia frequentou: One direction Mora: Londres https://t.co/wm2if77kIL	not_humanitarian	not_humanitarian	0.9836	0.0994
+907423029973659648	Tornado Watch continues for the tri county and the nearby Atlantic Ocean water until midnight. #chswx #Irma https://t.co/bT2lnvMV3h	other_relevant_information	not_humanitarian	0.6623	0.7129
+910652747925610496	Hurricane Maria Knocks Out Power Across All Of Puerto Rico | NBC Nightly News https://t.co/NA8nkhBsFw https://t.co/G6MWgtPHwR	infrastructure_and_utility_damage	other_relevant_information	0.6762	1.0012
+909776158706855936	Welcome back Titans! Finally back to school post #Irma!! #bcpsfirst #knownova #BackInBusiness https://t.co/f5BIDr4YOQ	not_humanitarian	not_humanitarian	0.9609	0.1966
+913479005122236421	A damaged apartment is seen after the earthquake, in the Narrate neighborhood in Mexico City. https://t.co/RzMwGzXAi9	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9943	0.0408
+917970575997497344	California's notorious winds feed wildfires https://t.co/nYloYtq40x https://t.co/OB7XhPOpCs	other_relevant_information	not_humanitarian	0.6199	0.9416
+910563458235564032	The Dominican president expresses his â€œmost sincere condolencesâ€ to Mexico forâ€¦ https://t.co/aLBO39GQx2 https://t.co/Th9HraWzu5	not_humanitarian	not_humanitarian	0.9339	0.3163
+905316510935199745	So #Trump's new NASA adm. is also a climate skeptic. See #Irma, #Harvey. https://t.co/8xmaWdFRkC https://t.co/aRP9U54RDk	not_humanitarian	not_humanitarian	0.9707	0.1641
+905286264420802560	After 3 weeks of delay, and one messy Harvey my backpack was delivered at 10:55 p.m https://t.co/wCBqqZPald	not_humanitarian	not_humanitarian	0.9587	0.2164
+928654952221704192	Puerto Rico Se Levanta: Med Students Unite To Help Those In Need https://t.co/1Nm2ptBpNi https://t.co/mV2DG6A5L8	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8934	0.4744
+927974014617903106	How #HurricaneMaria could affect #mentalhealth https://t.co/KB1tYdcGdK #edchat #naturaldisaster https://t.co/sHt5gkytas	not_humanitarian	not_humanitarian	0.8543	0.534
+930000401776238592	Commanders of #IRGC, #Iran's Army visit #earthquake areas in Western Iran. https://t.co/6dOdulWQRf	not_humanitarian	other_relevant_information	0.302	1.4794
+907132891326492672	Ian Harvey offers us a brief insight into the history of passwords in his latest blog post https://t.co/p1e0QMOP2X https://t.co/o57JQ3ErPJ	not_humanitarian	not_humanitarian	0.9957	0.0316
+912048273967292416	Maria still roiling Central Florida beaches; Lee becomes hurricane https://t.co/x7EsMvGQSh https://t.co/drzuffKfxy	other_relevant_information	not_humanitarian	0.6476	0.8067
+910205407758573568	Supplies to fight off my post- #Irma cold #stress #longhours #loweredimmunity https://t.co/PoqJhMJqP7	not_humanitarian	not_humanitarian	0.9833	0.1019
+912371666868719616	"The ""ghost"" of #Jose being absorbed by Hurricane #Maria as she slowly heads north. https://t.co/4bKQaENaLG"	other_relevant_information	not_humanitarian	0.7547	0.7615
+901737872805462017	RT @HellerWeather: #Harvey rainfall so far... #Houston https://t.co/eRFhw0QEqN	other_relevant_information	not_humanitarian	0.6769	0.7619
+908643154311745542	My Harvey always knows when I ain't well á½ƒ1 https://t.co/tiIetPPq3q	not_humanitarian	not_humanitarian	0.9419	0.279
+909683788225097728	RT @TheScotsman: British troops help fix home wrecked by hurricane Irma https://t.co/f2QsYR99To https://t.co/zibni2qZNC	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7361	0.8065
+909830265102639104	RT @AaronRivz: Tell that hurricane bitch Irma to come this way, I keep that MF THANG ON ME https://t.co/uGcG6ODxrI	not_humanitarian	not_humanitarian	0.9551	0.2322
+904448637454786560	RT @CBSNews: Pizza Hut workers paddle through Harvey floodwaters to deliver free pies https://t.co/fP7y9HoKqj https://t.co/shyyer0vlq	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9026	0.4424
+913181855289032704	This photographer captured the devastation of Hurricane Maria from above. https://t.co/Bl9F61WFju https://t.co/i3fOtt3UH5	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.8553	0.5211
+910257037140996102	Houston Office Market Sees Slight Increase in Vacancy Post Harvey https://t.co/LbiBJk41rr @NAIPartners #CRE https://t.co/Rn1RQXFqSm	other_relevant_information	not_humanitarian	0.9156	0.3804
+908038429388222473	him &amp; his family lost a lot during Harvey &amp; they're just opening back up. Check them out https://t.co/UyfNBLV7iF https://t.co/S1W9m3ajGI	not_humanitarian	affected_individuals	0.8142	0.7281
+879837440671985664	#ClassicMsInTheBiz â€œWhy Donâ€™t You Try Acting Like a Woman?â€ by Gia Mora https://t.co/BhKRKIaIBw https://t.co/Qlv6UqE7X6	not_humanitarian	not_humanitarian	0.99	0.0671
+909420384260362240	RT @steadman3991: The Stahl boys doing a little cleaning up after Hurricane Irma. #DADEPBA #thinblueline #Maria https://t.co/YGYVD4QJwj	rescue_volunteering_or_donation_effort	not_humanitarian	0.7255	0.9558
+910622973924491265	Recent Hurricane Hunters flying through Maria find flight level winds of 120mph. Maria could be Cat 3 again soon. https://t.co/u0aVOP4rv8	other_relevant_information	other_relevant_information	0.8269	0.5413
+907014413500256256	RT @MatthewCappucci: Evidently somebody didnâ€™t want to risk putting Orlando under a Tornado Warning. https://t.co/FfyOXz6fR3	other_relevant_information	not_humanitarian	0.921	0.3487
+923421787794395137	One of the first #solar + storage #Tesla Energy projects in Puerto Rico has come online | https://t.co/nbK9CUFEnY https://t.co/36NiWhUMwM	not_humanitarian	not_humanitarian	0.988	0.0774
+872273375984406528	Behind the scenes with Mora á½¤4á½ƒA https://t.co/KjRCagUH7D	not_humanitarian	not_humanitarian	0.96	0.2245
+912989234922889216	Collapsed School in Mexico Earthquake Is Checked for â€˜Hidden Defectsâ€™ https://t.co/goL1wrDMXN https://t.co/viKfCpLtf7	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9039	0.4097
+879523345859043329	X-MEN: GOLD #11 COVER by DAN MORA OMEGA RED returns #xmen #marvel https://t.co/LMrD0OdFYb	not_humanitarian	not_humanitarian	0.9907	0.0619
+909425490250944517	Lucky duck! 'Irma' sits on eggs even during hurricane-force winds https://t.co/ljDIwxPjB9 https://t.co/4NLltb0tFi	not_humanitarian	not_humanitarian	0.9699	0.1729
+910586673263726592	#Mexico Further updates and advice to British Nationals following the 19 Sept earthquake https://t.co/6FGHD0NMAy https://t.co/j4T8MfGMyU	not_humanitarian	other_relevant_information	0.9086	0.3744
+909779266686078976	skutchi wants to help businesses affected by #HurricaneHarvey and #Irma! Call us today 888-993-3757. https://t.co/V5bUCNT3HM	other_relevant_information	rescue_volunteering_or_donation_effort	0.9574	0.218
+911969730365464577	HURRICANE MARIA LATEST: https://t.co/FxKcCChjtF -Winds 105 mph -About 475 miles SSE of Cape Hatteras, NC https://t.co/sNwOjQnsDp	other_relevant_information	other_relevant_information	0.7565	0.6267
+921411155830149121	My beloved friend is doing Godâ€™s work in #PuertoRico right now. #HurricaneMaria #crytime #keepgoing @amazon https://t.co/H5Y7dnXVsd	not_humanitarian	not_humanitarian	0.4522	1.1583
+927998178636587008	Comparto con ustedes mi columna con ustedes en The Hill: Congress must fund Puerto Rico's new electrical grid. https://t.co/suq7K40gBi	infrastructure_and_utility_damage	not_humanitarian	0.9831	0.1069
+909868647493103616	Many islands devastated by #Irma will get hit again by #Maria. Your forecast at 4 PM. @KCTV5 https://t.co/TfYwWukeEk	other_relevant_information	other_relevant_information	0.9112	0.3253
+910703575495577600	11 PM Update on Hurricane Maria. Hurricane warnings discontinued for PR https://t.co/9GrqAqRweR	other_relevant_information	other_relevant_information	0.8334	0.5574
+910735820407140352	"Ð†f you áº atcá¸©ed tá¸©is ""AFL House"" #SoyLuna2 #VuelveMdT3 Hurricane Maria Midden-Drenthe https://t.co/SLFeC8mI1l"	not_humanitarian	not_humanitarian	0.9674	0.1882
+922982238207299585	@Tesla great Puerto Rico project!! Solar energy presents a great opportunity for Puerto Rico #PRstrong https://t.co/HDljUkVek3	not_humanitarian	not_humanitarian	0.8476	0.6339
+916096056747806720	@realDonaldTrump PUERTO RICO IS SO GRATEFUL, THANKS MR PRESIDENT.. https://t.co/z2NRzyO6Z8	not_humanitarian	not_humanitarian	0.8428	0.6406
+922071338193387521	@MAGAPILL @realDonaldTrump Fuck all no wall no clinton arrest. Zero help for puerto rico https://t.co/fwEkooBmRE	not_humanitarian	not_humanitarian	0.584	1.1486
+905630813294821376	RT @WESH: Tracking Hurricane Irma https://t.co/pQlvmb65uN https://t.co/WhUegyfDT5	other_relevant_information	other_relevant_information	0.6068	0.7592
+930180427016491008	Statement attributable to the @secgen on the earthquake in #Iran #HumanRights @UN https://t.co/Te4CVJ3sa8 https://t.co/tib6RdvIiK	not_humanitarian	other_relevant_information	0.515	1.0967
+904568770982764545	Storm Harvey flood victims face displaced alligators https://t.co/DvIeB2Jf3v https://t.co/JBTbHjmXIk	affected_individuals	affected_individuals	0.3135	1.5507
+910247262135218176	Harvey James was born on this day https://t.co/LuK0fEkTFY https://t.co/dJR2DyHUIE	not_humanitarian	not_humanitarian	0.9728	0.1506
+910760607447527424	Hurricane Maria takes aim at battered Caribbean; Florida could be next - https://t.co/HhG5AugYxT https://t.co/aejoQCEiEW	other_relevant_information	not_humanitarian	0.5715	0.8207
+921313006868410368	RT @eclecticbrotha: @AlGiordano Damn, I forgot how much of a shitshow Bernie's Puerto Rico operation was. https://t.co/DgZMF2qnNl	not_humanitarian	not_humanitarian	0.9344	0.3224
+904681142145740800	Harvey in Any Language: Volunteer Translators for Farsi, Arabic, Vietnamese Answer theÂ Call https://t.co/aLMzVbjiiU https://t.co/9AZOhOzxFM	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9094	0.3986
+909799422518861824	Permitting fees for #Irma-related repairs have been waived. Contact us to report hurricane damage to start the repa… https://t.co/vqGzDHVuZy	infrastructure_and_utility_damage	not_humanitarian	0.4817	1.3302
+909497199100399616	#Savannah‚Äôs @FortPulaskiNPS undergoing repairs after #Irma damage: https://t.co/GBWiQosBlt | @DashiellColeman https://t.co/3xpWxaJKy9	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9522	0.2437
+910642433716867073	Investigations on image search on Mexico earthquake=have Ss debating over a caption lies or not? @JamesGrievePS https://t.co/6vfjuxL8nr	not_humanitarian	not_humanitarian	0.98	0.1214
+927901096248561664	Buy a solar light &amp; spread the word: Let's Light Aguadilla, Puerto Rico! https://t.co/BhwoXTRB0C #LetsLightAguadilla https://t.co/ihghryUmdv	not_humanitarian	not_humanitarian	0.9436	0.2929
+912097184643993601	FIRST ALERT: Hurricane Maria continues moving on northern track https://t.co/VAJL3BnVhm https://t.co/0kzUUaY8cT	other_relevant_information	other_relevant_information	0.7947	0.5839
+877816452367216640	RT @ArnellJames1: Please support my GoFundMe campaign: https://t.co/TsROnfin7I @gofundme https://t.co/DbJ9S5HMrN	not_humanitarian	not_humanitarian	0.9743	0.1489
+913897089691774981	Damage caused by #HurricaneMaria in #Roseau, #Dominica. STR/AFP/Getty Images. https://t.co/oYHGhKITIv	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.8391	0.6011
+901705638794821632	RT @msalgado: Because record floods just aren't enough, there's another couplet and Tor warning. #Harvey #txwx https://t.co/91ezeQTdsO	other_relevant_information	not_humanitarian	0.8014	0.6157
+908489661688971264	So hurricane Harvey left a lot of dogs without homes....Max just found oneá½ Aá½ Aá½ A https://t.co/nmS4Hazvmu	not_humanitarian	not_humanitarian	0.4792	1.3844
+907256737975066626	Tornado Watch Cancelled For Two Counties https://t.co/WyetICQat1 https://t.co/Ozh7hlfbdY	other_relevant_information	not_humanitarian	0.8758	0.4553
+905444979387990016	Video of CU collecting donations for Hurricane Harvey. https://t.co/2Y5EXiA94w #CUBoulder, #CUBuffs, #boulder https://t.co/8o68vyVdSF	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9949	0.0404
+912058088542359552	Grand Chandelier Rocked By Earthquake From The Weather Channel iPhone App https://t.co/s6tqpNW3j5 https://t.co/eCxTP9veJ8	not_humanitarian	not_humanitarian	0.89	0.4709
+930135734056640512	The local seismograph detected the Iran-Iraq earthquake making the detector ringing for more than 12 minutes!!! https://t.co/MQhO2SNLZR	not_humanitarian	not_humanitarian	0.7495	0.86
+909447627325964289	Flooded #Cars Could Flood #UsedCar Market https://t.co/xzmZPZao0q @WardsAuto #Irma #Harvey https://t.co/qq6fmckffJ	not_humanitarian	not_humanitarian	0.9047	0.4292
+921629922287689728	Congrates, We are waiting of Loon in #India as well. https://t.co/W7PL7XEOCX https://t.co/BYHiGB0Gmw	not_humanitarian	not_humanitarian	0.9827	0.105
+912361718571048961	Flew through the very outer edge of Hurricane Mariaâ€™s cloud cover. No desire to fly any closer... https://t.co/z0GePyduer	not_humanitarian	other_relevant_information	0.4721	0.9361
+921407695164461056	Students @imschoolsphila raise $1,000 for Puerto Rico by dressing down one day! https://t.co/VqKUKsIJdE	not_humanitarian	not_humanitarian	0.4294	1.142
+904266726958759936	#Travel - Simulation reveals what it's like inside a tornado, In the new simulation from... https://t.co/tIQM97CjLw https://t.co/h00r4T4LhB	other_relevant_information	not_humanitarian	0.9895	0.0697
+909757379620872193	Some New Brunswickers are doing a really great job helping Florida reconstruct from Irma. Power restored to over 6‚Ä¶ https://t.co/fUHubjhrod	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.86	0.5683
+875540511989223426	Wet Mora! á½‰A #uom https://t.co/QZAm8E7yYd	not_humanitarian	not_humanitarian	0.9552	0.2387
+916186040305668096	Lin-Manuel Miranda's releases star-studded song for Puerto Rico https://t.co/H2Am3BpqxT	not_humanitarian	not_humanitarian	0.9875	0.0805
+905216113268711424	RT @owudining: Please consider donating if you can. #HurricaneHarvey #HoustonStrong #Chartwells https://t.co/4OFtQRFbWb	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9725	0.1588
+905684917375438849	: As Hurricane #Irma nears, hospitals in Florida's southernmost county are evacuating patients ‚Ä¶ https://t.co/jIYXYnDqRM	other_relevant_information	other_relevant_information	0.6013	1.2393
+905636048625049601	RT @USATODAY: In addition to Hurricane Irma, Hurricanes Katia and Jose formed on Wednesday. https://t.co/yHXVsV7T2D https://t.co/wOzOiuwfae	other_relevant_information	not_humanitarian	0.8406	0.5157
+910627988080873473	Matches of the Cup of Mexico are postponed because of a powerful earthquake https://t.co/tuJwCD1XF4 https://t.co/4CxvBcEf3U	not_humanitarian	not_humanitarian	0.7194	0.7378
+870423502310035456	Ilustradora Joanna Mora obtiene Premio Mundial en Los Gourmand Word Cookbook Awards https://t.co/dTYQKs5dip https://t.co/fJznwSftMr	not_humanitarian	not_humanitarian	0.9941	0.0413
+923547987875368961	A Country Torn to Bits – Puerto Rico https://t.co/Lk3VDY0X6x https://t.co/L5VVRasngm	infrastructure_and_utility_damage	not_humanitarian	0.3934	1.4397
+909420222628671488	A painting of the Hurricane Irma chainsaw nun. This acrylic pain- https://t.co/7A2dxTKqcx #painting https://t.co/wgobmFlNBK	not_humanitarian	not_humanitarian	0.9894	0.0702
+910067231408771072	Winston-Salem native back in NC from St. Thomas after Irma https://t.co/1atxYXiYh4 https://t.co/DwWTZp7MYa	not_humanitarian	not_humanitarian	0.9223	0.3762
+909417096026759168	RT @FIU: Please note that FIU is not a drop-off site for donations. How to help: https://t.co/CmfgAUwwI4 #Irma https://t.co/QMxPiRikVh	not_humanitarian	rescue_volunteering_or_donation_effort	0.8006	0.6502
+880722883953262594	á½£1 #Soldes á¼ºE Sine Mora EX Nintendo Switch â–¶ https://t.co/YC4naV8nyd #BonPlan https://t.co/jMDBB8S6Kl	not_humanitarian	not_humanitarian	0.9896	0.0706
+904389800215678976	From Cajun Navy to Houston midwives, Zello is go-to app for Harvey rescues https://t.co/iroIicn4Fj https://t.co/AtkNoNjWrY	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9536	0.2401
+876843932302422016	RT @LP_Modeling: Congratulations to our new #MissNewMexicoUSA Ashley Moraá½ 1 https://t.co/7t0aQRZriq	not_humanitarian	not_humanitarian	0.9867	0.0827
+878627200320372738	Mariana Velasquez Mora, proud alumni of Rennes School of Business á¼ž8á¼Ÿ4 @unisabana @RennesSB @RennesSBAlumni #RSBgrad https://t.co/mbjPXxIGdW	not_humanitarian	not_humanitarian	0.9814	0.1081
+914582818101039104	"What a great organization @CNN is. Providing free propaganda t-shirts and hats to the ""victims"" of hurricane Maria. https://t.co/Z2G5qf4i1B"	rescue_volunteering_or_donation_effort	not_humanitarian	0.982	0.1089
+907433474025455617	How the big tree got devastated and the small one untouched is beyond me! Luck of the draw! Or a tornado! https://t.co/AzQmqva3Vy	infrastructure_and_utility_damage	not_humanitarian	0.7163	0.9188
+911647833392078848	RT @WLTX: 'High' confidence that Hurricane Maria won't affect South Carolina https://t.co/QQypWnIHGk https://t.co/iy239v0TCy	other_relevant_information	not_humanitarian	0.9298	0.3084
+931084029599928322	Iran's Mullah regime imposes new measures to quell earthquake victims https://t.co/aiFfu9ZJDv https://t.co/5SKghLJkOM	affected_individuals	not_humanitarian	0.5937	1.1461
+930273853783162880	ICYMI: Earthquake aftershocks shake Iraq-Iran border https://t.co/WZwxxBWqay https://t.co/avMSkd9IGA	other_relevant_information	not_humanitarian	0.5023	1.0654
+916128443930234886	RT @whoisxndy: when she says she's going to puerto rico with her friends https://t.co/QTplqauVpX	not_humanitarian	not_humanitarian	0.9588	0.2179
+910118239618912258	@VictoriaJustice We just had a hurricane just hits Florida Big bad Irma https://t.co/ahg5rFrbTv	other_relevant_information	other_relevant_information	0.6123	1.202
+923174685034139650	HERO ALERT! please share á¼¼Dá½Š8âœ¨ https://t.co/UED0PojAPx #motorcycle https://t.co/6saBdgri4c	not_humanitarian	not_humanitarian	0.9817	0.1108
+904410103050366976	RT @kimbpix: View from bridge into orange from bridge city lots of neighborhoods still flooded out #SETXNews #Harvey https://t.co/QR5Zzo0C0y	infrastructure_and_utility_damage	other_relevant_information	0.4288	1.3203
+910222788719513600	PPR volunteers, Jill &amp; Kimberly, at Parc Pet Suites, are caring for Hurricane Irma dogs that continue to arrive‚Ä¶ https://t.co/NiJSPR8Llq	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.868	0.5713
+909703693284585472	Saw so much of this before, during and after Irma - amazing people. https://t.co/OdsrhHytt1	not_humanitarian	not_humanitarian	0.4787	1.3317
+913667492987461633	5.6 MAGNITUDE UNDERSEA EARTHQUAKE OFF CHIAPAS, MEXICO @weatherchannel @AMHQ @USGSBigQuakes @wjrnewsdesk @PGLocal4 https://t.co/aYrAMK3dAq	other_relevant_information	not_humanitarian	0.9148	0.3741
+923225894243708928	Puerto Rico has incomparable beautiful beaches... Do you agree? #prstrong #isladelencanto #islabendita https://t.co/KJ6KA60CQk	not_humanitarian	not_humanitarian	0.99	0.0653
+909447941550690304	#IRMA NFL 0 | RT to wish Tyson_Pedro_ a Happy Birthday!! https://t.co/GV2ekx0atV — #UFCPittsburgh (ufc) September 17, 2017	not_humanitarian	not_humanitarian	0.9885	0.073
+909401662179209216	RT @nolin_howard: Damn nature you scary!·Ω 8 #irma https://t.co/0zT4TADDtw	not_humanitarian	not_humanitarian	0.9363	0.3149
+930153444156911616	Prayers for those who suffering the natural disaster in Iran ἞E἟7 and Iraq ἞E἟6 ὤF❤️ #Earthquake https://t.co/m62gkENhp3	not_humanitarian	affected_individuals	0.4858	1.339
+909406366002929664	Florida Keys reopens for residents to assess damage after Hurricane Irma https://t.co/McwQiWOsRK https://t.co/m826HMyPzX	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.6631	0.9003
+928663884730380294	Aerial view of a damaged road caused by a landslide in Barranquitas, Puerto Rico. (FEMA) https://t.co/NKbaz6LAQ9	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9908	0.0593
+909748905679695873	#Workplace #gratitude in action: helping #Harvey &amp; #Irma hurricane victims. https://t.co/JQAqbzUtII #BeInspired https://t.co/LRvI61sN1r	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8481	0.5965
+909444846875799557	LuLaRoe Irma and Leggings -LuLaRoe Jamie Bigley #lularoe, #lularoeleggings, #LLR, #lulaaddict, #howIroe https://t.co/aOe9u9sgnS	not_humanitarian	not_humanitarian	0.9878	0.0779
+909913060713799680	A week after Irma, Puerto Rico faces far worse from Maria ‚Äì Miami¬ Herald https://t.co/KOz5ACcwHL https://t.co/dBYe3JaUUY	other_relevant_information	not_humanitarian	0.5117	1.0124
+904634499467640832	Hurricane Harvey Unites â€“ 08/31/17 (video) https://t.co/C3Q9Tpx5lw https://t.co/dzHY1P53pT	other_relevant_information	not_humanitarian	0.6167	1.1222
+911674783112118272	Here are two ways to support #MexicoEarthquake survivors: 1. #PrayForMexico 2. Donate: https://t.co/hbLeKq29OS https://t.co/ab1LUWXBzh	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9547	0.2392
+910544332033347585	the-huffington-post|Hurricane Maria Slams Into Puerto Rico|https://t.co/pv0QRzXY5z https://t.co/cxpctNcKgI	not_humanitarian	not_humanitarian	0.4889	1.0009
+931691151236780037	The 2017 Iran-Iraq Earthquake from Sentinel-1. Copenricus Sentinel data | ESA SNAP https://t.co/X0EMYn3xJD	other_relevant_information	not_humanitarian	0.9229	0.3594
+910794444089282560	#Dog rescued from #earthquake in #Mexico City. Xinhua/Alamy https://t.co/EoHpvzUbWc https://t.co/MajMUROmSp	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9604	0.2241
+906888945413357568	Radar indicated tornado in NW Osceola Co. Over West Lake Toho, moving West 35 Mph. Take Shelter if here or near by! https://t.co/Vjfl8OoOyZ	other_relevant_information	other_relevant_information	0.6067	0.7593
+928277533526806529	"New artwork for sale! - ""Fort San Juan Puerto Rico"" - https://t.co/GEaSbLCetp @fineartamerica https://t.co/LPkFP1ebMX"	not_humanitarian	not_humanitarian	0.9951	0.0358
+919719288377708545	RT @sandiegonewz: San Diegans helping California wildfire victims https://t.co/2qKsK9Xpi7 #sandiego https://t.co/yM0ZBx1zm8	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9927	0.0544
+905189440926167040	Harvey Aid, Tax Reform Lead Busy Congressional To-Do List | NBC News https://t.co/x8NLPPL7B3 https://t.co/6QWVf0yY5f	not_humanitarian	not_humanitarian	0.9923	0.0526
+906226929296171008	Hurricane Harvey: Airline flies plane of abandoned animals out of Texas to safety https://t.co/hUKC1eOw7C https://t.co/nzDQWdtSso	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.4133	1.3809
+909751601405054976	Five of 32 First Coast Bank of America branches open post-Irma https://t.co/Z9m8zVWIGB https://t.co/pEJrHL4LD6	other_relevant_information	not_humanitarian	0.8116	0.7114
+904460706745126913	Harvey's unlikely hero: Meteorologist Jeff Linder https://t.co/hQJ9kpjXje #fakenews #propaganda https://t.co/gVRQZRI7Zd	not_humanitarian	not_humanitarian	0.9836	0.0998
+904736960060772352	Harveyâ€™s Canada Coupons: Chicken Wrap &amp; Drink For Just $7.49 https://t.co/Xu57mWUrel https://t.co/2LRPea2mwY	not_humanitarian	not_humanitarian	0.9949	0.0361
+927906138280087552	Help ADL-CRC Make a Difference in Puerto Rico!! https://t.co/JPPiLHXgHS https://t.co/n3XAcNdSI3	not_humanitarian	rescue_volunteering_or_donation_effort	0.7913	0.6611
+908930940029857792	Guys, NEW ARTICLE OUT NOWá½„6á½„6á½„6LINK IS IN THE BIO á¼´3á¼´3á¼°Dá¼°Eá¼°Fá½ŸAï¸á¼½Dï¸á½Š8. WAS #HARVEY AND #IRMA REALLY DISASTERS?? #foodforthought https://t.co/2nSPs6fBj3	other_relevant_information	not_humanitarian	0.9816	0.1096
+901646559384829953	RT @Micah_McHenry: Harvey destroyed Dairy Treet. I'm officially pissedὡ2 https://t.co/7biA2Xj9vL	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9493	0.2433
+906786772377636865	#Breaking Tornado warning for Lantana Rd south to Boca Raton. #BeSafe @CBS12 https://t.co/kg5dveoRxt	other_relevant_information	other_relevant_information	0.6998	0.7454
+918097889162940422	Media Confirmations about Wildfires in California predicted by Clairvoyant Dimitrinkaâ€¦ https://t.co/QkavSexnx5 https://t.co/7V6ehC5efd	not_humanitarian	not_humanitarian	0.8428	0.503
+874647133009231873	Finally!! #GARNiDELiA #SPEEDSTAR #MORA #HIRES https://t.co/Ipvl8sg2N6	not_humanitarian	not_humanitarian	0.985	0.0916
+901792272882294786	Tree down in NW HIlls#HurricaneHarvey@statesman https://t.co/xlhJSQzqWj	infrastructure_and_utility_damage	not_humanitarian	0.3545	1.453
+905371500869545985	Starting on @MorningsMaria on @FoxBusiness discussing Irma and clean up after Harvey. Congress and the debt ceiling. https://t.co/aQ4mpsDzn3	not_humanitarian	not_humanitarian	0.9484	0.255
+929169600096407553	#EmergencyManager Resigns in #PuertoRico; #Army Ends Its Mission #head https://t.co/tSYKPXmAnC https://t.co/URwtvj7WIz	not_humanitarian	not_humanitarian	0.9583	0.2222
+910554069781139459	#F1 Force India driver Sergio Perez donated three million pesos to victims of the earthquake in his native Mexico. https://t.co/v3R2TGded9	not_humanitarian	rescue_volunteering_or_donation_effort	0.9608	0.2163
+904822236254806018	She's a tornado with pretty eyes and an invincible heartbeat. âœ¨ https://t.co/FQHTleGPn2	not_humanitarian	not_humanitarian	0.9721	0.1587
+928306180723798016	Lin-Manuel Miranda is not throwing away his shot, will reprise lead role in Hamilton forâ€¦ https://t.co/O2CgAGiU5I https://t.co/b5cfPqaDHc	not_humanitarian	not_humanitarian	0.9917	0.0548
+909740321373933568	Kempa Mens Tornado XL Handball Shoes White Wei? (wei?/marine/fluo gr?n 02) Size: 48 EU (13 - https://t.co/kTTZLZ9uGr https://t.co/gpZM5PITKO	not_humanitarian	not_humanitarian	0.9933	0.0459
+909855675647438848	James Harvey Cameron sentenced to 11 years in jail https://t.co/hamnsQlVPI @CanRevAgency https://t.co/N9ZG3lfBYp	not_humanitarian	not_humanitarian	0.9893	0.0707
+906733384042414080	Watching for some coastal storm surge, but not as bad as Matthew. Gusty &amp; Tornado threat higher here. @WFTV https://t.co/UB2halntTP	not_humanitarian	other_relevant_information	0.8499	0.464
+910111384045854720	.@GreenMtnPower crews to return today after helping with Irma recovery in Georgia https://t.co/dvqzUrEGMz #vt https://t.co/NXSNgOqI5O	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.6739	1.0132
+916060566338248704	RT @MikeTobinFox: Covering the Army Corps of Engineers efforts to save the Gujataca Dam in Puerto Rico. https://t.co/WZfBiHrqsa	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9412	0.2904
+913595700377567234	@Harry_Styles wait... wasn't Mexico City suffered from an earthquake last week? Just asking https://t.co/UIlEbnd9MR	not_humanitarian	other_relevant_information	0.4611	1.1208
+928317467230855168	follow me - Lin-Manuel Miranda to Return to â€˜Hamiltonâ€™ Role in Puerto Rico https://t.co/Un4gNOHLuA - followforfollow https://t.co/1t8ZnGfbjb	not_humanitarian	not_humanitarian	0.99	0.0658
+910234911822483457	#Modular expandable #office unit is a clean and #modern environment. I https://t.co/kyYOvIjjJT #Irma… https://t.co/XTQWI3Uwyn	not_humanitarian	not_humanitarian	0.9911	0.0613
+910693047398289408	What will Maria do after punishing Puerto Rico? Find out more in the latest tropical update. https://t.co/1MFWJdxtGo https://t.co/pJM6gbPgRY	other_relevant_information	other_relevant_information	0.7381	0.6275
+911732538950873088	Magnitude 6.1 aftershock hits Mexico as search for people and pets continues https://t.co/4EVl1V7flH à¸œà¹ˆà¸²à¸™ @Y7News https://t.co/3kGlJ0wnW2	rescue_volunteering_or_donation_effort	affected_individuals	0.3739	1.4363
+907371959800938496	@TimLewko ( my hubby) is at @globeandmail today on the column of harvey schachter #business #influencers https://t.co/9apZ0pckVe	not_humanitarian	not_humanitarian	0.9856	0.0888
+905625313777999876	RT @DemWrite: The waters in #Irma's path are 88 degrees. That's like a hot tub of fuel for a Category 5 storm. https://t.co/uX5I0wgFIl	other_relevant_information	not_humanitarian	0.6226	0.8163
+909783665533702144	My administrators are the best! ᾑ7 Goodbye #Irma, we are back in business! Ὑ0ἿDὄBἿDὌ8 @ASP_Olinda @MDCPSCentral @MiamiSup https://t.co/T4w7WdUvYO	other_relevant_information	not_humanitarian	0.978	0.1258
+910167894494973952	Words can't describe how grateful we are for the hard work &amp; generosity of those who responded to our plea for clea… https://t.co/csVgdO4u25	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8826	0.5064
+910236970315640837	#Modular #homes match the quality and appearance of traditional stick-built houses. https://t.co/kyYOvIjjJT #Irma‚Ä¶ https://t.co/4obwbAI5yt	not_humanitarian	not_humanitarian	0.9882	0.0745
+907732355049070593	ICYMI: Mississippi Nat'l Guard helps with Hurricane Harvey response https://t.co/qlG1h0E0Q5 https://t.co/VUrRO7BNSa	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9665	0.1899
+909767164244189185	RT @tradingtopicss: Dollar stabilises after selloff; focus on North Korea, Hurricane Irma https://t.co/e98JjiZglj https://t.co/i0S3DlNSda	not_humanitarian	not_humanitarian	0.9915	0.0599
+870475660006834176	Time for me to visit Saydrith Mora, home of the Telvanni Mages and their slaves. https://t.co/E1a6B34m21	not_humanitarian	not_humanitarian	0.9906	0.0634
+921446525787672576	@Starbucks in Puerto Rico, can you upgrade your taps to the ones that are in Toronto? More durable and strong! https://t.co/TEH9BsZDZP	not_humanitarian	not_humanitarian	0.9921	0.0543
+910525913409794050	Here's a close up look at the forecast track of #Maria thru Friday. Staying a major hurricane. @wncn https://t.co/XQ5Hu9yrPg	other_relevant_information	other_relevant_information	0.9416	0.2453
+913418380312551425	Labrador Helping Mexicoâ€™s Earthquake Efforts Earns Presidential Thanks https://t.co/X9lCKluteA https://t.co/1KamW6GB8p	not_humanitarian	rescue_volunteering_or_donation_effort	0.9349	0.3272
+909863854804529152	High school football returns this week in Broward after Hurricane Irma https://t.co/5mAysTXIB2 https://t.co/vZn4G3Sy30	not_humanitarian	not_humanitarian	0.7635	0.7985
+918363176588083200	California: Basically on fire Internet: 90'S MC DONALDS SAAAUUUUUCE https://t.co/Vhq4kp0kfB	not_humanitarian	not_humanitarian	0.9435	0.2892
+879308261232709632	Mora builds on its 126-year heritage with a new drive in the UK: https://t.co/gq4FH3Vn5v #outdoor #industry #news https://t.co/xAqHfKCx5x	not_humanitarian	not_humanitarian	0.9946	0.0373
+904216174342299648	RT @iM4tt5: He's shaking people's hands and then preparing food. #Trump #Harvey #Houston https://t.co/YziX1vWX6K	not_humanitarian	rescue_volunteering_or_donation_effort	0.4223	1.3735
+911664304725913600	@AP *MEXICO EARTHQUAKE PROPHECY FULFILLED - OFFICIAL VIDEO* *---------------------------* *https://t.co/7HjcBdEr5z* https://t.co/u8yN8CNqn2	not_humanitarian	not_humanitarian	0.9772	0.1355
+922401757766082560	California Wildfire by BachirBadaoui1 https://t.co/DDDUP43oMu #photography #beautiful https://t.co/bhKOjiURZv	not_humanitarian	not_humanitarian	0.9696	0.1767
+904212047499595776	RT @TPM: New Texas law amid Harvey eases home insurer penalties on damage claims https://t.co/TZxCFhMeKW https://t.co/uVssKIniwi	infrastructure_and_utility_damage	not_humanitarian	0.9166	0.3767
+922164120744493056	Red Flag Warnings today, October 22, in California, Nebraska, Kansas, and Colorado. #Wildfires https://t.co/7cUpSh6i7C	not_humanitarian	other_relevant_information	0.8736	0.4326
+910254111311921153	Irma Gonna Getchya is all smiles @BanksAlehouse in Fairbanks, AK. Get the entire week's Geek in Review here:… https://t.co/5rsKhjbLg9	not_humanitarian	not_humanitarian	0.9907	0.0613
+910260902368333824	RT @PiaGuerra: All wet. #resist #Harvey #presidential https://t.co/2LQAK2TLBH	not_humanitarian	not_humanitarian	0.917	0.3887
+906907803234783232	BeyoncÃ© and Her Mom Eat at Their Favorite Houston Spot After Serving Meals to Harveyâ€¦ https://t.co/GkKIVEdhNW https://t.co/xLIJ5wKt1H	not_humanitarian	not_humanitarian	0.9473	0.2692
+930143820443873280	Twitter erupts after Iran-Iraq earthquake https://t.co/oPUH56Lgyu https://t.co/2rhsYAhTZ6	not_humanitarian	not_humanitarian	0.7711	0.6966
+922718887778566144	RT @cnnbrk: President Trump says he will travel to storm-ravaged Puerto Rico next Tuesday https://t.co/AxZ3z5exHu https://t.co/J9o1mr06Ho	not_humanitarian	other_relevant_information	0.4495	1.256
+908271399545925633	Satellite images show Harvey's impact on Texas towns @CNNI https://t.co/gWeA0hE8mj https://t.co/JHNv4zAt8s	other_relevant_information	other_relevant_information	0.7821	0.7585
+906182698493992960	Irma and Harvey? Trump? Man nothing could save this ye- https://t.co/yi7dTq1j0w	not_humanitarian	not_humanitarian	0.8759	0.5382
+909487442700402688	#IRMA NFL : And it's only halftime. ὣ1 #GoPats #NEvsNO https://t.co/nVw1ZgLPb5 (via Twitter https://t.co/sPp2Q87dTO) https://t.co/Ed1d7kmyCn	not_humanitarian	not_humanitarian	0.9871	0.0793
+870869689445908480	#MLB #BaseBall Melvin Mora Bobblehead Baltimore #Orioles SGA with Box https://t.co/mAhDoXXgC7 https://t.co/MUY31EUaQy	not_humanitarian	not_humanitarian	0.9879	0.0768
+910586516967088128	Mexico earthquake forces postponement of Clasico Nacional |Â Soccer https://t.co/eIApQlJ8jR https://t.co/FrY1fcYf7a	not_humanitarian	not_humanitarian	0.795	0.6435
+908806454949298177	#BREAKING Red Cross to re-launch Harvey assistance site on Sept. 21 https://t.co/UEVoRZNkzW https://t.co/og5Z90ZdI2	not_humanitarian	rescue_volunteering_or_donation_effort	0.8683	0.5468
+920425942257995777	Wildfires continue to burn across California, Oregon and Utah. https://t.co/l04qAGXWv5	other_relevant_information	other_relevant_information	0.5629	0.8803
+906933791305949184	Tornado Damage Canton Fruitvale TX 4-30-17 Drone [00:01:57] https://t.co/5sBwXAJPHg https://t.co/hvnD7e4T7j	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.858	0.5578
+906853373663686657	Sensational Alex Harvey Band - Live/penthouse Tapes | Â£6.99 | # arrived in stock see: https://t.co/bdvgd0VdH9 https://t.co/vmapiL0pRc	not_humanitarian	not_humanitarian	0.9943	0.0404
+921830877461663744	@Bethenny Puerto Rico will rise again!!! https://t.co/dUDFPLtuEA	not_humanitarian	not_humanitarian	0.8228	0.6931
+901767940994985984	@JenCarfagno reporting from Houston on @weatherchannel #HurricaneHarvey. Great job and please be safe. https://t.co/kCIKGCCu6B	other_relevant_information	not_humanitarian	0.5109	0.8643
+908366018073985026	Read more on how Delivering good is helping Harvey victims @donateproduct https://t.co/e3HJmQb4g8 https://t.co/lIH4YCml6U	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9462	0.2743
+909496323312889856	They are taking away early release days because of irma https://t.co/7CvS1Eka4u	not_humanitarian	not_humanitarian	0.9624	0.2036
+905625439334539264	RT @NWSKeyWest: Here are key messages for Hurricane #Irma from @NHC_Atlantic. #FLwx #FLKeys #KeyWest https://t.co/rGXM0k83ZZ	other_relevant_information	not_humanitarian	0.6056	0.7684
+905685100901179392	RT @nursevictoria11: Deadly Hurricane Irma Leaves Hundreds of Thousands Without Power in Puerto Rico https://t.co/SQFtUHTuvb	infrastructure_and_utility_damage	affected_individuals	0.3324	1.4363
+910199413221576705	The navy has been gearing up to help respond to hurricane #Irma . https://t.co/23XgzHjHEa	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9763	0.1435
+904595378590371840	RT @PoliceOne: Photo of cop carrying woman, baby through Harvey floodwaters goes viral https://t.co/ObIiumUdKh https://t.co/BfcUVcHb0K	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7374	0.9368
+916027579882029056	Sun-Earthquake Model Matches M8.1 in Mexico https://t.co/GEzzk9tECr https://t.co/48WWjCWw5p	other_relevant_information	not_humanitarian	0.9744	0.1487
+908018569476284416	Man who killed ex before Harvey 'knew exactly what he was doing' https://t.co/Zk0Uffmqbh https://t.co/VDJMQrfby2	not_humanitarian	not_humanitarian	0.95	0.2529
+929077513636204544	Help us support Puerto Rico 11/16! You can win a Shove-it Snow Sleeve among other cool prizes! @capgaznews #maria https://t.co/7ZLmfXLqJx	not_humanitarian	not_humanitarian	0.979	0.1294
+929332016595681280	Puerto Rico Part II: National Grid and Tesla Team Up to Solve Nantucket Island’s Energy Woes https://t.co/v8Aza7LghW https://t.co/c4piTMPfhe	not_humanitarian	not_humanitarian	0.9641	0.2016
+910534049583603712	Mexico City earthquake: Cristiano Ronaldo and top clubs lead tributes to victims of disaster https://t.co/U8cDRehJGH https://t.co/bTXG3SfpwQ	not_humanitarian	not_humanitarian	0.4897	1.2484
+878372440107307009	Mora Companion ... get the point? https://t.co/VhpRO5E8gT	not_humanitarian	not_humanitarian	0.9857	0.0901
+923215607184707584	Does the U.S. honestly expect Puerto Rico to reimburse them for #Whitefishâ€™s outrageous rates? https://t.co/ido7LgaIRg	not_humanitarian	not_humanitarian	0.992	0.0539
+930511669465411584	One restaurant donated 3,000 falafel sandwiches to the earthquake victims #Kermanshah #Iran https://t.co/44hziFiOsf	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9452	0.2819
+871251322279911429	á½¤C YASSS It's time for #liveme's show MagaÃ±a á¼³9á¾”0á¼³9Moraá½ˆB : https://t.co/bt6m0QCuDv https://t.co/DycvH58B2d	not_humanitarian	not_humanitarian	0.988	0.0767
+910114199413694464	#CaughtonCamera: @KyleHuttonMusic &amp; @rogercreager Write New Song for Hurricane Harvey Relief https://t.co/UqiAWl4UPW	not_humanitarian	rescue_volunteering_or_donation_effort	0.6876	0.9426
+913889396138610688	Kim Kardashian Showcases Sexy Looks in Vogue Mexico Cover Shoot and Makes a Plea to Help Earthquake Victims https://t.co/ZSzLTpMUDw	not_humanitarian	not_humanitarian	0.6308	1.0151
+878273451773046785	Underweight and overweight, mainly overweight, v. high in Central America Data from Alberto Mora https://t.co/MFm4cj5AhE	not_humanitarian	not_humanitarian	0.9808	0.1117
+910795962020483073	did I ũṥe tḧe wrong hasḧtag #AYTO #jeugdzorg #Bergen2017 Hurricane Maria Paulo Freire https://t.co/q5CD74qMro	not_humanitarian	not_humanitarian	0.9314	0.3324
+921528721563095041	Dozens of Employees, Members Lose Home in California Wildfires https://t.co/4CsNK0FdhR https://t.co/DtzNUf922v	infrastructure_and_utility_damage	affected_individuals	0.917	0.3955
+915179664385208320	â€œRescuers Save Dog Trapped Under Rubble After Mexicoâ€™s Earthquakeâ€ á½£1á¼Ÿ2á¼ŸD https://t.co/j28WaTgUlr https://t.co/5wEjUvrCbT	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9557	0.2337
+871546470687793153	"Lebron and The Cavs may be sounding like Jim Mora soon: ""I just hope we can win a game!"" #NBAFinals2017 https://t.co/wvrXC3jq6C"	not_humanitarian	not_humanitarian	0.9891	0.0691
+907014605607759872	#Harvey, #Katia, #Irma, #Jose... Our planet is screaming for help. ὢ2ἰE https://t.co/2zfdqYFdZS	other_relevant_information	rescue_volunteering_or_donation_effort	0.6829	0.9975
+876386158309236737	Aphrodite, born on the waves Antonio Mora #photography https://t.co/MSxQmu9Rkb	not_humanitarian	not_humanitarian	0.9764	0.1351
+909491115006595072	Because the Mississippi Delta was my home for 10 days while outrunning Hurricane Irma https://t.co/Cda3a8zn5L	not_humanitarian	not_humanitarian	0.382	1.3935
+906356801314181120	Chick-fil-A Manager Organizes Jet Ski Rescue for Harvey Victims https://t.co/qaz9Ufsqd6 https://t.co/wQd7BCQCzx	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9592	0.2255
+929442058292654082	Puerto Rico was dope last night!!!!#storm https://t.co/pyZjzZUScj	not_humanitarian	not_humanitarian	0.9484	0.2688
+910177380408446976	RT @karnatz_carly: Hurricane Irma might not have gotten us, but we got a whole new storm that's about to destroy us https://t.co/Y9HG3wI221	other_relevant_information	not_humanitarian	0.4821	1.1507
+910151430262153216	Florida man dies in police custody after violating Irma¬ curfew https://t.co/IMv9Nxs08K https://t.co/FIhB1HNIs1	not_humanitarian	affected_individuals	0.8198	0.7002
+908622824553795584	QUICK - Someone find Mike Ross - Harvey needs the talk. Help him Mike! Quickly! #darvey https://t.co/tJr2Ax9bHN	not_humanitarian	rescue_volunteering_or_donation_effort	0.6364	1.0909
+909467302252437509	#IRMA NFL : Frank Gore is IN for the Colts TOUCHDOWN! #Colts #AZvsIND https://t.co/xzwbAkDGPg (via Twitter‚Ä¶ https://t.co/RLR7nYrH3n	not_humanitarian	not_humanitarian	0.9807	0.1143
+910207326887571456	What I learned from #HurricaneIrma or rather what I didn't know before it - https://t.co/WO5jGakEpY #TuesdayThoughts https://t.co/FRG3JM7275	not_humanitarian	not_humanitarian	0.979	0.1173
+909468233861918720	Last of the Irma rations. Until next time @PeanutChews https://t.co/EefaMZEmn7	not_humanitarian	not_humanitarian	0.8367	0.6509
+915020309987827712	@USMCLiberal Their fault for not whipping out their own hurricane and kicking Maria's ass. /s #PuertoRico #LasVegas https://t.co/bJ9NDaSChV	other_relevant_information	not_humanitarian	0.9542	0.239
+906661203300245504	Small tornadoes unfortunately are part of tropical systems. Currently SIX tornado warnings are in effect in FL https://t.co/axu7nNhkiw	other_relevant_information	not_humanitarian	0.8748	0.4828
+916027537951621120	RT @B52Malmet: THIS MAN CARES NOTHING ABOUT PUERTO RICO https://t.co/VyukB3cWw5	not_humanitarian	not_humanitarian	0.9488	0.256
+870146384904761344	Mora Impact: Port city sees heavy rain, waterlogging #TISNews Click Link- https://t.co/mn9pvB4s1t https://t.co/6ywgXiVJEO	infrastructure_and_utility_damage	not_humanitarian	0.4846	1.0264
+912383683331547136	Most Mexico City museums have reopened! https://t.co/zF67Twzn8V https://t.co/HDwlu7HUgj	not_humanitarian	not_humanitarian	0.9738	0.1496
+905739571069050880	RT @rickulele: Hurricane #Irma would stretch from San Francisco to Los Angeles ὣ3 https://t.co/nGqbE3l2GR	other_relevant_information	not_humanitarian	0.8926	0.4625
+909757461103562752	#Maria is now a Category 2 hurricane as it approaches the Leeward Islands. Track has it taking a more northerly rou‚Ä¶ https://t.co/7MYhlWJiYQ	other_relevant_information	other_relevant_information	0.7557	0.6309
+901646614523203584	RT @MarkDice: Watch CNN ignore #HurricaneHarvey to keep complaining about Trump https://t.co/hFFDnwMoft https://t.co/84rshJXkhh	not_humanitarian	not_humanitarian	0.9454	0.2514
+909803218657460225	Treasure Coast family recounts vacation in the Caribbean during Irma https://t.co/Dt4KIbHKk6 https://t.co/rzicrm2BvR	other_relevant_information	not_humanitarian	0.6531	1.0611
+912361372054417409	Impressive Thermal Image of HurricaneÂ Maria https://t.co/NSNAy4tZDV https://t.co/jqtbwqLBAO	other_relevant_information	not_humanitarian	0.8505	0.5147
+906341151061499910	Nana Tornado at Afia schwarâ€™s house celebrating her Yawa of week lol AnimguaaseÂ wake-keeping https://t.co/rcvFh5t4Fr https://t.co/GFSMTQHE5l	not_humanitarian	not_humanitarian	0.9824	0.1001
+923322647085244417	Hey @WhitefishEnergy, your bio is redundant. Puerto Rico=U.S. Youâ€™re welcome. https://t.co/JZo3lGutUT	not_humanitarian	not_humanitarian	0.9899	0.0665
+929587793235468289	My Fuji gotten to lean on everything in Puerto Rico #LVPR16 #lamblas @l_a_m_b_l_a_s - https://t.co/hlgcryP6O5 https://t.co/RkTZtevoGz	not_humanitarian	not_humanitarian	0.9858	0.0853
+874410698058682368	Happy birthday to Carlos Mora's biological son and Brother, Chris Gonzalez! https://t.co/w208Lhjlok	not_humanitarian	not_humanitarian	0.9883	0.074
+922885240795881473	Rutgers Chabad Helping PuertoÂ Rico https://t.co/090S5lFJpn https://t.co/fh27C8HyF5	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7786	0.7712
+916186292379176960	Drop-off centers throughout Valley collecting items for Puerto Rico https://t.co/PO4RoUyjFO https://t.co/BG7R92r7Cq	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9855	0.0952
+906927887454011394	RT @nesumosa: A huge crane just collapsed on top of building in down town Miami #irma https://t.co/beCQpfWeIB	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.6736	0.9858
+929095727279689728	StormTech II: Hurricane Maria Edition https://t.co/Q3oTg68An4 https://t.co/6ujRqm6VFn	not_humanitarian	not_humanitarian	0.9528	0.2534
+910015187322900480	"I just liked this song ""The Wind"" by PJ Harvey https://t.co/ear4InlaRP #musicmedicine #playlist https://t.co/K3e6jiqrtw"	not_humanitarian	not_humanitarian	0.9923	0.0497
+910247377105297413	Crews fanned out across DeKalb County today to assess damage to homes, businesses left by #Irma. @SophiaWSB has the‚Ä¶ https://t.co/zs2igGnYet	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9046	0.39
+909875460443561984	Irma update: Free roof help available https://t.co/aPRDjvwzKI https://t.co/cvlPQuLOeh	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9525	0.2522
+904751001390940160	This is what Hurricane Harvey will mean for #trucking: https://t.co/aVZh4Twjd3 https://t.co/iMJl7W90yR	other_relevant_information	not_humanitarian	0.9428	0.2747
+921020713619853312	On this day in 1991 a fire swept through Oakland, California burning thousands of homes. #tbt #CCLtbt https://t.co/jAe5aOCL6t	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.7644	0.8098
+914349365476691968	Puerto Rico got leveled by Hurricane Maria and all I got was this lousy t-shirt. From CNN? https://t.co/WRNzaoNqky	not_humanitarian	not_humanitarian	0.4267	1.3783
+904211378587787265	RT @KatyTheatre: Couldn't be happier to help those who were impacted by Hurricane Harvey Ὁ7 https://t.co/AMuEDGetkJ	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9873	0.0865
+878350125910773760	#UCLA head coach Jim Mora and DB coach Demetrice Martin watching at the Bruin Elite Camp https://t.co/9fCug9Ytlg	not_humanitarian	not_humanitarian	0.9848	0.0943
+921766939940261888	And I wouldn't drink from this if it were the only water on Puerto Rico, #staples. https://t.co/QIvjBb8WRA	not_humanitarian	not_humanitarian	0.7458	0.8995
+905740031716986880	From @NHC_Atlantic - Hurricane watches will likely be issued for parts of FL today. #Irma https://t.co/wPpkNFnZKy	other_relevant_information	other_relevant_information	0.9209	0.3278
+910610147520733190	RT @Daniel_Bonds: Hurricane Maria downgraded to a Category 2 storm. Here is the 5 PM advisory. https://t.co/AHZrOQZCJ0	other_relevant_information	other_relevant_information	0.7381	0.627
+907020691467329536	Interesting day volunteering for the Red Cross. #HoustonStrong #Harvey Logistics + #IrmaHurricane = á½£1á½£1á½£1á½£1 https://t.co/EAh1AfP321	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9151	0.3981
+922436953433366531	3 jaw-dropping videos from the California wildfires https://t.co/tyZ234J6tN https://t.co/Pv7dekskWY	other_relevant_information	not_humanitarian	0.9634	0.2053
+920320104839237632	California woman stole from fire evacuees in SantaÂ Rosa https://t.co/IG68rWC2zm https://t.co/WY7fnIRRuS	not_humanitarian	not_humanitarian	0.8144	0.6871
+871479115186003970	Pay con mora :3 https://t.co/mconP4fhwp	not_humanitarian	not_humanitarian	0.9723	0.162
+923296955077312513	Nancy Pelosi demands probe into Montana firmâ€™s â€˜highly suspectâ€™ contract to repairâ€¦ https://t.co/pkvguePlg3 https://t.co/TEPGZSe363	not_humanitarian	not_humanitarian	0.9892	0.0722
+873210513588719621	"When I say ""SKO"" you say ""MORA!"" SKO!! https://t.co/Sllg2XbNBU"	not_humanitarian	not_humanitarian	0.9823	0.107
+909810718920364033	#MONEY #IRMA business Bull market loses this particular wind at its back https://t.co/V7L7nzROY1 via gadfly https://t.co/Bxl2IsCLdD ‚Äî B‚Ä¶	not_humanitarian	not_humanitarian	0.9887	0.0702
+905401055546146816	Did I fail in helping a #Harvey evacuee? #hcldr #pinksocks á½¢2 https://t.co/132xTBFJ5R	not_humanitarian	rescue_volunteering_or_donation_effort	0.5195	1.241
+906282411121680384	#ByeHarvey. I do feel for anyone named Harvey right now though... https://t.co/gvcOtE4RsQ	not_humanitarian	not_humanitarian	0.9257	0.3458
+870849885553045504	#CentralFinance provided medicine for the flood affected communities #FloodSL https://t.co/Zoej4HJmgQ	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8813	0.506
+909881458281631745	A modular home is not a mobile home; it is simply a home that is built off-site, as opposed to on-site. #irma‚Ä¶ https://t.co/xTgvE3V8Qo	not_humanitarian	not_humanitarian	0.9917	0.0581
+880909282555957248	"Just liked ""Sangre gitana y mora"" by Lole Y Manuel https://t.co/zzpf0HsdDo https://t.co/1YHCOdk5m5"	not_humanitarian	not_humanitarian	0.9931	0.0463
+921823384660594689	Blacked-out Puerto Rico makes a long-shot pitch for Amazon's HQ2 https://t.co/aORmqRIRU2 https://t.co/wRgQoBFVhX	not_humanitarian	not_humanitarian	0.9897	0.0705
+907305777236516864	á½¤C YASSS It's time for a great show á½ˆBGab.Maleno á½ˆB:Helping Harvey &amp; I https://t.co/w0ZlZFCG3U https://t.co/ckbPeT0NDY	not_humanitarian	rescue_volunteering_or_donation_effort	0.472	1.0776
+914707334118682624	While he insults them from a golf resort. His second golf vacation since Hurricane Maria hit. https://t.co/V6EPKFbYvn	not_humanitarian	not_humanitarian	0.8977	0.4543
+909805718504697857	Steve Harvey's 6th grade teacher doubted him and he didn't forget it: https://t.co/goMqjUfRei https://t.co/Q1BU5dwMmQ	not_humanitarian	not_humanitarian	0.9877	0.0746
+916020188130234368	This is why it's so difficult to get supplies across Puerto Rico. All major highways are blocked by utility poles https://t.co/MMnrq52GtN	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.6557	0.9613
+911590057173225472	ALL CLEAR issued for the #TurksAndCaicos Islands by @DDMETCI Hurricane #Maria recovery underway. #ComeTogether á¼Ÿ9á¼ž8 https://t.co/XCKvPRI3Rw	other_relevant_information	rescue_volunteering_or_donation_effort	0.5017	1.226
+874529822139088897	â€˜Why Morataâ€™s Move To Manchester United Is NOT Done Yetâ€™-Â Agent https://t.co/dX86FbMbQI https://t.co/myvEVG5p4D	not_humanitarian	not_humanitarian	0.9938	0.044
+905980615824158720	The #Mets (61-79) Nimmo goes deep twice as Harvey beats the Reds (61-80) 7-2 this evening at Citi Field. https://t.co/O1NLDAyjNm	not_humanitarian	not_humanitarian	0.9882	0.0749
+906966020107141120	#JUST #IN Readout of @realDonaldTrump briefing on Hurricanes #Harvey and #Irma: https://t.co/NrX2wIiViR	other_relevant_information	other_relevant_information	0.5467	0.8067
+904220981597757441	Hurricane Harvey’s impact on the US oil industry https://t.co/zxVWR3u0fU https://t.co/lNH5Z1uhlZ	infrastructure_and_utility_damage	not_humanitarian	0.9697	0.1675
+909450602874318848	Lessons from Hurricane Irma: we need to embrace science and address outdated infrastructure. #irma #study #science… https://t.co/ibKK6v0yh6	other_relevant_information	not_humanitarian	0.8942	0.418
+906216841684582400	Flood Damage? 8 Problems To Watch Out For: https://t.co/AMFXqpXNrV #Harvey #PropertyDamage https://t.co/A1M5fsmLQ5	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.6762	0.9105
+905566812460523520	RT @fox34: LPD officers return from Harvey disaster relief @LubbockPolice https://t.co/xXpn4b5pSD https://t.co/TVFMWCiPK4	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9851	0.098
+906904147991166981	Storm clouds near the area under a tornado warning in St. Lucie County. @WPTV @WCPO https://t.co/gYXaiNLIVy	other_relevant_information	other_relevant_information	0.8453	0.4952
+923035424838254592	Hurricane Maria crushed Puerto Rico farms. This activist wants to grow resilience through… https://t.co/1hueYPghsl https://t.co/E23UGPtyfn	infrastructure_and_utility_damage	not_humanitarian	0.9032	0.4362
+927144745826054145	RT @DailyKos Abbreviated Pundit Round-up: Puerto Rico is still there https://t.co/oLNrvUG2ug https://t.co/rDMsmtPNcc	not_humanitarian	not_humanitarian	0.9674	0.1832
+908433043454660608	Dear Harvey Specter - WAKE THE HELL UP NOW!! Seriously.....NOW!!! #Darvey #Suits https://t.co/znzxaEfTkK	not_humanitarian	not_humanitarian	0.9388	0.295
+905732896027287552	From space, Hurricane Irma looks like a superstorm from another planet https://t.co/zcBKiY6ksn https://t.co/aQbfoXl4WD	other_relevant_information	other_relevant_information	0.4776	0.9017
+910043537575743488	@pizzahut made it clear that there isn't a policy dictating leave from natural disaster like #Irma @LeonKaye‚Ä¶ https://t.co/24m18znXZx	other_relevant_information	not_humanitarian	0.9665	0.1842
+905542148296200194	RT @Orientpics: Lee Harvey Leyton Orient #lofc Great Player https://t.co/D2Ug0lsbmK	not_humanitarian	not_humanitarian	0.9768	0.1322
+913934108446924800	'I'm Done Being Politically Correct' https://t.co/4rjwhExUW4 https://t.co/PqxfEwL54Q	not_humanitarian	not_humanitarian	0.9941	0.0416
+905189718773694464	#SCOTX issues emerg order suspending dismissal deadline in CPS cases where judge finds #Harvey precluded compliance. https://t.co/WlFi2YSx2a	not_humanitarian	not_humanitarian	0.9233	0.3581
+920110234433146880	Smoke smolders from a wildfire-ravaged home in Sonoma, California. (Marcio Jose Sanchez/AP Photo) https://t.co/1wtuVXbhnX	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.7742	0.7889
+930293724990410752	Iran-Iraq earthquake: 450 dead, 7,000 injured as Iranian rescue missions wind down https://t.co/IfAwYPwWeF https://t.co/EY1wzX6pa6	affected_individuals	affected_individuals	0.9835	0.0954
+909732449646546945	Florida Irma evacuee wins $10K in NC¬ lottery https://t.co/eVQHsNrqTG https://t.co/2wn3spv4IP	not_humanitarian	not_humanitarian	0.9774	0.1323
+911705733955297281	These women dressed up and were among dozens of volunteers running kids' activities in a park. #MexicoEarthquake https://t.co/6Y4zCvMpHB	not_humanitarian	rescue_volunteering_or_donation_effort	0.9874	0.0856
+909875484053340160	My ideal holiday - sunny Florida.Fortunately this area suffered very little damage from Irma. https://t.co/I658IB4cdg	not_humanitarian	not_humanitarian	0.7826	0.7363
+927986923355832320	SCDOC Director Bryan Sterling says will recruit corrections officers in Puerto Rico @scrnnews https://t.co/Tsc4y7rY1B	not_humanitarian	not_humanitarian	0.9643	0.1988
+906875861521006592	Sat @newhopechurchtv fam 20+/- homes cleared &amp; 60k meals prep'd 4 #Harvey affected ppl! #texasstrong #JesusStrong https://t.co/RuRmZMzWzX	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9603	0.2186
+913463333344260096	#Rihanna educates #DonaldTrump on the #PuertoRico #HurricaneMaria crisis. https://t.co/euYLqgMA0E https://t.co/GDe1UWEik7	not_humanitarian	not_humanitarian	0.9408	0.291
+930496036216496129	It's so sad to hear about the families in Iran, Iraq has lost so many people doing a earthquake. ὤF❤️ https://t.co/2x0iAAD8Fk	affected_individuals	affected_individuals	0.8559	0.5837
+906747882262458373	Tornado watch now in effect through noon Sunday. @CBSMiami https://t.co/GYS52L3Eco	other_relevant_information	other_relevant_information	0.7123	0.6676
+907432311662239744	Yes. Tasted new Tequila, but this is more important. They're taking #HurricaneHarvey... https://t.co/stmQFH8b9e https://t.co/bEeStXmBaI	not_humanitarian	not_humanitarian	0.8497	0.6156
+905033828095455236	Bumper to bumper traffic in to Beaumont....normally not backed up here in Lumberton #Harvey @setxweatherteam https://t.co/FKlWHbJXdG	not_humanitarian	not_humanitarian	0.8316	0.6312
+910783579751419904	Hurricane Maria Live Updates: Catastrophic Flooding in Puerto Rico https://t.co/Ws9BoIALdc https://t.co/azFOpKPAYe	infrastructure_and_utility_damage	other_relevant_information	0.9579	0.2235
+910231852681703424	St. Augustine bed &amp; breakfast picking up the pieces after Hurricane Irma (@WJXTElizabeth) -- https://t.co/Q4FuO400s3 https://t.co/DUk90LxqFb	not_humanitarian	rescue_volunteering_or_donation_effort	0.3515	1.4829
+919743573347717120	Firefighters gain edge in battle with deadly California blazes https://t.co/RGSMXLqUmS #USNews #USRC https://t.co/khWj74RpiD	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.678	1.0323
+920407758603735040	Amazing photo of neighborhood post-wildfire, from https://t.co/QpbhYIgSDk https://t.co/0eY6Xri4RK	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.7008	0.9097
+909491043929911297	RT @astro_paolo: Looking into #Jose's eye, in awe of nature's power. Stay safe everyone. #Irma #Katia #VITAmission https://t.co/w9mWxGRg8k	other_relevant_information	not_humanitarian	0.8724	0.5308
+904779527410372608	In Harveyâ€™s wake, will Abbott still deny climateÂ change? https://t.co/0l8TWT8NFK https://t.co/IMTWIQgDm1	other_relevant_information	not_humanitarian	0.9723	0.159
+912153866669625345	Hurricane Maria--about 400 miles SE of NC--is weakening some tonight. No direct landfall expected for U.S. Coast. https://t.co/NTXYE2OcQs	other_relevant_information	other_relevant_information	0.7139	0.6607
+910650354198470657	Hurricane Maria has re-developed an eye. It is now getting better organized. https://t.co/nfle27OMgp	other_relevant_information	other_relevant_information	0.6364	0.7293
+905063992347021313	RT @statesman: .@MayorAdler asking Austinites to donate toys for #Harvey evacuees https://t.co/UTodRKZDtC https://t.co/8lXN55A9Tq	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9893	0.0747
+870114879541137408	Cyclone '#Mora' hits Mizoram, damages houses, triggers landslides. https://t.co/x6S3ZdRfgT	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9733	0.1417
+913491401320521728	Together for Mexico: Fundraising event for Mexico's earthquake victims. Join us! October 1, Vancouver BC. https://t.co/5VsdnpoDDJ	not_humanitarian	rescue_volunteering_or_donation_effort	0.9325	0.3113
+909922697034870784	RT @kfvsnews: Hands of Hope Foundation extends Irma-Harvey Relief Aid project https://t.co/04uajzToTR https://t.co/eBFOEGuRKN	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9721	0.164
+908221252502003712	5/20/13 Moore, OK EF-5 Tornado https://t.co/28Z061SQd3 https://t.co/2YOG0gArK0	other_relevant_information	not_humanitarian	0.6071	1.0607
+910524067060609024	RT @BBGVisualData: Hushed Crews Listen for Survivors After Mexico Earthquake Toll Tops 200 https://t.co/skY2sAZoMT https://t.co/wDwMrlVp7y	other_relevant_information	affected_individuals	0.8137	0.6886
+909399115443900417	A benefit concert in Savannah, GA to help those effected by Hurricane Irma on September 24th starting at 6pm. https://t.co/JpTAJRv6bE	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9136	0.3846
+910694458487824384	Hellacious Hurricane Maria #EarthcastSOS https://t.co/3tQpP3YDeb https://t.co/UFvwXrBGTH	other_relevant_information	not_humanitarian	0.7972	0.7139
+916104732044754944	RT @northoaklandnow: Bay Area residents rallied in Oakland to demand aid for Puerto Rico https://t.co/SWgMhnKrYT https://t.co/nSS0PrlzBu	not_humanitarian	rescue_volunteering_or_donation_effort	0.8526	0.5828
+905363123506487297	Harvey-Related Scams On The Rise #guns #2A https://t.co/cg0kuhCtnU https://t.co/SaBMbTMXa8	not_humanitarian	not_humanitarian	0.9835	0.1045
+910199813727297537	Mainline establishes fund with Feeding Florida to aid Hurricane Irma victims https://t.co/DELq8sQDs0 https://t.co/lHN11dvVjR	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8956	0.4611
+914946908661141504	Subsistence helps send aid to Mexico earthquake victims https://t.co/YmPgBrxmpJ @NoradNorthcom https://t.co/AEjtdtboko	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9752	0.1501
+916226730343399425	Puerto Rico knows what's what h/t Fipi Lele https://t.co/MmM1S6PAyd	not_humanitarian	not_humanitarian	0.9398	0.3034
+916053366534311936	Cut Puerto Rico loose. https://t.co/757N0EfwDk Wallow in your deliberate fiscal hell. https://t.co/qq1QO2CcCI	not_humanitarian	not_humanitarian	0.9838	0.0994
+916060534507823104	#NH donation drive for Puerto Rico exceeds expectations https://t.co/lHSluYt2xg https://t.co/DKfv4mLX7H	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9878	0.0819
+930216200373710848	1/ Messages of solidarity from Mexico to Iran's earthquake victims in #SeeYouinIran https://t.co/60h14Y0IEx	not_humanitarian	rescue_volunteering_or_donation_effort	0.4087	1.2896
+910221204027359232	Lessons Learned from Irma, via @KassandraLamb https://t.co/oGAiyboyNY #psychology #HurricaneIrma #goodreads https://t.co/AQXX1UAzKt	other_relevant_information	not_humanitarian	0.9659	0.1843
+905878035999678468	Thank you to #RoxburyCT for collecting donations to help #DanburyCT help #DanburyTX. #HarveyRelief #HurricaneHarvey https://t.co/KYBFoYF7NU	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9879	0.0829
+910762963979472896	"áº‚e talá¶„ ""Hunter Renfroe"" #wildplassen #DNA20M Hurricane Maria Sean Spicer https://t.co/Qoey024aVS"	not_humanitarian	not_humanitarian	0.9736	0.1566
+921568591606157312	https://t.co/CVNrQt51za #style Nike Air 323085-164 Puerto Rico Jordan Size 9 https://t.co/v1PtINJQqa	not_humanitarian	not_humanitarian	0.9945	0.038
+921316775027003393	6th grade Maryland student collects 3,000 cases of drinking water for Puerto Rico https://t.co/x57AeLHeaC https://t.co/ljsqlBiCBh	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9619	0.2124
+907123330813235201	We did it! Home in #CT #roadwarriors #TexasAFTproud #HurricaneHarvey https://t.co/ZzPRRIFb8Z	not_humanitarian	not_humanitarian	0.9216	0.3724
+904830090386735105	The effects of Harvey... https://t.co/I55CKyej1D	infrastructure_and_utility_damage	other_relevant_information	0.4754	1.3023
+871056873121820672	Mora 740 MG Fixed Blade Bushcraft Knife Review https://t.co/bnbWyEKENZ https://t.co/tw27UWXHl2	not_humanitarian	not_humanitarian	0.9905	0.0629
+909715379425087489	Surprised by this: Pre-Irma, only 8 Cat. 3+ #hurricanes had tracked w/in 75 mi of ctrl Puerto Rico in NOAA database‚Ä¶ https://t.co/Dw1XLgXusH	other_relevant_information	not_humanitarian	0.7977	0.6981
+916231553373569026	#Business â€¢ Puerto Rico is one of the worldâ€™s biggest centers for pharmaceutical manufacturing https://t.co/8Pp2GgP52E	not_humanitarian	not_humanitarian	0.9942	0.0424
+909708627866513409	#Irma Displaces World's Best Quant. Now He's on a #Climate Mission @business https://t.co/oqN4YOqjRe‚Ä¶ https://t.co/eK6x9PEUFS	not_humanitarian	not_humanitarian	0.9484	0.2583
+911672676116287488	Category 3 Major Hurricane Maria continues to track NNW; some uncertainty in track beyond Tuesday. https://t.co/RlVtXfvqsm	other_relevant_information	other_relevant_information	0.9108	0.3614
+879368692517273601	A serene environment and a fierce ride. Photo by Adrian Mora Maroto. #DS5 #DSPERFORMANCELINE https://t.co/bh6JqOLKXf	not_humanitarian	not_humanitarian	0.9936	0.0441
+909786171265503232	RT @Scott_Maxwell: Scattered, covered and Irma'd https://t.co/BG8xPneqd9	not_humanitarian	not_humanitarian	0.7574	0.8039
+871112578583449600	RT @Virgini64079572: Dark Goddess antonio mora https://t.co/QN2BYhUBgv	not_humanitarian	not_humanitarian	0.9874	0.0793
+915294405975830529	RT @altNOAA: Hey Puerto Rico.... here are some paper towels. Oh, by the way, you screwed up our budget. https://t.co/1TevGAUykd	not_humanitarian	not_humanitarian	0.8725	0.5464
+909846792648486914	AAU NEWS https://t.co/Ope6FxZrMl Hurrican Harvey &amp; Irma Updates #aau #sports #youthsports #WeAreAAU https://t.co/IKKNvwffG0	other_relevant_information	not_humanitarian	0.6367	0.7227
+911626263525253120	PR Ham Radio Update #HAMRADIO #HuracanMaria #HurricaneMaria https://t.co/wYM0fQZMwJ	other_relevant_information	not_humanitarian	0.7384	0.7237
+910212600734117888	Weird.... during #Irma an #earthquake hit Mexico and now during #Maria it happens again? Coincedense? Does this mak‚Ä¶ https://t.co/N7sN3Ok9au	other_relevant_information	not_humanitarian	0.966	0.1918
+917869210499399680	Sorry to see the round barn in Santa Rosa destroyed by fire https://t.co/gbokGRO50m https://t.co/tRKPVoLMms	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9963	0.0286
+912357558484058112	Hundreds leave homes near dangerously crumbling Puerto Rico dam https://t.co/hybOJOEOmW https://t.co/oGVuTg8R9F	infrastructure_and_utility_damage	affected_individuals	0.5866	1.1951
+904212575994482688	steve harvey can't come to the phone right now. why? oh cause he's dead https://t.co/vtB8RZlEUK	not_humanitarian	not_humanitarian	0.9775	0.13
+872354688636788736	My Whole World....á½‰Fá½‰Fá½‰Fá½‰F You are best actor in whole the world.... Mora saiyaaa SuperStar @SharadK7 @keerti07 https://t.co/kzAwI3bn2p	not_humanitarian	not_humanitarian	0.9781	0.1277
+910245908243197953	#MONEY #IRMA business Lawmakers subpoena New Jersey Transit over rail-safety project https://t.co/854RJXQH70 https://t.co/u1kW3YLrO0 — …	not_humanitarian	not_humanitarian	0.9898	0.0675
+923797120032878592	Mountains of Aid Are Languishing on the Docks in Puerto Rico https://t.co/95Rsq3P04z https://t.co/a0AeonsmHP	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.536	1.1434
+911846702558138368	Volunteers filling semi trailer for Mexico earthquake relief https://t.co/rHt9ZzLeyH https://t.co/xmLr1CYie8	not_humanitarian	rescue_volunteering_or_donation_effort	0.9965	0.0287
+910786199287160832	Mexico still open for tourists https://t.co/Q3CA2rp9Kf #TravelNews #Mexico #Earthquake #Tourism https://t.co/7vTSMUCvFx	not_humanitarian	not_humanitarian	0.9678	0.1787
+909382511612096512	Economic impact from Harvey, Irma likely to be short-lived https://t.co/mY5CmL4e9d https://t.co/SOpHxsBDZ5	other_relevant_information	not_humanitarian	0.9485	0.2409
+927824520932679682	Praying for the devastated rain forest ἳ3 of Puerto Rico ἟5἟7 ὤF The ONLY rain forest in America! ὉA https://t.co/flgABImbu5	other_relevant_information	not_humanitarian	0.8458	0.6127
+910246215836614656	RT @fema: Follow this list of trusted accounts for up-to-date information as #Irma unfolds: https://t.co/usdom52Rqm https://t.co/D8mNNxcElZ	other_relevant_information	other_relevant_information	0.5229	0.7682
+912463158803156992	Playa team joined Red Cross Mexico to help sort &amp; package donations for the earthquake victims #gvitravel #gviplaya https://t.co/UnKWmxVR5F	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9906	0.0669
+928673310052962304	Worcester State SGA Joins in Puerto Rico Disaster Relief Effort: https://t.co/wEF8XCLvo2 #woostate #news https://t.co/vrHrxZ3KXW	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9766	0.1432
+908707142714249221	This is quite frankly the only reason I watch Instagram stories rn. I live for Harvey the calf updates. https://t.co/We1IIod28w	not_humanitarian	not_humanitarian	0.9577	0.2167
+906984195439788032	Donald Porter as Larry Mason looks like Lee Harvey Oswald #711OceanDrive #NoirAlley #DarknessAtNoon https://t.co/U8M2iswZlD	not_humanitarian	not_humanitarian	0.9885	0.0739
+910236291387629568	So this song just reminds me of hurricane Irma that just happened... https://t.co/laK9EpUJYg	not_humanitarian	not_humanitarian	0.54	0.9863
+909963325944901633	Seawalls across SWFL crumbling in wake of Irma https://t.co/UpjKHgOAPL https://t.co/aLOfE4y7JB	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9446	0.2577
+873090397391605760	Fuente de las Nereidas (Fountain of the nymphs),1903 by Argentine pioneering sculptor Lola Mora #womensart https://t.co/LTKLaoy0YN	not_humanitarian	not_humanitarian	0.9875	0.0811
+920034300946391040	"RT @Rigged_It: ""California Is Obviously Shaking"" - The Ring Of Fire Is Restless https://t.co/de6sF3VG2j https://t.co/BI8EvWyl3W"	other_relevant_information	not_humanitarian	0.9389	0.3024
+909940747637608448	RT @Ale1973Castro: Miami, Florida right now. #irma https://t.co/l0mUdcWtzv https://t.co/wM17WaHhoN	other_relevant_information	not_humanitarian	0.8791	0.4693
+913906026470092803	Cash donations can be made at M&amp;T Banks Hurricane-Maria-Relief-Fund https://t.co/RvI394kKnJ	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9555	0.2313
+917944232572153856	RT @a_lexia707: on fire just like california #GayFever https://t.co/z3dIBYSR5J	not_humanitarian	not_humanitarian	0.9391	0.2985
+911623411117334528	Hurricane Maria's Aftermath: Photos Reveal Devastation on Caribbean Islands https://t.co/6VL2Osl8zY #Science https://t.co/rq1quq5sTv	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.7444	0.7826
+914588144724529152	We have your back- John Velazquez Help as much as you can with Hurricane Maria Relief â¬‡ï¸ https://t.co/9S85PYwQ67	not_humanitarian	rescue_volunteering_or_donation_effort	0.9902	0.069
+923654546764611584	Puerto Rico gets aid from WaterStep, future efforts in the works https://t.co/dojxgxY0db https://t.co/xXpr4IREWx	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9046	0.4326
+909381436850962433	Returning #Savannah evacuee gives birth in #Hardeeville: https://t.co/m4o83wqQ3m | @andria_segedy | #Irma https://t.co/6eW9NmXiaX	not_humanitarian	rescue_volunteering_or_donation_effort	0.2915	1.5244
+930474098186178563	Iran-Iraq earthquake: Rouhani vows action over collapsed buildings https://t.co/LnYMpVd7CU https://t.co/TL5z5GBsrg	not_humanitarian	infrastructure_and_utility_damage	0.8709	0.5051
+909881349707878401	#IRMA NFL : Texans release WR Jaelen Strong: https://t.co/eDMGOG3Byd (via JamesPalmerTV) https://t.co/DI38mfWxpA‚Ä¶‚Ä¶ https://t.co/3AQwZEnPvz	not_humanitarian	not_humanitarian	0.9862	0.0868
+879354619717091331	The Aftermath of the Moral and Social Bankruptcy Orchestrated in the BBNaijaÂ Show https://t.co/GMY7lxvKHQ https://t.co/xA30D2aYe2	not_humanitarian	not_humanitarian	0.979	0.1237
+910640199272747008	Map of #2017PueblaMexicoEarthquake https://t.co/aQaxyH0eGh https://t.co/QG6WVPzKZe	not_humanitarian	other_relevant_information	0.664	0.901
+912984452707500033	#earthquake (GFZ): M 3.9, Gulf of Mexico https://t.co/lVNFB3eHge FORECAST: https://t.co/ifDmBMTwwF https://t.co/xnP2o3KrH5	not_humanitarian	not_humanitarian	0.573	0.8081
+910524419390369792	Prayers for the millions people affected by the powerful earthquake in Mexico. á½‰Aá¼Ÿ2á¼ŸDâ¤ï¸ #MexicoFuerte #MexicoCity https://t.co/oMvAvXiF1e	not_humanitarian	not_humanitarian	0.4575	1.3374
+922601333399719936	No, â€œEssential Oilsâ€ Will Not Clear the California Fire Smoke Out of Your Air - Mother Jones https://t.co/JfKsM96l7B https://t.co/YUK9AQ82Pl	not_humanitarian	not_humanitarian	0.9905	0.0634
+910635649501323269	A massive #earthquake struck #Mexico yesterday. If you're interested to help, please contact me. https://t.co/KcWzZa2Xmc	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9444	0.2846
+912447892249493504	Hurricane Maria: Two Naval Mines Wash Up On North Carolina Beaches https://t.co/9suzpWKRP4 https://t.co/cq22XyBKHR	other_relevant_information	not_humanitarian	0.9574	0.2284
+909703941545377793	Hurricane Harvey diss freestyle - by Michael White (underground Texas hip hop) https://t.co/a1O1w7LI42 https://t.co/gJnWpKVJ2r	not_humanitarian	not_humanitarian	0.9901	0.067
+904375409441087488	Texans are unstoppable! #HoustonStrong #TexasStrong #Harvey #HarveyRecovery #SundayMorning #Americans á¼ŸAá¼Ÿ8â¤ https://t.co/NUhUHRw7V6	not_humanitarian	not_humanitarian	0.8825	0.5231
+870582277612371969	Suzana Peric fashion show (The Mora Smoothie) https://t.co/nI8IzzRkoz https://t.co/KLglQEhxDn	not_humanitarian	not_humanitarian	0.9937	0.0448
+907682990028984321	Local Residentâ€™s â€˜Hurricane Magnetâ€™ Family Impacted By Harvey, Irma https://t.co/NPaB7UVE2t #ArlingtonVA https://t.co/cmwlfEnvEO	other_relevant_information	affected_individuals	0.3842	1.3387
+920500722063601666	Vegetation #Fire #Burns At Least 30 Acres InÂ Dublin: https://t.co/Q40Yc5cRdm, https://t.co/pfUCIAhERA https://t.co/JhHuUgkObd	infrastructure_and_utility_damage	not_humanitarian	0.4919	1.1557
+909722343106367488	I like to wake up to good news. This is NOT it. #Irma #StCroix https://t.co/LKnbs168xT	other_relevant_information	not_humanitarian	0.9406	0.2919
+920621738932649985	Oregon strike teams return home from battling wildfires in California #LiveonK2 https://t.co/WPeBzeusMc https://t.co/lfKmABu6hi	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8562	0.5862
+923030194096656384	#Firefighters Quickly Contain Clifftop Brush #Fire S.F: https://t.co/NxttN5afcO, https://t.co/pfUCIAhERA https://t.co/5sR4B6MRjL	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.4302	1.3186
+907302403371761664	Had a blast DJing @ LarisaLove Salon in benefit of #hurricaneharvey á½š4â¤ï¸ https://t.co/G32CjajTmR	not_humanitarian	not_humanitarian	0.9535	0.2455
+905392976574205952	US economy hit by Harvey - Sky News Australia https://t.co/vfHoDydeIa #econ https://t.co/xjzmkjcdRi	other_relevant_information	not_humanitarian	0.9716	0.1558
+918005485030092800	Central California Sunset tonight.. Lots of wildfire smoke to punch up the color pallet.. https://t.co/QfLxujGF72	not_humanitarian	not_humanitarian	0.951	0.2458
+911698912032980992	#Maria has been a hurricane for six days now... could be around 6 more. https://t.co/paHlZ1ZS2y	other_relevant_information	other_relevant_information	0.6362	0.8703
+905893152581615616	Arkansas National Guard assists in response of Hurricane Harvey Watch Now á½„9https://t.co/hyaX2iMMHp https://t.co/pVtZ2qf2fa	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9083	0.4274
+904330655848423424	Civil Air Patrol Illinois Wing To Help Survey Damage From Hurricane Harvey https://t.co/5CrMGg8bNK https://t.co/Kg1l9wUkY9	infrastructure_and_utility_damage	rescue_volunteering_or_donation_effort	0.6273	1.0609
+919753721113956353	pro #Football #Club raises #Funds for #California #Fire: https://t.co/yp6wmfnLDS, https://t.co/KhHRwgKT7i https://t.co/w5GdNeTPOY	not_humanitarian	not_humanitarian	0.5002	1.1016
+913622769006346241	Purchased!!! #BuyMiGenteRemix #Hurricane #Earthquake #Houston #Mexico #PuertoRico https://t.co/s0PoJwFTIM	not_humanitarian	not_humanitarian	0.9557	0.2366
+911712329791885312	Remember our brethren throughout the world tonight!! #MexicoEarthquake @HumaneRace https://t.co/qRGKhgA1ez	not_humanitarian	not_humanitarian	0.7815	0.7967
+909873972501676033	Hurricane Harvey, Irma, Jose and now Maria. Americans brace for new danger https://t.co/sJv1pKHTjA https://t.co/g3aF0xW1s4	other_relevant_information	not_humanitarian	0.8472	0.5263
+911512002954067968	San Juan flights still on hold in wake of Hurricane Maria https://t.co/KkLtx5YuLU https://t.co/6eaKdlYENK	other_relevant_information	other_relevant_information	0.4446	1.0938
+905704988306948097	Trend Alert: 'Hurricane Irma'. More trends at https://t.co/Fx5RhnJKes #trndnl https://t.co/yRnWoFKfKk	other_relevant_information	not_humanitarian	0.9717	0.1496
+908732508895891456	Harvey Levinâ€™s 'OBJECTified' Gives Glimpse of Celebsâ€™ Prized Possessions https://t.co/IHHoh5dkrF https://t.co/z9z2OV0ACw	not_humanitarian	not_humanitarian	0.9933	0.0468
+910235483015450625	Hurricane Irma Cat5 165mph will be near St.Croix midnight tonight and eastern Puerto Rico around 8AM tomorrow. https://t.co/tcsWN9RZQS	other_relevant_information	other_relevant_information	0.6859	0.7082
+917921334696599553	RT @foobooz: Help Puerto Rico, get free rare beer at Dock Street Cannery: https://t.co/ME9J37m613 https://t.co/q50D4fB2X7	not_humanitarian	not_humanitarian	0.9807	0.1193
+907553523176497153	Helping Harvey move into UWE today. Doing my bit by watching the @SomersetCCC game. https://t.co/uwOGFXuVWd	not_humanitarian	not_humanitarian	0.9507	0.2618
+909775762869428225	@FLOIR_comm issued directive on Hurricane #Irma response. https://t.co/f0Nx3BFweu https://t.co/isTBnIuiZp	other_relevant_information	rescue_volunteering_or_donation_effort	0.5249	1.1644
+870273197907771392	#CycloneMora As usual #Buddhist Monks are door to door to their peoples https://t.co/4sJSK3rtRR	not_humanitarian	rescue_volunteering_or_donation_effort	0.3599	1.39
+910532234855305218	RT @rmota: Stay Strong #puertorico and #mexico #HurricaneMaria #earthquake https://t.co/6SkQs6wIWS	not_humanitarian	not_humanitarian	0.9378	0.3093
+907304779206062081	#UPDATE : Every county in yellow is under a tornado watch until 10 p.m. #IrmaCSRA @WRDW_WAGT https://t.co/JQwEk5hx84	other_relevant_information	other_relevant_information	0.7954	0.5771
+922952858235944961	Liam Anderson Talks About Impact Of California Wildfires After Big Race At Mt. SAC https://t.co/dvTGuEcSAe https://t.co/d6ujQXjOes	not_humanitarian	not_humanitarian	0.8114	0.6928
+923281592054943746	Third day in a row of record-breaking temperatures brings critical fire conditions across Southern California https://t.co/KlUpytiLW7	not_humanitarian	not_humanitarian	0.6916	0.7836
+872455356047278081	At times he felt that he had almost rather not be in love with her, for it brought him no peace. Antonio Mora https://t.co/oeGPAHgLQv	not_humanitarian	not_humanitarian	0.9842	0.0983
+906149205349163008	"@spcaoftexas @wfaaizzy @HurricanePets @DrewFromTV ""Harvey"" Boyer - Arlington, TX https://t.co/aRleuzkWKX"	not_humanitarian	not_humanitarian	0.8067	0.7466
+930878705265717249	#Iran criticised for #earthquake response Details : https://t.co/oXhBqXYJjC https://t.co/kiVz3NK1zt	not_humanitarian	other_relevant_information	0.4061	1.2977
+908685011657920512	Harvey all over Industrial Production ---&gt; Read More: https://t.co/gYDmrIGQjv https://t.co/QRrSxE7dxZ	not_humanitarian	not_humanitarian	0.9609	0.2148
+909776078570348546	Hurricane Irma: 10 challenges for employers https://t.co/F0zKv4H4ob https://t.co/FNBXtteEJG	other_relevant_information	not_humanitarian	0.9877	0.0814
+876871512250122242	Mora's midnight bakery âœ¨Moon sea jellyá¼±9 https://t.co/2h361JOsfE	not_humanitarian	not_humanitarian	0.9783	0.131
+870392021319417857	Mr Richmond -Hates Mr Mora -Doesnt stop talking about Soccer -Has never spoken to a female student https://t.co/bpMH3goTZH	not_humanitarian	not_humanitarian	0.9913	0.0572
+908755797726732289	A budding #MasterChef maybe? https://t.co/0FCgG6pHM2 'Wilf in the Kitchen' by Matt Harvey #OilPainting https://t.co/WQjrXbKTYy	not_humanitarian	not_humanitarian	0.995	0.0358
+901692870498897920	RT @biconnections: Believe The Meteorologists. Harvey Is Incredibly Dangerous. https://t.co/XkWFhyhZqc https://t.co/9VoiXc4A19	other_relevant_information	other_relevant_information	0.519	0.8028
+923858225597906945	37 days after #HurricaneMaria. Pure ineptitude or lack of any sense of urgency. https://t.co/dKgQO5FjlU	not_humanitarian	not_humanitarian	0.6335	0.9588
+906203773936312321	Harvey Wonâ€™t Help Flagging Housing Market https://t.co/KzoNR7KQKG	not_humanitarian	not_humanitarian	0.9827	0.1071
+906953485819764736	https://t.co/OZcMULp8Ef Turn any keyword into ARTICLE! https://t.co/vn72OcQJCn #article #MakeMoney | Former Steve Harvey Writer â€¦	not_humanitarian	not_humanitarian	0.9903	0.0628
+917995569494331392	So the state of California is pretty much on fire. Your move, Pres. Trump. https://t.co/vwPSbM0HMS	not_humanitarian	not_humanitarian	0.6501	0.8991
+881571538364801024	Congratulations on a beautiful wedding, Coach Mora! https://t.co/tz1z6r8x83	not_humanitarian	not_humanitarian	0.9918	0.0544
+917956641269665792	Satellite images show just how bad Californiaâ€™s wildfires really are https://t.co/IsraHWFiaf https://t.co/emUhNGoNOm	other_relevant_information	other_relevant_information	0.6164	1.029
+909850527550394368	Maria grows to a Cat 3, nears already battered Caribbean https://t.co/QRIDiMoHvY | Ὠ0 by https://t.co/EmJyvnPbw0 https://t.co/qvkOisyVHH	other_relevant_information	other_relevant_information	0.7302	0.7704
+909462726740672514	FINAL DAY https://t.co/prATJ7hADM #SkinnyCoCares #IrmaRecovery #IrmaRelief #HurricaneIrmaAftermath #IRMA… https://t.co/lU9mchGJqP	not_humanitarian	not_humanitarian	0.7686	0.8487
+920069864487710721	California Fire Survivors Respond Unexpectedly to Loss of Homes https://t.co/svFxydnb7s https://t.co/ARnK938x7z	infrastructure_and_utility_damage	affected_individuals	0.5813	1.209
+904292234148941825	RT @USArmy: #USArmy Soldiers from @forthood, #Texas, prepare to convoy south in support of #Harvey relief efforts. https://t.co/ISWtYWmRqi	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9866	0.0892
+905239131525193729	Pro-Life Attorney Puts His Life at Risk to Save Victims of Hurricane Harvey https://t.co/XKjOZqmlu6 https://t.co/kK8rmZSdzk	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.3968	1.3422
+909808230326513664	I swear Harvey and Irma both boutta catch these hands ·Ω¢4 https://t.co/98VostDWtM	other_relevant_information	not_humanitarian	0.9126	0.4119
+909931430750441472	So proud of our kindergarten Eagles taking pride in helping keep our campus beautiful following Irma! @HCPSArea6 https://t.co/LPDeltuMfz	rescue_volunteering_or_donation_effort	not_humanitarian	0.6529	1.0058
+909718455640719360	‘Maria’ to batter after ‘Irma’; Second Hurricane to strike eastern Caribbean https://t.co/dsWMy9dtGa https://t.co/jGK20snlDb	other_relevant_information	not_humanitarian	0.5425	0.836
+928547501359198208	Night Before Puerto Rico Trip https://t.co/2TEmsKFcRA	not_humanitarian	not_humanitarian	0.9656	0.1917
+923671619771432961	Puerto Rico: this seems like the kind of thing one would remember...á½¡1 https://t.co/ieapxbGhlE	not_humanitarian	not_humanitarian	0.8225	0.7001
+928848716668084230	Colonialismâ€™s Legacy: Neglect in Puerto Rico, Suffocation in DC https://t.co/3UrGUBIUaF https://t.co/sZ58swzTR1	not_humanitarian	not_humanitarian	0.9814	0.1084
+919726035297435649	Carmen McReynolds, victim of #TubbsFire, was a doctor and â€˜western gal.â€™ https://t.co/3e0hQJTufE https://t.co/jHh81xAGQE	not_humanitarian	affected_individuals	0.8547	0.6248
+911954127428694016	We could feel some effects from Hurricane Maria this week. https://t.co/ZxLwUoNy9e https://t.co/nX7g6ekpti	other_relevant_information	other_relevant_information	0.5709	0.8299
+914261144579317762	This book arrived back in my hands after surviving Hurricane Maria in Puerto Rico #ItsaSign #thankiu #nextread á½¤Fâœ¨ https://t.co/FSVWozf5G4	not_humanitarian	not_humanitarian	0.9499	0.2429
+920931333848883201	Tubb #Fire #Victims #Visit the Remains of their #Home: https://t.co/othe4CSvzV, https://t.co/Zsp8yfvd4T https://t.co/Rf5rFuKITW	infrastructure_and_utility_damage	affected_individuals	0.3607	1.4638
+909686372545568768	How Climate Change Hurricanes Are Rapidly Accelerating the Militarization of America https://t.co/2Vj2QUHyuZ https://t.co/kVzvByrxRC	other_relevant_information	not_humanitarian	0.9825	0.1107
+911715723269066752	HURRICANE TRACKER: Carolinas, Mid-Atlantic should watch Maria, forecasters say. https://t.co/JgFU6gz8pu https://t.co/6rmDVnSihq	other_relevant_information	other_relevant_information	0.6106	0.7303
+921867940882014208	Children unable to attend school in devastated Puerto Rico. https://t.co/Bi0QFwy9na https://t.co/HpwNFNaRRy	affected_individuals	other_relevant_information	0.5202	1.3452
+905712413810597888	RT @LiveScience: See Hurricane Irma's Massive Eye Engulf an Island https://t.co/Qkv0By8XoA https://t.co/3BQGz3Tsjm	other_relevant_information	other_relevant_information	0.5069	0.8957
+919574683934183424	A selection of Sunday front pages focusing on the California wildfires. https://t.co/825Sff9XT6	not_humanitarian	not_humanitarian	0.6279	0.784
+909959866688655360	We called. They answered. @RedCross showing up outside section 8 housing closed after Irma. residents wait to get b… https://t.co/fdieOxpSSv	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8752	0.5367
+910147650162438144	Irma Blues: Latest speed test on #Verizon -unlimited plan. I hope #Spectrum services return soon. https://t.co/sqirAfshBj	not_humanitarian	not_humanitarian	0.993	0.0482
+876614606612910082	I wanted to get Mora. I didn't get her but at least I got Lyonesse. https://t.co/mzIvwfK09g	not_humanitarian	not_humanitarian	0.9876	0.0792
+904927092130930688	Harvey victims' nerves fray as days drag in Houston shelter https://t.co/3aSu3sv6Fj https://t.co/n06tcvFj0q	rescue_volunteering_or_donation_effort	affected_individuals	0.7368	0.8777
+877536200587956225	The National Academy Jury of 1907. Francis Luis Mora. https://t.co/naFkftC36e	not_humanitarian	not_humanitarian	0.9918	0.0584
+911684747004391424	RT @MikeElChingon: A pic of the Mexican government helping Mexico's earthquake recovery https://t.co/F7zVX8T5UK	not_humanitarian	rescue_volunteering_or_donation_effort	0.9532	0.2465
+913101371246878726	Domenica SE Atlantic coast hamlets devastated by #HurricaneMaria says @erkessler @DFID_UK https://t.co/UCP6Fh3kfa	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.5492	1.2379
+873981955896991744	3 weeks the mora until Cancun á½ 1á½ 1 @_louisedaft https://t.co/OTTW9845oH	not_humanitarian	not_humanitarian	0.978	0.1299
+909832529473138689	RT @Jennart: The Sarasota Herald-Tribune from Wednesday 9/6 - Friday 9/15. #Irma #Sarasota https://t.co/Plp7dDvfxm	not_humanitarian	not_humanitarian	0.9226	0.3334
+914643383133573120	#Trump blames delayed message to Mexican quake victims on bad phone reception https://t.co/wFmHfrtYl9 https://t.co/9yQGXhGC9O	not_humanitarian	not_humanitarian	0.9461	0.2726
+905850848726667268	RT @thebump: This Newborn Photo Shoot Celebrates Hurricane Harvey Rescue https://t.co/9IPJsImNdO https://t.co/xbdJ9sC9la	rescue_volunteering_or_donation_effort	not_humanitarian	0.8934	0.4699
+931583111728697344	⭕ ANCIENT ARTIFACTS SAVED FROM DEADLY EARTHQUAKE HOLD CLUES TO MYSTERIES OF IRAQ'S PAST https://t.co/oBcij9pnbi https://t.co/sUxhsKMhXv	not_humanitarian	not_humanitarian	0.9721	0.1624
+927188353489035265	"RT @billboard: Billboard is streaming the ""Drag Race"" Queens Puerto Rico benefit show https://t.co/tItk0595zH https://t.co/tPNoZ5YxGS"	not_humanitarian	not_humanitarian	0.9816	0.1125
+913196037019488262	cute totes! proceeds to united way's mexico earthquake relief fund! https://t.co/gJbIVYgmHX https://t.co/7pSscFyBpu	not_humanitarian	rescue_volunteering_or_donation_effort	0.8243	0.5966
+909921834950422529	USA TODAY sees a template in its Hurricane Irma email newsletter https://t.co/4PUXilvl9i https://t.co/6sggrLMckt	other_relevant_information	not_humanitarian	0.9891	0.0737
+911922812608290816	Don't forget about Puerto Rico. https://t.co/K3Q7OrWpsP https://t.co/4OsZoMLJDu	not_humanitarian	not_humanitarian	0.9706	0.1656
+906941301991596032	RT @FoxNews: BREAKING: @NWS: Tornado watch in Orlando area. #HurricaneIrma https://t.co/iuisfsAcO5	other_relevant_information	not_humanitarian	0.5755	0.792
+905720956974497792	Popular on 500px : Before hurricane irma :/ by LindaHammad #streetphotography https://t.co/e7flovu33x	not_humanitarian	not_humanitarian	0.9463	0.2638
+920216066416173056	Sarasota group escapes CA wildfire https://t.co/kVrAJl3rlp #usa #vacation #travel https://t.co/hP1lhe8m8B	not_humanitarian	not_humanitarian	0.6578	1.055
+927935070601728002	Donald Drumpf …. “Puerto Rico Wants ‘Everything to Be Done for Them’ …. “!! https://t.co/p1nTKrJxKv https://t.co/7iKTYcrVEl	not_humanitarian	not_humanitarian	0.9679	0.1828
+910688563074801664	RARadio Israel sends aid to Mexico after devastating earthquake claims 248 lives https://t.co/10zpyKQiYT https://t.co/1V4iGc19gv	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.5553	1.0179
+879974103444320256	My @StudioGhibli tattoo! So so so in love. Credit: Simon Mora at Hollow Crown Tattoo, Liverpool. #anime #tattoo https://t.co/egRKViQUYh	not_humanitarian	not_humanitarian	0.9928	0.0477
+907417732580347904	Post-#Katrina lessons for Harvey's returning #students https://t.co/T13oTccaRH https://t.co/BSC3CZAlA4	not_humanitarian	not_humanitarian	0.9027	0.428
+914488055058374657	IF YOU DONT LIKE OUR PRESIDENT THEN DONT ACCEPT FEDERAL FUND RELIEF HELP FOR HURRICANE MARIA DONT BE A HIPOCRITE https://t.co/JDJXXPN1A7	not_humanitarian	not_humanitarian	0.7718	0.8117
+921340179503308800	RT @JLo: Tonight is dedicated to you Puerto Rico! Make sure to tune in on NBC at 10 et/ 9 ct á½‰Cá½‰C https://t.co/gxMfKjrR5e	not_humanitarian	not_humanitarian	0.8704	0.5475
+929421971753963520	I live in Puerto Rico and it's hella hot but who cares I'mma be rocking this shit fOR DAYS https://t.co/9oOK9FfIUu	not_humanitarian	not_humanitarian	0.9833	0.0974
+919895863589310465	Roundup: #bitcoin Blowing Up; California Fire Survival Story; &amp; College Basketball Player https://t.co/JOqP1qAMm4 https://t.co/FA6RCPqvMr	not_humanitarian	not_humanitarian	0.9353	0.3115
+922097988104871936	I had a great time packing meal for Puerto Rico yesterday á¼Ÿ5á¼Ÿ7á¼Ÿ5á¼Ÿ7á¼Ÿ5á¼Ÿ7 https://t.co/VVzqHRhSFz	not_humanitarian	not_humanitarian	0.9764	0.1306
+907364149029740544	He collected donations for TX after #HurricaneHarvey, now Lorain Councilman sends supplies to FL for #HurricaneIrma. https://t.co/gKq1s2tyJZ	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9926	0.0552
+913029119008313344	TROPICAL UPDATE: Tropical Storm Maria is bigger, Hurricane Lee is stronger. No issue for FL. Moving away. #swfl https://t.co/WQxbe7rPLS	other_relevant_information	other_relevant_information	0.6368	0.7234
+904499065672622080	#Harvey #HoustonStrong Watch Gulf: 20% chance tropical development next 5 days, would likely move toward TX. https://t.co/OMxqEh7n4h	other_relevant_information	other_relevant_information	0.8332	0.499
+916110012619132928	José Andrés wants to use school kitchens in Puerto Rico to feed more people https://t.co/TdFEv9WFdq https://t.co/HDmPqjxpiP	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.5952	1.0727
+906157914368421889	Meet Harvey and Irma: a Love Thatâ€™s Weathered 75 Years #fitnessworldabs https://t.co/AQuopElKmO https://t.co/3GqENcxSBk	not_humanitarian	not_humanitarian	0.9849	0.0914
+909769051966201857	ICYMI: Trump pushes @FLGovScott to run for Senate during Irma recovery visit https://t.co/lHUUVCPsvF https://t.co/GPFDvgcfEy	not_humanitarian	not_humanitarian	0.9793	0.1256
+915320187703955457	Why couldn't @AJStylesOrg and @SamiZayn have come to Puerto Rico, instead of @realDonaldTrump? https://t.co/zeQe3vJ05R	not_humanitarian	not_humanitarian	0.9759	0.1401
+922857566220283904	The gym above subway got destroyed. The cement wall got blown out. #HurricaneMaria https://t.co/GS0tKhvR30	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9939	0.0429
+905719504113688576	5AM #Irma Update: National Hurricane Center still has Irma making landfall near Miami Sunday as cat 4 storm. @CBS46 https://t.co/dGeGyofBR5	other_relevant_information	other_relevant_information	0.8956	0.3866
+904291964266446848	Waiting for Answers in Corpus Christi https://t.co/DoPhFlKa6C https://t.co/W247WnujsF	not_humanitarian	not_humanitarian	0.8045	0.7219
+905716323757547521	RT @HoustonPress: Gospel Singer Performs for Harvey Evacuees in Conroe https://t.co/IzsuiVWEsS https://t.co/pOa8c9aelF	not_humanitarian	rescue_volunteering_or_donation_effort	0.8149	0.7023
+914866551005810688	What's left of the mighty Hurricane Maria is now passing harmlessly to the south of us. https://t.co/VkY0OesGh5	other_relevant_information	not_humanitarian	0.8301	0.6015
+909722848046010368	The Caribbean has been hit by a lot of storms this year... but we still have 72 days until Hurricane Season ends.… https://t.co/SmGxawsNsy	other_relevant_information	not_humanitarian	0.94	0.2882
+908842874309095424	Help raise money for #Harvey &amp; #Irma victims at @BasementEast on 9/20. Ticket link: https://t.co/v0ZoW326aj https://t.co/c8Ij2yrEnw	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9693	0.1724
+910548969184428033	RT @MajestyMagazine: A message from the Queen to the President of Mexico following the recent earthquake. https://t.co/7mNCr2Hyob	not_humanitarian	not_humanitarian	0.7414	0.8249
+910124683332395008	Same region, different islands. Distinct difference between #Irma and #Maria tracks in the Caribbean. https://t.co/0OHhqAu45b	other_relevant_information	not_humanitarian	0.9023	0.3744
+922201626189991938	Now I know why TRUMP is spoiled. He switch to Imported milk. Please share. I am hungry in Puerto Rico. https://t.co/OClPwv4gAU	not_humanitarian	not_humanitarian	0.9222	0.3521
+915231662916669441	"forget about ""can you hear me now"" under this cell phone coverage scenario (13th day) #MariaPR #hurricaneMaria https://t.co/luAtXUukvR"	not_humanitarian	not_humanitarian	0.8991	0.4445
+881002866269278210	Good Gear: Morakniv Garberg Fixed-Blade Knife - https://t.co/di0RHyxBsq https://t.co/fZ2fskgNOF	not_humanitarian	not_humanitarian	0.9948	0.0381
+911980397164158981	Days of national mourning over. Life and traffic getting back to normal. #MexicoEarthquake #MexicoCity https://t.co/gjYTcpOUYZ	not_humanitarian	not_humanitarian	0.7701	0.7526
+906696876090675201	If you haven't seen the destruction from Harvey, here's what our RV park looks like. I'm standing at the front door. https://t.co/OAW4KJK9gr	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9661	0.1802
+911687587441586176	Hurricane Maria won't impact directly, but indirectly bring high surf to our coastline the next two days... https://t.co/iaInCimHVf	other_relevant_information	not_humanitarian	0.9696	0.1679
+905652347296198656	New 00Z GFS shows #Irma as intense hurricane just offshore of Miami Sunday A.M. #tropics https://t.co/A5HIjQafzO	other_relevant_information	other_relevant_information	0.6077	0.7518
+908711046604578816	Olive-Harvey College....honoring the U.S. POW/MIA War Veterans on today https://t.co/ttoZEvzAZa	not_humanitarian	not_humanitarian	0.9839	0.0993
+910231492412002304	"RT @MyFreakinWay: Hmmmm, today's weather map vs the one from ""The Day After Tomorrow"". #Irma #DOOMSDAY https://t.co/I7iFpQ4oQH"	other_relevant_information	other_relevant_information	0.6909	0.6737
+870761695752454146	[SisLovesMe] Moka Mora - Hush Hush Big Brother Full Video: https://t.co/T0Dg9rvnE1 #porn #sexy #hot https://t.co/E8PstCIQuV	not_humanitarian	not_humanitarian	0.9924	0.0523
+901650824530669568	RT @D1MikeyT: @KPRC2 #Harvey still causing damage and flooding https://t.co/ttlQ3Jrfs7	infrastructure_and_utility_damage	other_relevant_information	0.5777	1.0789
+909875459843817472	@McDonalds still doesn't have the majority of menu items a whole week after #Irma hit. ·Ω°2 https://t.co/cZykia73MW	not_humanitarian	not_humanitarian	0.8968	0.4425
+904549032105791488	RT @KurtTraylor: #LEEPRIDE Red Raiders helping with Hurricane Harvey Disaster Relief!! á½ˆEá½’8#PTS https://t.co/0Gsou6Il0x	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.986	0.093
+920281158377754625	#LosAngelesTimes | Another fire has broken out in #SouthernCalifornia.... https://t.co/E2XFPxpn8v https://t.co/YJOTkXFmU6	other_relevant_information	not_humanitarian	0.7908	0.6674
+910027013989289984	#MONEY #IRMA business What U.S. decline? The world still watches the Fed https://t.co/LyMpZ1dn1b via BV https://t.co/3SJ8JMzYet ‚Äî Bloom‚Ä¶	not_humanitarian	not_humanitarian	0.9911	0.0573
+909935975630909440	RT @islivingston: 2017 joins a list of elite years with multiple Category 5s in the Atlantic. #maria #irma https://t.co/ypp7qlk95H	other_relevant_information	not_humanitarian	0.94	0.2759
+913066535262081025	WSBTV reports RT BMonahanWSB: #Maria is actually a hurricane again -- barely. Wind at 75 mph... but it's headed ou… https://t.co/6eTUL45b2i	other_relevant_information	not_humanitarian	0.8294	0.575
+923480767640064000	Live at @JFKairport this AM. Awaiting arrival of @NYGovCuomo on his way to Puerto Rico. #ABC7NY https://t.co/jAgEozG9OI	not_humanitarian	not_humanitarian	0.8922	0.4699
+914140629617307648	Meet Carmen YulÃ­n Cruz, the woman taking on Donald Trump after Hurricane Maria https://t.co/p11o4rxXv4 https://t.co/y0NH8IRxbg â€” Newsweeâ€¦	not_humanitarian	not_humanitarian	0.8707	0.5473
+927969834465406981	Puerto Rico board asks Congress for backing in fight with governor https://t.co/CXAjK7u5gm https://t.co/JJpAkMLUwz	not_humanitarian	not_humanitarian	0.9887	0.0757
+916128591863209984	RT @CrowdRescueHQ: Visit our infrastructure map at the Hurricane Maria Portal: https://t.co/5kq507Q9gq https://t.co/8ys95ijXJN	not_humanitarian	other_relevant_information	0.5882	1.0613
+911796470415855616	Latest update on #maria. Slow movement of storm could enhance impacts especially over the Outer Banks. https://t.co/LCQE5h9iD0	other_relevant_information	other_relevant_information	0.8892	0.3821
+904268469625004032	RT @MixmagJapan: 1994å¹´ã€Ministry Of Soundã®DJ Harveyá½ 6âœ¨âœ¨âœ¨ https://t.co/OvGQgVbriC https://t.co/sxrXAc7cRR	not_humanitarian	not_humanitarian	0.9865	0.0845
+912243887023980544	.@UNOSAT: Over 15 million people exposed to strong shaking after #Mexicoearthquake. Report: https://t.co/HmlLW2iXuY https://t.co/MgHlcu6zPQ	other_relevant_information	other_relevant_information	0.6542	1.1271
+871791800020869120	RT @andrewhoodtwtp: Is #Mentoring a moral obligation? https://t.co/3grt3LgoDi https://t.co/SEZkzIlA6x	not_humanitarian	not_humanitarian	0.9911	0.0597
+905221184819781632	Hope was just 10 days old when her family was rescued following #Harvey. (Photo by Noelle Mills) https://t.co/PTU3hHEWl2	affected_individuals	rescue_volunteering_or_donation_effort	0.7559	0.846
+923739726506614784	Everyone is welcome Zumba For Puerto Rico https://t.co/IaadxXX0d9	not_humanitarian	not_humanitarian	0.9757	0.1389
+877484057688461312	Tumi Morake and Martin Bester join forces on Jacaranda FMâ€™s new breakfast show https://t.co/MzjkTxX7yJ https://t.co/qRd7N0ZRj8	not_humanitarian	not_humanitarian	0.9933	0.0469
+919638621241643010	Sundayâ€™s paper @nytimes has zero mention of the California wildfires. Unbelievable. Not even a teaser at the bottom. https://t.co/7u7nucqeq1	not_humanitarian	not_humanitarian	0.9717	0.16
+909764306820112385	What Hurricane Irma Taught Me by Rebecca Sherry Eshraghi #Bahai https://t.co/qjlBLwg2PD https://t.co/nyAFcxE84M	other_relevant_information	not_humanitarian	0.9761	0.1376
+873103335842234369	Condor survival craft &amp; Mora clipper knifeÂ comparison https://t.co/lpkqhIM9oy https://t.co/pLejTpzzNL	not_humanitarian	not_humanitarian	0.9915	0.0576
+910258440077025280	@momtoGEO Hi Douglas Wilbur here had a scary time last plane from Orlando b4 #Irma hope all in #Florida r ok https://t.co/yzeXoayQtP	not_humanitarian	not_humanitarian	0.75	0.8691
+905681430931542016	RT @BahiaPrincipe: ·ºûC·ºû7 Release on the arrival of Hurricane Irma in the Dominican Republic https://t.co/lJW1zzo3Cp	other_relevant_information	not_humanitarian	0.6953	0.852
+880055639489339392	Only 2 more days to apply for this year's Mora Award, at @FirstBook https://t.co/cpiZunJl6T https://t.co/wa8COC8jtP	not_humanitarian	not_humanitarian	0.9953	0.0345
+913495230296526848	UK weather WARNING: Met Office issues rain warnings for UK as Maria arrives https://t.co/yQ2hClgujg https://t.co/1gWwAvdV0s	other_relevant_information	other_relevant_information	0.8298	0.5245
+908537612184334336	Remarkable growth of solar industry in Maryland #ClimateAction https://t.co/p3mJCtvTT9 (podcast) https://t.co/MFQTb7PPcu	not_humanitarian	not_humanitarian	0.9909	0.0604
+909876268975435776	Lots of backyard work can be time consuming, but linemen do #WhateverItTakes to get the lights back on! #Irma… https://t.co/cCyWNpeWbu	rescue_volunteering_or_donation_effort	not_humanitarian	0.8678	0.5774
+910685807069057024	Hurricane Maria path update: SHOCK spaghetti model warning â€“ 'USA MUST WATCH OUT' https://t.co/oVF6TiOqqR https://t.co/mEMF7MM1bj	other_relevant_information	other_relevant_information	0.8605	0.4617
+879923161839665152	edaccessibleRT JugoSocial: â€œMorality is simply an attitude we adopt toward people we dislike.â€ - #OscarWilde #moraâ€¦ https://t.co/TDi0JmAyiX	not_humanitarian	not_humanitarian	0.987	0.0832
+921560430803382272	â€˜Shrinking, shrinking, shrinkingâ€™: Puerto Rico faces a demographicÂ disaster https://t.co/2lDVxoymCV https://t.co/ClqsekF4XX	infrastructure_and_utility_damage	not_humanitarian	0.72	0.8749
+917810972479381504	Deadly wildfires threaten thousands of acres of pot farms in California https://t.co/0L8vo60wL0 https://t.co/gODTxZcE4t	infrastructure_and_utility_damage	other_relevant_information	0.5117	1.0108
+909965919949955072	ICYMI Tandberg- Joined at the hip. #ClimateSilence #climatechange #renewables #Harvey #Irma #Maria #auspol https://t.co/w34LhsiGgR	not_humanitarian	not_humanitarian	0.9642	0.2
+928112380890042370	"Puerto Rico aid bill named for slang that means ""cool"" https://t.co/V7Xxp4YwaO https://t.co/OHIJQOUchk"	not_humanitarian	not_humanitarian	0.9857	0.0926
+930069080173723648	My heart goes with Iran and Iraq 7.3 #earthquake . Pray for sarpol-e zahab and #Kurdistan ὤFὤFὤF὚4὚4὚4 https://t.co/rSvmmreHlj	not_humanitarian	not_humanitarian	0.8317	0.6679
+911689855729627137	Furry responder brings hope to Mexico earthquakeÂ victims https://t.co/o23nft116I https://t.co/zAfmE7lvw8	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7511	0.8829
+914342444644188160	âœ JOIN US Oct 1st 10:00am- 6pm Show your support and love for victims of Mexico's earthquake https://t.co/Atu723oASK	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.768	0.8185
+913087531750711297	Hurricane Maria has flooded multiple roads on Ocracoke Island again today https://t.co/xBP7T5FrOo	infrastructure_and_utility_damage	other_relevant_information	0.6447	1.0946
+929466308810493952	Hij@s de La Bernarda, directly from Puerto Ricoâ€”just 3 weeks away! Tkts going fast - click: https://t.co/MFKsRSUfQU https://t.co/rxwasWK0Ak	not_humanitarian	not_humanitarian	0.9808	0.1144
+922223346179330054	San Juan, Puerto Rico. Can't wait to go back later this year! https://t.co/RX7T4QVgWm #livingthedream	not_humanitarian	not_humanitarian	0.9867	0.0812
+906377127448133632	@GOP Yes, there were 4 https://t.co/Z3xvC3WKng https://t.co/ux0O3KrxJm	not_humanitarian	not_humanitarian	0.9681	0.1803
+916320953357012992	From LinkedIn don’ts to Trump in Puerto Rico: this week’s top leadership stories https://t.co/IWOWLoURON https://t.co/Qhil7B0Cwe	not_humanitarian	not_humanitarian	0.993	0.0491
+922590031729922048	Kris Jenner poses showing off her wealth. Meanwhile in Puerto Rico... https://t.co/MabuDoFVSD	not_humanitarian	not_humanitarian	0.9891	0.0721
+922508922090606593	Busy Weekend! New ropes from Robinson Cano, Billy Hamilton, and Puerto Rico's debut WBC game in 2006! #sodomofo https://t.co/vCMvBpr6iu	not_humanitarian	not_humanitarian	0.9923	0.0527
+909704222156959745	Call Antinori Construction to rebuild after Irma @AntinoriConst 386.761.2805 #eastcoastdockandseawall #irma… https://t.co/2NvOrnn8U8	infrastructure_and_utility_damage	not_humanitarian	0.7728	0.86
+905001603345862656	#HappeningToday: Tracking Irma; Hurricane Harvey relief efforts; Eat Fit BR campaign https://t.co/qwQuuUy5KT https://t.co/piuPco3Gwy	other_relevant_information	rescue_volunteering_or_donation_effort	0.5443	1.1101
+910657723087425536	UPDATE: Hurricane Maria winds remain at 110 mph, may increase in days https://t.co/92anZiTTPj https://t.co/EKiwvxyMyL	other_relevant_information	other_relevant_information	0.7553	0.6363
+913735632710758401	Yâ€™all look at MY presidentá½ C #PuertoRicoRelief #mexicoearthquake https://t.co/ss3hOK4G6v	not_humanitarian	not_humanitarian	0.8987	0.4629
+923043964063711237	This song starts a fire in me. #LosAngeles #blink182 #California á½š4 https://t.co/cRDOMDzNNu	not_humanitarian	not_humanitarian	0.9775	0.1329
+920635343606599680	Harris, Feinstein Raise Concerns About Wireless Emergency Alert System Deficiencies Duringâ€¦ https://t.co/yiNalo7fQV https://t.co/14SRb8rCkC	not_humanitarian	not_humanitarian	0.984	0.1039
+909750386340249601	Hurricane Irma: Symphony of Compensation https://t.co/mEa5LJRhKL https://t.co/e1Lj2XUmET	affected_individuals	not_humanitarian	0.8707	0.5379
+917781957693640707	RT @ajplus: 85% of Puerto Rico remains without power. 40% of people still don’t have access to drinking water. https://t.co/LKbGc7DI2R	affected_individuals	rescue_volunteering_or_donation_effort	0.5347	1.1927
+906568417385132033	House Approves Harvey Relief Bill Among Debt Ceiling Controversy https://t.co/03HVTWgpof https://t.co/CcgvoID92J	not_humanitarian	not_humanitarian	0.948	0.2652
+914163198177300480	RT @ceripadley: Friend sent me this picture of a building on her street. #mexicoearthquake https://t.co/8N3ujh5xBp	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.5536	1.1455
+906985968107999232	Tracking this area of heavy rain that produced a tornado warning. Tracking now on CBS47. https://t.co/9y0SRXCAAS	other_relevant_information	other_relevant_information	0.6649	0.6953
+928812635491061760	Our power just came back on. We lost it for about 3 hours. I thought about Puerto Rico the whole time. https://t.co/VohlKkoBUl	not_humanitarian	not_humanitarian	0.5879	1.13
+910119285623857152	Combined Harvey &amp; Irma losses could strain some reinsurers:¬ Fitch https://t.co/RJMsNp9M90 https://t.co/fZbxttAq8Y	other_relevant_information	not_humanitarian	0.939	0.2865
+909717054143463424	@Oxfam our staffroom cake sale to help with Irma! https://t.co/y04xrIoK0N	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.966	0.1905
+870143296412069890	Benjamin Mora reveals his thoughts on the penalty for Ceres READ: https://t.co/wtRlkk0AuC https://t.co/RRFMYhi13Q	not_humanitarian	not_humanitarian	0.9913	0.0597
+910259920079147009	Walt Disney World in Hurricane Irma:https://t.co/d4zZfXvkxD https://t.co/3DYy5XpsSe	other_relevant_information	not_humanitarian	0.8442	0.6198
+913006687413587968	Hurricane Maria Important Stuff for NC PM Monday Sept 25Â 2017 https://t.co/CsAs4g8WCl https://t.co/JPfmiiGju3	other_relevant_information	not_humanitarian	0.9003	0.4106
+910524778896691200	RT @realDailyWire: WATCH: Multiple Buildings Collapse During Earthquake In Mexico City https://t.co/f0okN3sYpG https://t.co/CtCptwerXN	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.8018	0.6949
+908782701452320768	You can hurt me and try to break me, but I'll always rise and I'll tear you the fuck up like a tornado. https://t.co/aoLAMay9Px	not_humanitarian	not_humanitarian	0.983	0.1045
+912284065272807424	When an earthquake struck this rural corner of Mexico City, the flimsy shacks - https://t.co/b4dAbSXQtw https://t.co/b8ojL0SQlB	not_humanitarian	infrastructure_and_utility_damage	0.6037	1.1818
+910008835552583680	#Deals #todaysdeals NWT LuLaRoe Irma-Mystery Sale! Extra Large https://t.co/LRnRWsZfwO #Deals #todaysdeals https://t.co/VDWNNVyBiV	not_humanitarian	not_humanitarian	0.9921	0.0529
+917791044158185473	RT @Gizmodo: Wildfires raging through Northern California are terrifying https://t.co/dI73RFzX2i https://t.co/k4KnvIimsU	other_relevant_information	not_humanitarian	0.616	0.8548
+912202575746879488	Watching Maria: Tropical storm watch issued for NC coast https://t.co/HOh8E15Xx0 https://t.co/tissxmiZ2g	other_relevant_information	other_relevant_information	0.7942	0.5839
+905487148652036096	RT @DynamoSubreddit: Dynamo and Dash players recount Harvey experiences https://t.co/w8cI8q2sDa #ForeverOrange https://t.co/5RMUfPAZJS	not_humanitarian	other_relevant_information	0.3533	1.3762
+923355133139963906	Quilting Club in Kewanee, Illinois made 75 quilts for Puerto Rico! Thank you ladies! @salarmypeoria @SalArmyEDS https://t.co/aFXIA8DR2J	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.7281	0.7661
+922103328665894912	"#Video #News via #CNN: Zakaria's ""grand bargain"" to rebuild Puerto Rico | https://t.co/RA77pMhW3d https://t.co/id6CduRSym"	not_humanitarian	not_humanitarian	0.7109	0.8491
+922121878889730048	El Fogon De Jule has been offering a taste of Puerto Rico in #ReadingPA for 25 years. https://t.co/SrOBesBuil https://t.co/vG4xnx56pG	not_humanitarian	not_humanitarian	0.9951	0.0357
+909946472287866880	Imagine Math Students Donate Thousands to Hurricane Harvey Relief https://t.co/yil1ehZzZ9 https://t.co/B0aXN73Q5v	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9734	0.1573
+927954029614952449	Chef Juan Jose Cuevas speaks to Puerto Rico's resiliencyâ€”and why you should visit in 2018: https://t.co/uEBbzf7fJF https://t.co/9dDRfloeGK	not_humanitarian	not_humanitarian	0.9902	0.0654
+922520611397791746	@DemsResurgent this worked for Detroit and Puerto Rico...LOL https://t.co/RoVdX48pUo	not_humanitarian	not_humanitarian	0.9573	0.2248
+905933711459459074	Gov. Edwards announces statewide blood drive to help victims of Hurricane Harvey: https://t.co/o7ANBAahjt #NWLANews https://t.co/FAFKthm8Bm	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.98	0.125
+909490776807137280	RT @lori_english: #birds #parrots #irma Take care little birdies... https://t.co/CcwlM5jHgY	not_humanitarian	not_humanitarian	0.9784	0.123
+908157765658476544	Dead Ass !! á½ 2á½ 2á½ 2 [Harvey/Irma. Kenneka Jenkins. iPhone X. ] https://t.co/Ao9GnkOlYn	not_humanitarian	not_humanitarian	0.7743	0.7404
+914340221386416129	RT @Accu_Jesse: Hurricane #Maria intensified explosively today from cat 3 to *CAT 5* LOOP: https://t.co/OtqR5OFQ2T https://t.co/ckgtzuNLti	other_relevant_information	not_humanitarian	0.5974	0.8181
+908134716754276352	Matt Harvey fucks https://t.co/gKFKFzZyNq	not_humanitarian	not_humanitarian	0.9713	0.1629
+910612813940449280	#Hurricane #Maria's predicted path #twitter https://t.co/MVj70955f1	other_relevant_information	not_humanitarian	0.5184	0.8069
+909999633128202240	Fundraiser for hurricane Irma and Harvey with Women Beyond Survival https://t.co/fpYH5GWbxC	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9822	0.1113
+921520897038708741	They did it! Supplies at I-X to leave for Puerto Rico (@WKYCAndrewH reports) https://t.co/VuMe17fLOY https://t.co/3bCAkPdVRH	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8947	0.4687
+906576801794838529	Attagirl Aracely! Way to get out there today to clean up for our neighbors. á½ŠAá¼¿Dá½£7á½’8#SD6workin4U #Harvey https://t.co/1dPhWrpxkE	not_humanitarian	not_humanitarian	0.6113	1.0451
+913601423832698880	Let's help to make them strong again!! #HurricaneMaria https://t.co/usIXfTyrT8	other_relevant_information	rescue_volunteering_or_donation_effort	0.9392	0.3052
+908810441308102656	Need A Job? FEMA Needs Texans To Help With Harvey Recovery https://t.co/vqzZeHAKA2 https://t.co/PjD4TsDMjS	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.4743	1.148
+910216926168625152	UW experts weigh in Hurricane Irma‚Äôs unique magnitude, future recovery response: https://t.co/i3Z4y0mL8a https://t.co/jhUCVANlWa	other_relevant_information	not_humanitarian	0.8552	0.4855
+908482780769554432	oh my god i never actually tried using the tornado in lego dimensions before this is cute https://t.co/CUN58Bvp0G	not_humanitarian	not_humanitarian	0.9937	0.0426
+910795744323522560	Major Hurricane ἰ0 #Maria Category 3, 115 mph #WindMapApp https://t.co/yjFTMjDToQ https://t.co/L8aWQrya9g	other_relevant_information	not_humanitarian	0.7046	0.8081
+880133721902526464	Rich Rodriguez ranked 38th best college coach by Athlon https://t.co/kt2aWmUa7q https://t.co/6vdgceBjNt	not_humanitarian	not_humanitarian	0.9933	0.047
+901684002544910336	RT @hankgreen: This is where one of the best computer models predicts Harvey will be....six days from now. https://t.co/ZcP24tjtfX	other_relevant_information	not_humanitarian	0.8719	0.4385
+908517505819389953	Matt Harvey fits in with the #Mets' highly questionable rotation https://t.co/tiYArHlZeO https://t.co/iR0NGYVLZQ	not_humanitarian	not_humanitarian	0.9912	0.0598
+906622470144356353	Tornado Warnings popping up in south Florida as #Irma nears: https://t.co/NugVzKbxvI https://t.co/T48pR1xOrI	other_relevant_information	other_relevant_information	0.8952	0.3915
+928784920318681088	From @Deadline: â€˜One On Oneâ€™ Documentary Shows Puerto Rico School Before The Storm https://t.co/FXpvdQJWHj https://t.co/qapWaSg012	not_humanitarian	not_humanitarian	0.671	0.883
+909927931316703233	Key Largo couple says Hurricane #Irma took water away from Florida Bay https://t.co/NSncap5dX7 https://t.co/g9l1ky15HX	infrastructure_and_utility_damage	other_relevant_information	0.3526	1.5068
+908206404317704192	Are Harvey and Irma good enough reasons to dump McDonaldâ€™s stock? https://t.co/bpbeNC6toG via @JeffReevesIP https://t.co/vk9wdGpJ3g	not_humanitarian	not_humanitarian	0.994	0.0429
+922104786530553861	i came back from hurricane maria's aftermath to annoying fan wars but what was i expecting rly https://t.co/uKvYLdd1BA	not_humanitarian	not_humanitarian	0.9763	0.1359
+910538179270397954	RT @AJEnglish: RT @AJENews: Powerful 7.1 magnitude earthquake hits southern Mexico https://t.co/sBOGfWxRGI https://t.co/yUdss1RcLM	other_relevant_information	not_humanitarian	0.6333	0.8836
+901768346491908097	RT @mattmarohl: Warmer waters are fueling Hurricane Harveyâ€™s power https://t.co/C0Sn6gntS3 https://t.co/4tZVqJ4FBl	other_relevant_information	not_humanitarian	0.7177	0.7467
+909415304618545153	RT @leeparkinson14: A few anxious faces around. #GinTime ·º∑8 #Irma https://t.co/QradURQIxk	not_humanitarian	not_humanitarian	0.9764	0.1356
+909450938007543809	After Irma: Solar Plus Storage - A Small Beacon Of Light In A Sea Of Darkness https://t.co/SM1p4FGfqz https://t.co/8fAIjOzPuR	not_humanitarian	not_humanitarian	0.9498	0.2606
+908230155901870081	1 oz silver coin - 2015 Proof - Blue Marlin - Guy Harvey designed - Gainsville https://t.co/LyFqlyXNC4 https://t.co/kEig8mjeGd	not_humanitarian	not_humanitarian	0.9957	0.0317
+920515577877356544	Guy Fieri #Cooking 5,000 #Meals day #Wildfire #Victims: https://t.co/uTpp2rsmIP, https://t.co/8eGGyxkyLA https://t.co/LyByNEfSS3	not_humanitarian	rescue_volunteering_or_donation_effort	0.872	0.5451
+914228071028412416	Trump tells people of Puerto Rico not to believe the ‘fake news’ about response to… https://t.co/cmNWsUZLRD https://t.co/EhkUpd5Pa1	not_humanitarian	not_humanitarian	0.7974	0.7106
+914587370091028480	Distributing tarps in huamuchil #oaxaca #mexicoearthquake https://t.co/SlBtPzXwQ7	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9838	0.104
+901776026367397888	In this afternoons matinee performance Mr Harvey Thorne will be playing the part of Al Jolson https://t.co/HxhINRZkUL	not_humanitarian	not_humanitarian	0.9916	0.056
+913443663543496704	ESPN: Puerto Rico Tip-Off relocated to CCU because of Hurricane Maria https://t.co/NSeItzic0q https://t.co/89BdDNnelm	not_humanitarian	not_humanitarian	0.9383	0.2972
+916078665049493505	RT @dvk01uk: #PortoRico #HurricaneMaria #scam #spam they keep on trying https://t.co/5G0AtTkYHg	not_humanitarian	not_humanitarian	0.9686	0.175
+912357265071624192	South Florida peeps! We need volunteers #HurricaneMaria #PuertoRico https://t.co/p2BnkpKzmO	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9264	0.3514
+909471002060623872	@StephanieKelton is out of patience with Democrats who think we can't afford nice things, like saving the planet.… https://t.co/z4zM58koPK	not_humanitarian	not_humanitarian	0.9871	0.0786
+910743867951058944	Mexico City earthquake â€“ Rescuers battle to save children trapped beneath rubble of schoolâ€¦ https://t.co/6AgAAnLJZp https://t.co/gda3SzA5eR	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.5342	0.8772
+912456822040100864	MEXICO CITY: Â Risk from earthquake tremorsBuilt-up on top of... https://t.co/69iGnkzzca https://t.co/pKs9c9PodM	not_humanitarian	not_humanitarian	0.7877	0.7484
+909393360292663296	Captive #Blackfish Tokitae Left 2 Fend 4 Herself During #Irma v @jeffrey_ventre #FreeLolita https://t.co/WJNNk8qIAf https://t.co/GtzJYJ6HED	other_relevant_information	not_humanitarian	0.967	0.1843
+917840814285443072	Classless Trump Insults California By Sending Warm Respects During Wildfire https://t.co/sI9112aDDd https://t.co/hUJ9o9eps5 â€” #Resist (Zâ€¦	not_humanitarian	not_humanitarian	0.9626	0.2017
+909400394773811200	Hurricane Irma took their homes and possibly their future #news https://t.co/lJBrO0Y2bN	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.6357	1.1
+906021278691205122	Harvey did next to nothing for Oil in comparison to Katrina https://t.co/t5PRY1F4eF	other_relevant_information	not_humanitarian	0.9644	0.1931
+920022506211127296	California suburb destroyed by fire last night - https://t.co/fwpKgAcBHn https://t.co/1WJxWXk27t	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.9655	0.1834
+921308154352332800	Dad Where are the lights, it's been one month. Son, the politicians of Puerto Rico stole the lights. @POTUS https://t.co/xYhd9XfRIf	not_humanitarian	not_humanitarian	0.8967	0.4461
+911934793427963905	New New : Hurricane Maria: Puerto Rico officials describe 'apocalyptic' conditions - https://t.co/sIegdNvrrz https://t.co/otDBcL3VBZ	not_humanitarian	other_relevant_information	0.5443	1.3001
+912243306519810048	5AM ADVISORY: #Maria weakens significantly overnight, but it is still a hurricane with winds up to 80 mph. https://t.co/HtmdC31r58	other_relevant_information	other_relevant_information	0.7373	0.632
+909945317973417984	Hurricane Irma Charleston Flooded Neighborhoods Watch Now ὄ9https://t.co/ehg9BvdL2I https://t.co/0EZi0tHITh	infrastructure_and_utility_damage	not_humanitarian	0.4392	1.2418
+904727888095739904	Hurricane Irma could hit US by this weekend after Harvey devastation https://t.co/IR7gBKtyK8 https://t.co/qohscoP9mm	other_relevant_information	other_relevant_information	0.6594	0.7371
+906856916864913408	Much like Harvey, #HurricaneIrma could bring rain to Arkansas as it fizzles out. #arwx https://t.co/LvyFSnEMcK	other_relevant_information	not_humanitarian	0.8086	0.5709
+909442415924318209	Oil &amp; gas operators increase number of evacuated platforms due to Harvey #oilandgasnews https://t.co/pTHQEEnN4p https://t.co/HT6juCwuMS	other_relevant_information	not_humanitarian	0.7128	0.9748
+911842020385107968	Tropical Storm/Hurricane Lee will likely interact with Maria/Mary later this week. https://t.co/gpdOGUP7hJ	other_relevant_information	other_relevant_information	0.7134	0.6626
+906718789303185414	Michael Buffer had his Steve Harvey moment with Carlos Estrada winning the fight https://t.co/6GPjBVHqik	not_humanitarian	not_humanitarian	0.9797	0.1202
+906554296178798592	@deck449 republiKKKLANs = RNC = GOP VOTED AGAINST $$$ 4DISASTERs #HARVEY #IRMA #KATRINA THANK a DEMOCRAT https://t.co/BHb2iPvnd3	other_relevant_information	not_humanitarian	0.8145	0.7146
+901718625115099136	That's cause Steve Harvey did the announcingâ€¦ https://t.co/wXVGg2SvN8	not_humanitarian	not_humanitarian	0.9811	0.1134
+911710158438457344	@ABC this graphic feels like a very poor representation of actual Real Life Hurricane #Maria https://t.co/LXqOT1RDdW	other_relevant_information	not_humanitarian	0.5296	0.9155
+880628428973670400	First time I text mora in months and he thinks all I'm trying to do is get drunk smh https://t.co/PJH9fRI76z	not_humanitarian	not_humanitarian	0.9896	0.0673
+910524408778731521	RT @leeunkrich: MEXICO EARTHQUAKE RELIEF: @topos PayPal donations: donativos@brigada-rescate-topos.org topos.mx https://t.co/YwXCLb69i3	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9857	0.095
+909750109998546945	Irma will cost #DisneyWorld, other theme parks millions Via Orlando Sentinel https://t.co/ihfyAKM1h8 https://t.co/4qgwSwp3FC	not_humanitarian	not_humanitarian	0.8961	0.4652
+922942024411766784	Join the pro bono attorneys helping with California's fire recovery https://t.co/FNYl5ChO8R https://t.co/Ia9my4cqLX	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9723	0.163
+911824866352832512	Deadly aftershock, volcanic ash spread alarm in #Mexico https://t.co/kgVoYOivs5 https://t.co/yGCy5khW01	other_relevant_information	affected_individuals	0.5385	1.2651
+901726453603192832	RT @crownedKnight1: To show you how scary Hurricane Harvey is ... https://t.co/42KWTKInmJ	other_relevant_information	other_relevant_information	0.5316	1.0565
+905705453077893121	RT @KMillerWeather: Know your hurricane evacuation zone. https://t.co/cbnHbNqRNw https://t.co/jYCIJnZKBf	other_relevant_information	not_humanitarian	0.7873	0.6728
+907092014100967424	Ever since #Harvey #Melania has looked like #SecretService https://t.co/hlS52ZLImW	not_humanitarian	not_humanitarian	0.9816	0.1063
+921481501795061760	Introducing the new 2017 Puerto Rico á¼Ÿ5á¼Ÿ7State Seal: https://t.co/QP41cFWrf3	not_humanitarian	not_humanitarian	0.9939	0.043
+906336876738613250	Final: @McCallieFB 49, Knox Webb 22. Blue Tornado improve to 3-1. #GoBigBlue https://t.co/W1L9LM0dC0	not_humanitarian	not_humanitarian	0.9874	0.0811
+905712250387816450	Forcecast track of Hurricane Irma has Trump's Mar-a-Lago club in its sights https://t.co/kayS7vFFUA https://t.co/BaZZSqDkQG	other_relevant_information	not_humanitarian	0.5479	0.7951
+909769464337588225	$LIGA fully sustainable and disaster resistant living environments. #Irma #Harvey https://t.co/sVJcLfOR2E https://t.co/mT0PZbHuyD	other_relevant_information	not_humanitarian	0.9592	0.2161
+907312470485864448	RT @steveinbrissie: Bryn &amp; Harvey All the way from England. Who's the bigger kid? #BBL06 #TurnUpTheHeat https://t.co/GNzJHh65v1	not_humanitarian	not_humanitarian	0.9841	0.0926
+905036991644958720	AZ-TF1 has been demobilized from Harvey. We're heading home. https://t.co/h8e1iRAtw7	not_humanitarian	not_humanitarian	0.9446	0.2816
+910533114589364224	Mexico...... I'm sad... I think of wenchuan earthquake in Chinaá½¢3á½¢3 https://t.co/HWXQGqjX9g	not_humanitarian	affected_individuals	0.448	1.3558
+921751617447317504	â€¦Bannon Says Bush 43 â€˜Most Destructiveâ€™ https://t.co/sugJT0yiVR https://t.co/WpjBmJnQvM	not_humanitarian	not_humanitarian	0.9896	0.0719
+876324183973801986	De Mora just landed https://t.co/a6gzVdKiq7	not_humanitarian	not_humanitarian	0.9486	0.2594
+901801080757080064	If you’re looking for a way to help, my #Church has a few good options. #hurricane #harvey #relief #cottonwoodfamily https://t.co/edRut7Atyk	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.993	0.0521
+905074370367950848	#StepUpForTexas! Help our #kxly radio stations raise money for victims of #HurricaneHarvey! https://t.co/JLuqBhxrcz https://t.co/XzFSdUw6vv	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9809	0.1186
+909477271206952960	Coast Guard Investigative Service Agents inspect sailboats damaged by Hurricane Irma in Key West, Florida.‚Ä¶ https://t.co/HXuUFPYafx	infrastructure_and_utility_damage	infrastructure_and_utility_damage	0.8908	0.4356
+908853408156745728	Funnel cloud reported w/ tornado warning. ὄD #sdwx https://t.co/Ea4ZBFG3LT	other_relevant_information	not_humanitarian	0.5696	0.8347
+910243706233610242	Four tornadoes have been confirmed so far from #Irma. Full report: https://t.co/U2IxCwylGY #scwx #gawx https://t.co/97EFW5CIIG	other_relevant_information	not_humanitarian	0.6555	0.7554
+905690265637330944	Powerful Hurricane Irma Slams Caribbean, Eyes US https://t.co/KJ8gDvCB0l https://t.co/FfOW6eHZ69	other_relevant_information	other_relevant_information	0.5356	0.8885
+912990487501557761	RT @JarredWXII: Tell us how you really feel! #OBX #hurricanemaria https://t.co/TZGrYRmjAp	not_humanitarian	not_humanitarian	0.9696	0.1742
+909936169642713089	@SheaSerrano Also had to replace my TRYB thanks to Harvey #FuckOffHarvey https://t.co/a3rlQewSVA	not_humanitarian	not_humanitarian	0.9233	0.3584
+918084328734756864	Dr. Jim Denison: California Wildfires, Whose Door Will You Knock OnÂ Today? https://t.co/0yTKdwLl8g https://t.co/xP68QWCiEk	not_humanitarian	not_humanitarian	0.9577	0.2275
+909927898143973377	Although I got this care package after Irma, my girlfriend is still the best. ὠDὠD@smithface23 https://t.co/8H8t39XR8J	not_humanitarian	not_humanitarian	0.9772	0.1316
+923252830823178240	.@Apple and @ATT Get #PuertoRico Users Cell Service https://t.co/NqoWaipJpf https://t.co/r5imYFTxjd	not_humanitarian	not_humanitarian	0.9861	0.0889
+911924243750846465	71km SSW of Paredon, Mexico #earthquake Mag 5.7 - September 24, 2017 - 06:06:12 (10:06:12 GMT) https://t.co/rNkkgm2Uxi	other_relevant_information	not_humanitarian	0.6481	0.9044
+908010304025645056	Land O'Frost chipped in time and person power to provide relief, supplies to #HurricaneHarvey victims in Houston https://t.co/XZIzq7ymrY	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9883	0.0809
+910169508752617472	Harveyâ€™s Heroes: Area man steps up when no one else will https://t.co/OIXIo0lLbG #patxnews https://t.co/qmrCaxGXOT	not_humanitarian	rescue_volunteering_or_donation_effort	0.6426	0.988
+921772156639498240	Creating new @realDonaldTrump voters daily! á¾’3 https://t.co/P1h9yY3aNr https://t.co/CfCAl1oQwJ	not_humanitarian	not_humanitarian	0.99	0.0648
+911533645982289920	Maria is still a major hurricane -- and will actually have a positive effect on our weather this weekend -- dry! https://t.co/VgJaRlrNje	other_relevant_information	not_humanitarian	0.8226	0.5565
+910547261834366976	RT @zesty_raiders: Raiders Release Statement on Central Mexico Earthquake https://t.co/DPkzp2ldyA https://t.co/KSdPD5Vfi8	not_humanitarian	not_humanitarian	0.8194	0.6194
+930536595324682240	#Earthquake ML 3.9 EASTERN IRAN https://t.co/S3WsORq28Q - EMSC https://t.co/IiUBm1UJmr	other_relevant_information	not_humanitarian	0.8469	0.6077
+909903953617473536	RT @ndn: After Hurricane Irma, group handing out bulk BBQ at Germain Arena https://t.co/0105ExV2Kk https://t.co/FjTceHgVcs	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9601	0.217
+880532271446360064	When you try to figure out how Pellegri + Salcedo Mora(60m) = Nainggolan(60m) https://t.co/qrFLA8jpzs	not_humanitarian	not_humanitarian	0.986	0.0893
+923060401096548357	#BayArea #Restaurants join #Forces help North Bay #Fire: https://t.co/FRZ8fnnJnm, https://t.co/Zsp8yfvd4T https://t.co/W1vDQNQnRU	not_humanitarian	rescue_volunteering_or_donation_effort	0.9106	0.4168
+917822562259931137	RT @Rincon_Music: (Radio Reports On California Wildfires) - https://t.co/JKlnvNczM8 https://t.co/yIRhhwft6z	not_humanitarian	not_humanitarian	0.6762	0.7652
+910262762630086657	Apartment residents angry, displaced after Irma https://t.co/48rC1fyyWJ https://t.co/AQUTq326oM	not_humanitarian	affected_individuals	0.9576	0.2238
+907933168405291008	Need something to get your over Hump Day? Come out to B3 Brew Beats &amp; Bites at Perry Harvey Park starting at 5 p.m. https://t.co/vvqusMpOEB	not_humanitarian	not_humanitarian	0.9924	0.0495
+904989032031158274	Telegraph Pics: Landlords demand rent for flooded homes from Hurricane Harvey victims https://t.co/Ox6E8uwpKG https://t.co/DHzrFngc4H	infrastructure_and_utility_damage	not_humanitarian	0.6535	1.0739
+913798788095102976	Hurricane Maria â€“ The Aftermath â€“ St CroixÂ USVI https://t.co/uUajdMNHNn https://t.co/3KTBgUD73f	infrastructure_and_utility_damage	not_humanitarian	0.543	1.0982
+909781307130920960	New Assessment Data on #hurricaneirma #Irma @humdata https://t.co/F1yCU8rpBg https://t.co/t1hX8BYZPs	other_relevant_information	other_relevant_information	0.5475	0.7998
+909802038804008962	Perspective &amp; fright - Cat 5 #Irma from the Virgin Islands. https://t.co/9qaWaYRQs2 ht @HomerHickam #Fox35 https://t.co/WLnnQ8LCZy	other_relevant_information	affected_individuals	0.4328	1.3339
+904625738216869889	Weighing The Hazards âš ï¸ https://t.co/8Ze1106w7u via @Msjonesn https://t.co/TcKdaNO6Sc	not_humanitarian	not_humanitarian	0.9773	0.1367
+907883425197162496	RT @novacalvert: Harvey and Ruby waiting to settle down and watch #crufts2017 https://t.co/v62DYcfxXm	not_humanitarian	not_humanitarian	0.9804	0.1166
+904393064936075264	Watch 'Teaming up for Texas' telethon with Coach Cal and the Cats on @WKYT from 3:30-6:30 pm https://t.co/RPRkIQxZSn https://t.co/LAwMFEfGqs	not_humanitarian	rescue_volunteering_or_donation_effort	0.5441	1.0551
+922107994741137410	@realDonaldTrump @DRUDGE How about getting some power to the American citizens in Puerto Rico, you hopeless asswipe? https://t.co/WxL9HoZH9o	other_relevant_information	not_humanitarian	0.9319	0.3289
+907439944792190981	RT @aliyahkorea: kill people burn shit fuck school 666 ofwgkta I punch bitches stop kony 2012 fuck Steve Harvey https://t.co/zJpJAipLG3	not_humanitarian	not_humanitarian	0.9264	0.337
+909938398835740672	"Not Irma anymore his name is ""Duke""·ΩâF https://t.co/6sk7kAo5Sa"	not_humanitarian	not_humanitarian	0.9844	0.095
+875266200657375232	Join us in the Clubhouse on Sunday 18th June for a special three course #FathersDay Lunch. https://t.co/W6kjxTVhNk https://t.co/X8O7TSlyqc	not_humanitarian	not_humanitarian	0.9926	0.0501
+906611279095267329	Oh snap, Darrell Issa https://t.co/eouEGXhxyL https://t.co/SLLOUxWV3l	not_humanitarian	not_humanitarian	0.9658	0.1945
+909401781024804864	"Twitter erupted over President Trump's ""Federal G"" tweet about Hurricane Irma https://t.co/RoN5NpBBRd https://t.co/PNsTsupQiI"	not_humanitarian	not_humanitarian	0.8763	0.4509
+909816824962912256	In hot weather, a power outage can be deadly. Check on friends, neighbors &amp; loved ones. https://t.co/jf5nFyx23f‚Ä¶ https://t.co/fzCqxa9U3I	not_humanitarian	not_humanitarian	0.7892	0.7675
+905538349942878210	i've never flown in one of these. what a beauty. #tornado https://t.co/p409X1OtLk	not_humanitarian	not_humanitarian	0.9899	0.067
+907623388516163584	One @MWDTSA volunteer (me) helping another for #HurricaneHarvey rescues @austinpetsalive. https://t.co/jlWHMfZlh8	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.9973	0.0238
+921711175347322880	California nurse flees wildfires #nurse #nurses #nurselife #nursepractitioner #nurseblog https://t.co/hON9LSAbtT https://t.co/wzQdEEKQb5	not_humanitarian	not_humanitarian	0.8767	0.5018
+916139171663765504	RT @ElenaRiosMD: Champions for Puerto Rico Medical Relief in NY #NHMA2017 @NHMAmd @NHMACYP @The_NHHF @NHMACOR https://t.co/N4MSfAbJZ8	not_humanitarian	not_humanitarian	0.8938	0.4806
+870554787187765248	ON AIR sur https://t.co/7I5qQjd78C #NP FEDO MORA &amp; CAMURRI - AFTER THE RAIN Pochette : https://t.co/A3ZKX3cYCu	not_humanitarian	not_humanitarian	0.9832	0.0987
+910240347413872640	Image of the Week - Irma Churns Up Sediment in the Florida Keys https://t.co/3kUDP1qPpz #video https://t.co/kLSLi8uJ2M	other_relevant_information	not_humanitarian	0.9405	0.2914
+921707911478480896	Local sheriff smacks down Breitbart for bigoted lie about California wildfires https://t.co/q2H9Ap2TjW https://t.co/sYes3eyV1r	not_humanitarian	not_humanitarian	0.991	0.0626
+901663904266321920	#Breaking: #Tornado warning has been cancelled. Houston may see some tornadoes overnight tonight. #Harvey https://t.co/9nEJpevcDT	other_relevant_information	other_relevant_information	0.6567	0.7544
+930415579294584834	Iran: Survivors struggle in aftermath of year's most deadly earthquake - https://t.co/NvSfzIjJ2m https://t.co/jSs0B4PxMZ	affected_individuals	affected_individuals	0.9646	0.1822
+923088359089688577	#LosAngelesTimes | The package includes $576.5 million for #California wildfire... https://t.co/3GriBzlih6 https://t.co/CogcFiLJ5K	not_humanitarian	not_humanitarian	0.6033	1.143
+910670262789709824	S A F E B O Y E S ready to look for people after earthquake in Mexico. https://t.co/1MFA8V5yLK	rescue_volunteering_or_donation_effort	rescue_volunteering_or_donation_effort	0.8912	0.4879
+921130711863631872	#thesciencemic NASA Map of Wildfire Damage Helps California Recovery Effort https://t.co/PVPXirJyWD #science https://t.co/8FMvQYEtJO	other_relevant_information	other_relevant_information	0.677	0.9955
+904549453058715648	#Harvey damage could reach $180 billion - https://t.co/KageOMl06l https://t.co/mjqouB1jpI	infrastructure_and_utility_damage	other_relevant_information	0.5261	0.9357

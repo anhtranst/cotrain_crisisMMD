@@ -221,7 +221,7 @@ data/pseudo_labelled/{model}/{task}/{modality}/train_pred.tsv
 
 Where `{model}` is `llama-3.2-11b` or `qwen2.5-vl-7b`.
 
-Columns: `tweet_id`, `tweet_text`, `predicted_label`, `confidence`
+Columns vary by modality (`tweet_id`/`image_id`, `tweet_text`, `image_path`, `predicted_label`, `confidence`). Confidence scores are carried over from the zero-shot model's softmax output.
 
 ---
 
