@@ -5,7 +5,7 @@
 > **Dashboard** — View dataset exploration and experiment results: [results/dashboard.html](https://htmlpreview.github.io/?https://github.com/anhtranst/cotrain_crisisMMD/blob/main/results/dashboard.html)
 > _(Rebuild anytime with `python scripts/dashboard.py`)_
 
-A semi-supervised co-training pipeline that classifies crisis tweets. It combines a small set of human-labeled tweets with LLM pseudo-labeled tweets (e.g., from GPT-4o) using a 3-phase training approach with two models. Now adapted for the **CrisisMMD** dataset with support for three tasks and three modalities.
+A semi-supervised co-training pipeline that classifies crisis tweets and images. It combines a small set of human-labeled data with pseudo-labels from vision-language models (Llama-3.2-11B-Vision-Instruct, Qwen2.5-VL-7B-Instruct) using a 3-phase training approach with two models. Built on the **CrisisMMD agreed-label** dataset with support for two tasks and three modalities.
 
 ---
 
@@ -16,7 +16,7 @@ A semi-supervised co-training pipeline that classifies crisis tweets. It combine
   - [Phase 1 — Weight Generation](#phase-1--weight-generation)
   - [Phase 2 — Co-Training](#phase-2--co-training)
   - [Phase 3 — Fine-Tuning](#phase-3--fine-tuning)
-- [Dataset: CrisisMMD](#dataset-crisismmd-v20)
+- [Dataset: CrisisMMD](#dataset-crisismmd)
 - [Data Layout](#data-layout)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -40,7 +40,7 @@ During disasters, rapid classification of social media posts helps humanitarian 
 LG-CoTrain addresses this by:
 
 1. Starting with a **small set of human-labeled tweets** (as few as 5 per class)
-2. Using an **LLM (e.g., GPT-4o) to pseudo-label** a large pool of unlabeled tweets
+2. Using **vision-language models (Llama-3.2-11B, Qwen2.5-VL-7B) to pseudo-label** a large pool of unlabeled data
 3. Computing **per-sample reliability weights** that measure how trustworthy each pseudo-label is
 4. **Co-training two classifiers** that teach each other using these weighted pseudo-labels
 5. **Fine-tuning** on the small labeled set with early stopping
@@ -58,7 +58,7 @@ graph TD
     subgraph INPUT["INPUT DATA"]
         DL["D_labeled"] -->|split| DL1["D_l1 (half 1)"]
         DL -->|split| DL2["D_l2 (half 2)"]
-        DU["D_unlabeled + LLM pseudo-labels"] --> DLG["D_LG"]
+        DU["D_unlabeled + VLM pseudo-labels"] --> DLG["D_LG"]
         DDEV["D_dev (development set)"]
         DTEST["D_test (held-out test set)"]
     end
@@ -149,7 +149,7 @@ Six strategies are available via `--stopping-strategy`:
 
 ## Dataset: CrisisMMD
 
-The dataset contains tweets and images from **7 natural disasters** in 2017, with three annotation tasks:
+The dataset uses the **agreed-label subset** of CrisisMMD, containing tweets and images from **7 natural disasters** in 2017 where text and image annotators agreed on the label. Two annotation tasks:
 
 ### Tasks
 
@@ -160,27 +160,30 @@ The dataset contains tweets and images from **7 natural disasters** in 2017, wit
 
 ### Modalities
 
-| Modality | Description | Model |
+| Modality | Description | Co-training Model |
 | --- | --- | --- |
 | `text_only` | Tweet text, deduplicated by tweet_id | BERTweet (`vinai/bertweet-base`) |
-| `image_only` | One row per image_id | CLIP ViT (`openai/clip-vit-base-patch32`) — future |
-| `text_image` | Text + image paired | BERTweet + CLIP fusion — future |
+| `image_only` | One row per image_id | CLIP ViT (`openai/clip-vit-base-patch32`) |
+| `text_image` | Text + image paired | BERTweet + CLIP ViT fusion |
 
-Note: the dataset uses the agreed-label subset where text and image annotators agreed on the label.
+**Pseudo-label models** (zero-shot): Llama-3.2-11B-Vision-Instruct and Qwen2.5-VL-7B-Instruct are used to generate pseudo-labels across all modalities.
 
 ### Events (7 disasters, combined in one dataset)
 
 `california_wildfires`, `hurricane_harvey`, `hurricane_irma`, `hurricane_maria`, `iraq_iran_earthquake`, `mexico_earthquake`, `srilanka_floods`
 
-### Split Sizes (humanitarian/informative)
+### Split Sizes
 
-| Split | Rows (text_only) | Rows (image/text_image) |
-| --- | --- | --- |
-| Train | 11,584 | 13,608 |
-| Dev | 2,237 | 2,237 |
-| Test | 2,237 | 2,237 |
+| Task | Split | text_only | image_only / text_image |
+| --- | --- | --- | --- |
+| **informative** | Train | 8,293 | 9,601 |
+| | Dev | 1,573 | 1,573 |
+| | Test | 1,534 | 1,534 |
+| **humanitarian** | Train | 5,263 | 6,126 |
+| | Dev | 998 | 998 |
+| | Test | 955 | 955 |
 
-Each task/modality has **4 budget levels** (5, 10, 25, 50 labeled per class) and **3 seed sets**, giving **12 experiments per task/modality**. Best-effort sampling is used for rare classes (e.g., `missing_or_found_people` has only 28 text_only train samples).
+Each task/modality has **4 budget levels** (5, 10, 25, 50 labeled per class) and **3 seed sets**, giving **12 experiments per task/modality**. Best-effort sampling is used for rare classes (e.g., `affected_individuals` has only 70 text_only train samples).
 
 ---
 
@@ -242,7 +245,7 @@ pip install -r requirements.txt
 Convert raw CrisisMMD TSVs into per-task, per-modality datasets with budget splits:
 
 ```bash
-# Process all tasks (informative, humanitarian, damage)
+# Process all tasks (informative, humanitarian)
 python scripts/prepare_crisismmd.py
 
 # Process specific tasks
@@ -284,8 +287,8 @@ python -m lg_cotrain.run_experiment \
 ```bash
 python -m lg_cotrain.run_experiment \
     --task humanitarian --modality text_only \
-    --pseudo-label-source llama-3 \
-    --output-folder results/llama-3-run1
+    --pseudo-label-source qwen2.5-vl-7b \
+    --output-folder results/qwen-run1
 ```
 
 ### Hyperparameter Tuning with Optuna
@@ -345,9 +348,10 @@ python scripts/dashboard.py
 python scripts/dashboard.py --data-root data/ --results-root results/ --output results/dashboard.html
 ```
 
-The dashboard has two tabs:
+The dashboard has three tabs:
 - **Dataset Exploration** — class distributions per task/modality, event breakdown, budget split sizes with heat-map visualization
-- **Experiment Results** — all metrics with summary cards (appears when experiments have been run)
+- **Zero-Shot** — per-model summary cards (test-set averages), results tables grouped by modality with sortable columns and best/worst highlighting, per-class F1 heatmap. Sub-tabs for Informative and Humanitarian tasks
+- **Co-Training Results** — all co-training metrics (appears when experiments have been run)
 
 ### Zero-Shot Classification
 
@@ -384,7 +388,7 @@ python scripts/create_pseudo_labels.py --model qwen2.5-vl-7b
 
 | Option | Description | Default |
 | --- | --- | --- |
-| `--task` | Classification task (informative, humanitarian, damage) | `humanitarian` |
+| `--task` | Classification task (informative, humanitarian) | `humanitarian` |
 | `--modality` | Data modality (text_only, image_only, text_image) | `text_only` |
 | `--budget` | Single budget value (5, 10, 25, 50) | All budgets |
 | `--budgets` | One or more budget values | All budgets |
@@ -464,6 +468,7 @@ scripts/
 ├── zeroshot_llama.py                # Zero-shot classification with Llama-3.2-11B-Vision-Instruct
 ├── zeroshot_qwen.py                 # Zero-shot classification with Qwen2.5-VL-7B-Instruct
 ├── create_pseudo_labels.py          # Convert zero-shot predictions to pseudo-label TSVs
+├── backfill_metrics.py              # Backfill avg_confidence/entropy into existing metrics.json
 ├── check_progress.py                # Standalone Optuna progress checker (study.log scanner)
 ├── extract_optuna_test_results.py   # Extract best Optuna params + test metrics
 └── merge_optuna_results.py          # Merge Optuna results from multiple PCs
@@ -522,7 +527,7 @@ python -m unittest tests/test_data_loading.py
 ## Design Decisions
 
 - **Task/modality-based experiments**: Experiments are organized by `(task, modality, budget, seed_set)` instead of per-event, matching CrisisMMD's all-events-combined structure.
-- **BERTweet as default model**: `vinai/bertweet-base` is the default text model, optimized for tweets. Uses `AutoModelForSequenceClassification` and `AutoTokenizer` for model-agnostic support.
+- **BERTweet as default text model**: `vinai/bertweet-base` for text-only co-training, optimized for tweets. CLIP ViT (`openai/clip-vit-base-patch32`) as default image model. Uses `AutoModelForSequenceClassification` and `AutoTokenizer` for model-agnostic support.
 - **Per-task label sets**: `TASK_LABELS` dict in `data_loading.py` maps each task to its label set. `CLASS_LABELS` defaults to the humanitarian task for backward compatibility.
 - **Lazy imports**: `data_loading.py` uses lazy imports for `torch`/`transformers`/`pandas` so pure-Python modules work without ML dependencies.
 - **Dynamic class detection**: `detect_classes()` computes the union of classes across all data splits, ensuring no class at test time is missed.
