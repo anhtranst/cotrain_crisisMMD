@@ -529,6 +529,12 @@ def run_zeroshot(
         for label, f in zip(labels_sorted, per_class_f1)
     }
 
+    # Average confidence and entropy across all predictions
+    conf_vals = [p["confidence"] for p in predictions if p.get("confidence")]
+    ent_vals = [p["entropy"] for p in predictions if p.get("entropy")]
+    avg_conf = round(sum(conf_vals) / len(conf_vals), 4) if conf_vals else 0.0
+    avg_ent = round(sum(ent_vals) / len(ent_vals), 4) if ent_vals else 0.0
+
     metrics = {
         "task": task,
         "modality": modality,
@@ -543,6 +549,8 @@ def run_zeroshot(
         "macro_precision": round(float(m_prec), 4),
         "macro_recall": round(float(m_rec), 4),
         "macro_f1": round(float(m_f1), 4),
+        "avg_confidence": avg_conf,
+        "avg_entropy": avg_ent,
         "per_class_f1": per_class_f1_dict,
     }
 

@@ -15,5 +15,7 @@
   "per_class_f1": {
     "informative": 0.7145,
     "not_informative": 0.6509
-  }
+  },
+  "avg_confidence": 0.8543,
+  "avg_entropy": 0.3305
 }

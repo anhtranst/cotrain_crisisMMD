@@ -18,5 +18,7 @@
     "not_humanitarian": 0.8122,
     "other_relevant_information": 0.6571,
     "rescue_volunteering_or_donation_effort": 0.8134
-  }
+  },
+  "avg_confidence": 0.8412,
+  "avg_entropy": 0.4528
 }

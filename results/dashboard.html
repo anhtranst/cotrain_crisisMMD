@@ -166,6 +166,42 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 .empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .empty-state p { max-width: 400px; margin: 0 auto; }
 
+/* Sub-tabs (within a tab) */
+.sub-tab-bar {
+    display: flex; gap: 0; margin: 0 0 16px; border-bottom: 2px solid var(--border);
+}
+.sub-tab-bar button {
+    padding: 8px 20px; border: none; background: none; cursor: pointer;
+    font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all .15s;
+}
+.sub-tab-bar button:hover { background: var(--accent-bg); }
+.sub-tab-bar button.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.sub-tab-content { display: none; }
+.sub-tab-content.active { display: block; }
+
+/* Model header for per-model card rows */
+.model-header {
+    font-size: 14px; font-weight: 600; color: var(--text-secondary);
+    margin: 20px 0 8px; padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+}
+.model-header:first-child { margin-top: 0; }
+.model-header code { font-size: 13px; color: var(--accent); background: var(--accent-bg); padding: 2px 8px; border-radius: 4px; }
+.model-header .tag { font-size: 11px; color: var(--text-secondary); font-weight: 400; }
+
+/* Sortable table headers */
+th.sortable { cursor: pointer; user-select: none; position: relative; }
+th.sortable:hover { background: var(--accent-bg); }
+th.sortable::after { content: ' \2195'; font-size: 10px; opacity: .4; }
+th.sortable.sort-asc::after { content: ' \25B2'; opacity: .8; }
+th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
+
+/* Best/worst cell highlighting */
+.cell-best { background: #d1fae5; font-weight: 600; }
+.cell-worst { background: #fee2e2; }
+
 /* Responsive */
 @media (max-width: 768px) {
     header, .tab-bar, .tab-content { padding-left: 20px; padding-right: 20px; }
@@ -177,17 +213,16 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <header>
     <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
-        Generated <span>2026-03-30 18:33:36</span> &bull;
+        Generated <span>2026-04-01 11:05:00</span> &bull;
         <span>2 tasks</span> &bull;
         <span>3 modalities</span> &bull;
-        <span>15 experiments</span>
+        <span>24 experiments</span>
     </p>
 </header>
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
-    <button onclick="showTab('tab-zs-informative', this)">&#x1F4CB; Informative <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">9</span></button>
-    <button onclick="showTab('tab-zs-humanitarian', this)">&#x1F6D1; Humanitarian <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">6</span></button>
+    <button onclick="showTab('tab-zeroshot', this)">&#x1F50E; Zero-Shot <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">24</span></button>
     <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results</button>
 </nav>
 
@@ -196,8 +231,8 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
     <div class="cards">
         <div class="card">
             <div class="icon">&#x1F30D;</div>
-            <div class="value">0</div>
-            <div class="label">Disaster Events</div>
+            <div class="value">7</div>
+            <div class="label">Combined Events</div>
         </div>
         <div class="card">
             <div class="icon">&#x1F4CA;</div>
@@ -410,7 +445,7 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <td class="hm hm-1">25</td>
 <td class="hm hm-1">45</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-1">20</td>
+<td class="hm hm-1">20 <span style="color:var(--danger);font-size:10px" title="Unlabeled samples fewer than budget">&#x26A0;</span></td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
 <td class="hm hm-3">496</td>
@@ -499,7 +534,7 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <td class="hm hm-1">25</td>
 <td class="hm hm-1">46</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-1">21</td>
+<td class="hm hm-1">21 <span style="color:var(--danger);font-size:10px" title="Unlabeled samples fewer than budget">&#x26A0;</span></td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
 <td class="hm hm-3">612</td>
@@ -588,7 +623,7 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 <td class="hm hm-1">25</td>
 <td class="hm hm-1">46</td>
 <td class="hm hm-1">50</td>
-<td class="hm hm-1">21</td>
+<td class="hm hm-1">21 <span style="color:var(--danger);font-size:10px" title="Unlabeled samples fewer than budget">&#x26A0;</span></td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
 <td class="hm hm-3">612</td>
@@ -661,127 +696,237 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
     <div class="note">
         <div class="note-icon">&#x1F4DD;</div>
         <div class="note-body">
-            <strong>Label source notes:</strong>
-            For informative and humanitarian tasks, <code>text_only</code> and <code>text_image</code>
-            use <code>label_text</code> (text annotation), while <code>image_only</code> uses
-            <code>label_image</code> (image annotation). For the damage task, all modalities use the
-            single <code>label</code> column.
+            <strong>Dataset notes:</strong>
+            This dataset uses the <strong>CrisisMMD agreed-label subset</strong> where text and image
+            annotators agreed on the label. Labels are from <code>class_label</code> (unified column
+            after preprocessing). Two tasks: informative (2 classes) and humanitarian (5 classes),
+            across 7 combined disaster events.
             Budget columns (L5, U5, etc.) show seed=1 splits. <strong>L</strong> = labeled,
-            <strong>U</strong> = unlabeled. &#x26A0; marks classes with &lt;1% of training data.
+            <strong>U</strong> = unlabeled. &#x26A0; marks unlabeled splits where the remaining
+            samples are fewer than the budget (e.g., only 20 unlabeled samples at budget=50).
         </div>
     </div>
     
 </div>
 
-<div id="tab-zs-informative" class="tab-content">
-
-    <div class="cards">
-        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">9</div><div class="label">Experiments</div></div>
-        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8268</div><div class="label">Avg Accuracy</div></div>
-        <div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.8202</div><div class="label">Avg Weighted F1</div></div>
-        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.7934</div><div class="label">Avg Macro F1</div></div>
-    </div>
-    
+<div id="tab-zeroshot" class="tab-content">
+<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('tab-zeroshot','sub-zs-informative',this)">&#x1F4CB; Informative</button><button class="" onclick="showSubTab('tab-zeroshot','sub-zs-humanitarian',this)">&#x1F6D1; Humanitarian</button></nav>
+<div id="sub-zs-informative" class="sub-tab-content active">
+<div class="model-header"><code>llama-3.2-11b</code> <span class="tag">Test Set Averages</span></div>
+<div class="cards">
+<div class="card"><div class="icon">&#x1F9EA;</div><div class="value">3</div><div class="label">Experiments</div></div>
+<div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8398</div><div class="label">Avg Accuracy</div></div>
+<div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.8295</div><div class="label">Avg Weighted F1</div></div>
+<div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.7982</div><div class="label">Avg Macro F1</div></div>
+<div class="card"><div class="icon">&#x1F512;</div><div class="value">0.8103</div><div class="label">Avg Confidence</div></div>
+</div>
+<div class="model-header"><code>qwen2.5-vl-7b</code> <span class="tag">Test Set Averages</span></div>
+<div class="cards">
+<div class="card"><div class="icon">&#x1F9EA;</div><div class="value">3</div><div class="label">Experiments</div></div>
+<div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8053</div><div class="label">Avg Accuracy</div></div>
+<div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.8050</div><div class="label">Avg Weighted F1</div></div>
+<div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.7844</div><div class="label">Avg Macro F1</div></div>
+<div class="card"><div class="icon">&#x1F512;</div><div class="value">0.9022</div><div class="label">Avg Confidence</div></div>
+</div>
 <div class="section">
-<div class="section-header"><h2>&#x1F4CB; Results by Modality &amp; Split</h2><div class="tag">Zero-Shot &mdash; Llama-3.2-11B-Vision</div></div>
-<table><thead>
-        <tr><th>Model</th><th>Modality</th><th>Split</th><th class="num">Samples</th>
-        <th class="num">Accuracy</th><th class="num">Weighted F1</th>
-        <th class="num">Macro F1</th><th class="num">Unparseable</th></tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>test</td><td class="num">1,534</td><td class="num">0.8605</td><td class="num">0.8546</td><td class="num"><span class="badge badge-success">0.8297</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>train</td><td class="num">9,601</td><td class="num">0.8591</td><td class="num">0.8537</td><td class="num"><span class="badge badge-success">0.8320</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>test</td><td class="num">1,534</td><td class="num">0.8233</td><td class="num">0.8027</td><td class="num"><span class="badge badge-success">0.7607</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>train</td><td class="num">9,601</td><td class="num">0.8248</td><td class="num">0.8069</td><td class="num"><span class="badge badge-success">0.7713</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>test</td><td class="num">1,534</td><td class="num">0.8383</td><td class="num">0.8337</td><td class="num"><span class="badge badge-success">0.8070</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>train</td><td class="num">8,293</td><td class="num">0.8194</td><td class="num">0.8150</td><td class="num"><span class="badge badge-success">0.7869</span></td><td class="num">0</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td>&#x1F5BC; Image Only</td><td>test</td><td class="num">1,534</td><td class="num">0.8729</td><td class="num">0.8717</td><td class="num"><span class="badge badge-success">0.8533</span></td><td class="num">0</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td>&#x1F4F7; Text Image</td><td>test</td><td class="num">1,534</td><td class="num">0.8403</td><td class="num">0.8321</td><td class="num"><span class="badge badge-success">0.8025</span></td><td class="num">0</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td>&#x1F4DD; Text Only</td><td>test</td><td class="num">1,534</td><td class="num">0.7027</td><td class="num">0.7112</td><td class="num"><span class="badge badge-success">0.6975</span></td><td class="num">0</td></tr>
+<div class="section-header"><h2>&#x1F4DD; Text Only</h2></div>
+<table id="zs-table-1"><thead><tr>
+<th class="sortable" onclick="sortTable('zs-table-1',0)">Model</th>
+<th class="sortable" onclick="sortTable('zs-table-1',1)">Split</th>
+<th class="num sortable" onclick="sortTable('zs-table-1',2)">Samples</th>
+<th class="num sortable" onclick="sortTable('zs-table-1',3)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-1',4)">Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-1',5)">Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-1',6)">Weighted F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-1',7)">Macro F1</th>
+</tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="83.57">83.57</td><td class="num" data-val="83.32">83.32</td><td class="num" data-val="83.57">83.57</td><td class="num" data-val="83.11">83.11</td><td class="num" data-val="80.41">80.41</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="70.27">70.27</td><td class="num" data-val="78.25">78.25</td><td class="num" data-val="70.27">70.27</td><td class="num" data-val="71.12">71.12</td><td class="num" data-val="69.75">69.75</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="81.84">81.84</td><td class="num" data-val="81.48">81.48</td><td class="num" data-val="81.84">81.84</td><td class="num" data-val="81.41">81.41</td><td class="num" data-val="78.60">78.60</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="68.59">68.59</td><td class="num" data-val="77.99">77.99</td><td class="num" data-val="68.59">68.59</td><td class="num" data-val="69.34">69.34</td><td class="num" data-val="68.27">68.27</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h2>&#x1F5BC; Image Only</h2></div>
+<table id="zs-table-2"><thead><tr>
+<th class="sortable" onclick="sortTable('zs-table-2',0)">Model</th>
+<th class="sortable" onclick="sortTable('zs-table-2',1)">Split</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',2)">Samples</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',3)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',4)">Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',5)">Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',6)">Weighted F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',7)">Macro F1</th>
+</tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="86.05">86.05</td><td class="num" data-val="86.30">86.30</td><td class="num" data-val="86.05">86.05</td><td class="num" data-val="85.46">85.46</td><td class="num" data-val="82.97">82.97</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="87.29">87.29</td><td class="num" data-val="87.15">87.15</td><td class="num" data-val="87.29">87.29</td><td class="num" data-val="87.17">87.17</td><td class="num" data-val="85.33">85.33</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="85.91">85.91</td><td class="num" data-val="86.16">86.16</td><td class="num" data-val="85.91">85.91</td><td class="num" data-val="85.37">85.37</td><td class="num" data-val="83.20">83.20</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="87.27">87.27</td><td class="num" data-val="87.14">87.14</td><td class="num" data-val="87.27">87.27</td><td class="num" data-val="87.14">87.14</td><td class="num" data-val="85.53">85.53</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h2>&#x1F4F7; Text Image</h2></div>
+<table id="zs-table-3"><thead><tr>
+<th class="sortable" onclick="sortTable('zs-table-3',0)">Model</th>
+<th class="sortable" onclick="sortTable('zs-table-3',1)">Split</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',2)">Samples</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',3)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',4)">Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',5)">Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',6)">Weighted F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',7)">Macro F1</th>
+</tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="82.33">82.33</td><td class="num" data-val="85.39">85.39</td><td class="num" data-val="82.33">82.33</td><td class="num" data-val="80.27">80.27</td><td class="num" data-val="76.07">76.07</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="84.03">84.03</td><td class="num" data-val="84.28">84.28</td><td class="num" data-val="84.03">84.03</td><td class="num" data-val="83.21">83.21</td><td class="num" data-val="80.25">80.25</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="82.48">82.48</td><td class="num" data-val="85.19">85.19</td><td class="num" data-val="82.48">82.48</td><td class="num" data-val="80.69">80.69</td><td class="num" data-val="77.13">77.13</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="84.22">84.22</td><td class="num" data-val="84.65">84.65</td><td class="num" data-val="84.22">84.22</td><td class="num" data-val="83.44">83.44</td><td class="num" data-val="80.85">80.85</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>
 <table><thead><tr><th>Class</th>
-<th class="num">llama-3.2-11b<br>&#x1F5BC; Image Only</th>
-<th class="num">llama-3.2-11b<br>&#x1F4F7; Text Image</th>
 <th class="num">llama-3.2-11b<br>&#x1F4DD; Text Only</th>
-<th class="num">qwen2.5-vl-7b<br>&#x1F5BC; Image Only</th>
-<th class="num">qwen2.5-vl-7b<br>&#x1F4F7; Text Image</th>
 <th class="num">qwen2.5-vl-7b<br>&#x1F4DD; Text Only</th>
+<th class="num">llama-3.2-11b<br>&#x1F5BC; Image Only</th>
+<th class="num">qwen2.5-vl-7b<br>&#x1F5BC; Image Only</th>
+<th class="num">llama-3.2-11b<br>&#x1F4F7; Text Image</th>
+<th class="num">qwen2.5-vl-7b<br>&#x1F4F7; Text Image</th>
 </tr></thead><tbody>
 <tr><td><code>informative</code></td>
-<td class="hm hm-5">0.9021</td>
-<td class="hm hm-5">0.8831</td>
-<td class="hm hm-5">0.8848</td>
-<td class="hm hm-5">0.9069</td>
-<td class="hm hm-5">0.8889</td>
+<td class="hm hm-5">0.8828</td>
 <td class="hm hm-5">0.7373</td>
+<td class="hm hm-5">0.9021</td>
+<td class="hm hm-5">0.9069</td>
+<td class="hm hm-5">0.8831</td>
+<td class="hm hm-5">0.8889</td>
 </tr>
 <tr><td><code>not_informative</code></td>
-<td class="hm hm-5">0.7574</td>
-<td class="hm hm-5">0.6382</td>
-<td class="hm hm-5">0.7293</td>
-<td class="hm hm-5">0.7996</td>
-<td class="hm hm-5">0.7161</td>
+<td class="hm hm-5">0.7255</td>
 <td class="hm hm-5">0.6577</td>
+<td class="hm hm-5">0.7574</td>
+<td class="hm hm-5">0.7996</td>
+<td class="hm hm-5">0.6382</td>
+<td class="hm hm-5">0.7161</td>
 </tr>
 </tbody></table></div>
 </div>
-
-<div id="tab-zs-humanitarian" class="tab-content">
-
-    <div class="cards">
-        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">6</div><div class="label">Experiments</div></div>
-        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.7537</div><div class="label">Avg Accuracy</div></div>
-        <div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.7484</div><div class="label">Avg Weighted F1</div></div>
-        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.6284</div><div class="label">Avg Macro F1</div></div>
-    </div>
-    
+<div id="sub-zs-humanitarian" class="sub-tab-content">
+<div class="model-header"><code>llama-3.2-11b</code> <span class="tag">Test Set Averages</span></div>
+<div class="cards">
+<div class="card"><div class="icon">&#x1F9EA;</div><div class="value">3</div><div class="label">Experiments</div></div>
+<div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.7497</div><div class="label">Avg Accuracy</div></div>
+<div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.7438</div><div class="label">Avg Weighted F1</div></div>
+<div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.6188</div><div class="label">Avg Macro F1</div></div>
+<div class="card"><div class="icon">&#x1F512;</div><div class="value">0.5984</div><div class="label">Avg Confidence</div></div>
+</div>
+<div class="model-header"><code>qwen2.5-vl-7b</code> <span class="tag">Test Set Averages</span></div>
+<div class="cards">
+<div class="card"><div class="icon">&#x1F9EA;</div><div class="value">3</div><div class="label">Experiments</div></div>
+<div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.7532</div><div class="label">Avg Accuracy</div></div>
+<div class="card"><div class="icon">&#x1F4CA;</div><div class="value">0.7440</div><div class="label">Avg Weighted F1</div></div>
+<div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.6379</div><div class="label">Avg Macro F1</div></div>
+<div class="card"><div class="icon">&#x1F512;</div><div class="value">0.8550</div><div class="label">Avg Confidence</div></div>
+</div>
 <div class="section">
-<div class="section-header"><h2>&#x1F4CB; Results by Modality &amp; Split</h2><div class="tag">Zero-Shot &mdash; Llama-3.2-11B-Vision</div></div>
-<table><thead>
-        <tr><th>Model</th><th>Modality</th><th>Split</th><th class="num">Samples</th>
-        <th class="num">Accuracy</th><th class="num">Weighted F1</th>
-        <th class="num">Macro F1</th><th class="num">Unparseable</th></tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>test</td><td class="num">955</td><td class="num">0.7654</td><td class="num">0.7571</td><td class="num"><span class="badge badge-success">0.6275</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F5BC; Image Only</td><td>train</td><td class="num">6,126</td><td class="num">0.7729</td><td class="num">0.7679</td><td class="num"><span class="badge badge-success">0.6694</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>test</td><td class="num">955</td><td class="num">0.7424</td><td class="num">0.7360</td><td class="num"><span class="badge badge-success">0.5947</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4F7; Text Image</td><td>train</td><td class="num">6,126</td><td class="num">0.7613</td><td class="num">0.7567</td><td class="num"><span class="badge badge-success">0.6292</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>test</td><td class="num">955</td><td class="num">0.7424</td><td class="num">0.7393</td><td class="num"><span class="badge badge-success">0.6320</span></td><td class="num">0</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td>&#x1F4DD; Text Only</td><td>train</td><td class="num">5,263</td><td class="num">0.7376</td><td class="num">0.7332</td><td class="num"><span class="badge badge-success">0.6178</span></td><td class="num">0</td></tr>
+<div class="section-header"><h2>&#x1F4DD; Text Only</h2></div>
+<table id="zs-table-4"><thead><tr>
+<th class="sortable" onclick="sortTable('zs-table-4',0)">Model</th>
+<th class="sortable" onclick="sortTable('zs-table-4',1)">Split</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',2)">Samples</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',3)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',4)">Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',5)">Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',6)">Weighted F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',7)">Macro F1</th>
+</tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="74.14">74.14</td><td class="num" data-val="78.36">78.36</td><td class="num" data-val="74.14">74.14</td><td class="num" data-val="73.82">73.82</td><td class="num" data-val="63.43">63.43</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="71.10">71.10</td><td class="num" data-val="73.03">73.03</td><td class="num" data-val="71.10">71.10</td><td class="num" data-val="69.27">69.27</td><td class="num" data-val="58.48">58.48</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="78.36">78.36</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="73.24">73.24</td><td class="num" data-val="61.65">61.65</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="72.54">72.54</td><td class="num" data-val="73.62">73.62</td><td class="num" data-val="72.54">72.54</td><td class="num" data-val="70.57">70.57</td><td class="num" data-val="63.19">63.19</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h2>&#x1F5BC; Image Only</h2></div>
+<table id="zs-table-5"><thead><tr>
+<th class="sortable" onclick="sortTable('zs-table-5',0)">Model</th>
+<th class="sortable" onclick="sortTable('zs-table-5',1)">Split</th>
+<th class="num sortable" onclick="sortTable('zs-table-5',2)">Samples</th>
+<th class="num sortable" onclick="sortTable('zs-table-5',3)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-5',4)">Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-5',5)">Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-5',6)">Weighted F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-5',7)">Macro F1</th>
+</tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="76.54">76.54</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="76.54">76.54</td><td class="num" data-val="75.71">75.71</td><td class="num" data-val="62.75">62.75</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="78.93">78.93</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="76.81">76.81</td><td class="num" data-val="65.93">65.93</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="77.29">77.29</td><td class="num" data-val="77.59">77.59</td><td class="num" data-val="77.29">77.29</td><td class="num" data-val="76.79">76.79</td><td class="num" data-val="66.94">66.94</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="77.96">77.96</td><td class="num" data-val="79.03">79.03</td><td class="num" data-val="77.96">77.96</td><td class="num" data-val="77.46">77.46</td><td class="num" data-val="69.56">69.56</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h2>&#x1F4F7; Text Image</h2></div>
+<table id="zs-table-6"><thead><tr>
+<th class="sortable" onclick="sortTable('zs-table-6',0)">Model</th>
+<th class="sortable" onclick="sortTable('zs-table-6',1)">Split</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',2)">Samples</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',3)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',4)">Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',5)">Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',6)">Weighted F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',7)">Macro F1</th>
+</tr></thead><tbody>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="74.24">74.24</td><td class="num" data-val="76.07">76.07</td><td class="num" data-val="74.24">74.24</td><td class="num" data-val="73.60">73.60</td><td class="num" data-val="59.47">59.47</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="77.70">77.70</td><td class="num" data-val="78.39">78.39</td><td class="num" data-val="77.70">77.70</td><td class="num" data-val="77.12">77.12</td><td class="num" data-val="66.97">66.97</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="76.13">76.13</td><td class="num" data-val="78.63">78.63</td><td class="num" data-val="76.13">76.13</td><td class="num" data-val="75.67">75.67</td><td class="num" data-val="62.92">62.92</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="79.51">79.51</td><td class="num" data-val="80.34">80.34</td><td class="num" data-val="79.51">79.51</td><td class="num" data-val="78.94">78.94</td><td class="num" data-val="73.58">73.58</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>
 <table><thead><tr><th>Class</th>
-<th class="num">llama-3.2-11b<br>&#x1F5BC; Image Only</th>
-<th class="num">llama-3.2-11b<br>&#x1F4F7; Text Image</th>
 <th class="num">llama-3.2-11b<br>&#x1F4DD; Text Only</th>
+<th class="num">qwen2.5-vl-7b<br>&#x1F4DD; Text Only</th>
+<th class="num">llama-3.2-11b<br>&#x1F5BC; Image Only</th>
+<th class="num">qwen2.5-vl-7b<br>&#x1F5BC; Image Only</th>
+<th class="num">llama-3.2-11b<br>&#x1F4F7; Text Image</th>
+<th class="num">qwen2.5-vl-7b<br>&#x1F4F7; Text Image</th>
 </tr></thead><tbody>
 <tr><td><code>affected_individuals</code></td>
+<td class="hm hm-4">0.4615</td>
+<td class="hm hm-3">0.2424</td>
 <td class="hm hm-4">0.3200</td>
+<td class="hm hm-3">0.2963</td>
 <td class="hm hm-3">0.2727</td>
-<td class="hm hm-4">0.4444</td>
+<td class="hm hm-4">0.3529</td>
 </tr>
 <tr><td><code>infrastructure_and_utility_damage</code></td>
-<td class="hm hm-5">0.6795</td>
-<td class="hm hm-4">0.4860</td>
 <td class="hm hm-4">0.4272</td>
+<td class="hm hm-5">0.6240</td>
+<td class="hm hm-5">0.6795</td>
+<td class="hm hm-5">0.7681</td>
+<td class="hm hm-4">0.4860</td>
+<td class="hm hm-5">0.7176</td>
 </tr>
 <tr><td><code>not_humanitarian</code></td>
+<td class="hm hm-5">0.8122</td>
+<td class="hm hm-5">0.7857</td>
 <td class="hm hm-5">0.8348</td>
+<td class="hm hm-5">0.8197</td>
 <td class="hm hm-5">0.8170</td>
-<td class="hm hm-5">0.8134</td>
+<td class="hm hm-5">0.8276</td>
 </tr>
 <tr><td><code>other_relevant_information</code></td>
-<td class="hm hm-5">0.7349</td>
-<td class="hm hm-5">0.6707</td>
 <td class="hm hm-5">0.6571</td>
+<td class="hm hm-4">0.4828</td>
+<td class="hm hm-5">0.7349</td>
+<td class="hm hm-5">0.7115</td>
+<td class="hm hm-5">0.6707</td>
+<td class="hm hm-5">0.6916</td>
 </tr>
 <tr><td><code>rescue_volunteering_or_donation_effort</code></td>
+<td class="hm hm-5">0.8134</td>
+<td class="hm hm-5">0.7889</td>
 <td class="hm hm-5">0.5685</td>
+<td class="hm hm-5">0.7009</td>
 <td class="hm hm-5">0.7273</td>
-<td class="hm hm-5">0.8178</td>
+<td class="hm hm-5">0.7586</td>
 </tr>
 </tbody></table></div>
+</div>
 </div>
 
 <div id="tab-results" class="tab-content">
@@ -802,12 +947,93 @@ function showTab(tabId, btn) {
     btn.classList.add('active');
 }
 
+function showSubTab(parentId, tabId, btn) {
+    var parent = document.getElementById(parentId);
+    parent.querySelectorAll('.sub-tab-content').forEach(function(el) { el.classList.remove('active'); });
+    parent.querySelectorAll('.sub-tab-bar button').forEach(function(b) { b.classList.remove('active'); });
+    parent.querySelector('#' + tabId).classList.add('active');
+    btn.classList.add('active');
+}
+
 function toggleCollapse(id) {
     const body = document.getElementById(id);
     const toggle = body.previousElementSibling;
     body.classList.toggle('open');
     toggle.classList.toggle('open');
 }
+
+function sortTable(tableId, colIdx) {
+    var table = document.getElementById(tableId);
+    var tbody = table.querySelector('tbody');
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    var th = table.querySelectorAll('thead th')[colIdx];
+
+    // Determine sort direction
+    var asc = !th.classList.contains('sort-asc');
+    table.querySelectorAll('thead th').forEach(function(h) {
+        h.classList.remove('sort-asc', 'sort-desc');
+    });
+    th.classList.add(asc ? 'sort-asc' : 'sort-desc');
+
+    rows.sort(function(a, b) {
+        var aVal = a.cells[colIdx].getAttribute('data-val') || a.cells[colIdx].textContent.trim();
+        var bVal = b.cells[colIdx].getAttribute('data-val') || b.cells[colIdx].textContent.trim();
+        var aNum = parseFloat(aVal), bNum = parseFloat(bVal);
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+            return asc ? aNum - bNum : bNum - aNum;
+        }
+        return asc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+    });
+    rows.forEach(function(row) { tbody.appendChild(row); });
+    highlightBestWorst(tableId);
+}
+
+function highlightBestWorst(tableId) {
+    var table = document.getElementById(tableId);
+    var tbody = table.querySelector('tbody');
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    var numCols = rows.length > 0 ? rows[0].cells.length : 0;
+
+    // Clear existing highlights
+    rows.forEach(function(r) {
+        Array.from(r.cells).forEach(function(c) {
+            c.classList.remove('cell-best', 'cell-worst');
+        });
+    });
+
+    // Group rows by split (column index 1)
+    var splitGroups = {};
+    rows.forEach(function(row) {
+        var split = row.cells[1].textContent.trim();
+        if (!splitGroups[split]) splitGroups[split] = [];
+        splitGroups[split].push(row);
+    });
+
+    // For each numeric column (index 3+), find best/worst per split
+    for (var col = 3; col < numCols; col++) {
+        for (var split in splitGroups) {
+            var group = splitGroups[split];
+            if (group.length < 2) continue;
+            var vals = group.map(function(r) {
+                return { row: r, val: parseFloat(r.cells[col].getAttribute('data-val') || r.cells[col].textContent) };
+            }).filter(function(v) { return !isNaN(v.val); });
+            if (vals.length < 2) continue;
+            var best = vals.reduce(function(a, b) { return a.val > b.val ? a : b; });
+            var worst = vals.reduce(function(a, b) { return a.val < b.val ? a : b; });
+            if (best.val !== worst.val) {
+                best.row.cells[col].classList.add('cell-best');
+                worst.row.cells[col].classList.add('cell-worst');
+            }
+        }
+    }
+}
+
+// Run highlighting on page load for all zeroshot tables
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('table[id^="zs-table-"]').forEach(function(t) {
+        highlightBestWorst(t.id);
+    });
+});
 </script>
 </body>
 </html>

@@ -12,13 +12,9 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-if __package__ is None or __package__ == "":
-    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from lg_cotrain.data_loading import TASK_LABELS
-    from lg_cotrain.run_all import BUDGETS, SEED_SETS
-else:
-    from .data_loading import TASK_LABELS
-    from .run_all import BUDGETS, SEED_SETS
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from lg_cotrain.data_loading import TASK_LABELS
+from lg_cotrain.run_all import BUDGETS, SEED_SETS
 
 TASKS = ["informative", "humanitarian"]
 MODALITIES = ["text_only", "image_only", "text_image"]
@@ -311,6 +307,42 @@ td code { font-size: 12px; padding: 2px 6px; background: #f1f5f9; border-radius:
 .empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .empty-state p { max-width: 400px; margin: 0 auto; }
 
+/* Sub-tabs (within a tab) */
+.sub-tab-bar {
+    display: flex; gap: 0; margin: 0 0 16px; border-bottom: 2px solid var(--border);
+}
+.sub-tab-bar button {
+    padding: 8px 20px; border: none; background: none; cursor: pointer;
+    font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all .15s;
+}
+.sub-tab-bar button:hover { background: var(--accent-bg); }
+.sub-tab-bar button.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.sub-tab-content { display: none; }
+.sub-tab-content.active { display: block; }
+
+/* Model header for per-model card rows */
+.model-header {
+    font-size: 14px; font-weight: 600; color: var(--text-secondary);
+    margin: 20px 0 8px; padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+}
+.model-header:first-child { margin-top: 0; }
+.model-header code { font-size: 13px; color: var(--accent); background: var(--accent-bg); padding: 2px 8px; border-radius: 4px; }
+.model-header .tag { font-size: 11px; color: var(--text-secondary); font-weight: 400; }
+
+/* Sortable table headers */
+th.sortable { cursor: pointer; user-select: none; position: relative; }
+th.sortable:hover { background: var(--accent-bg); }
+th.sortable::after { content: ' \2195'; font-size: 10px; opacity: .4; }
+th.sortable.sort-asc::after { content: ' \25B2'; opacity: .8; }
+th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
+
+/* Best/worst cell highlighting */
+.cell-best { background: #d1fae5; font-weight: 600; }
+.cell-worst { background: #fee2e2; }
+
 /* Responsive */
 @media (max-width: 768px) {
     header, .tab-bar, .tab-content { padding-left: 20px; padding-right: 20px; }
@@ -331,12 +363,93 @@ function showTab(tabId, btn) {
     btn.classList.add('active');
 }
 
+function showSubTab(parentId, tabId, btn) {
+    var parent = document.getElementById(parentId);
+    parent.querySelectorAll('.sub-tab-content').forEach(function(el) { el.classList.remove('active'); });
+    parent.querySelectorAll('.sub-tab-bar button').forEach(function(b) { b.classList.remove('active'); });
+    parent.querySelector('#' + tabId).classList.add('active');
+    btn.classList.add('active');
+}
+
 function toggleCollapse(id) {
     const body = document.getElementById(id);
     const toggle = body.previousElementSibling;
     body.classList.toggle('open');
     toggle.classList.toggle('open');
 }
+
+function sortTable(tableId, colIdx) {
+    var table = document.getElementById(tableId);
+    var tbody = table.querySelector('tbody');
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    var th = table.querySelectorAll('thead th')[colIdx];
+
+    // Determine sort direction
+    var asc = !th.classList.contains('sort-asc');
+    table.querySelectorAll('thead th').forEach(function(h) {
+        h.classList.remove('sort-asc', 'sort-desc');
+    });
+    th.classList.add(asc ? 'sort-asc' : 'sort-desc');
+
+    rows.sort(function(a, b) {
+        var aVal = a.cells[colIdx].getAttribute('data-val') || a.cells[colIdx].textContent.trim();
+        var bVal = b.cells[colIdx].getAttribute('data-val') || b.cells[colIdx].textContent.trim();
+        var aNum = parseFloat(aVal), bNum = parseFloat(bVal);
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+            return asc ? aNum - bNum : bNum - aNum;
+        }
+        return asc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+    });
+    rows.forEach(function(row) { tbody.appendChild(row); });
+    highlightBestWorst(tableId);
+}
+
+function highlightBestWorst(tableId) {
+    var table = document.getElementById(tableId);
+    var tbody = table.querySelector('tbody');
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    var numCols = rows.length > 0 ? rows[0].cells.length : 0;
+
+    // Clear existing highlights
+    rows.forEach(function(r) {
+        Array.from(r.cells).forEach(function(c) {
+            c.classList.remove('cell-best', 'cell-worst');
+        });
+    });
+
+    // Group rows by split (column index 1)
+    var splitGroups = {};
+    rows.forEach(function(row) {
+        var split = row.cells[1].textContent.trim();
+        if (!splitGroups[split]) splitGroups[split] = [];
+        splitGroups[split].push(row);
+    });
+
+    // For each numeric column (index 3+), find best/worst per split
+    for (var col = 3; col < numCols; col++) {
+        for (var split in splitGroups) {
+            var group = splitGroups[split];
+            if (group.length < 2) continue;
+            var vals = group.map(function(r) {
+                return { row: r, val: parseFloat(r.cells[col].getAttribute('data-val') || r.cells[col].textContent) };
+            }).filter(function(v) { return !isNaN(v.val); });
+            if (vals.length < 2) continue;
+            var best = vals.reduce(function(a, b) { return a.val > b.val ? a : b; });
+            var worst = vals.reduce(function(a, b) { return a.val < b.val ? a : b; });
+            if (best.val !== worst.val) {
+                best.row.cells[col].classList.add('cell-best');
+                worst.row.cells[col].classList.add('cell-worst');
+            }
+        }
+    }
+}
+
+// Run highlighting on page load for all zeroshot tables
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('table[id^="zs-table-"]').forEach(function(t) {
+        highlightBestWorst(t.id);
+    });
+});
 """
 
 
@@ -404,8 +517,8 @@ def _render_dataset_overview(ds_stats, event_stats):
     <div class="cards">
         <div class="card">
             <div class="icon">&#x1F30D;</div>
-            <div class="value">{n_events}</div>
-            <div class="label">Disaster Events</div>
+            <div class="value">7</div>
+            <div class="label">Combined Events</div>
         </div>
         <div class="card">
             <div class="icon">&#x1F4CA;</div>
@@ -529,18 +642,18 @@ def _render_dataset_overview(ds_stats, event_stats):
 
             totals = {c: 0 for c in all_cols}
             for label in labels:
-                train_count = mod_stats.get("train", {}).get(label, 0)
-                total_train = sum(mod_stats.get("train", {}).values()) or 1
-                share = train_count / total_train * 100
-                if share < 1:
-                    warn = ' <span style="color:var(--danger);font-size:10px" title="Rare class">&#x26A0;</span>'
-                else:
-                    warn = ""
-                parts.append(f'<tr><td><code>{label}</code>{warn}</td>')
+                parts.append(f'<tr><td><code>{label}</code></td>')
                 for c in all_cols:
                     count = mod_stats.get(c, {}).get(label, 0)
                     totals[c] += count
-                    parts.append(f'<td class="{_hm_class(count, max_count)}">{_fmt(count)}</td>')
+                    # Warn if unlabeled count is less than the budget
+                    warn = ""
+                    if c.startswith("unlabeled_"):
+                        budget_val = int(c.split("_")[1])
+                        labeled_count = mod_stats.get(f"labeled_{budget_val}", {}).get(label, 0)
+                        if count > 0 and count < budget_val:
+                            warn = ' <span style="color:var(--danger);font-size:10px" title="Unlabeled samples fewer than budget">&#x26A0;</span>'
+                    parts.append(f'<td class="{_hm_class(count, max_count)}">{_fmt(count)}{warn}</td>')
                 parts.append('</tr>')
 
             parts.append('<tr class="total-row"><td><strong>Total</strong></td>')
@@ -557,13 +670,14 @@ def _render_dataset_overview(ds_stats, event_stats):
     <div class="note">
         <div class="note-icon">&#x1F4DD;</div>
         <div class="note-body">
-            <strong>Label source notes:</strong>
-            For informative and humanitarian tasks, <code>text_only</code> and <code>text_image</code>
-            use <code>label_text</code> (text annotation), while <code>image_only</code> uses
-            <code>label_image</code> (image annotation). For the damage task, all modalities use the
-            single <code>label</code> column.
+            <strong>Dataset notes:</strong>
+            This dataset uses the <strong>CrisisMMD agreed-label subset</strong> where text and image
+            annotators agreed on the label. Labels are from <code>class_label</code> (unified column
+            after preprocessing). Two tasks: informative (2 classes) and humanitarian (5 classes),
+            across 7 combined disaster events.
             Budget columns (L5, U5, etc.) show seed=1 splits. <strong>L</strong> = labeled,
-            <strong>U</strong> = unlabeled. &#x26A0; marks classes with &lt;1% of training data.
+            <strong>U</strong> = unlabeled. &#x26A0; marks unlabeled splits where the remaining
+            samples are fewer than the budget (e.g., only 20 unlabeled samples at budget=50).
         </div>
     </div>
     """)
@@ -575,8 +689,16 @@ def _render_dataset_overview(ds_stats, event_stats):
 # Zero-Shot Results Tab (per-task)
 # ---------------------------------------------------------------------------
 
+_table_counter = 0
+
+def _next_table_id():
+    global _table_counter
+    _table_counter += 1
+    return f"zs-table-{_table_counter}"
+
+
 def _render_zeroshot_tab(task, task_results):
-    """Render a zero-shot results tab for one task."""
+    """Render a zero-shot results sub-tab for one task."""
     if not task_results:
         return f"""
         <div class="empty-state">
@@ -586,60 +708,76 @@ def _render_zeroshot_tab(task, task_results):
         </div>"""
 
     parts = []
-    n = len(task_results)
-    accs = [m["accuracy"] for m in task_results]
-    wf1s = [m["weighted_f1"] for m in task_results]
-    mf1s = [m["macro_f1"] for m in task_results]
 
-    parts.append(f"""
-    <div class="cards">
-        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">{n}</div><div class="label">Experiments</div></div>
-        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">{statistics.mean(accs):.4f}</div><div class="label">Avg Accuracy</div></div>
-        <div class="card"><div class="icon">&#x1F4CA;</div><div class="value">{statistics.mean(wf1s):.4f}</div><div class="label">Avg Weighted F1</div></div>
-        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">{statistics.mean(mf1s):.4f}</div><div class="label">Avg Macro F1</div></div>
-    </div>
-    """)
+    # --- Per-model summary cards (test split only) ---
+    models = sorted(set(m.get("model_slug", "?") for m in task_results))
+    for model in models:
+        test_metrics = [m for m in task_results
+                        if m.get("model_slug") == model and m.get("split") == "test"]
+        if not test_metrics:
+            continue
+        n = len(test_metrics)
+        avg_acc = statistics.mean([m["accuracy"] for m in test_metrics])
+        avg_wf1 = statistics.mean([m["weighted_f1"] for m in test_metrics])
+        avg_mf1 = statistics.mean([m["macro_f1"] for m in test_metrics])
+        conf_vals = [m["avg_confidence"] for m in test_metrics if "avg_confidence" in m]
+        avg_conf = statistics.mean(conf_vals) if conf_vals else None
 
-    # Summary table
-    parts.append('<div class="section">')
-    parts.append(f'<div class="section-header"><h2>&#x1F4CB; Results by Modality &amp; Split</h2>'
-                 f'<div class="tag">Zero-Shot &mdash; Llama-3.2-11B-Vision</div></div>')
-    parts.append("""<table><thead>
-        <tr><th>Model</th><th>Modality</th><th>Split</th><th class="num">Samples</th>
-        <th class="num">Accuracy</th><th class="num">Weighted F1</th>
-        <th class="num">Macro F1</th><th class="num">Unparseable</th></tr></thead><tbody>""")
+        parts.append(f'<div class="model-header"><code>{model}</code> <span class="tag">Test Set Averages</span></div>')
+        parts.append('<div class="cards">')
+        parts.append(f'<div class="card"><div class="icon">&#x1F9EA;</div><div class="value">{n}</div><div class="label">Experiments</div></div>')
+        parts.append(f'<div class="card"><div class="icon">&#x1F3AF;</div><div class="value">{avg_acc:.4f}</div><div class="label">Avg Accuracy</div></div>')
+        parts.append(f'<div class="card"><div class="icon">&#x1F4CA;</div><div class="value">{avg_wf1:.4f}</div><div class="label">Avg Weighted F1</div></div>')
+        parts.append(f'<div class="card"><div class="icon">&#x1F4CF;</div><div class="value">{avg_mf1:.4f}</div><div class="label">Avg Macro F1</div></div>')
+        if avg_conf is not None:
+            parts.append(f'<div class="card"><div class="icon">&#x1F512;</div><div class="value">{avg_conf:.4f}</div><div class="label">Avg Confidence</div></div>')
+        parts.append('</div>')
 
-    for m in sorted(task_results, key=lambda x: (x.get("model_slug",""), x.get("modality",""), x.get("split",""))):
-        acc = m.get("accuracy", 0)
-        wf1 = m.get("weighted_f1", 0)
-        mf1 = m.get("macro_f1", 0)
-        if mf1 >= 0.5:
-            badge = "badge-success"
-        elif mf1 >= 0.3:
-            badge = "badge-warning"
-        else:
-            badge = "badge-danger"
-        mi = MODALITY_ICONS.get(m.get("modality", ""), "")
-        parts.append(
-            f'<tr><td><code>{m.get("model_slug","?")}</code></td>'
-            f'<td>{mi} {_modality_label(m.get("modality","?"))}</td>'
-            f'<td>{m.get("split","?")}</td>'
-            f'<td class="num">{m.get("num_samples", 0):,}</td>'
-            f'<td class="num">{acc:.4f}</td>'
-            f'<td class="num">{wf1:.4f}</td>'
-            f'<td class="num"><span class="badge {badge}">{mf1:.4f}</span></td>'
-            f'<td class="num">{m.get("num_unparseable", 0)}</td></tr>'
-        )
-    parts.append("</tbody></table></div>")
+    # --- Results tables grouped by modality ---
+    modality_order = ["text_only", "image_only", "text_image"]
+    for modality in modality_order:
+        mod_results = [m for m in task_results if m.get("modality") == modality]
+        if not mod_results:
+            continue
 
-    # Per-class F1 table (test sets only)
+        mi = MODALITY_ICONS.get(modality, "")
+        table_id = _next_table_id()
+        parts.append('<div class="section">')
+        parts.append(f'<div class="section-header"><h2>{mi} {_modality_label(modality)}</h2></div>')
+        parts.append(f'<table id="{table_id}"><thead><tr>')
+        headers = ["Model", "Split", "Samples", "Accuracy", "Precision", "Recall", "Weighted F1", "Macro F1"]
+        for ci, h in enumerate(headers):
+            parts.append(f'<th class="{"num " if ci >= 2 else ""}sortable" onclick="sortTable(\'{table_id}\',{ci})">{h}</th>')
+        parts.append('</tr></thead><tbody>')
+
+        for m in sorted(mod_results, key=lambda x: (x.get("split", ""), x.get("model_slug", ""))):
+            acc = m.get("accuracy", 0) * 100
+            prec = m.get("weighted_precision", 0) * 100
+            rec = m.get("weighted_recall", 0) * 100
+            wf1 = m.get("weighted_f1", 0) * 100
+            mf1 = m.get("macro_f1", 0) * 100
+            parts.append(
+                f'<tr>'
+                f'<td><code>{m.get("model_slug","?")}</code></td>'
+                f'<td data-val="{m.get("split","")}">{m.get("split","?")}</td>'
+                f'<td class="num" data-val="{m.get("num_samples",0)}">{m.get("num_samples", 0):,}</td>'
+                f'<td class="num" data-val="{acc:.2f}">{acc:.2f}</td>'
+                f'<td class="num" data-val="{prec:.2f}">{prec:.2f}</td>'
+                f'<td class="num" data-val="{rec:.2f}">{rec:.2f}</td>'
+                f'<td class="num" data-val="{wf1:.2f}">{wf1:.2f}</td>'
+                f'<td class="num" data-val="{mf1:.2f}">{mf1:.2f}</td>'
+                f'</tr>'
+            )
+        parts.append("</tbody></table></div>")
+
+    # --- Per-class F1 table (test sets only) ---
     test_results = [m for m in task_results if m.get("split") == "test" and m.get("per_class_f1")]
     if test_results:
         labels = sorted(test_results[0]["per_class_f1"].keys())
         parts.append('<div class="section">')
         parts.append('<div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>')
         parts.append('<table><thead><tr><th>Class</th>')
-        for m in sorted(test_results, key=lambda x: (x.get("model_slug",""), x.get("modality", ""))):
+        for m in sorted(test_results, key=lambda x: (modality_order.index(x.get("modality","")) if x.get("modality","") in modality_order else 99, x.get("model_slug",""))):
             mi = MODALITY_ICONS.get(m.get("modality", ""), "")
             slug = m.get("model_slug", "")
             parts.append(f'<th class="num">{slug}<br>{mi} {_modality_label(m.get("modality",""))}</th>')
@@ -647,7 +785,7 @@ def _render_zeroshot_tab(task, task_results):
 
         for label in labels:
             parts.append(f'<tr><td><code>{label}</code></td>')
-            for m in sorted(test_results, key=lambda x: (x.get("model_slug",""), x.get("modality", ""))):
+            for m in sorted(test_results, key=lambda x: (modality_order.index(x.get("modality","")) if x.get("modality","") in modality_order else 99, x.get("model_slug",""))):
                 f1 = m["per_class_f1"].get(label, 0)
                 if f1 >= 0.5:
                     cls = "hm hm-5"
@@ -740,18 +878,41 @@ def generate_html(data_root: str, results_root: str) -> str:
     dataset_html = _render_dataset_overview(ds_stats, event_stats)
     results_html = _render_results_tab(metrics)
 
-    # Build tab buttons and content for zero-shot task tabs
-    zs_tab_buttons = ""
-    zs_tab_contents = ""
-    for task in TASKS:
-        task_results = zeroshot.get(task, [])
-        if not task_results:
-            continue
-        tab_id = f"tab-zs-{task}"
-        icon = TASK_ICONS.get(task, "")
-        badge = f' <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">{len(task_results)}</span>'
-        zs_tab_buttons += f'    <button onclick="showTab(\'{tab_id}\', this)">{icon} {task.title()}{badge}</button>\n'
-        zs_tab_contents += f'\n<div id="{tab_id}" class="tab-content">\n{_render_zeroshot_tab(task, task_results)}\n</div>\n'
+    # Build single Zero-Shot tab with sub-tabs for each task
+    zs_tab_button = ""
+    zs_tab_content = ""
+    if total_zs > 0:
+        zs_badge = f' <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">{total_zs}</span>'
+        zs_tab_button = f'    <button onclick="showTab(\'tab-zeroshot\', this)">&#x1F50E; Zero-Shot{zs_badge}</button>\n'
+
+        # Build sub-tab bar and content
+        sub_buttons = []
+        sub_contents = []
+        first = True
+        for task in TASKS:
+            task_results = zeroshot.get(task, [])
+            if not task_results:
+                continue
+            sub_id = f"sub-zs-{task}"
+            icon = TASK_ICONS.get(task, "")
+            active = " active" if first else ""
+            sub_buttons.append(
+                f'<button class="{active.strip()}" onclick="showSubTab(\'tab-zeroshot\',\'{sub_id}\',this)">'
+                f'{icon} {task.title()}</button>'
+            )
+            sub_contents.append(
+                f'<div id="{sub_id}" class="sub-tab-content{active}">\n'
+                f'{_render_zeroshot_tab(task, task_results)}\n</div>'
+            )
+            first = False
+
+        sub_bar = '<nav class="sub-tab-bar">' + "".join(sub_buttons) + '</nav>'
+        zs_tab_content = (
+            f'\n<div id="tab-zeroshot" class="tab-content">\n'
+            f'{sub_bar}\n'
+            + "\n".join(sub_contents)
+            + '\n</div>\n'
+        )
 
     cotrain_badge = f' <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">{len(metrics)}</span>' if metrics else ''
 
@@ -776,13 +937,13 @@ def generate_html(data_root: str, results_root: str) -> str:
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
-{zs_tab_buttons}    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results{cotrain_badge}</button>
+{zs_tab_button}    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results{cotrain_badge}</button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
 {dataset_html}
 </div>
-{zs_tab_contents}
+{zs_tab_content}
 <div id="tab-results" class="tab-content">
 {results_html}
 </div>

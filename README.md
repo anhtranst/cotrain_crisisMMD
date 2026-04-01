@@ -3,7 +3,7 @@
 **LLM-Guided Co-Training for Crisis Tweet Classification**
 
 > **Dashboard** — View dataset exploration and experiment results: [results/dashboard.html](https://htmlpreview.github.io/?https://github.com/anhtranst/cotrain_crisisMMD/blob/main/results/dashboard.html)
-> _(Rebuild anytime with `python -m lg_cotrain.dashboard`)_
+> _(Rebuild anytime with `python scripts/dashboard.py`)_
 
 A semi-supervised co-training pipeline that classifies crisis tweets. It combines a small set of human-labeled tweets with LLM pseudo-labeled tweets (e.g., from GPT-4o) using a 3-phase training approach with two models. Now adapted for the **CrisisMMD** dataset with support for three tasks and three modalities.
 
@@ -339,10 +339,10 @@ python scripts/merge_optuna_results.py \
 Generate an interactive HTML dashboard with dataset exploration and experiment results:
 
 ```bash
-python -m lg_cotrain.dashboard
+python scripts/dashboard.py
 
 # Custom paths
-python -m lg_cotrain.dashboard --data-root data/ --results-root results/ --output results/dashboard.html
+python scripts/dashboard.py --data-root data/ --results-root results/ --output results/dashboard.html
 ```
 
 The dashboard has two tabs:
@@ -452,7 +452,6 @@ lg_cotrain/                          # Main package
 ├── run_experiment.py                # CLI entry point (single + batch mode)
 ├── run_all.py                       # Batch runner: all budget x seed_set for one task/modality
 ├── parallel.py                      # Multi-GPU parallel execution (ProcessPoolExecutor + spawn)
-├── dashboard.py                     # HTML dashboard generator
 ├── optuna_tuner.py                  # Global Optuna hyperparameter tuner
 ├── optuna_per_experiment.py         # Per-experiment Optuna tuner (12 studies per task/modality)
 ├── utils.py                         # Seed setting, logging, EarlyStopping variants, device selection
@@ -460,6 +459,7 @@ lg_cotrain/                          # Main package
 └── requirements.txt                 # Python dependencies
 
 scripts/
+├── dashboard.py                     # Interactive HTML dashboard generator
 ├── prepare_crisismmd.py             # Preprocess CrisisMMD into per-task/modality datasets
 ├── zeroshot_llama.py                # Zero-shot classification with Llama-3.2-11B-Vision-Instruct
 ├── zeroshot_qwen.py                 # Zero-shot classification with Qwen2.5-VL-7B-Instruct
