@@ -248,6 +248,11 @@ header .subtitle span { color: rgba(255,255,255,.85); font-weight: 500; }
     background: var(--card); border-radius: var(--radius); padding: 24px 28px;
     margin-bottom: 24px; box-shadow: var(--shadow); border: 1px solid var(--border);
 }
+.section-highlight {
+    border-left: 4px solid var(--accent);
+    background: linear-gradient(135deg, var(--card) 0%, var(--accent-bg) 100%);
+    box-shadow: var(--shadow-md);
+}
 .section-header {
     display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
     padding-bottom: 16px; border-bottom: 1px solid var(--border);
@@ -739,29 +744,41 @@ def _render_zeroshot_tab(task, task_results):
 
     parts = []
 
-    # --- Per-model summary cards (test split only) ---
+    # --- Summary table: per-model, per-split averages ---
     models = sorted(set(m.get("model_slug", "?") for m in task_results))
-    for model in models:
-        test_metrics = [m for m in task_results
-                        if m.get("model_slug") == model and m.get("split") == "test"]
-        if not test_metrics:
-            continue
-        n = len(test_metrics)
-        avg_acc = statistics.mean([m["accuracy"] for m in test_metrics])
-        avg_wf1 = statistics.mean([m["weighted_f1"] for m in test_metrics])
-        avg_mf1 = statistics.mean([m["macro_f1"] for m in test_metrics])
-        conf_vals = [m["avg_confidence"] for m in test_metrics if "avg_confidence" in m]
-        avg_conf = statistics.mean(conf_vals) if conf_vals else None
+    summary_table_id = _next_table_id()
+    parts.append('<div class="section section-highlight">')
+    parts.append('<div class="section-header"><h2>&#x1F4CA; Summary Averages (across modalities)</h2></div>')
+    parts.append(f'<table id="{summary_table_id}"><thead><tr>')
+    for ci, h in enumerate(["Model", "Split", "Experiments", "Avg Accuracy", "Avg Weighted F1", "Avg Macro F1", "Avg Confidence"]):
+        cls = "num " if ci >= 2 else ""
+        parts.append(f'<th class="{cls}sortable" onclick="sortTable(\'{summary_table_id}\',{ci})">{h}</th>')
+    parts.append('</tr></thead><tbody>')
 
-        parts.append(f'<div class="model-header"><code>{model}</code> <span class="tag">Test Set Averages</span></div>')
-        parts.append('<div class="cards">')
-        parts.append(f'<div class="card"><div class="icon">&#x1F9EA;</div><div class="value">{n}</div><div class="label">Experiments</div></div>')
-        parts.append(f'<div class="card"><div class="icon">&#x1F3AF;</div><div class="value">{avg_acc:.4f}</div><div class="label">Avg Accuracy</div></div>')
-        parts.append(f'<div class="card"><div class="icon">&#x1F4CA;</div><div class="value">{avg_wf1:.4f}</div><div class="label">Avg Weighted F1</div></div>')
-        parts.append(f'<div class="card"><div class="icon">&#x1F4CF;</div><div class="value">{avg_mf1:.4f}</div><div class="label">Avg Macro F1</div></div>')
-        if avg_conf is not None:
-            parts.append(f'<div class="card"><div class="icon">&#x1F512;</div><div class="value">{avg_conf:.4f}</div><div class="label">Avg Confidence</div></div>')
-        parts.append('</div>')
+    for model in models:
+        for split in ["test", "train"]:
+            split_metrics = [m for m in task_results
+                            if m.get("model_slug") == model and m.get("split") == split]
+            if not split_metrics:
+                continue
+            n = len(split_metrics)
+            avg_acc = statistics.mean([m["accuracy"] for m in split_metrics])
+            avg_wf1 = statistics.mean([m["weighted_f1"] for m in split_metrics])
+            avg_mf1 = statistics.mean([m["macro_f1"] for m in split_metrics])
+            conf_vals = [m["avg_confidence"] for m in split_metrics if "avg_confidence" in m]
+            avg_conf = statistics.mean(conf_vals) if conf_vals else None
+            conf_cell = f'{avg_conf:.4f}' if avg_conf is not None else '-'
+
+            parts.append(
+                f'<tr><td><code>{model}</code></td><td>{split}</td>'
+                f'<td class="num">{n}</td>'
+                f'<td class="num" data-val="{avg_acc:.6f}">{avg_acc:.4f}</td>'
+                f'<td class="num" data-val="{avg_wf1:.6f}">{avg_wf1:.4f}</td>'
+                f'<td class="num" data-val="{avg_mf1:.6f}">{avg_mf1:.4f}</td>'
+                f'<td class="num">{conf_cell}</td></tr>'
+            )
+
+    parts.append('</tbody></table></div>')
 
     # --- Results tables grouped by modality ---
     modality_order = ["text_only", "image_only", "text_image"]
