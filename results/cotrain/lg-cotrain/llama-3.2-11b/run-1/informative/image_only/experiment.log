@@ -1,0 +1,8 @@
+2026-04-01 16:50:17,708 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=image_only, budget=5, seed_set=1
+2026-04-01 16:50:17,738 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 16:50:17,750 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 9591
+2026-04-01 16:50:17,756 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 16:50:17,812 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=image_only, budget=5, seed_set=2
+2026-04-01 16:50:17,846 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 16:50:17,856 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 9591
+2026-04-01 16:50:17,859 - lg_cotrain - INFO - === Phase 1: Weight Generation ===

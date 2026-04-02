@@ -16,6 +16,11 @@ A semi-supervised co-training pipeline that classifies crisis tweets and images.
   - [Phase 1 — Weight Generation](#phase-1--weight-generation)
   - [Phase 2 — Co-Training](#phase-2--co-training)
   - [Phase 3 — Fine-Tuning](#phase-3--fine-tuning)
+- [Model Architecture per Modality](#model-architecture-per-modality)
+  - [text_only — BERTweet](#text_only--bertweet-bertclassifier)
+  - [image_only — CLIP ViT](#image_only--clip-vit-imageclassifier)
+  - [text_image — Late Fusion](#text_image--late-fusion-multimodalclassifier)
+  - [Co-Training with Two Models](#co-training-with-two-models)
 - [Dataset: CrisisMMD](#dataset-crisismmd)
 - [Data Layout](#data-layout)
 - [Installation](#installation)
@@ -151,59 +156,58 @@ Six strategies are available via `--stopping-strategy`:
 
 The pipeline supports three modalities, each with a different model architecture. The 3-phase co-training algorithm is identical across all modalities — only the model, dataset, and input format change.
 
-### text_only — BERTweet
+### text_only — BERTweet (`BertClassifier`)
 
 ```mermaid
 graph LR
-    TEXT["Tweet Text"] --> TOK["BERTweet Tokenizer"]
-    TOK --> BERT["BERTweet<br/>(vinai/bertweet-base)"]
-    BERT --> CLS["[CLS] embedding<br/>(768-dim)"]
-    CLS --> HEAD["Classification Head<br/>(Linear 768 → N)"]
-    HEAD --> LOGITS["Logits"]
+    TEXT["Tweet Text"] --> TOK["BERTweet Tokenizer<br/>(max_length=128)"]
+    TOK --> BERT["AutoModelForSequenceClassification<br/>(vinai/bertweet-base)<br/>Built-in classification head"]
+    BERT --> LOGITS["Logits (batch, N)"]
 ```
 
-BERTweet encodes tweet text. The `[CLS]` token embedding is passed through a classification head. Uses `AutoModelForSequenceClassification` which has the head built-in.
+BERTweet tokenizes the tweet text into `input_ids` + `attention_mask`, then `AutoModelForSequenceClassification` produces logits directly. The classification head is built into the model.
 
-### image_only — CLIP ViT
+### image_only — CLIP ViT (`ImageClassifier`)
 
 ```mermaid
 graph LR
-    IMG["Image"] --> PROC["CLIP Image Processor<br/>(resize 224×224, normalize)"]
-    PROC --> VIT["CLIP ViT<br/>(clip-vit-base-patch32)"]
-    VIT --> POOL["Pooler Output<br/>(768-dim)"]
-    POOL --> HEAD["Classification Head<br/>(Linear 768 → N)"]
-    HEAD --> LOGITS["Logits"]
+    IMG["Image"] --> PROC["CLIPImageProcessor<br/>(resize 224×224, center crop, normalize)"]
+    PROC --> VIT["CLIPVisionModel<br/>(openai/clip-vit-base-patch32)"]
+    VIT --> POOL["pooler_output<br/>= Image [CLS] embedding<br/>(batch, 768)"]
+    POOL --> HEAD["nn.Linear(768, num_labels)<br/>Randomly initialized"]
+    HEAD --> LOGITS["Logits (batch, N)"]
 ```
 
-CLIP's vision transformer (`CLIPVisionModel`) encodes the image. The pooler output (projected `[CLS]` token) is passed through a separate linear classification head.
+`CLIPVisionModel` (not the full `CLIPModel` — we only need the vision encoder) processes raw pixel values. The `pooler_output` is the [CLS] token projected through a pooling layer (768-dim), passed through a separate linear classification head.
 
-### text_image — Late Fusion (BERTweet + CLIP ViT)
+### text_image — Late Fusion (`MultimodalClassifier`)
 
 ```mermaid
 graph TD
     subgraph "Text Branch"
         TEXT["Tweet Text"] --> TOK["BERTweet Tokenizer"]
-        TOK --> BERT["BERTweet<br/>(vinai/bertweet-base)"]
-        BERT --> TCLS["Text [CLS]<br/>(768-dim)"]
+        TOK --> BERT["BERTweet<br/>(AutoModel, not ForSeqClassif.)<br/>vinai/bertweet-base"]
+        BERT --> TCLS["last_hidden_state[:, 0, :]<br/>= Text [CLS] embedding<br/>(batch, 768)"]
     end
 
     subgraph "Image Branch"
-        IMG["Image"] --> PROC["CLIP Image Processor"]
-        PROC --> VIT["CLIP ViT<br/>(clip-vit-base-patch32)"]
-        VIT --> ICLS["Image Pooler Output<br/>(768-dim)"]
+        IMG["Image"] --> PROC["CLIP Image Processor<br/>(resize 224×224, normalize)"]
+        PROC --> VIT["CLIPVisionModel<br/>(not full CLIPModel)<br/>clip-vit-base-patch32"]
+        VIT --> ICLS["pooler_output<br/>= Image [CLS] embedding<br/>(batch, 768)"]
     end
 
-    TCLS --> CAT["Concatenate<br/>(1536-dim)"]
+    TCLS --> CAT["torch.cat dim=-1<br/>(batch, 1536)"]
     ICLS --> CAT
-    CAT --> HEAD["Classification Head<br/>(Linear 1536 → N)"]
-    HEAD --> LOGITS["Logits"]
+    CAT --> HEAD["nn.Linear(1536, num_labels)<br/>Randomly initialized"]
+    HEAD --> LOGITS["Logits (batch, N)"]
 ```
 
 Two separate encoders process text and image independently:
-- **Text branch**: `AutoModel` (not `ForSequenceClassification`) extracts the raw `[CLS]` embedding (768-dim).
-- **Image branch**: `CLIPVisionModel` extracts the pooler output (768-dim).
-- **Fusion**: The two embeddings are concatenated into a 1536-dim vector, then a single linear head classifies.
+- **Text branch**: `AutoModel` (not `ForSequenceClassification`) returns full hidden states. We take `last_hidden_state[:, 0, :]` — the [CLS] token at position 0 — as the 768-dim text embedding. We use `AutoModel` instead of `AutoModelForSequenceClassification` because we need the raw embedding to concatenate, not pre-classified logits.
+- **Image branch**: `CLIPVisionModel` (not full `CLIPModel` — we only need the vision encoder) extracts the `pooler_output` (768-dim).
+- **Fusion**: The two embeddings are concatenated into a 1536-dim vector via `torch.cat`, then a single `nn.Linear(1536, num_labels)` head classifies.
 - Both encoders are **unfrozen** — gradients flow back through both BERTweet and CLIP ViT during training.
+- The `nn.Linear` classification head is **randomly initialized** and learned from scratch.
 
 ### Co-Training with Two Models
 
@@ -387,6 +391,20 @@ python -m lg_cotrain.run_experiment \
     --budgets 5 10 --seed-sets 1 2
 ```
 
+### Multi-GPU and Run ID
+
+```bash
+# Run all 12 experiments on 2 GPUs (6 per GPU)
+python -m lg_cotrain.run_experiment \
+    --task humanitarian --modality text_only \
+    --num-gpus 2 --run-id run-1
+
+# Different settings → increment run_id
+python -m lg_cotrain.run_experiment \
+    --task humanitarian --modality text_only \
+    --num-gpus 2 --run-id run-2 --lr 5e-5
+```
+
 ### Custom Pseudo-Label Source and Output Folder
 
 ```bash
@@ -501,6 +519,7 @@ python scripts/create_pseudo_labels.py --model qwen2.5-vl-7b
 | `--seed-sets` | One or more seed sets | All seed sets |
 | `--pseudo-label-source` | Model that generated pseudo-labels | `llama-3.2-11b` |
 | `--output-folder` | Output folder for results | `results/` |
+| `--run-id` | Run identifier (e.g. `run-1`), inserted into output path | None |
 | `--model-name` | Text model (HuggingFace) | `vinai/bertweet-base` |
 | `--image-model-name` | Image model for image_only/text_image | `openai/clip-vit-base-patch32` |
 | `--image-size` | Image input size | `224` |
@@ -523,7 +542,13 @@ python scripts/create_pseudo_labels.py --model qwen2.5-vl-7b
 
 ## Output Format
 
-Co-training results are saved to `results/cotrain/{method}/{pseudo_source}/{task}/{modality}/{budget}_set{seed}/metrics.json`:
+Co-training results are saved to:
+- Without `--run-id`: `results/cotrain/{method}/{pseudo_source}/{task}/{modality}/{budget}_set{seed}/metrics.json`
+- With `--run-id run-1`: `results/cotrain/{method}/{pseudo_source}/run-1/{task}/{modality}/{budget}_set{seed}/metrics.json`
+
+Log files are written at the task/modality level (not per-experiment): `results/cotrain/{method}/{pseudo_source}/[{run_id}/]{task}/{modality}/experiment.log`
+
+Example output:
 
 ```json
 {
@@ -581,10 +606,12 @@ scripts/
 └── merge_optuna_results.py          # Merge Optuna results from multiple PCs
 
 Notebooks/
+├── 00_cotrain_smoke_test.ipynb     # Quick 6-experiment validation (budget=5, minimal epochs)
 ├── 01_zeroshot_informative.ipynb    # Llama zero-shot — informative task (6 experiments)
 ├── 02_zeroshot_humanitarian.ipynb   # Llama zero-shot — humanitarian task (6 experiments)
 ├── 03_zeroshot_informative_qwen.ipynb # Qwen zero-shot — informative task (6 experiments)
-└── 04_zeroshot_humanitarian_qwen.ipynb # Qwen zero-shot — humanitarian task (6 experiments)
+├── 04_zeroshot_humanitarian_qwen.ipynb # Qwen zero-shot — humanitarian task (6 experiments)
+└── 05_cotrain_llama.ipynb           # Full co-training — 72 experiments, dual-GPU, with run_id
 
 tests/                               # Test suite
 ├── conftest.py                      # Shared pytest fixtures
