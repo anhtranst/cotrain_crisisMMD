@@ -17,10 +17,17 @@ class LGCoTrainConfig:
     # Pseudo-label source model (folder name under data/pseudo_labelled/)
     pseudo_label_source: str = "llama-3.2-11b"
 
+    # Run identifier for grouping experiment results (e.g. "run-1", "run-2").
+    # None (default) omits it from the output path. When set, inserted as:
+    # results/cotrain/{method}/{pseudo_source}/{run_id}/{task}/{modality}/...
+    run_id: Optional[str] = None
+
     # Model
     model_name: str = "vinai/bertweet-base"
+    image_model_name: str = "openai/clip-vit-base-patch32"
     num_labels: int = 5
     max_seq_length: int = 128
+    image_size: int = 224
 
     # Phase 1: Weight generation
     weight_gen_epochs: int = 7
@@ -43,11 +50,18 @@ class LGCoTrainConfig:
     weight_decay: float = 0.01
     warmup_ratio: float = 0.1
 
+    # Debug: cap the number of unlabeled samples used to build D_LG.
+    # None (default) uses all. Set to e.g. 200 for fast smoke tests.
+    max_unlabeled_samples: Optional[int] = None
+
     # Device override: "cuda:0", "cuda:1", "cpu", or None (auto-detect)
     device: Optional[str] = None
 
     # Paths (base) — default to sibling directories of this package, which
     # resolves correctly on any OS regardless of where the repo is cloned.
+    project_root: str = field(
+        default_factory=lambda: str(Path(__file__).parent.parent)
+    )
     data_root: str = field(
         default_factory=lambda: str(Path(__file__).parent.parent / "data")
     )
@@ -62,6 +76,7 @@ class LGCoTrainConfig:
     dev_path: str = field(init=False, default="")
     test_path: str = field(init=False, default="")
     output_dir: str = field(init=False, default="")
+    log_dir: str = field(init=False, default="")
 
     def __post_init__(self):
         task_dir = (
@@ -82,8 +97,14 @@ class LGCoTrainConfig:
         self.pseudo_label_path = str(pseudo_dir / "train_pred.tsv")
         self.dev_path = str(task_dir / "dev.tsv")
         self.test_path = str(task_dir / "test.tsv")
-        self.output_dir = str(
+        output_base = (
             Path(self.results_root) / "cotrain" / self.method
-            / self.pseudo_label_source / self.task / self.modality
+            / self.pseudo_label_source
+        )
+        if self.run_id is not None:
+            output_base = output_base / self.run_id
+        self.log_dir = str(output_base / self.task / self.modality)
+        self.output_dir = str(
+            output_base / self.task / self.modality
             / f"{self.budget}_set{self.seed_set}"
         )

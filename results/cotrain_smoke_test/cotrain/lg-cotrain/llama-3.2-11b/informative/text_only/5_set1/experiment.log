@@ -1,0 +1,366 @@
+2026-04-01 13:23:29,117 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=text_only, budget=5, seed_set=1
+2026-04-01 13:23:29,154 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 13:23:29,158 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:23:29,164 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 13:23:29,166 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:23:32,053 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.4807, mean_prob2=0.4866
+2026-04-01 13:23:32,821 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.4855, mean_prob2=0.4875
+2026-04-01 13:23:32,829 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:23:33,608 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:23:33,609 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.4855, range=[0.4502, 0.5426]
+2026-04-01 13:23:33,611 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.4875, range=[0.4495, 0.5450]
+2026-04-01 13:23:42,026 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2683, loss2=0.2752, dev_macro_f1=0.4017, dev_err=32.87%
+2026-04-01 13:23:50,140 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.1339, loss2=0.3074, dev_macro_f1=0.4017, dev_err=32.87%
+2026-04-01 13:23:50,141 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:23:55,401 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=0, es_counter2=0
+2026-04-01 13:24:00,666 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=1, es_counter2=1
+2026-04-01 13:24:05,945 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=2, es_counter2=2
+2026-04-01 13:24:05,946 - lg_cotrain - INFO - Early stopping at epoch 3
+2026-04-01 13:24:05,958 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:24:16,488 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\text_only\5_set1\metrics.json
+2026-04-01 13:24:16,489 - lg_cotrain - INFO - Test error rate: 32.86%, Test macro-F1: 0.4017, Test ECE: 0.2030
+2026-04-01 13:24:38,391 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=text_image, budget=5, seed_set=1
+2026-04-01 13:24:38,449 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 13:24:38,458 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:24:38,460 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 13:24:38,464 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:24:47,102 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.5583, mean_prob2=0.5616
+2026-04-01 13:24:53,102 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.5871, mean_prob2=0.5935
+2026-04-01 13:24:53,103 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:24:55,092 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:24:55,093 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.5871, range=[0.1488, 0.9257]
+2026-04-01 13:24:55,094 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.5935, range=[0.1957, 0.8607]
+2026-04-01 13:25:30,231 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2205, loss2=0.2464, dev_macro_f1=0.5772, dev_err=26.83%
+2026-04-01 13:26:04,224 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0606, loss2=0.0885, dev_macro_f1=0.4702, dev_err=30.71%
+2026-04-01 13:26:04,225 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:26:27,394 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4876, dev_err=30.20%, es_counter1=0, es_counter2=0
+2026-04-01 13:26:50,809 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.5017, dev_err=29.69%, es_counter1=0, es_counter2=0
+2026-04-01 13:27:14,014 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.5100, dev_err=29.43%, es_counter1=0, es_counter2=0
+2026-04-01 13:27:14,034 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:27:59,982 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\text_image\5_set1\metrics.json
+2026-04-01 13:27:59,983 - lg_cotrain - INFO - Test error rate: 28.88%, Test macro-F1: 0.5208, Test ECE: 0.2000
+2026-04-01 13:30:06,043 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=image_only, budget=5, seed_set=1
+2026-04-01 13:30:06,073 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 13:30:06,078 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:30:06,082 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 13:30:06,084 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:30:12,552 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.5394, mean_prob2=0.5302
+2026-04-01 13:30:17,665 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.6207, mean_prob2=0.5701
+2026-04-01 13:30:17,665 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:30:18,773 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:30:18,774 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.6207, range=[0.1023, 0.9709]
+2026-04-01 13:30:18,775 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.5701, range=[0.0916, 0.9204]
+2026-04-01 13:30:47,793 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2434, loss2=0.3088, dev_macro_f1=0.7897, dev_err=17.29%
+2026-04-01 13:31:16,384 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0491, loss2=0.1515, dev_macro_f1=0.7414, dev_err=19.14%
+2026-04-01 13:31:16,385 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:31:36,735 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.7547, dev_err=18.37%, es_counter1=0, es_counter2=0
+2026-04-01 13:31:57,451 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.7664, dev_err=17.74%, es_counter1=0, es_counter2=0
+2026-04-01 13:32:18,472 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.7694, dev_err=17.55%, es_counter1=0, es_counter2=0
+2026-04-01 13:32:18,481 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:33:00,400 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\image_only\5_set1\metrics.json
+2026-04-01 13:33:00,400 - lg_cotrain - INFO - Test error rate: 16.82%, Test macro-F1: 0.7819, Test ECE: 0.0528
+2026-04-01 13:33:45,385 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=text_only, budget=5, seed_set=1
+2026-04-01 13:33:45,420 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 13:33:45,425 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:33:45,429 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 13:33:45,430 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:33:47,524 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.1938, mean_prob2=0.1906
+2026-04-01 13:33:48,363 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.1957, mean_prob2=0.1909
+2026-04-01 13:33:48,363 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:33:49,099 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:33:49,100 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.1957, range=[0.1807, 0.2233]
+2026-04-01 13:33:49,101 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.1909, range=[0.1721, 0.2232]
+2026-04-01 13:33:55,608 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2800, loss2=0.2816, dev_macro_f1=0.1372, dev_err=47.80%
+2026-04-01 13:34:01,984 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.2169, loss2=0.3566, dev_macro_f1=0.1372, dev_err=47.80%
+2026-04-01 13:34:01,985 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:34:05,536 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=0, es_counter2=0
+2026-04-01 13:34:09,008 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=1, es_counter2=1
+2026-04-01 13:34:12,508 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=2, es_counter2=2
+2026-04-01 13:34:12,508 - lg_cotrain - INFO - Early stopping at epoch 3
+2026-04-01 13:34:12,525 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:34:19,339 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\text_only\5_set1\metrics.json
+2026-04-01 13:34:19,339 - lg_cotrain - INFO - Test error rate: 47.23%, Test macro-F1: 0.1382, Test ECE: 0.1061
+2026-04-01 13:34:19,448 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=image_only, budget=5, seed_set=1
+2026-04-01 13:34:19,470 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 13:34:19,472 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:34:19,475 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 13:34:19,477 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:34:25,546 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.2416, mean_prob2=0.2458
+2026-04-01 13:34:31,406 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.2449, mean_prob2=0.2711
+2026-04-01 13:34:31,407 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:34:32,494 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:34:32,494 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.2449, range=[0.0372, 0.6505]
+2026-04-01 13:34:32,494 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.2711, range=[0.0512, 0.6350]
+2026-04-01 13:34:54,262 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2717, loss2=0.2925, dev_macro_f1=0.4855, dev_err=28.56%
+2026-04-01 13:35:15,569 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0753, loss2=0.1573, dev_macro_f1=0.5120, dev_err=26.75%
+2026-04-01 13:35:15,570 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:35:29,415 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.5147, dev_err=26.55%, es_counter1=0, es_counter2=0
+2026-04-01 13:35:43,052 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.5204, dev_err=26.25%, es_counter1=0, es_counter2=0
+2026-04-01 13:35:56,612 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.5291, dev_err=25.75%, es_counter1=0, es_counter2=0
+2026-04-01 13:35:56,621 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:36:22,548 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\image_only\5_set1\metrics.json
+2026-04-01 13:36:22,550 - lg_cotrain - INFO - Test error rate: 22.72%, Test macro-F1: 0.5626, Test ECE: 0.0692
+2026-04-01 13:36:23,261 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=text_image, budget=5, seed_set=1
+2026-04-01 13:36:23,303 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 13:36:23,306 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:36:23,311 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 13:36:23,313 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:36:31,388 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.2021, mean_prob2=0.2131
+2026-04-01 13:36:37,408 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.1995, mean_prob2=0.2202
+2026-04-01 13:36:37,409 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:36:39,195 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:36:39,196 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.1995, range=[0.0596, 0.5513]
+2026-04-01 13:36:39,196 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.2202, range=[0.0728, 0.5033]
+2026-04-01 13:37:05,263 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2240, loss2=0.2116, dev_macro_f1=0.3563, dev_err=31.46%
+2026-04-01 13:37:30,912 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0892, loss2=0.2126, dev_macro_f1=0.3960, dev_err=28.66%
+2026-04-01 13:37:30,913 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:37:46,232 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4058, dev_err=27.96%, es_counter1=0, es_counter2=0
+2026-04-01 13:38:01,395 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.4156, dev_err=27.25%, es_counter1=0, es_counter2=0
+2026-04-01 13:38:16,468 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.4151, dev_err=27.56%, es_counter1=1, es_counter2=1
+2026-04-01 13:38:16,489 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:38:45,513 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\text_image\5_set1\metrics.json
+2026-04-01 13:38:45,514 - lg_cotrain - INFO - Test error rate: 26.91%, Test macro-F1: 0.4083, Test ECE: 0.0410
+2026-04-01 13:42:05,241 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=text_only, budget=5, seed_set=1
+2026-04-01 13:42:05,278 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 13:42:05,282 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:42:05,286 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 13:42:05,287 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:42:07,174 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.4807, mean_prob2=0.4866
+2026-04-01 13:42:07,947 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.4855, mean_prob2=0.4875
+2026-04-01 13:42:07,947 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:42:08,708 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:42:08,708 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.4855, range=[0.4502, 0.5426]
+2026-04-01 13:42:08,709 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.4875, range=[0.4495, 0.5450]
+2026-04-01 13:42:17,208 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2683, loss2=0.2752, dev_macro_f1=0.4017, dev_err=32.87%
+2026-04-01 13:42:25,447 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.1339, loss2=0.3074, dev_macro_f1=0.4017, dev_err=32.87%
+2026-04-01 13:42:25,452 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:42:30,819 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=0, es_counter2=0
+2026-04-01 13:42:36,359 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=1, es_counter2=1
+2026-04-01 13:42:41,992 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=2, es_counter2=2
+2026-04-01 13:42:41,993 - lg_cotrain - INFO - Early stopping at epoch 3
+2026-04-01 13:42:42,002 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:42:53,249 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\text_only\5_set1\metrics.json
+2026-04-01 13:42:53,250 - lg_cotrain - INFO - Test error rate: 32.86%, Test macro-F1: 0.4017, Test ECE: 0.2030
+2026-04-01 13:42:53,360 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=image_only, budget=5, seed_set=1
+2026-04-01 13:42:53,389 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 13:42:53,391 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:42:53,395 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 13:42:53,397 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:42:59,467 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.5394, mean_prob2=0.5302
+2026-04-01 13:43:04,891 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.6207, mean_prob2=0.5701
+2026-04-01 13:43:04,892 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:43:05,919 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:43:05,920 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.6207, range=[0.1023, 0.9709]
+2026-04-01 13:43:05,921 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.5701, range=[0.0916, 0.9204]
+2026-04-01 13:43:35,412 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2434, loss2=0.3088, dev_macro_f1=0.7897, dev_err=17.29%
+2026-04-01 13:44:05,242 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0491, loss2=0.1515, dev_macro_f1=0.7414, dev_err=19.14%
+2026-04-01 13:44:05,243 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:44:26,682 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.7547, dev_err=18.37%, es_counter1=0, es_counter2=0
+2026-04-01 13:44:47,905 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.7664, dev_err=17.74%, es_counter1=0, es_counter2=0
+2026-04-01 13:45:09,361 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.7694, dev_err=17.55%, es_counter1=0, es_counter2=0
+2026-04-01 13:45:09,372 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:45:51,379 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\image_only\5_set1\metrics.json
+2026-04-01 13:45:51,381 - lg_cotrain - INFO - Test error rate: 16.82%, Test macro-F1: 0.7819, Test ECE: 0.0528
+2026-04-01 13:45:51,942 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=text_image, budget=5, seed_set=1
+2026-04-01 13:45:52,011 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 13:45:52,018 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:45:52,023 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 13:45:52,025 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:45:59,856 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.5583, mean_prob2=0.5616
+2026-04-01 13:46:05,598 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.5871, mean_prob2=0.5935
+2026-04-01 13:46:05,599 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:46:07,569 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:46:07,570 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.5871, range=[0.1488, 0.9257]
+2026-04-01 13:46:07,571 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.5935, range=[0.1957, 0.8607]
+2026-04-01 13:46:42,247 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2205, loss2=0.2464, dev_macro_f1=0.5772, dev_err=26.83%
+2026-04-01 13:47:16,473 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0606, loss2=0.0885, dev_macro_f1=0.4702, dev_err=30.71%
+2026-04-01 13:47:16,475 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:47:39,597 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4876, dev_err=30.20%, es_counter1=0, es_counter2=0
+2026-04-01 13:48:02,884 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.5017, dev_err=29.69%, es_counter1=0, es_counter2=0
+2026-04-01 13:48:26,089 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.5100, dev_err=29.43%, es_counter1=0, es_counter2=0
+2026-04-01 13:48:26,127 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:49:11,517 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\text_image\5_set1\metrics.json
+2026-04-01 13:49:11,518 - lg_cotrain - INFO - Test error rate: 28.88%, Test macro-F1: 0.5208, Test ECE: 0.2000
+2026-04-01 13:49:11,982 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=text_only, budget=5, seed_set=1
+2026-04-01 13:49:12,008 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 13:49:12,012 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:49:12,016 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 13:49:12,018 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:49:13,648 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.1938, mean_prob2=0.1906
+2026-04-01 13:49:14,503 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.1957, mean_prob2=0.1909
+2026-04-01 13:49:14,503 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:49:15,271 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:49:15,274 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.1957, range=[0.1807, 0.2233]
+2026-04-01 13:49:15,275 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.1909, range=[0.1721, 0.2232]
+2026-04-01 13:49:21,827 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2800, loss2=0.2816, dev_macro_f1=0.1372, dev_err=47.80%
+2026-04-01 13:49:28,208 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.2169, loss2=0.3566, dev_macro_f1=0.1372, dev_err=47.80%
+2026-04-01 13:49:28,208 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:49:31,746 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=0, es_counter2=0
+2026-04-01 13:49:35,322 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=1, es_counter2=1
+2026-04-01 13:49:38,854 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=2, es_counter2=2
+2026-04-01 13:49:38,855 - lg_cotrain - INFO - Early stopping at epoch 3
+2026-04-01 13:49:38,864 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:49:45,655 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\text_only\5_set1\metrics.json
+2026-04-01 13:49:45,656 - lg_cotrain - INFO - Test error rate: 47.23%, Test macro-F1: 0.1382, Test ECE: 0.1061
+2026-04-01 13:49:45,768 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=image_only, budget=5, seed_set=1
+2026-04-01 13:49:45,790 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 13:49:45,792 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:49:45,796 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 13:49:45,797 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:49:52,030 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.2416, mean_prob2=0.2458
+2026-04-01 13:49:57,691 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.2449, mean_prob2=0.2711
+2026-04-01 13:49:57,692 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:49:58,780 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:49:58,781 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.2449, range=[0.0372, 0.6505]
+2026-04-01 13:49:58,781 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.2711, range=[0.0512, 0.6350]
+2026-04-01 13:50:20,638 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2717, loss2=0.2925, dev_macro_f1=0.4855, dev_err=28.56%
+2026-04-01 13:50:42,789 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0753, loss2=0.1573, dev_macro_f1=0.5120, dev_err=26.75%
+2026-04-01 13:50:42,790 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:50:56,750 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.5147, dev_err=26.55%, es_counter1=0, es_counter2=0
+2026-04-01 13:51:10,321 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.5204, dev_err=26.25%, es_counter1=0, es_counter2=0
+2026-04-01 13:51:24,190 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.5291, dev_err=25.75%, es_counter1=0, es_counter2=0
+2026-04-01 13:51:24,201 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:51:50,787 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\image_only\5_set1\metrics.json
+2026-04-01 13:51:50,789 - lg_cotrain - INFO - Test error rate: 22.72%, Test macro-F1: 0.5626, Test ECE: 0.0692
+2026-04-01 13:51:51,380 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=text_image, budget=5, seed_set=1
+2026-04-01 13:51:51,420 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 13:51:51,428 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 13:51:51,432 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 13:51:51,433 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 13:51:59,440 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.2021, mean_prob2=0.2131
+2026-04-01 13:52:05,509 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.1995, mean_prob2=0.2202
+2026-04-01 13:52:05,509 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 13:52:07,307 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 13:52:07,308 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.1995, range=[0.0596, 0.5513]
+2026-04-01 13:52:07,308 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.2202, range=[0.0728, 0.5033]
+2026-04-01 13:52:33,456 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2240, loss2=0.2116, dev_macro_f1=0.3563, dev_err=31.46%
+2026-04-01 13:52:59,167 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0892, loss2=0.2126, dev_macro_f1=0.3960, dev_err=28.66%
+2026-04-01 13:52:59,169 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 13:53:14,330 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4058, dev_err=27.96%, es_counter1=0, es_counter2=0
+2026-04-01 13:53:29,534 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.4156, dev_err=27.25%, es_counter1=0, es_counter2=0
+2026-04-01 13:53:44,722 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.4151, dev_err=27.56%, es_counter1=1, es_counter2=1
+2026-04-01 13:53:44,743 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 13:54:13,776 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\text_image\5_set1\metrics.json
+2026-04-01 13:54:13,777 - lg_cotrain - INFO - Test error rate: 26.91%, Test macro-F1: 0.4083, Test ECE: 0.0410
+2026-04-01 14:01:26,644 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=text_only, budget=5, seed_set=1
+2026-04-01 14:01:26,680 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 14:01:26,685 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 14:01:26,688 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 14:01:26,690 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 14:01:29,234 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.4807, mean_prob2=0.4866
+2026-04-01 14:01:30,005 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.4855, mean_prob2=0.4875
+2026-04-01 14:01:30,006 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 14:01:30,758 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 14:01:30,759 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.4855, range=[0.4502, 0.5426]
+2026-04-01 14:01:30,759 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.4875, range=[0.4495, 0.5450]
+2026-04-01 14:01:39,245 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2683, loss2=0.2752, dev_macro_f1=0.4017, dev_err=32.87%
+2026-04-01 14:01:47,658 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.1339, loss2=0.3074, dev_macro_f1=0.4017, dev_err=32.87%
+2026-04-01 14:01:47,659 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 14:01:53,244 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=0, es_counter2=0
+2026-04-01 14:01:58,843 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=1, es_counter2=1
+2026-04-01 14:02:04,446 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.4017, dev_err=32.87%, es_counter1=2, es_counter2=2
+2026-04-01 14:02:04,446 - lg_cotrain - INFO - Early stopping at epoch 3
+2026-04-01 14:02:04,457 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 14:02:15,657 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\text_only\5_set1\metrics.json
+2026-04-01 14:02:15,658 - lg_cotrain - INFO - Test error rate: 32.86%, Test macro-F1: 0.4017, Test ECE: 0.2030
+2026-04-01 14:02:15,772 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=image_only, budget=5, seed_set=1
+2026-04-01 14:02:15,810 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 14:02:15,815 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 14:02:15,820 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 14:02:15,821 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 14:02:22,115 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.5394, mean_prob2=0.5302
+2026-04-01 14:02:27,732 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.6207, mean_prob2=0.5701
+2026-04-01 14:02:27,733 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 14:02:28,822 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 14:02:28,823 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.6207, range=[0.1023, 0.9709]
+2026-04-01 14:02:28,823 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.5701, range=[0.0916, 0.9204]
+2026-04-01 14:02:58,773 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2434, loss2=0.3088, dev_macro_f1=0.7897, dev_err=17.29%
+2026-04-01 14:03:28,683 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0491, loss2=0.1515, dev_macro_f1=0.7414, dev_err=19.14%
+2026-04-01 14:03:28,684 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 14:03:50,258 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.7547, dev_err=18.37%, es_counter1=0, es_counter2=0
+2026-04-01 14:04:11,894 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.7664, dev_err=17.74%, es_counter1=0, es_counter2=0
+2026-04-01 14:04:33,145 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.7694, dev_err=17.55%, es_counter1=0, es_counter2=0
+2026-04-01 14:04:33,156 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 14:05:15,120 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\image_only\5_set1\metrics.json
+2026-04-01 14:05:15,121 - lg_cotrain - INFO - Test error rate: 16.82%, Test macro-F1: 0.7819, Test ECE: 0.0528
+2026-04-01 14:05:15,670 - lg_cotrain - INFO - Starting LG-CoTrain: task=informative, modality=text_image, budget=5, seed_set=1
+2026-04-01 14:05:15,740 - lg_cotrain - INFO - Detected 2 classes: ['informative', 'not_informative']
+2026-04-01 14:05:15,744 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 14:05:15,748 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 200
+2026-04-01 14:05:15,750 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 14:05:23,876 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.5583, mean_prob2=0.5616
+2026-04-01 14:05:29,735 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.5871, mean_prob2=0.5935
+2026-04-01 14:05:29,736 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 14:05:31,536 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 14:05:31,538 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.5871, range=[0.1488, 0.9257]
+2026-04-01 14:05:31,540 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.5935, range=[0.1957, 0.8607]
+2026-04-01 14:06:05,671 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2205, loss2=0.2464, dev_macro_f1=0.5772, dev_err=26.83%
+2026-04-01 14:06:39,659 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0606, loss2=0.0885, dev_macro_f1=0.4702, dev_err=30.71%
+2026-04-01 14:06:39,659 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 14:07:02,828 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4876, dev_err=30.20%, es_counter1=0, es_counter2=0
+2026-04-01 14:07:26,012 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.5017, dev_err=29.69%, es_counter1=0, es_counter2=0
+2026-04-01 14:07:49,169 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.5100, dev_err=29.43%, es_counter1=0, es_counter2=0
+2026-04-01 14:07:49,193 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 14:08:34,469 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\informative\text_image\5_set1\metrics.json
+2026-04-01 14:08:34,470 - lg_cotrain - INFO - Test error rate: 28.88%, Test macro-F1: 0.5208, Test ECE: 0.2000
+2026-04-01 14:08:34,927 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=text_only, budget=5, seed_set=1
+2026-04-01 14:08:34,960 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 14:08:34,962 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 14:08:34,966 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 14:08:34,968 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 14:08:36,646 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.1938, mean_prob2=0.1906
+2026-04-01 14:08:37,548 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.1957, mean_prob2=0.1909
+2026-04-01 14:08:37,548 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 14:08:38,282 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 14:08:38,283 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.1957, range=[0.1807, 0.2233]
+2026-04-01 14:08:38,283 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.1909, range=[0.1721, 0.2232]
+2026-04-01 14:08:45,243 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2800, loss2=0.2816, dev_macro_f1=0.1372, dev_err=47.80%
+2026-04-01 14:08:52,048 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.2169, loss2=0.3566, dev_macro_f1=0.1372, dev_err=47.80%
+2026-04-01 14:08:52,049 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 14:08:55,809 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=0, es_counter2=0
+2026-04-01 14:08:59,518 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=1, es_counter2=1
+2026-04-01 14:09:03,230 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.1372, dev_err=47.80%, es_counter1=2, es_counter2=2
+2026-04-01 14:09:03,231 - lg_cotrain - INFO - Early stopping at epoch 3
+2026-04-01 14:09:03,242 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 14:09:10,383 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\text_only\5_set1\metrics.json
+2026-04-01 14:09:10,384 - lg_cotrain - INFO - Test error rate: 47.23%, Test macro-F1: 0.1382, Test ECE: 0.1061
+2026-04-01 14:09:10,488 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=image_only, budget=5, seed_set=1
+2026-04-01 14:09:10,511 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 14:09:10,513 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 14:09:10,516 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 14:09:10,517 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 14:09:16,841 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.2416, mean_prob2=0.2458
+2026-04-01 14:09:22,502 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.2449, mean_prob2=0.2711
+2026-04-01 14:09:22,504 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 14:09:23,592 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 14:09:23,592 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.2449, range=[0.0372, 0.6505]
+2026-04-01 14:09:23,593 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.2711, range=[0.0512, 0.6350]
+2026-04-01 14:09:45,238 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2717, loss2=0.2925, dev_macro_f1=0.4855, dev_err=28.56%
+2026-04-01 14:10:07,048 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0753, loss2=0.1573, dev_macro_f1=0.5120, dev_err=26.75%
+2026-04-01 14:10:07,049 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 14:10:20,984 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.5147, dev_err=26.55%, es_counter1=0, es_counter2=0
+2026-04-01 14:10:34,563 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.5204, dev_err=26.25%, es_counter1=0, es_counter2=0
+2026-04-01 14:10:48,282 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.5291, dev_err=25.75%, es_counter1=0, es_counter2=0
+2026-04-01 14:10:48,293 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 14:11:14,954 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\image_only\5_set1\metrics.json
+2026-04-01 14:11:14,955 - lg_cotrain - INFO - Test error rate: 22.72%, Test macro-F1: 0.5626, Test ECE: 0.0692
+2026-04-01 14:11:15,499 - lg_cotrain - INFO - Starting LG-CoTrain: task=humanitarian, modality=text_image, budget=5, seed_set=1
+2026-04-01 14:11:15,548 - lg_cotrain - INFO - Detected 5 classes: ['affected_individuals', 'infrastructure_and_utility_damage', 'not_humanitarian', 'other_relevant_information', 'rescue_volunteering_or_donation_effort']
+2026-04-01 14:11:15,551 - lg_cotrain - INFO - Capped unlabeled set to 200 samples
+2026-04-01 14:11:15,557 - lg_cotrain - INFO - D_l1: 15, D_l2: 10, D_LG: 200
+2026-04-01 14:11:15,559 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-01 14:11:23,610 - lg_cotrain - INFO - Phase 1 epoch 1/2: mean_prob1=0.2021, mean_prob2=0.2131
+2026-04-01 14:11:29,661 - lg_cotrain - INFO - Phase 1 epoch 2/2: mean_prob1=0.1995, mean_prob2=0.2202
+2026-04-01 14:11:29,662 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-01 14:11:31,467 - lg_cotrain - INFO - LR scheduler: total_steps_1=29, warmup=2; total_steps_2=29, warmup=2
+2026-04-01 14:11:31,468 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.1995, range=[0.0596, 0.5513]
+2026-04-01 14:11:31,468 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.2202, range=[0.0728, 0.5033]
+2026-04-01 14:11:57,734 - lg_cotrain - INFO - Phase 2 epoch 1/2: loss1=0.2240, loss2=0.2116, dev_macro_f1=0.3563, dev_err=31.46%
+2026-04-01 14:12:23,708 - lg_cotrain - INFO - Phase 2 epoch 2/2: loss1=0.0892, loss2=0.2126, dev_macro_f1=0.3960, dev_err=28.66%
+2026-04-01 14:12:23,709 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-01 14:12:38,950 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.4058, dev_err=27.96%, es_counter1=0, es_counter2=0
+2026-04-01 14:12:54,168 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.4156, dev_err=27.25%, es_counter1=0, es_counter2=0
+2026-04-01 14:13:09,449 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.4151, dev_err=27.56%, es_counter1=1, es_counter2=1
+2026-04-01 14:13:09,472 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-01 14:13:38,670 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain_smoke_test\cotrain\lg-cotrain\llama-3.2-11b\humanitarian\text_image\5_set1\metrics.json
+2026-04-01 14:13:38,671 - lg_cotrain - INFO - Test error rate: 26.91%, Test macro-F1: 0.4083, Test ECE: 0.0410

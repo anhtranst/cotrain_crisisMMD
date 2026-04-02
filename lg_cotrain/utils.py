@@ -39,20 +39,36 @@ def get_device(device_override=None):
 
 
 def setup_logging(output_dir: str) -> logging.Logger:
-    """Configure logging to both file and console."""
+    """Configure logging to both file and console.
+
+    The FileHandler is always replaced so that batch runs can redirect
+    logs to a shared directory (e.g. task/modality level) instead of
+    writing into the first experiment's folder.
+    """
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     logger = logging.getLogger("lg_cotrain")
     logger.setLevel(logging.INFO)
 
-    if not logger.handlers:
-        fh = logging.FileHandler(os.path.join(output_dir, "experiment.log"))
-        fh.setLevel(logging.INFO)
+    fmt = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
+    # Always replace the FileHandler to point at the current output_dir
+    for h in logger.handlers[:]:
+        if isinstance(h, logging.FileHandler):
+            h.close()
+            logger.removeHandler(h)
+
+    fh = logging.FileHandler(os.path.join(output_dir, "experiment.log"))
+    fh.setLevel(logging.INFO)
+    fh.setFormatter(fmt)
+    logger.addHandler(fh)
+
+    # Only add StreamHandler if not already present
+    if not any(isinstance(h, logging.StreamHandler)
+               and not isinstance(h, logging.FileHandler)
+               for h in logger.handlers):
         ch = logging.StreamHandler()
         ch.setLevel(logging.INFO)
-        fmt = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        fh.setFormatter(fmt)
         ch.setFormatter(fmt)
-        logger.addHandler(fh)
         logger.addHandler(ch)
 
     return logger

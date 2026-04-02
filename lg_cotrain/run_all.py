@@ -24,7 +24,10 @@ def run_all_experiments(
     seed_sets=None,
     num_gpus=1,
     pseudo_label_source="llama-3.2-11b",
+    run_id=None,
     model_name="vinai/bertweet-base",
+    image_model_name="openai/clip-vit-base-patch32",
+    image_size=224,
     weight_gen_epochs=7,
     cotrain_epochs=10,
     finetune_max_epochs=100,
@@ -65,7 +68,10 @@ def run_all_experiments(
     _common_kwargs = dict(
         method=method,
         pseudo_label_source=pseudo_label_source,
+        run_id=run_id,
         model_name=model_name,
+        image_model_name=image_model_name,
+        image_size=image_size,
         weight_gen_epochs=weight_gen_epochs,
         cotrain_epochs=cotrain_epochs,
         finetune_max_epochs=finetune_max_epochs,
@@ -107,9 +113,14 @@ def run_all_experiments(
     for budget in budgets:
         for seed_set in seed_sets:
             idx = completed + skipped + failed + 1
-            metrics_path = (
+            _metrics_base = (
                 Path(results_root) / "cotrain" / method
-                / pseudo_label_source / task / modality
+                / pseudo_label_source
+            )
+            if run_id is not None:
+                _metrics_base = _metrics_base / run_id
+            metrics_path = (
+                _metrics_base / task / modality
                 / f"{budget}_set{seed_set}" / "metrics.json"
             )
 
@@ -187,6 +198,9 @@ def _run_all_parallel(
     from .parallel import run_experiments_parallel
 
     results_root = common_kwargs["results_root"]
+    method = common_kwargs["method"]
+    pseudo_label_source = common_kwargs["pseudo_label_source"]
+    run_id = common_kwargs.get("run_id")
     all_results = []
     total = len(budgets) * len(seed_sets)
     completed = skipped = failed = 0
@@ -199,9 +213,14 @@ def _run_all_parallel(
 
     for budget in budgets:
         for seed_set in seed_sets:
-            metrics_path = (
+            _metrics_base = (
                 Path(results_root) / "cotrain" / method
-                / pseudo_label_source / task / modality
+                / pseudo_label_source
+            )
+            if run_id is not None:
+                _metrics_base = _metrics_base / run_id
+            metrics_path = (
+                _metrics_base / task / modality
                 / f"{budget}_set{seed_set}" / "metrics.json"
             )
             if metrics_path.exists():

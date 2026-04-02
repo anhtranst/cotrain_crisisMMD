@@ -14,6 +14,8 @@ from transformers import AutoTokenizer, get_linear_schedule_with_warmup
 
 from .config import LGCoTrainConfig
 from .data_loading import (
+    ImageDataset,
+    MultimodalDataset,
     TweetDataset,
     build_d_lg,
     build_label_encoder,
@@ -45,18 +47,88 @@ class LGCoTrainer:
     def __init__(self, config: LGCoTrainConfig):
         self.config = config
         self.device = get_device(config.device)
-        self.tokenizer = AutoTokenizer.from_pretrained(config.model_name)
 
-    def _make_dataset(self, texts, labels) -> TweetDataset:
-        return TweetDataset(
-            texts=texts,
-            labels=labels,
-            tokenizer=self.tokenizer,
-            max_length=self.config.max_seq_length,
-        )
+        # Text tokenizer (needed for text_only and text_image)
+        if config.modality in ("text_only", "text_image"):
+            self.tokenizer = AutoTokenizer.from_pretrained(config.model_name)
+        else:
+            self.tokenizer = None
+
+        # Image processor (needed for image_only and text_image)
+        if config.modality in ("image_only", "text_image"):
+            from transformers import CLIPImageProcessor
+            self.image_processor = CLIPImageProcessor.from_pretrained(
+                config.image_model_name
+            )
+        else:
+            self.image_processor = None
+
+    def _make_dataset(self, df, label_column="class_label"):
+        """Create a dataset from a DataFrame, dispatched by modality."""
+        labels = self._encode_labels(df[label_column])
+        modality = self.config.modality
+
+        if modality == "image_only":
+            return ImageDataset(
+                image_paths=df["image_path"].tolist(),
+                labels=labels,
+                project_root=self.config.project_root,
+                image_processor=self.image_processor,
+            )
+        elif modality == "text_image":
+            return MultimodalDataset(
+                texts=df["tweet_text"].tolist(),
+                image_paths=df["image_path"].tolist(),
+                labels=labels,
+                tokenizer=self.tokenizer,
+                image_processor=self.image_processor,
+                project_root=self.config.project_root,
+                max_length=self.config.max_seq_length,
+            )
+        else:  # text_only
+            return TweetDataset(
+                texts=df["tweet_text"].tolist(),
+                labels=labels,
+                tokenizer=self.tokenizer,
+                max_length=self.config.max_seq_length,
+            )
 
     def _encode_labels(self, series):
         return [self.label2id[lbl] for lbl in series]
+
+    def _forward_batch(self, model, batch):
+        """Run model forward on a batch, returning logits. Modality-aware."""
+        modality = self.config.modality
+        if modality == "image_only":
+            return model(batch["pixel_values"].to(self.device))
+        elif modality == "text_image":
+            return model(
+                batch["input_ids"].to(self.device),
+                batch["attention_mask"].to(self.device),
+                batch["pixel_values"].to(self.device),
+            )
+        else:  # text_only
+            return model(
+                batch["input_ids"].to(self.device),
+                batch["attention_mask"].to(self.device),
+            )
+
+    def _predict_proba_batch(self, model, batch):
+        """Run model.predict_proba on a batch. Modality-aware."""
+        modality = self.config.modality
+        if modality == "image_only":
+            return model.predict_proba(batch["pixel_values"].to(self.device))
+        elif modality == "text_image":
+            return model.predict_proba(
+                batch["input_ids"].to(self.device),
+                batch["attention_mask"].to(self.device),
+                batch["pixel_values"].to(self.device),
+            )
+        else:  # text_only
+            return model.predict_proba(
+                batch["input_ids"].to(self.device),
+                batch["attention_mask"].to(self.device),
+            )
 
     def _collect_probs(self, model, loader, pseudo_label_ids) -> np.ndarray:
         """Collect p(pseudo_label | x; theta) for each sample in D_LG.
@@ -75,11 +147,8 @@ class LGCoTrainer:
 
         with torch.no_grad():
             for batch in loader:
-                input_ids = batch["input_ids"].to(self.device)
-                attention_mask = batch["attention_mask"].to(self.device)
                 sample_idx = batch["sample_idx"].numpy()
-
-                probs = model.predict_proba(input_ids, attention_mask).cpu().numpy()
+                probs = self._predict_proba_batch(model, batch).cpu().numpy()
                 all_probs.append(probs)
                 all_indices.append(sample_idx)
 
@@ -96,7 +165,7 @@ class LGCoTrainer:
     def run(self) -> Dict:
         """Run the full 3-phase pipeline and return metrics."""
         cfg = self.config
-        setup_logging(cfg.output_dir)
+        setup_logging(cfg.log_dir)
         set_seed(cfg.seed_set)
         logger.info(f"Starting LG-CoTrain: task={cfg.task}, modality={cfg.modality}, budget={cfg.budget}, seed_set={cfg.seed_set}")
 
@@ -108,11 +177,11 @@ class LGCoTrainer:
             )
 
         # Load data
-        df_labeled = load_tsv(cfg.labeled_path)
-        df_unlabeled = load_tsv(cfg.unlabeled_path)
+        df_labeled = load_tsv(cfg.labeled_path, modality=cfg.modality)
+        df_unlabeled = load_tsv(cfg.unlabeled_path, modality=cfg.modality)
         df_pseudo = load_pseudo_labels(cfg.pseudo_label_path)
-        df_dev = load_tsv(cfg.dev_path)
-        df_test = load_tsv(cfg.test_path)
+        df_dev = load_tsv(cfg.dev_path, modality=cfg.modality)
+        df_test = load_tsv(cfg.test_path, modality=cfg.modality)
 
         # Detect classes and build label encoder
         detected_classes = detect_classes(df_labeled, df_unlabeled, df_dev, df_test)
@@ -123,28 +192,23 @@ class LGCoTrainer:
         # Split labeled set
         df_l1, df_l2 = split_labeled_set(df_labeled, seed=cfg.seed_set)
 
+        # Optionally cap unlabeled set size (for fast smoke tests)
+        if cfg.max_unlabeled_samples is not None and len(df_unlabeled) > cfg.max_unlabeled_samples:
+            df_unlabeled = df_unlabeled.sample(n=cfg.max_unlabeled_samples, random_state=cfg.seed_set).reset_index(drop=True)
+            logger.info(f"Capped unlabeled set to {cfg.max_unlabeled_samples} samples")
+
         # Build D_LG
-        df_dlg = build_d_lg(df_unlabeled, df_pseudo)
+        df_dlg = build_d_lg(df_unlabeled, df_pseudo, modality=cfg.modality)
         pseudo_label_ids = np.array(self._encode_labels(df_dlg["predicted_label"]))
         num_dlg = len(df_dlg)
         logger.info(f"D_l1: {len(df_l1)}, D_l2: {len(df_l2)}, D_LG: {num_dlg}")
 
         # Build datasets
-        ds_l1 = self._make_dataset(
-            df_l1["tweet_text"].tolist(), self._encode_labels(df_l1["class_label"])
-        )
-        ds_l2 = self._make_dataset(
-            df_l2["tweet_text"].tolist(), self._encode_labels(df_l2["class_label"])
-        )
-        ds_dlg = self._make_dataset(
-            df_dlg["tweet_text"].tolist(), pseudo_label_ids.tolist()
-        )
-        ds_dev = self._make_dataset(
-            df_dev["tweet_text"].tolist(), self._encode_labels(df_dev["class_label"])
-        )
-        ds_test = self._make_dataset(
-            df_test["tweet_text"].tolist(), self._encode_labels(df_test["class_label"])
-        )
+        ds_l1 = self._make_dataset(df_l1)
+        ds_l2 = self._make_dataset(df_l2)
+        ds_dlg = self._make_dataset(df_dlg, label_column="predicted_label")
+        ds_dev = self._make_dataset(df_dev)
+        ds_test = self._make_dataset(df_test)
 
         # DataLoaders
         loader_l1 = DataLoader(ds_l1, batch_size=cfg.batch_size, shuffle=True)
@@ -175,10 +239,7 @@ class LGCoTrainer:
             model1.train()
             for batch in loader_l1:
                 opt1.zero_grad()
-                logits = model1(
-                    batch["input_ids"].to(self.device),
-                    batch["attention_mask"].to(self.device),
-                )
+                logits = self._forward_batch(model1, batch)
                 loss = F.cross_entropy(logits, batch["labels"].to(self.device))
                 loss.backward()
                 opt1.step()
@@ -187,10 +248,7 @@ class LGCoTrainer:
             model2.train()
             for batch in loader_l2:
                 opt2.zero_grad()
-                logits = model2(
-                    batch["input_ids"].to(self.device),
-                    batch["attention_mask"].to(self.device),
-                )
+                logits = self._forward_batch(model2, batch)
                 loss = F.cross_entropy(logits, batch["labels"].to(self.device))
                 loss.backward()
                 opt2.step()
@@ -204,7 +262,7 @@ class LGCoTrainer:
             # Evaluate ensemble on dev for "best" seeding strategy
             if cfg.phase1_seed_strategy == "best":
                 dev_preds_p1, dev_labels_p1, _ = ensemble_predict(
-                    model1, model2, loader_dev, self.device
+                    model1, model2, loader_dev, self.device, modality=cfg.modality
                 )
                 dev_metrics_p1 = compute_metrics(dev_labels_p1, dev_preds_p1)
                 p1_dev_f1 = dev_metrics_p1["macro_f1"]
@@ -280,8 +338,6 @@ class LGCoTrainer:
             n_batches = 0
 
             for batch in loader_dlg_train:
-                input_ids = batch["input_ids"].to(self.device)
-                attention_mask = batch["attention_mask"].to(self.device)
                 labels = batch["labels"].to(self.device)
                 sample_idx = batch["sample_idx"].numpy()
 
@@ -294,7 +350,7 @@ class LGCoTrainer:
                 )
 
                 # Model 1 loss (uses theta2's weights = lambda2)
-                logits1 = model1(input_ids, attention_mask)
+                logits1 = self._forward_batch(model1, batch)
                 per_sample_loss1 = F.cross_entropy(logits1, labels, reduction="none")
                 loss1 = (w2 * per_sample_loss1).mean()
 
@@ -304,7 +360,7 @@ class LGCoTrainer:
                 scheduler1.step()
 
                 # Model 2 loss (uses theta1's weights = lambda1)
-                logits2 = model2(input_ids, attention_mask)
+                logits2 = self._forward_batch(model2, batch)
                 per_sample_loss2 = F.cross_entropy(logits2, labels, reduction="none")
                 loss2 = (w1 * per_sample_loss2).mean()
 
@@ -326,7 +382,7 @@ class LGCoTrainer:
             lambda2 = cotrain_tracker2.compute_lambda_conservative()
 
             # Evaluate ensemble on dev
-            dev_preds, dev_labels, _ = ensemble_predict(model1, model2, loader_dev, self.device)
+            dev_preds, dev_labels, _ = ensemble_predict(model1, model2, loader_dev, self.device, modality=cfg.modality)
             dev_metrics = compute_metrics(dev_labels, dev_preds)
 
             logger.info(
@@ -369,10 +425,7 @@ class LGCoTrainer:
                 df_dev.groupby("class_label", group_keys=False)
                 .sample(n=_min_count, random_state=cfg.seed_set)
             )
-            ds_dev_balanced = self._make_dataset(
-                df_dev_balanced["tweet_text"].tolist(),
-                self._encode_labels(df_dev_balanced["class_label"]),
-            )
+            ds_dev_balanced = self._make_dataset(df_dev_balanced)
             loader_dev_balanced = DataLoader(ds_dev_balanced,
                                              batch_size=cfg.batch_size, shuffle=False)
             es1 = EarlyStopping(patience=cfg.finetune_patience)
@@ -397,10 +450,7 @@ class LGCoTrainer:
             model1.train()
             for batch in loader_l1:
                 opt1.zero_grad()
-                logits = model1(
-                    batch["input_ids"].to(self.device),
-                    batch["attention_mask"].to(self.device),
-                )
+                logits = self._forward_batch(model1, batch)
                 loss = F.cross_entropy(logits, batch["labels"].to(self.device))
                 loss.backward()
                 opt1.step()
@@ -410,17 +460,14 @@ class LGCoTrainer:
             model2.train()
             for batch in loader_l2:
                 opt2.zero_grad()
-                logits = model2(
-                    batch["input_ids"].to(self.device),
-                    batch["attention_mask"].to(self.device),
-                )
+                logits = self._forward_batch(model2, batch)
                 loss = F.cross_entropy(logits, batch["labels"].to(self.device))
                 loss.backward()
                 opt2.step()
                 scheduler2.step()
 
             # Evaluate ensemble on dev — always on full dev set for logging
-            dev_preds, dev_labels, _ = ensemble_predict(model1, model2, loader_dev, self.device)
+            dev_preds, dev_labels, _ = ensemble_predict(model1, model2, loader_dev, self.device, modality=cfg.modality)
             dev_metrics = compute_metrics(dev_labels, dev_preds)
             dev_f1 = dev_metrics["macro_f1"]
 
@@ -438,7 +485,7 @@ class LGCoTrainer:
                 stop2 = es2.step(stopping_score, model2)
             elif strategy == "balanced_dev":
                 bal_preds, bal_labels, _ = ensemble_predict(
-                    model1, model2, loader_dev_balanced, self.device)
+                    model1, model2, loader_dev_balanced, self.device, modality=cfg.modality)
                 bal_metrics = compute_metrics(bal_labels, bal_preds)
                 stop1 = es1.step(bal_metrics["macro_f1"], model1)
                 stop2 = es2.step(bal_metrics["macro_f1"], model2)
@@ -464,10 +511,10 @@ class LGCoTrainer:
         # Final Evaluation
         # ========================
         logger.info("=== Final Evaluation ===")
-        test_preds, test_labels, test_probs = ensemble_predict(model1, model2, loader_test, self.device)
+        test_preds, test_labels, test_probs = ensemble_predict(model1, model2, loader_test, self.device, modality=cfg.modality)
         test_metrics = compute_metrics(test_labels, test_preds)
         test_ece = compute_ece(test_labels, test_probs)
-        dev_preds, dev_labels, dev_probs = ensemble_predict(model1, model2, loader_dev, self.device)
+        dev_preds, dev_labels, dev_probs = ensemble_predict(model1, model2, loader_dev, self.device, modality=cfg.modality)
         dev_metrics = compute_metrics(dev_labels, dev_preds)
         dev_ece = compute_ece(dev_labels, dev_probs)
 

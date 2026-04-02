@@ -16,6 +16,11 @@ A semi-supervised co-training pipeline that classifies crisis tweets and images.
   - [Phase 1 — Weight Generation](#phase-1--weight-generation)
   - [Phase 2 — Co-Training](#phase-2--co-training)
   - [Phase 3 — Fine-Tuning](#phase-3--fine-tuning)
+- [Model Architecture per Modality](#model-architecture-per-modality)
+  - [text_only — BERTweet](#text_only--bertweet-bertclassifier)
+  - [image_only — CLIP ViT](#image_only--clip-vit-imageclassifier)
+  - [text_image — Late Fusion](#text_image--late-fusion-multimodalclassifier)
+  - [Co-Training with Two Models](#co-training-with-two-models)
 - [Dataset: CrisisMMD](#dataset-crisismmd)
 - [Data Layout](#data-layout)
 - [Installation](#installation)
@@ -147,6 +152,95 @@ Six strategies are available via `--stopping-strategy`:
 
 ---
 
+## Model Architecture per Modality
+
+The pipeline supports three modalities, each with a different model architecture. The 3-phase co-training algorithm is identical across all modalities — only the model, dataset, and input format change.
+
+### text_only — BERTweet (`BertClassifier`)
+
+```mermaid
+graph LR
+    TEXT["Tweet Text"] --> TOK["BERTweet Tokenizer<br/>(max_length=128)"]
+    TOK --> BERT["AutoModelForSequenceClassification<br/>(vinai/bertweet-base)<br/>Built-in classification head"]
+    BERT --> LOGITS["Logits (batch, N)"]
+```
+
+BERTweet tokenizes the tweet text into `input_ids` + `attention_mask`, then `AutoModelForSequenceClassification` produces logits directly. The classification head is built into the model.
+
+### image_only — CLIP ViT (`ImageClassifier`)
+
+```mermaid
+graph LR
+    IMG["Image"] --> PROC["CLIPImageProcessor<br/>(resize 224×224, center crop, normalize)"]
+    PROC --> VIT["CLIPVisionModel<br/>(openai/clip-vit-base-patch32)"]
+    VIT --> POOL["pooler_output<br/>= Image [CLS] embedding<br/>(batch, 768)"]
+    POOL --> HEAD["nn.Linear(768, num_labels)<br/>Randomly initialized"]
+    HEAD --> LOGITS["Logits (batch, N)"]
+```
+
+`CLIPVisionModel` (not the full `CLIPModel` — we only need the vision encoder) processes raw pixel values. The `pooler_output` is the [CLS] token projected through a pooling layer (768-dim), passed through a separate linear classification head.
+
+### text_image — Late Fusion (`MultimodalClassifier`)
+
+```mermaid
+graph TD
+    subgraph "Text Branch"
+        TEXT["Tweet Text"] --> TOK["BERTweet Tokenizer"]
+        TOK --> BERT["BERTweet<br/>(AutoModel, not ForSeqClassif.)<br/>vinai/bertweet-base"]
+        BERT --> TCLS["last_hidden_state[:, 0, :]<br/>= Text [CLS] embedding<br/>(batch, 768)"]
+    end
+
+    subgraph "Image Branch"
+        IMG["Image"] --> PROC["CLIP Image Processor<br/>(resize 224×224, normalize)"]
+        PROC --> VIT["CLIPVisionModel<br/>(not full CLIPModel)<br/>clip-vit-base-patch32"]
+        VIT --> ICLS["pooler_output<br/>= Image [CLS] embedding<br/>(batch, 768)"]
+    end
+
+    TCLS --> CAT["torch.cat dim=-1<br/>(batch, 1536)"]
+    ICLS --> CAT
+    CAT --> HEAD["nn.Linear(1536, num_labels)<br/>Randomly initialized"]
+    HEAD --> LOGITS["Logits (batch, N)"]
+```
+
+Two separate encoders process text and image independently:
+- **Text branch**: `AutoModel` (not `ForSequenceClassification`) returns full hidden states. We take `last_hidden_state[:, 0, :]` — the [CLS] token at position 0 — as the 768-dim text embedding. We use `AutoModel` instead of `AutoModelForSequenceClassification` because we need the raw embedding to concatenate, not pre-classified logits.
+- **Image branch**: `CLIPVisionModel` (not full `CLIPModel` — we only need the vision encoder) extracts the `pooler_output` (768-dim).
+- **Fusion**: The two embeddings are concatenated into a 1536-dim vector via `torch.cat`, then a single `nn.Linear(1536, num_labels)` head classifies.
+- Both encoders are **unfrozen** — gradients flow back through both BERTweet and CLIP ViT during training.
+- The `nn.Linear` classification head is **randomly initialized** and learned from scratch.
+
+### Co-Training with Two Models
+
+The 3-phase pipeline always trains **two models of the same architecture** (Model 1 and Model 2). For `text_image`, this means two independent `MultimodalClassifier` instances, each containing its own BERTweet + CLIP ViT — **no weight sharing** between Model 1 and Model 2.
+
+```mermaid
+graph TD
+    subgraph "Model 1"
+        M1_BERT["BERTweet"] --> M1_FUSE["Concat + Head"]
+        M1_VIT["CLIP ViT"] --> M1_FUSE
+        M1_FUSE --> M1_PROB["Softmax Probs"]
+    end
+
+    subgraph "Model 2"
+        M2_BERT["BERTweet"] --> M2_FUSE["Concat + Head"]
+        M2_VIT["CLIP ViT"] --> M2_FUSE
+        M2_FUSE --> M2_PROB["Softmax Probs"]
+    end
+
+    M1_PROB --> AVG["Average Probabilities"]
+    M2_PROB --> AVG
+    AVG --> PRED["Argmax → Final Prediction"]
+```
+
+- **Phase 1**: Model 1 trains on D_l1, Model 2 trains on D_l2 → both produce probability estimates over D_LG
+- **Phase 2**: Fresh Model 1 and Model 2 co-train on D_LG with cross-weighted loss (lambda weights from Phase 1)
+- **Phase 3**: Fine-tune each model on its labeled split with early stopping
+- **Ensemble**: Average softmax probabilities from both models, then argmax
+
+> **GPU Memory**: `text_image` mode loads 4 transformer encoders simultaneously (2 × BERTweet + 2 × CLIP ViT ≈ 3.5 GB). With `batch_size=32`, expect ~6–8 GB total. Fits on a 16 GB+ GPU.
+
+---
+
 ## Dataset: CrisisMMD
 
 The dataset uses the **agreed-label subset** of CrisisMMD, containing tweets and images from **7 natural disasters** in 2017 where text and image annotators agreed on the label. Two annotation tasks:
@@ -258,9 +352,24 @@ python scripts/prepare_crisismmd.py --budgets 5 10 25 --seeds 1 2
 ### Single Experiment
 
 ```bash
+# Text-only (BERTweet)
 python -m lg_cotrain.run_experiment \
     --task humanitarian \
     --modality text_only \
+    --budget 5 \
+    --seed-set 1
+
+# Image-only (CLIP ViT)
+python -m lg_cotrain.run_experiment \
+    --task humanitarian \
+    --modality image_only \
+    --budget 5 \
+    --seed-set 1
+
+# Text+Image (BERTweet + CLIP ViT late fusion)
+python -m lg_cotrain.run_experiment \
+    --task humanitarian \
+    --modality text_image \
     --budget 5 \
     --seed-set 1
 ```
@@ -280,6 +389,20 @@ Run specific budgets and seed sets:
 python -m lg_cotrain.run_experiment \
     --task humanitarian --modality text_only \
     --budgets 5 10 --seed-sets 1 2
+```
+
+### Multi-GPU and Run ID
+
+```bash
+# Run all 12 experiments on 2 GPUs (6 per GPU)
+python -m lg_cotrain.run_experiment \
+    --task humanitarian --modality text_only \
+    --num-gpus 2 --run-id run-1
+
+# Different settings → increment run_id
+python -m lg_cotrain.run_experiment \
+    --task humanitarian --modality text_only \
+    --num-gpus 2 --run-id run-2 --lr 5e-5
 ```
 
 ### Custom Pseudo-Label Source and Output Folder
@@ -396,7 +519,10 @@ python scripts/create_pseudo_labels.py --model qwen2.5-vl-7b
 | `--seed-sets` | One or more seed sets | All seed sets |
 | `--pseudo-label-source` | Model that generated pseudo-labels | `llama-3.2-11b` |
 | `--output-folder` | Output folder for results | `results/` |
-| `--model-name` | HuggingFace model name | `vinai/bertweet-base` |
+| `--run-id` | Run identifier (e.g. `run-1`), inserted into output path | None |
+| `--model-name` | Text model (HuggingFace) | `vinai/bertweet-base` |
+| `--image-model-name` | Image model for image_only/text_image | `openai/clip-vit-base-patch32` |
+| `--image-size` | Image input size | `224` |
 | `--weight-gen-epochs` | Phase 1 epochs | `7` |
 | `--cotrain-epochs` | Phase 2 epochs | `10` |
 | `--finetune-max-epochs` | Phase 3 max epochs | `100` |
@@ -416,7 +542,13 @@ python scripts/create_pseudo_labels.py --model qwen2.5-vl-7b
 
 ## Output Format
 
-Co-training results are saved to `results/cotrain/{method}/{pseudo_source}/{task}/{modality}/{budget}_set{seed}/metrics.json`:
+Co-training results are saved to:
+- Without `--run-id`: `results/cotrain/{method}/{pseudo_source}/{task}/{modality}/{budget}_set{seed}/metrics.json`
+- With `--run-id run-1`: `results/cotrain/{method}/{pseudo_source}/run-1/{task}/{modality}/{budget}_set{seed}/metrics.json`
+
+Log files are written at the task/modality level (not per-experiment): `results/cotrain/{method}/{pseudo_source}/[{run_id}/]{task}/{modality}/experiment.log`
+
+Example output:
 
 ```json
 {
@@ -449,9 +581,9 @@ Co-training results are saved to `results/cotrain/{method}/{pseudo_source}/{task
 ```
 lg_cotrain/                          # Main package
 ├── config.py                        # LGCoTrainConfig — auto-computes paths from task/modality
-├── data_loading.py                  # Data loading, TASK_LABELS, label encoding, TweetDataset
-├── evaluate.py                      # Metrics (error rate, macro-F1, ECE), ensemble prediction
-├── model.py                         # BertClassifier — AutoModelForSequenceClassification wrapper
+├── data_loading.py                  # Data loading, TASK_LABELS, label encoding, TweetDataset/ImageDataset/MultimodalDataset
+├── evaluate.py                      # Metrics (error rate, macro-F1, ECE), modality-aware ensemble prediction
+├── model.py                         # BertClassifier, ImageClassifier, MultimodalClassifier + factory
 ├── trainer.py                       # LGCoTrainer — orchestrates the 3-phase pipeline
 ├── run_experiment.py                # CLI entry point (single + batch mode)
 ├── run_all.py                       # Batch runner: all budget x seed_set for one task/modality
@@ -474,10 +606,12 @@ scripts/
 └── merge_optuna_results.py          # Merge Optuna results from multiple PCs
 
 Notebooks/
+├── 00_cotrain_smoke_test.ipynb     # Quick 6-experiment validation (budget=5, minimal epochs)
 ├── 01_zeroshot_informative.ipynb    # Llama zero-shot — informative task (6 experiments)
 ├── 02_zeroshot_humanitarian.ipynb   # Llama zero-shot — humanitarian task (6 experiments)
 ├── 03_zeroshot_informative_qwen.ipynb # Qwen zero-shot — informative task (6 experiments)
-└── 04_zeroshot_humanitarian_qwen.ipynb # Qwen zero-shot — humanitarian task (6 experiments)
+├── 04_zeroshot_humanitarian_qwen.ipynb # Qwen zero-shot — humanitarian task (6 experiments)
+└── 05_cotrain_llama.ipynb           # Full co-training — 72 experiments, dual-GPU, with run_id
 
 tests/                               # Test suite
 ├── conftest.py                      # Shared pytest fixtures
@@ -527,7 +661,8 @@ python -m unittest tests/test_data_loading.py
 ## Design Decisions
 
 - **Task/modality-based experiments**: Experiments are organized by `(task, modality, budget, seed_set)` instead of per-event, matching CrisisMMD's all-events-combined structure.
-- **BERTweet as default text model**: `vinai/bertweet-base` for text-only co-training, optimized for tweets. CLIP ViT (`openai/clip-vit-base-patch32`) as default image model. Uses `AutoModelForSequenceClassification` and `AutoTokenizer` for model-agnostic support.
+- **Modality-specific models**: BERTweet (`vinai/bertweet-base`) for text, CLIP ViT (`openai/clip-vit-base-patch32`) for images, late fusion (concat [CLS] embeddings + linear head) for text+image. `create_fresh_model()` dispatches by `config.modality`.
+- **Late fusion for multimodal**: Two separate encoders (BERTweet + CLIP ViT) process text and image independently. Embeddings are concatenated before a shared classification head. Both encoders are unfrozen and trained end-to-end.
 - **Per-task label sets**: `TASK_LABELS` dict in `data_loading.py` maps each task to its label set. `CLASS_LABELS` defaults to the humanitarian task for backward compatibility.
 - **Lazy imports**: `data_loading.py` uses lazy imports for `torch`/`transformers`/`pandas` so pure-Python modules work without ML dependencies.
 - **Dynamic class detection**: `detect_classes()` computes the union of classes across all data splits, ensuring no class at test time is missed.
