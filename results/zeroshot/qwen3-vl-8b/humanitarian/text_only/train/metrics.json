@@ -1,0 +1,24 @@
+{
+  "task": "humanitarian",
+  "modality": "text_only",
+  "split": "train",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "num_samples": 5263,
+  "num_unparseable": 0,
+  "accuracy": 0.7245,
+  "weighted_precision": 0.7834,
+  "weighted_recall": 0.7245,
+  "weighted_f1": 0.7325,
+  "macro_precision": 0.6455,
+  "macro_recall": 0.7511,
+  "macro_f1": 0.6448,
+  "avg_confidence": 0.9717,
+  "avg_entropy": 0.1125,
+  "per_class_f1": {
+    "affected_individuals": 0.3547,
+    "infrastructure_and_utility_damage": 0.6501,
+    "not_humanitarian": 0.7681,
+    "other_relevant_information": 0.687,
+    "rescue_volunteering_or_donation_effort": 0.7639
+  }
+}

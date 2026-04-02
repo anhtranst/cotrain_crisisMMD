@@ -86,8 +86,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Create pseudo-label files from zero-shot train predictions"
     )
-    parser.add_argument("--model", default="llama-3.2-11b",
-                        help="Model slug (default: llama-3.2-11b)")
+    parser.add_argument("--model", default=None,
+                        help="Model slug (default: all models in results/zeroshot/)")
     parser.add_argument("--task", choices=TASKS, default=None,
                         help="Specific task (default: all)")
     parser.add_argument("--modality", choices=MODALITIES, default=None,
@@ -103,14 +103,28 @@ def main():
     tasks = [args.task] if args.task else TASKS
     modalities = [args.modality] if args.modality else MODALITIES
 
-    print(f"Creating pseudo-labels from: {results_root}/zeroshot/{args.model}/")
-    print(f"Writing to: {data_root}/pseudo_labelled/{args.model}/\n")
+    # Auto-discover models if not specified
+    if args.model:
+        models = [args.model]
+    else:
+        zeroshot_dir = Path(results_root) / "zeroshot"
+        if zeroshot_dir.exists():
+            models = sorted(d.name for d in zeroshot_dir.iterdir() if d.is_dir())
+        else:
+            models = []
+        if not models:
+            print(f"No model directories found in {zeroshot_dir}")
+            return
 
     count = 0
-    for task in tasks:
-        for modality in modalities:
-            if create_pseudo_labels(args.model, task, modality, results_root, data_root):
-                count += 1
+    for model in models:
+        print(f"Creating pseudo-labels from: {results_root}/zeroshot/{model}/")
+        print(f"Writing to: {data_root}/pseudo_labelled/{model}/\n")
+        for task in tasks:
+            for modality in modalities:
+                if create_pseudo_labels(model, task, modality, results_root, data_root):
+                    count += 1
+        print()
 
     print(f"\nDone: {count} pseudo-label files created")
 

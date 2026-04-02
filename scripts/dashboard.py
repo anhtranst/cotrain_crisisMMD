@@ -90,18 +90,44 @@ def _count_column(path: Path, col: str) -> dict:
 
 
 def collect_all_metrics(results_root: str) -> list:
+    """Collect co-training metrics, enriching each with method/model/run_id from path.
+
+    Expected path structure:
+        results/cotrain/{method}/{pseudo_source}/[{run_id}/]{task}/{modality}/{budget}_set{seed}/metrics.json
+    """
     metrics = []
-    root = Path(results_root)
-    if root.exists():
-        for p in sorted(root.rglob("metrics.json")):
-            # Skip zeroshot results (handled separately)
-            if "zeroshot" in str(p):
-                continue
+    cotrain_dir = Path(results_root) / "cotrain"
+    if cotrain_dir.exists():
+        for p in sorted(cotrain_dir.rglob("metrics.json")):
             try:
                 with open(p) as f:
-                    metrics.append(json.load(f))
+                    m = json.load(f)
             except (json.JSONDecodeError, OSError):
+                continue
+
+            # Extract hierarchy from path by finding "cotrain" directory.
+            # Expected: .../cotrain/{method}/{pseudo_source}/[{run_id}/]{task}/{modality}/{budget_seed}/metrics.json
+            p_parts = p.parts
+            try:
+                # Find the last "cotrain" component (skip "cotrain_smoke_test" etc.)
+                cotrain_idx = None
+                for idx in range(len(p_parts) - 1, -1, -1):
+                    if p_parts[idx] == "cotrain":
+                        cotrain_idx = idx
+                        break
+                if cotrain_idx is not None:
+                    after = p_parts[cotrain_idx + 1:]  # e.g. ('lg-cotrain', 'llama-3.2-11b', 'run-1', 'informative', 'text_only', '5_set1', 'metrics.json')
+                    if len(after) >= 6:
+                        m.setdefault("method", after[0])
+                        m.setdefault("pseudo_source", after[1])
+                        if after[2].startswith("run-") or after[2].startswith("run_"):
+                            m.setdefault("run_id", after[2])
+                        else:
+                            m.setdefault("run_id", "default")
+            except (IndexError, ValueError):
                 pass
+
+            metrics.append(m)
     return metrics
 
 
@@ -365,9 +391,13 @@ function showTab(tabId, btn) {
 
 function showSubTab(parentId, tabId, btn) {
     var parent = document.getElementById(parentId);
-    parent.querySelectorAll('.sub-tab-content').forEach(function(el) { el.classList.remove('active'); });
-    parent.querySelectorAll('.sub-tab-bar button').forEach(function(b) { b.classList.remove('active'); });
-    parent.querySelector('#' + tabId).classList.add('active');
+    // Only toggle direct child sub-tab-content and sibling buttons (not nested ones)
+    Array.from(parent.children).forEach(function(el) {
+        if (el.classList.contains('sub-tab-content')) el.classList.remove('active');
+    });
+    var bar = btn.parentElement;
+    bar.querySelectorAll('button').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById(tabId).classList.add('active');
     btn.classList.add('active');
 }
 
@@ -808,7 +838,80 @@ def _render_zeroshot_tab(task, task_results):
 # Co-Training Results Tab
 # ---------------------------------------------------------------------------
 
+def _render_cotrain_summary_cards(metrics):
+    """Render summary cards for a set of co-training metrics."""
+    n = len(metrics)
+    f1s = [m["test_macro_f1"] for m in metrics if "test_macro_f1" in m]
+    errs = [m["test_error_rate"] for m in metrics if "test_error_rate" in m]
+    eces = [m.get("test_ece", 0) for m in metrics if "test_ece" in m]
+    if not f1s:
+        return ""
+    return f"""
+    <div class="cards">
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">{n}</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">{statistics.mean(f1s):.4f}</div><div class="label">Avg Macro-F1</div></div>
+        <div class="card"><div class="icon">&#x274C;</div><div class="value">{statistics.mean(errs):.1f}%</div><div class="label">Avg Error Rate</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">{statistics.mean(eces):.4f}</div><div class="label">Avg ECE</div></div>
+    </div>"""
+
+
+def _render_cotrain_task_tables(task, task_metrics):
+    """Render tables for one task: one table per modality, rows = budgets (averaged across seeds)."""
+    parts = []
+    modality_order = ["text_only", "image_only", "text_image"]
+
+    for modality in modality_order:
+        mod_metrics = [m for m in task_metrics if m.get("modality") == modality]
+        if not mod_metrics:
+            continue
+
+        icon = MODALITY_ICONS.get(modality, "")
+        parts.append(f'<div class="section">')
+        parts.append(f'<div class="section-header"><h3>{icon} {modality}</h3></div>')
+
+        # Group by budget, average across seeds
+        by_budget = {}
+        for m in mod_metrics:
+            b = m.get("budget", 0)
+            by_budget.setdefault(b, []).append(m)
+
+        parts.append("""<table><thead>
+            <tr><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>""")
+
+        for budget in sorted(by_budget.keys()):
+            runs = by_budget[budget]
+            n_seeds = len(runs)
+            avg_f1 = statistics.mean(m["test_macro_f1"] for m in runs)
+            std_f1 = statistics.stdev(m["test_macro_f1"] for m in runs) if n_seeds > 1 else 0
+            avg_err = statistics.mean(m["test_error_rate"] for m in runs)
+            avg_ece = statistics.mean(m.get("test_ece", 0) for m in runs)
+            avg_dev_f1 = statistics.mean(m["dev_macro_f1"] for m in runs)
+
+            if avg_f1 >= 0.7:
+                badge = "badge-success"
+            elif avg_f1 >= 0.4:
+                badge = "badge-warning"
+            else:
+                badge = "badge-danger"
+
+            f1_display = f"{avg_f1:.4f}" if n_seeds == 1 else f"{avg_f1:.4f} &plusmn; {std_f1:.4f}"
+            parts.append(
+                f'<tr><td class="num">{budget}</td><td class="num">{n_seeds}</td>'
+                f'<td class="num"><span class="badge {badge}">{f1_display}</span></td>'
+                f'<td class="num">{avg_err:.2f}%</td>'
+                f'<td class="num">{avg_ece:.4f}</td>'
+                f'<td class="num">{avg_dev_f1:.4f}</td></tr>'
+            )
+
+        parts.append("</tbody></table></div>")
+
+    return "\n".join(parts)
+
+
 def _render_results_tab(metrics):
+    """Render co-training tab with nested subtabs: method -> model -> run_id -> task."""
     if not metrics:
         return """
         <div class="empty-state">
@@ -818,46 +921,120 @@ def _render_results_tab(metrics):
             <code>python -m lg_cotrain.run_experiment --task humanitarian --modality text_only --budget 5 --seed-set 1</code></p>
         </div>"""
 
+    # Build hierarchy: method -> pseudo_source -> run_id -> list of metrics
+    from collections import defaultdict
+    hierarchy = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
+    for m in metrics:
+        method = m.get("method", "lg-cotrain")
+        source = m.get("pseudo_source", "unknown")
+        run_id = m.get("run_id", "default")
+        hierarchy[method][source][run_id].append(m)
+
     parts = []
-    n = len(metrics)
-    f1s = [m["test_macro_f1"] for m in metrics if "test_macro_f1" in m]
-    errs = [m["test_error_rate"] for m in metrics if "test_error_rate" in m]
-    eces = [m.get("test_ece", 0) for m in metrics if "test_ece" in m]
 
-    parts.append(f"""
-    <div class="cards">
-        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">{n}</div><div class="label">Experiments</div></div>
-        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">{statistics.mean(f1s):.4f}</div><div class="label">Avg Macro-F1</div></div>
-        <div class="card"><div class="icon">&#x274C;</div><div class="value">{statistics.mean(errs):.1f}%</div><div class="label">Avg Error Rate</div></div>
-        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">{statistics.mean(eces):.4f}</div><div class="label">Avg ECE</div></div>
-    </div>
-    """)
+    # Level 1: Method subtabs
+    method_buttons = []
+    method_contents = []
+    first_method = True
 
-    parts.append('<div class="section">')
-    parts.append('<div class="section-header"><h2>&#x1F4CB; All Experiment Results</h2></div>')
-    parts.append("""<table><thead>
-        <tr><th>Task</th><th>Modality</th><th class="num">Budget</th><th class="num">Seed</th>
-        <th class="num">Test F1</th><th class="num">Test Err%</th><th class="num">Test ECE</th>
-        <th class="num">Dev F1</th><th>Strategy</th></tr></thead><tbody>""")
-
-    for m in sorted(metrics, key=lambda x: (x.get("task",""), x.get("modality",""), x.get("budget",0), x.get("seed_set",0))):
-        f1 = m.get("test_macro_f1", 0)
-        if f1 >= 0.7:
-            badge = "badge-success"
-        elif f1 >= 0.4:
-            badge = "badge-warning"
-        else:
-            badge = "badge-danger"
-        parts.append(
-            f'<tr><td>{m.get("task","?")}</td><td>{m.get("modality","?")}</td>'
-            f'<td class="num">{m.get("budget","?")}</td><td class="num">{m.get("seed_set","?")}</td>'
-            f'<td class="num"><span class="badge {badge}">{f1:.4f}</span></td>'
-            f'<td class="num">{m.get("test_error_rate",0):.2f}%</td>'
-            f'<td class="num">{m.get("test_ece",0):.4f}</td>'
-            f'<td class="num">{m.get("dev_macro_f1",0):.4f}</td>'
-            f'<td>{m.get("stopping_strategy","?")}</td></tr>'
+    for method in sorted(hierarchy.keys()):
+        method_id = f"ct-method-{method}"
+        active = " active" if first_method else ""
+        method_n = sum(len(v) for src in hierarchy[method].values() for v in src.values())
+        method_buttons.append(
+            f'<button class="{active.strip()}" onclick="showSubTab(\'tab-results\',\'{method_id}\',this)">'
+            f'{method} ({method_n})</button>'
         )
-    parts.append("</tbody></table></div>")
+
+        method_parts = []
+
+        # Level 2: Model (pseudo_source) subtabs
+        model_buttons = []
+        model_contents = []
+        first_model = True
+
+        for source in sorted(hierarchy[method].keys()):
+            model_id = f"ct-{method}-{source}".replace(".", "-")
+            active_m = " active" if first_model else ""
+            model_n = sum(len(v) for v in hierarchy[method][source].values())
+            model_buttons.append(
+                f'<button class="{active_m.strip()}" onclick="showSubTab(\'{method_id}\',\'{model_id}\',this)">'
+                f'{source} ({model_n})</button>'
+            )
+
+            model_parts = []
+
+            # Level 3: Run subtabs
+            runs = hierarchy[method][source]
+            run_buttons = []
+            run_contents = []
+            first_run = True
+
+            for run_id in sorted(runs.keys()):
+                run_metrics = runs[run_id]
+                run_tab_id = f"{model_id}-{run_id}".replace(".", "-")
+                active_r = " active" if first_run else ""
+                run_buttons.append(
+                    f'<button class="{active_r.strip()}" onclick="showSubTab(\'{model_id}\',\'{run_tab_id}\',this)">'
+                    f'{run_id} ({len(run_metrics)})</button>'
+                )
+
+                # Render run content: summary cards + per-task tables
+                run_parts = []
+                run_parts.append(_render_cotrain_summary_cards(run_metrics))
+
+                for task in TASKS:
+                    task_metrics = [m for m in run_metrics if m.get("task") == task]
+                    if not task_metrics:
+                        continue
+                    icon = TASK_ICONS.get(task, "")
+                    run_parts.append(f'<div class="section"><div class="section-header"><h2>{icon} {task.title()}</h2></div></div>')
+                    run_parts.append(_render_cotrain_task_tables(task, task_metrics))
+
+                run_contents.append(
+                    f'<div id="{run_tab_id}" class="sub-tab-content{active_r}">\n'
+                    + "\n".join(run_parts)
+                    + '\n</div>'
+                )
+                first_run = False
+
+            # Assemble model content
+            if len(runs) == 1:
+                # Single run: skip run subtabs, show content directly
+                model_parts.append(run_contents[0].replace(f'class="sub-tab-content"', 'class="sub-tab-content active"'))
+            else:
+                run_bar = '<nav class="sub-tab-bar">' + "".join(run_buttons) + '</nav>'
+                model_parts.append(run_bar)
+                model_parts.extend(run_contents)
+
+            model_contents.append(
+                f'<div id="{model_id}" class="sub-tab-content{active_m}">\n'
+                + "\n".join(model_parts)
+                + '\n</div>'
+            )
+            first_model = False
+
+        # Assemble method content — always show model subtabs
+        model_bar = '<nav class="sub-tab-bar">' + "".join(model_buttons) + '</nav>'
+        method_parts.append(model_bar)
+        method_parts.extend(model_contents)
+
+        method_contents.append(
+            f'<div id="{method_id}" class="sub-tab-content{active}">\n'
+            + "\n".join(method_parts)
+            + '\n</div>'
+        )
+        first_method = False
+
+    # Assemble top level
+    if len(hierarchy) == 1:
+        # Single method: skip method subtabs
+        parts.extend(method_contents)
+    else:
+        method_bar = '<nav class="sub-tab-bar">' + "".join(method_buttons) + '</nav>'
+        parts.append(method_bar)
+        parts.extend(method_contents)
+
     return "\n".join(parts)
 
 

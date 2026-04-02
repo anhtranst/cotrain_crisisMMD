@@ -1,0 +1,21 @@
+{
+  "task": "informative",
+  "modality": "text_image",
+  "split": "test",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "num_samples": 1534,
+  "num_unparseable": 0,
+  "accuracy": 0.8429,
+  "weighted_precision": 0.859,
+  "weighted_recall": 0.8429,
+  "weighted_f1": 0.83,
+  "macro_precision": 0.8796,
+  "macro_recall": 0.77,
+  "macro_f1": 0.7967,
+  "avg_confidence": 0.9833,
+  "avg_entropy": 0.0564,
+  "per_class_f1": {
+    "informative": 0.8936,
+    "not_informative": 0.6999
+  }
+}

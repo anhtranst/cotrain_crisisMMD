@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
-"""Zero-shot classification on CrisisMMD with Qwen2.5-VL-7B-Instruct.
+"""Zero-shot classification on CrisisMMD with Qwen VL models.
+
+Supports Qwen2.5-VL-7B-Instruct (default) and Qwen3-VL-8B-Instruct
+via the --model-id flag.
 
 Supports informative (2 classes) and humanitarian (5 classes) tasks,
 across text_only, image_only, and text_image modalities.
 
 Usage:
+    # Qwen2.5 (default)
     python scripts/zeroshot_qwen.py --task informative --modality text_only --split test
     python scripts/zeroshot_qwen.py --task humanitarian --modality image_only --split train
-    python scripts/zeroshot_qwen.py --task informative --modality text_image --split test --max-samples 50
+
+    # Qwen3
+    python scripts/zeroshot_qwen.py --model-id Qwen/Qwen3-VL-8B-Instruct --task informative --modality text_only --split test
+    python scripts/zeroshot_qwen.py --model-id Qwen/Qwen3-VL-8B-Instruct --task humanitarian --modality image_only --split train
 """
 
 import argparse
@@ -204,6 +211,7 @@ def model_slug(model_id: str) -> str:
 
     e.g. 'meta-llama/Llama-3.2-11B-Vision-Instruct' -> 'llama-3.2-11b'
          'Qwen/Qwen2.5-VL-7B-Instruct' -> 'qwen2.5-vl-7b'
+         'Qwen/Qwen3-VL-8B-Instruct' -> 'qwen3-vl-8b'
     """
     name = model_id.split("/")[-1]           # drop org prefix
     name = name.lower()
@@ -362,7 +370,8 @@ def predict_single(model, processor, messages, images, task):
         ).to(model.device)
 
     # Remove processor-injected sampling params that conflict with do_sample=False
-    for key in ("temperature", "top_p"):
+    # Qwen2.5 injects temperature/top_p; Qwen3 may also inject top_k
+    for key in ("temperature", "top_p", "top_k"):
         inputs.pop(key, None)
 
     with torch.no_grad(), warnings.catch_warnings():
@@ -403,15 +412,24 @@ def predict_single(model, processor, messages, images, task):
 # ---------------------------------------------------------------------------
 
 def load_model(model_id):
-    """Load the Qwen2.5-VL model and processor."""
+    """Load a Qwen VL model and processor.
+
+    Dispatches the model class based on model_id:
+    - Qwen3-VL: Qwen3VLForConditionalGeneration
+    - Qwen2.5-VL: Qwen2_5_VLForConditionalGeneration (fallback: Qwen2VLForConditionalGeneration)
+    """
     import torch
-    try:
-        from transformers import Qwen2_5_VLForConditionalGeneration as ModelClass
-    except ImportError:
-        from transformers import Qwen2VLForConditionalGeneration as ModelClass
     from transformers import AutoProcessor
 
-    print(f"Loading model: {model_id}")
+    if "qwen3" in model_id.lower():
+        from transformers import Qwen3VLForConditionalGeneration as ModelClass
+    else:
+        try:
+            from transformers import Qwen2_5_VLForConditionalGeneration as ModelClass
+        except ImportError:
+            from transformers import Qwen2VLForConditionalGeneration as ModelClass
+
+    print(f"Loading model: {model_id} ({ModelClass.__name__})")
     model = ModelClass.from_pretrained(
         model_id, device_map="auto", torch_dtype=torch.bfloat16,
     )

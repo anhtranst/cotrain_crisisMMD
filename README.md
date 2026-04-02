@@ -5,7 +5,7 @@
 > **Dashboard** — View dataset exploration and experiment results: [results/dashboard.html](https://htmlpreview.github.io/?https://github.com/anhtranst/cotrain_crisisMMD/blob/main/results/dashboard.html)
 > _(Rebuild anytime with `python scripts/dashboard.py`)_
 
-A semi-supervised co-training pipeline that classifies crisis tweets and images. It combines a small set of human-labeled data with pseudo-labels from vision-language models (Llama-3.2-11B-Vision-Instruct, Qwen2.5-VL-7B-Instruct) using a 3-phase training approach with two models. Built on the **CrisisMMD agreed-label** dataset with support for two tasks and three modalities.
+A semi-supervised co-training pipeline that classifies crisis tweets and images. It combines a small set of human-labeled data with pseudo-labels from vision-language models (Llama-3.2-11B-Vision-Instruct, Qwen2.5-VL-7B-Instruct, Qwen3-VL-8B-Instruct) using a 3-phase training approach with two models. Built on the **CrisisMMD agreed-label** dataset with support for two tasks and three modalities.
 
 ---
 
@@ -260,7 +260,7 @@ The dataset uses the **agreed-label subset** of CrisisMMD, containing tweets and
 | `image_only` | One row per image_id | CLIP ViT (`openai/clip-vit-base-patch32`) |
 | `text_image` | Text + image paired | BERTweet + CLIP ViT fusion |
 
-**Pseudo-label models** (zero-shot): Llama-3.2-11B-Vision-Instruct and Qwen2.5-VL-7B-Instruct are used to generate pseudo-labels across all modalities.
+**Pseudo-label models** (zero-shot): Llama-3.2-11B-Vision-Instruct, Qwen2.5-VL-7B-Instruct, and Qwen3-VL-8B-Instruct are used to generate pseudo-labels across all modalities.
 
 ### Events (7 disasters, combined in one dataset)
 
@@ -316,7 +316,7 @@ data/CrisisMMD/
 data/pseudo_labelled/{model}/{task}/{modality}/train_pred.tsv
 ```
 
-Where `{model}` is `llama-3.2-11b` or `qwen2.5-vl-7b`.
+Where `{model}` is `llama-3.2-11b`, `qwen2.5-vl-7b`, or `qwen3-vl-8b`.
 
 Columns vary by modality (`tweet_id`/`image_id`, `tweet_text`, `image_path`, `predicted_label`, `confidence`). Confidence scores are carried over from the zero-shot model's softmax output.
 
@@ -494,11 +494,19 @@ python scripts/zeroshot_qwen.py --task informative --modality text_only --split 
 python scripts/zeroshot_qwen.py --task humanitarian --modality image_only --split train
 ```
 
+#### Qwen3-VL-8B-Instruct
+
+```bash
+python scripts/zeroshot_qwen.py --model-id Qwen/Qwen3-VL-8B-Instruct --task informative --modality text_only --split test
+python scripts/zeroshot_qwen.py --model-id Qwen/Qwen3-VL-8B-Instruct --task humanitarian --modality image_only --split train
+```
+
 Both scripts support `--max-samples N` for debugging. Results are saved to `results/zeroshot/{model}/{task}/{modality}/{split}/` with `predictions.tsv` (including confidence and entropy) and `metrics.json`.
 
 Jupyter notebooks are also available for running all 6 experiments per task:
 - **Llama**: `Notebooks/01_zeroshot_informative.ipynb`, `02_zeroshot_humanitarian.ipynb`
-- **Qwen**: `Notebooks/03_zeroshot_informative_qwen.ipynb`, `04_zeroshot_humanitarian_qwen.ipynb`
+- **Qwen2.5**: `Notebooks/03_zeroshot_informative_qwen.ipynb`, `04_zeroshot_humanitarian_qwen.ipynb`
+- **Qwen3**: `Notebooks/05_zeroshot_qwen3.ipynb` (both tasks in one notebook)
 
 #### Generate pseudo-labels from zero-shot results
 
@@ -610,7 +618,8 @@ Notebooks/
 ├── 01_zeroshot_informative.ipynb    # Llama zero-shot — informative task (6 experiments)
 ├── 02_zeroshot_humanitarian.ipynb   # Llama zero-shot — humanitarian task (6 experiments)
 ├── 03_zeroshot_informative_qwen.ipynb # Qwen zero-shot — informative task (6 experiments)
-├── 04_zeroshot_humanitarian_qwen.ipynb # Qwen zero-shot — humanitarian task (6 experiments)
+├── 04_zeroshot_humanitarian_qwen.ipynb # Qwen2.5 zero-shot — humanitarian task (6 experiments)
+├── 05_zeroshot_qwen3.ipynb          # Qwen3 zero-shot — both tasks (12 experiments)
 └── 05_cotrain_llama.ipynb           # Full co-training — 72 experiments, dual-GPU, with run_id
 
 tests/                               # Test suite
