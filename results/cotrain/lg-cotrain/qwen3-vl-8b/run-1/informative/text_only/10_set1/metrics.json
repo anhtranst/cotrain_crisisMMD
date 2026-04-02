@@ -1,0 +1,23 @@
+{
+  "task": "informative",
+  "modality": "text_only",
+  "budget": 10,
+  "seed_set": 1,
+  "test_error_rate": 15.775749674054762,
+  "test_macro_f1": 0.7986134016144432,
+  "test_ece": 0.12309938156309458,
+  "test_per_class_f1": [
+    0.8923487544483986,
+    0.7048780487804878
+  ],
+  "dev_error_rate": 18.05467260012714,
+  "dev_macro_f1": 0.7661490592191498,
+  "dev_ece": 0.13804310310137025,
+  "stopping_strategy": "baseline",
+  "phase1_seed_strategy": "last",
+  "phase1_best_epoch": null,
+  "lambda1_mean": 1.080732727316195,
+  "lambda1_std": 0.09490042943752636,
+  "lambda2_mean": 0.7931567170214703,
+  "lambda2_std": 0.10525399144673332
+}

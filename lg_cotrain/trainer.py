@@ -1,5 +1,6 @@
 """3-phase LG-CoTrain pipeline: weight generation, co-training, fine-tuning."""
 
+import csv
 import json
 import logging
 from pathlib import Path
@@ -162,10 +163,36 @@ class LGCoTrainer:
 
         return result
 
+    def _save_predictions(self, df, preds, probs, output_dir, filename):
+        """Save per-sample predictions to a TSV file alongside metrics.json.
+
+        Includes all original input columns (tweet_id, tweet_text, image_path, etc.)
+        plus predicted_label, confidence, and per-class probabilities.
+        """
+        import pandas as pd
+
+        out_df = df.copy().reset_index(drop=True)
+        out_df["predicted_label"] = [self.id2label[p] for p in preds]
+        out_df["confidence"] = probs.max(axis=1).round(4)
+
+        # Add per-class probability columns
+        for class_id in range(probs.shape[1]):
+            label_name = self.id2label[class_id]
+            out_df[f"prob_{label_name}"] = probs[:, class_id].round(6)
+
+        out_path = Path(output_dir) / filename
+        out_df.to_csv(out_path, sep="\t", index=False)
+        logger.info(f"Predictions saved to {out_path} ({len(out_df)} samples)")
+
     def run(self) -> Dict:
         """Run the full 3-phase pipeline and return metrics."""
         cfg = self.config
-        setup_logging(cfg.log_dir)
+        if cfg.device and cfg.device.startswith("cuda:"):
+            gpu_idx = cfg.device.split(":")[1]
+            log_filename = f"experiment_gpu{gpu_idx}.log"
+        else:
+            log_filename = "experiment.log"
+        setup_logging(cfg.log_dir, log_filename=log_filename)
         set_seed(cfg.seed_set)
         logger.info(f"Starting LG-CoTrain: task={cfg.task}, modality={cfg.modality}, budget={cfg.budget}, seed_set={cfg.seed_set}")
 
@@ -525,10 +552,16 @@ class LGCoTrainer:
             "seed_set": cfg.seed_set,
             "test_error_rate": test_metrics["error_rate"],
             "test_macro_f1": test_metrics["macro_f1"],
+            "test_weighted_f1": test_metrics["weighted_f1"],
+            "test_macro_precision": test_metrics["macro_precision"],
+            "test_macro_recall": test_metrics["macro_recall"],
+            "test_weighted_precision": test_metrics["weighted_precision"],
+            "test_weighted_recall": test_metrics["weighted_recall"],
             "test_ece": test_ece,
             "test_per_class_f1": test_metrics["per_class_f1"],
             "dev_error_rate": dev_metrics["error_rate"],
             "dev_macro_f1": dev_metrics["macro_f1"],
+            "dev_weighted_f1": dev_metrics["weighted_f1"],
             "dev_ece": dev_ece,
             "stopping_strategy": cfg.stopping_strategy,
             "phase1_seed_strategy": cfg.phase1_seed_strategy,
@@ -550,5 +583,9 @@ class LGCoTrainer:
             f"Test macro-F1: {test_metrics['macro_f1']:.4f}, "
             f"Test ECE: {test_ece:.4f}"
         )
+
+        # Save per-sample predictions for test and dev
+        self._save_predictions(df_test, test_preds, test_probs, cfg.output_dir, "test_predictions.tsv")
+        self._save_predictions(df_dev, dev_preds, dev_probs, cfg.output_dir, "dev_predictions.tsv")
 
         return results

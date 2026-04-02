@@ -5,22 +5,28 @@ from typing import Dict, List
 
 
 def compute_metrics(y_true, y_pred) -> Dict[str, float]:
-    """Compute error rate, macro-F1, and per-class F1.
+    """Compute error rate, F1, precision, recall (macro + weighted), and per-class F1.
 
     Args:
         y_true: Ground truth label ids (list or array).
         y_pred: Predicted label ids (list or array).
 
     Returns:
-        Dict with error_rate (%), macro_f1, and per_class_f1 (list).
+        Dict with error_rate (%), macro/weighted F1/precision/recall,
+        and per_class_f1 (list).
     """
     try:
         import numpy as np
-        from sklearn.metrics import f1_score
+        from sklearn.metrics import f1_score, precision_score, recall_score
         y_true = np.asarray(y_true)
         y_pred = np.asarray(y_pred)
         error_rate = 100.0 * (1.0 - np.mean(y_true == y_pred))
         macro_f1 = float(f1_score(y_true, y_pred, average="macro", zero_division=0))
+        macro_precision = float(precision_score(y_true, y_pred, average="macro", zero_division=0))
+        macro_recall = float(recall_score(y_true, y_pred, average="macro", zero_division=0))
+        weighted_f1 = float(f1_score(y_true, y_pred, average="weighted", zero_division=0))
+        weighted_precision = float(precision_score(y_true, y_pred, average="weighted", zero_division=0))
+        weighted_recall = float(recall_score(y_true, y_pred, average="weighted", zero_division=0))
         per_class_f1 = f1_score(y_true, y_pred, average=None, zero_division=0).tolist()
     except ImportError:
         # Pure-Python fallback
@@ -28,10 +34,18 @@ def compute_metrics(y_true, y_pred) -> Dict[str, float]:
         correct = sum(1 for a, b in zip(y_true, y_pred) if a == b)
         error_rate = 100.0 * (1.0 - correct / n) if n > 0 else 0.0
         macro_f1, per_class_f1 = _compute_f1_pure(list(y_true), list(y_pred))
+        macro_precision, macro_recall = _compute_precision_recall_pure(list(y_true), list(y_pred), "macro")
+        weighted_f1 = macro_f1  # approximate
+        weighted_precision, weighted_recall = _compute_precision_recall_pure(list(y_true), list(y_pred), "weighted")
 
     return {
         "error_rate": error_rate,
         "macro_f1": macro_f1,
+        "macro_precision": macro_precision,
+        "macro_recall": macro_recall,
+        "weighted_f1": weighted_f1,
+        "weighted_precision": weighted_precision,
+        "weighted_recall": weighted_recall,
         "per_class_f1": per_class_f1,
     }
 
@@ -50,6 +64,29 @@ def _compute_f1_pure(y_true: list, y_pred: list):
         f1s.append(f1)
     macro_f1 = sum(f1s) / len(f1s) if f1s else 0.0
     return macro_f1, f1s
+
+
+def _compute_precision_recall_pure(y_true: list, y_pred: list, average: str = "macro"):
+    """Pure-Python precision and recall computation."""
+    classes = sorted(set(y_true) | set(y_pred))
+    precisions, recalls, supports = [], [], []
+    for cls in classes:
+        tp = sum(1 for t, p in zip(y_true, y_pred) if t == cls and p == cls)
+        fp = sum(1 for t, p in zip(y_true, y_pred) if t != cls and p == cls)
+        fn = sum(1 for t, p in zip(y_true, y_pred) if t == cls and p != cls)
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        precisions.append(precision)
+        recalls.append(recall)
+        supports.append(sum(1 for t in y_true if t == cls))
+    if average == "weighted" and sum(supports) > 0:
+        total = sum(supports)
+        avg_p = sum(p * s for p, s in zip(precisions, supports)) / total
+        avg_r = sum(r * s for r, s in zip(recalls, supports)) / total
+    else:
+        avg_p = sum(precisions) / len(precisions) if precisions else 0.0
+        avg_r = sum(recalls) / len(recalls) if recalls else 0.0
+    return avg_p, avg_r
 
 
 def compute_ece(y_true, y_probs, n_bins=15):

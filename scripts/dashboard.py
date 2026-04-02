@@ -792,7 +792,7 @@ def _render_zeroshot_tab(task, task_results):
         parts.append('<div class="section">')
         parts.append(f'<div class="section-header"><h2>{mi} {_modality_label(modality)}</h2></div>')
         parts.append(f'<table id="{table_id}"><thead><tr>')
-        headers = ["Model", "Split", "Samples", "Accuracy", "Precision", "Recall", "Weighted F1", "Macro F1"]
+        headers = ["Model", "Split", "Samples", "Unparseable", "Accuracy", "W. Precision", "W. Recall", "W. F1", "Macro F1"]
         for ci, h in enumerate(headers):
             parts.append(f'<th class="{"num " if ci >= 2 else ""}sortable" onclick="sortTable(\'{table_id}\',{ci})">{h}</th>')
         parts.append('</tr></thead><tbody>')
@@ -803,11 +803,13 @@ def _render_zeroshot_tab(task, task_results):
             rec = m.get("weighted_recall", 0) * 100
             wf1 = m.get("weighted_f1", 0) * 100
             mf1 = m.get("macro_f1", 0) * 100
+            unparse = m.get("num_unparseable", 0)
             parts.append(
                 f'<tr>'
                 f'<td><code>{m.get("model_slug","?")}</code></td>'
                 f'<td data-val="{m.get("split","")}">{m.get("split","?")}</td>'
                 f'<td class="num" data-val="{m.get("num_samples",0)}">{m.get("num_samples", 0):,}</td>'
+                f'<td class="num" data-val="{unparse}">{unparse}</td>'
                 f'<td class="num" data-val="{acc:.2f}">{acc:.2f}</td>'
                 f'<td class="num" data-val="{prec:.2f}">{prec:.2f}</td>'
                 f'<td class="num" data-val="{rec:.2f}">{rec:.2f}</td>'
@@ -894,7 +896,8 @@ def _render_cotrain_task_tables(task, task_metrics):
 
         parts.append("""<table><thead>
             <tr><th class="num">Budget</th><th class="num">Seeds</th>
-            <th class="num">Test Macro-F1</th><th class="num">Test Err%</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>""")
 
         for budget in sorted(by_budget.keys()):
@@ -902,6 +905,8 @@ def _render_cotrain_task_tables(task, task_metrics):
             n_seeds = len(runs)
             avg_f1 = statistics.mean(m["test_macro_f1"] for m in runs)
             std_f1 = statistics.stdev(m["test_macro_f1"] for m in runs) if n_seeds > 1 else 0
+            avg_wf1_vals = [m.get("test_weighted_f1") for m in runs if m.get("test_weighted_f1") is not None]
+            avg_wf1 = statistics.mean(avg_wf1_vals) if avg_wf1_vals else None
             avg_err = statistics.mean(m["test_error_rate"] for m in runs)
             avg_ece = statistics.mean(m.get("test_ece", 0) for m in runs)
             avg_dev_f1 = statistics.mean(m["dev_macro_f1"] for m in runs)
@@ -914,9 +919,11 @@ def _render_cotrain_task_tables(task, task_metrics):
                 badge = "badge-danger"
 
             f1_display = f"{avg_f1:.4f}" if n_seeds == 1 else f"{avg_f1:.4f} &plusmn; {std_f1:.4f}"
+            wf1_display = f"{avg_wf1:.4f}" if avg_wf1 is not None else "-"
             parts.append(
                 f'<tr><td class="num">{budget}</td><td class="num">{n_seeds}</td>'
                 f'<td class="num"><span class="badge {badge}">{f1_display}</span></td>'
+                f'<td class="num">{wf1_display}</td>'
                 f'<td class="num">{avg_err:.2f}%</td>'
                 f'<td class="num">{avg_ece:.4f}</td>'
                 f'<td class="num">{avg_dev_f1:.4f}</td></tr>'

@@ -218,17 +218,17 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <header>
     <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
-        Generated <span>2026-04-02 01:46:56</span> &bull;
+        Generated <span>2026-04-02 11:41:48</span> &bull;
         <span>2 tasks</span> &bull;
         <span>3 modalities</span> &bull;
-        <span>43 experiments</span>
+        <span>65 experiments</span>
     </p>
 </header>
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
     <button onclick="showTab('tab-zeroshot', this)">&#x1F50E; Zero-Shot <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">36</span></button>
-    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">7</span></button>
+    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">29</span></button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
@@ -741,18 +741,19 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <th class="sortable" onclick="sortTable('zs-table-2',0)">Model</th>
 <th class="sortable" onclick="sortTable('zs-table-2',1)">Split</th>
 <th class="num sortable" onclick="sortTable('zs-table-2',2)">Samples</th>
-<th class="num sortable" onclick="sortTable('zs-table-2',3)">Accuracy</th>
-<th class="num sortable" onclick="sortTable('zs-table-2',4)">Precision</th>
-<th class="num sortable" onclick="sortTable('zs-table-2',5)">Recall</th>
-<th class="num sortable" onclick="sortTable('zs-table-2',6)">Weighted F1</th>
-<th class="num sortable" onclick="sortTable('zs-table-2',7)">Macro F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',3)">Unparseable</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',4)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',5)">W. Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',6)">W. Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',7)">W. F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-2',8)">Macro F1</th>
 </tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="83.57">83.57</td><td class="num" data-val="83.32">83.32</td><td class="num" data-val="83.57">83.57</td><td class="num" data-val="83.11">83.11</td><td class="num" data-val="80.41">80.41</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="70.27">70.27</td><td class="num" data-val="78.25">78.25</td><td class="num" data-val="70.27">70.27</td><td class="num" data-val="71.12">71.12</td><td class="num" data-val="69.75">69.75</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="81.88">81.88</td><td class="num" data-val="84.34">84.34</td><td class="num" data-val="81.88">81.88</td><td class="num" data-val="79.87">79.87</td><td class="num" data-val="75.64">75.64</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="81.84">81.84</td><td class="num" data-val="81.48">81.48</td><td class="num" data-val="81.84">81.84</td><td class="num" data-val="81.41">81.41</td><td class="num" data-val="78.60">78.60</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="68.59">68.59</td><td class="num" data-val="77.99">77.99</td><td class="num" data-val="68.59">68.59</td><td class="num" data-val="69.34">69.34</td><td class="num" data-val="68.27">68.27</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="80.02">80.02</td><td class="num" data-val="82.40">82.40</td><td class="num" data-val="80.02">80.02</td><td class="num" data-val="77.63">77.63</td><td class="num" data-val="72.97">72.97</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="83.57">83.57</td><td class="num" data-val="83.32">83.32</td><td class="num" data-val="83.57">83.57</td><td class="num" data-val="83.11">83.11</td><td class="num" data-val="80.41">80.41</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="70.27">70.27</td><td class="num" data-val="78.25">78.25</td><td class="num" data-val="70.27">70.27</td><td class="num" data-val="71.12">71.12</td><td class="num" data-val="69.75">69.75</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="81.88">81.88</td><td class="num" data-val="84.34">84.34</td><td class="num" data-val="81.88">81.88</td><td class="num" data-val="79.87">79.87</td><td class="num" data-val="75.64">75.64</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="0">0</td><td class="num" data-val="81.84">81.84</td><td class="num" data-val="81.48">81.48</td><td class="num" data-val="81.84">81.84</td><td class="num" data-val="81.41">81.41</td><td class="num" data-val="78.60">78.60</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="0">0</td><td class="num" data-val="68.59">68.59</td><td class="num" data-val="77.99">77.99</td><td class="num" data-val="68.59">68.59</td><td class="num" data-val="69.34">69.34</td><td class="num" data-val="68.27">68.27</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="8293">8,293</td><td class="num" data-val="0">0</td><td class="num" data-val="80.02">80.02</td><td class="num" data-val="82.40">82.40</td><td class="num" data-val="80.02">80.02</td><td class="num" data-val="77.63">77.63</td><td class="num" data-val="72.97">72.97</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F5BC; Image Only</h2></div>
@@ -760,18 +761,19 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <th class="sortable" onclick="sortTable('zs-table-3',0)">Model</th>
 <th class="sortable" onclick="sortTable('zs-table-3',1)">Split</th>
 <th class="num sortable" onclick="sortTable('zs-table-3',2)">Samples</th>
-<th class="num sortable" onclick="sortTable('zs-table-3',3)">Accuracy</th>
-<th class="num sortable" onclick="sortTable('zs-table-3',4)">Precision</th>
-<th class="num sortable" onclick="sortTable('zs-table-3',5)">Recall</th>
-<th class="num sortable" onclick="sortTable('zs-table-3',6)">Weighted F1</th>
-<th class="num sortable" onclick="sortTable('zs-table-3',7)">Macro F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',3)">Unparseable</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',4)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',5)">W. Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',6)">W. Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',7)">W. F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-3',8)">Macro F1</th>
 </tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="86.05">86.05</td><td class="num" data-val="86.30">86.30</td><td class="num" data-val="86.05">86.05</td><td class="num" data-val="85.46">85.46</td><td class="num" data-val="82.97">82.97</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="87.29">87.29</td><td class="num" data-val="87.15">87.15</td><td class="num" data-val="87.29">87.29</td><td class="num" data-val="87.17">87.17</td><td class="num" data-val="85.33">85.33</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="86.38">86.38</td><td class="num" data-val="86.43">86.43</td><td class="num" data-val="86.38">86.38</td><td class="num" data-val="86.40">86.40</td><td class="num" data-val="84.61">84.61</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="85.91">85.91</td><td class="num" data-val="86.16">86.16</td><td class="num" data-val="85.91">85.91</td><td class="num" data-val="85.37">85.37</td><td class="num" data-val="83.20">83.20</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="87.27">87.27</td><td class="num" data-val="87.14">87.14</td><td class="num" data-val="87.27">87.27</td><td class="num" data-val="87.14">87.14</td><td class="num" data-val="85.53">85.53</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="85.47">85.47</td><td class="num" data-val="85.63">85.63</td><td class="num" data-val="85.47">85.47</td><td class="num" data-val="85.54">85.54</td><td class="num" data-val="83.94">83.94</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="86.05">86.05</td><td class="num" data-val="86.30">86.30</td><td class="num" data-val="86.05">86.05</td><td class="num" data-val="85.46">85.46</td><td class="num" data-val="82.97">82.97</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="87.29">87.29</td><td class="num" data-val="87.15">87.15</td><td class="num" data-val="87.29">87.29</td><td class="num" data-val="87.17">87.17</td><td class="num" data-val="85.33">85.33</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="86.38">86.38</td><td class="num" data-val="86.43">86.43</td><td class="num" data-val="86.38">86.38</td><td class="num" data-val="86.40">86.40</td><td class="num" data-val="84.61">84.61</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="0">0</td><td class="num" data-val="85.91">85.91</td><td class="num" data-val="86.16">86.16</td><td class="num" data-val="85.91">85.91</td><td class="num" data-val="85.37">85.37</td><td class="num" data-val="83.20">83.20</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="0">0</td><td class="num" data-val="87.27">87.27</td><td class="num" data-val="87.14">87.14</td><td class="num" data-val="87.27">87.27</td><td class="num" data-val="87.14">87.14</td><td class="num" data-val="85.53">85.53</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="0">0</td><td class="num" data-val="85.47">85.47</td><td class="num" data-val="85.63">85.63</td><td class="num" data-val="85.47">85.47</td><td class="num" data-val="85.54">85.54</td><td class="num" data-val="83.94">83.94</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F4F7; Text Image</h2></div>
@@ -779,18 +781,19 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <th class="sortable" onclick="sortTable('zs-table-4',0)">Model</th>
 <th class="sortable" onclick="sortTable('zs-table-4',1)">Split</th>
 <th class="num sortable" onclick="sortTable('zs-table-4',2)">Samples</th>
-<th class="num sortable" onclick="sortTable('zs-table-4',3)">Accuracy</th>
-<th class="num sortable" onclick="sortTable('zs-table-4',4)">Precision</th>
-<th class="num sortable" onclick="sortTable('zs-table-4',5)">Recall</th>
-<th class="num sortable" onclick="sortTable('zs-table-4',6)">Weighted F1</th>
-<th class="num sortable" onclick="sortTable('zs-table-4',7)">Macro F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',3)">Unparseable</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',4)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',5)">W. Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',6)">W. Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',7)">W. F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-4',8)">Macro F1</th>
 </tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="82.33">82.33</td><td class="num" data-val="85.39">85.39</td><td class="num" data-val="82.33">82.33</td><td class="num" data-val="80.27">80.27</td><td class="num" data-val="76.07">76.07</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="84.03">84.03</td><td class="num" data-val="84.28">84.28</td><td class="num" data-val="84.03">84.03</td><td class="num" data-val="83.21">83.21</td><td class="num" data-val="80.25">80.25</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="84.29">84.29</td><td class="num" data-val="85.90">85.90</td><td class="num" data-val="84.29">84.29</td><td class="num" data-val="83.00">83.00</td><td class="num" data-val="79.67">79.67</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="82.48">82.48</td><td class="num" data-val="85.19">85.19</td><td class="num" data-val="82.48">82.48</td><td class="num" data-val="80.69">80.69</td><td class="num" data-val="77.13">77.13</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="84.22">84.22</td><td class="num" data-val="84.65">84.65</td><td class="num" data-val="84.22">84.22</td><td class="num" data-val="83.44">83.44</td><td class="num" data-val="80.85">80.85</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="82.76">82.76</td><td class="num" data-val="84.81">84.81</td><td class="num" data-val="82.76">82.76</td><td class="num" data-val="81.21">81.21</td><td class="num" data-val="77.85">77.85</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="82.33">82.33</td><td class="num" data-val="85.39">85.39</td><td class="num" data-val="82.33">82.33</td><td class="num" data-val="80.27">80.27</td><td class="num" data-val="76.07">76.07</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="84.03">84.03</td><td class="num" data-val="84.28">84.28</td><td class="num" data-val="84.03">84.03</td><td class="num" data-val="83.21">83.21</td><td class="num" data-val="80.25">80.25</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="1534">1,534</td><td class="num" data-val="0">0</td><td class="num" data-val="84.29">84.29</td><td class="num" data-val="85.90">85.90</td><td class="num" data-val="84.29">84.29</td><td class="num" data-val="83.00">83.00</td><td class="num" data-val="79.67">79.67</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="0">0</td><td class="num" data-val="82.48">82.48</td><td class="num" data-val="85.19">85.19</td><td class="num" data-val="82.48">82.48</td><td class="num" data-val="80.69">80.69</td><td class="num" data-val="77.13">77.13</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="0">0</td><td class="num" data-val="84.22">84.22</td><td class="num" data-val="84.65">84.65</td><td class="num" data-val="84.22">84.22</td><td class="num" data-val="83.44">83.44</td><td class="num" data-val="80.85">80.85</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="9601">9,601</td><td class="num" data-val="0">0</td><td class="num" data-val="82.76">82.76</td><td class="num" data-val="84.81">84.81</td><td class="num" data-val="82.76">82.76</td><td class="num" data-val="81.21">81.21</td><td class="num" data-val="77.85">77.85</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>
@@ -854,18 +857,19 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <th class="sortable" onclick="sortTable('zs-table-6',0)">Model</th>
 <th class="sortable" onclick="sortTable('zs-table-6',1)">Split</th>
 <th class="num sortable" onclick="sortTable('zs-table-6',2)">Samples</th>
-<th class="num sortable" onclick="sortTable('zs-table-6',3)">Accuracy</th>
-<th class="num sortable" onclick="sortTable('zs-table-6',4)">Precision</th>
-<th class="num sortable" onclick="sortTable('zs-table-6',5)">Recall</th>
-<th class="num sortable" onclick="sortTable('zs-table-6',6)">Weighted F1</th>
-<th class="num sortable" onclick="sortTable('zs-table-6',7)">Macro F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',3)">Unparseable</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',4)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',5)">W. Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',6)">W. Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',7)">W. F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-6',8)">Macro F1</th>
 </tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="74.14">74.14</td><td class="num" data-val="78.36">78.36</td><td class="num" data-val="74.14">74.14</td><td class="num" data-val="73.82">73.82</td><td class="num" data-val="63.43">63.43</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="71.10">71.10</td><td class="num" data-val="73.03">73.03</td><td class="num" data-val="71.10">71.10</td><td class="num" data-val="69.27">69.27</td><td class="num" data-val="58.48">58.48</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="71.83">71.83</td><td class="num" data-val="77.71">77.71</td><td class="num" data-val="71.83">71.83</td><td class="num" data-val="72.63">72.63</td><td class="num" data-val="62.88">62.88</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="78.36">78.36</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="73.24">73.24</td><td class="num" data-val="61.65">61.65</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="72.54">72.54</td><td class="num" data-val="73.62">73.62</td><td class="num" data-val="72.54">72.54</td><td class="num" data-val="70.57">70.57</td><td class="num" data-val="63.19">63.19</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="72.45">72.45</td><td class="num" data-val="78.34">78.34</td><td class="num" data-val="72.45">72.45</td><td class="num" data-val="73.25">73.25</td><td class="num" data-val="64.48">64.48</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="74.14">74.14</td><td class="num" data-val="78.36">78.36</td><td class="num" data-val="74.14">74.14</td><td class="num" data-val="73.82">73.82</td><td class="num" data-val="63.43">63.43</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="71.10">71.10</td><td class="num" data-val="73.03">73.03</td><td class="num" data-val="71.10">71.10</td><td class="num" data-val="69.27">69.27</td><td class="num" data-val="58.48">58.48</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="71.83">71.83</td><td class="num" data-val="77.71">77.71</td><td class="num" data-val="71.83">71.83</td><td class="num" data-val="72.63">72.63</td><td class="num" data-val="62.88">62.88</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="0">0</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="78.36">78.36</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="73.24">73.24</td><td class="num" data-val="61.65">61.65</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="0">0</td><td class="num" data-val="72.54">72.54</td><td class="num" data-val="73.62">73.62</td><td class="num" data-val="72.54">72.54</td><td class="num" data-val="70.57">70.57</td><td class="num" data-val="63.19">63.19</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="5263">5,263</td><td class="num" data-val="0">0</td><td class="num" data-val="72.45">72.45</td><td class="num" data-val="78.34">78.34</td><td class="num" data-val="72.45">72.45</td><td class="num" data-val="73.25">73.25</td><td class="num" data-val="64.48">64.48</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F5BC; Image Only</h2></div>
@@ -873,18 +877,19 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <th class="sortable" onclick="sortTable('zs-table-7',0)">Model</th>
 <th class="sortable" onclick="sortTable('zs-table-7',1)">Split</th>
 <th class="num sortable" onclick="sortTable('zs-table-7',2)">Samples</th>
-<th class="num sortable" onclick="sortTable('zs-table-7',3)">Accuracy</th>
-<th class="num sortable" onclick="sortTable('zs-table-7',4)">Precision</th>
-<th class="num sortable" onclick="sortTable('zs-table-7',5)">Recall</th>
-<th class="num sortable" onclick="sortTable('zs-table-7',6)">Weighted F1</th>
-<th class="num sortable" onclick="sortTable('zs-table-7',7)">Macro F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-7',3)">Unparseable</th>
+<th class="num sortable" onclick="sortTable('zs-table-7',4)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-7',5)">W. Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-7',6)">W. Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-7',7)">W. F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-7',8)">Macro F1</th>
 </tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="76.54">76.54</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="76.54">76.54</td><td class="num" data-val="75.71">75.71</td><td class="num" data-val="62.75">62.75</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="78.93">78.93</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="76.81">76.81</td><td class="num" data-val="65.93">65.93</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="81.47">81.47</td><td class="num" data-val="82.08">82.08</td><td class="num" data-val="81.47">81.47</td><td class="num" data-val="81.50">81.50</td><td class="num" data-val="72.83">72.83</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="77.29">77.29</td><td class="num" data-val="77.59">77.59</td><td class="num" data-val="77.29">77.29</td><td class="num" data-val="76.79">76.79</td><td class="num" data-val="66.94">66.94</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="77.96">77.96</td><td class="num" data-val="79.03">79.03</td><td class="num" data-val="77.96">77.96</td><td class="num" data-val="77.46">77.46</td><td class="num" data-val="69.56">69.56</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="81.77">81.77</td><td class="num" data-val="83.05">83.05</td><td class="num" data-val="81.77">81.77</td><td class="num" data-val="81.99">81.99</td><td class="num" data-val="75.90">75.90</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="76.54">76.54</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="76.54">76.54</td><td class="num" data-val="75.71">75.71</td><td class="num" data-val="62.75">62.75</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="78.93">78.93</td><td class="num" data-val="77.17">77.17</td><td class="num" data-val="76.81">76.81</td><td class="num" data-val="65.93">65.93</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="81.47">81.47</td><td class="num" data-val="82.08">82.08</td><td class="num" data-val="81.47">81.47</td><td class="num" data-val="81.50">81.50</td><td class="num" data-val="72.83">72.83</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="0">0</td><td class="num" data-val="77.29">77.29</td><td class="num" data-val="77.59">77.59</td><td class="num" data-val="77.29">77.29</td><td class="num" data-val="76.79">76.79</td><td class="num" data-val="66.94">66.94</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="0">0</td><td class="num" data-val="77.96">77.96</td><td class="num" data-val="79.03">79.03</td><td class="num" data-val="77.96">77.96</td><td class="num" data-val="77.46">77.46</td><td class="num" data-val="69.56">69.56</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="0">0</td><td class="num" data-val="81.77">81.77</td><td class="num" data-val="83.05">83.05</td><td class="num" data-val="81.77">81.77</td><td class="num" data-val="81.99">81.99</td><td class="num" data-val="75.90">75.90</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F4F7; Text Image</h2></div>
@@ -892,18 +897,19 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <th class="sortable" onclick="sortTable('zs-table-8',0)">Model</th>
 <th class="sortable" onclick="sortTable('zs-table-8',1)">Split</th>
 <th class="num sortable" onclick="sortTable('zs-table-8',2)">Samples</th>
-<th class="num sortable" onclick="sortTable('zs-table-8',3)">Accuracy</th>
-<th class="num sortable" onclick="sortTable('zs-table-8',4)">Precision</th>
-<th class="num sortable" onclick="sortTable('zs-table-8',5)">Recall</th>
-<th class="num sortable" onclick="sortTable('zs-table-8',6)">Weighted F1</th>
-<th class="num sortable" onclick="sortTable('zs-table-8',7)">Macro F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-8',3)">Unparseable</th>
+<th class="num sortable" onclick="sortTable('zs-table-8',4)">Accuracy</th>
+<th class="num sortable" onclick="sortTable('zs-table-8',5)">W. Precision</th>
+<th class="num sortable" onclick="sortTable('zs-table-8',6)">W. Recall</th>
+<th class="num sortable" onclick="sortTable('zs-table-8',7)">W. F1</th>
+<th class="num sortable" onclick="sortTable('zs-table-8',8)">Macro F1</th>
 </tr></thead><tbody>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="74.24">74.24</td><td class="num" data-val="76.07">76.07</td><td class="num" data-val="74.24">74.24</td><td class="num" data-val="73.60">73.60</td><td class="num" data-val="59.47">59.47</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="77.70">77.70</td><td class="num" data-val="78.39">78.39</td><td class="num" data-val="77.70">77.70</td><td class="num" data-val="77.12">77.12</td><td class="num" data-val="66.97">66.97</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="81.53">81.53</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="74.74">74.74</td><td class="num" data-val="66.39">66.39</td></tr>
-<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="76.13">76.13</td><td class="num" data-val="78.63">78.63</td><td class="num" data-val="76.13">76.13</td><td class="num" data-val="75.67">75.67</td><td class="num" data-val="62.92">62.92</td></tr>
-<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="79.51">79.51</td><td class="num" data-val="80.34">80.34</td><td class="num" data-val="79.51">79.51</td><td class="num" data-val="78.94">78.94</td><td class="num" data-val="73.58">73.58</td></tr>
-<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="74.16">74.16</td><td class="num" data-val="83.07">83.07</td><td class="num" data-val="74.16">74.16</td><td class="num" data-val="75.44">75.44</td><td class="num" data-val="68.42">68.42</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="74.24">74.24</td><td class="num" data-val="76.07">76.07</td><td class="num" data-val="74.24">74.24</td><td class="num" data-val="73.60">73.60</td><td class="num" data-val="59.47">59.47</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="77.70">77.70</td><td class="num" data-val="78.39">78.39</td><td class="num" data-val="77.70">77.70</td><td class="num" data-val="77.12">77.12</td><td class="num" data-val="66.97">66.97</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="test">test</td><td class="num" data-val="955">955</td><td class="num" data-val="0">0</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="81.53">81.53</td><td class="num" data-val="73.72">73.72</td><td class="num" data-val="74.74">74.74</td><td class="num" data-val="66.39">66.39</td></tr>
+<tr><td><code>llama-3.2-11b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="0">0</td><td class="num" data-val="76.13">76.13</td><td class="num" data-val="78.63">78.63</td><td class="num" data-val="76.13">76.13</td><td class="num" data-val="75.67">75.67</td><td class="num" data-val="62.92">62.92</td></tr>
+<tr><td><code>qwen2.5-vl-7b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="0">0</td><td class="num" data-val="79.51">79.51</td><td class="num" data-val="80.34">80.34</td><td class="num" data-val="79.51">79.51</td><td class="num" data-val="78.94">78.94</td><td class="num" data-val="73.58">73.58</td></tr>
+<tr><td><code>qwen3-vl-8b</code></td><td data-val="train">train</td><td class="num" data-val="6126">6,126</td><td class="num" data-val="0">0</td><td class="num" data-val="74.16">74.16</td><td class="num" data-val="83.07">83.07</td><td class="num" data-val="74.16">74.16</td><td class="num" data-val="75.44">75.44</td><td class="num" data-val="68.42">68.42</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h2>&#x1F3F7; Per-Class F1 (Test Set)</h2></div>
@@ -979,7 +985,7 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 
 <div id="tab-results" class="tab-content">
 <div id="ct-method-lg-cotrain" class="sub-tab-content active">
-<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (7)</button></nav>
+<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (7)</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-qwen3-vl-8b',this)">qwen3-vl-8b (22)</button></nav>
 <div id="ct-lg-cotrain-llama-3-2-11b" class="sub-tab-content active">
 <div id="ct-lg-cotrain-llama-3-2-11b-run-1" class="sub-tab-content active">
 
@@ -994,11 +1000,48 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
 <table><thead>
             <tr><th class="num">Budget</th><th class="num">Seeds</th>
-            <th class="num">Test Macro-F1</th><th class="num">Test Err%</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8060 &plusmn; 0.0060</span></td><td class="num">15.84%</td><td class="num">0.1270</td><td class="num">0.7765</td></tr>
-<tr><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8161 &plusmn; 0.0085</span></td><td class="num">15.23%</td><td class="num">0.1230</td><td class="num">0.7863</td></tr>
-<tr><td class="num">25</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8224</span></td><td class="num">15.45%</td><td class="num">0.1150</td><td class="num">0.8079</td></tr>
+<tr><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8060 &plusmn; 0.0060</span></td><td class="num">-</td><td class="num">15.84%</td><td class="num">0.1270</td><td class="num">0.7765</td></tr>
+<tr><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8161 &plusmn; 0.0085</span></td><td class="num">-</td><td class="num">15.23%</td><td class="num">0.1230</td><td class="num">0.7863</td></tr>
+<tr><td class="num">25</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8224</span></td><td class="num">-</td><td class="num">15.45%</td><td class="num">0.1150</td><td class="num">0.8079</td></tr>
+</tbody></table></div>
+</div>
+</div>
+<div id="ct-lg-cotrain-qwen3-vl-8b" class="sub-tab-content">
+<div id="ct-lg-cotrain-qwen3-vl-8b-run-1" class="sub-tab-content active">
+
+    <div class="cards">
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">22</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8184</div><div class="label">Avg Macro-F1</div></div>
+        <div class="card"><div class="icon">&#x274C;</div><div class="value">15.2%</div><div class="label">Avg Error Rate</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.0936</div><div class="label">Avg ECE</div></div>
+    </div>
+<div class="section"><div class="section-header"><h2>&#x1F4CB; Informative</h2></div></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
+<table><thead>
+            <tr><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
+<tr><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7764 &plusmn; 0.0224</span></td><td class="num">-</td><td class="num">17.34%</td><td class="num">0.1198</td><td class="num">0.7537</td></tr>
+<tr><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7891 &plusmn; 0.0236</span></td><td class="num">-</td><td class="num">16.56%</td><td class="num">0.1058</td><td class="num">0.7669</td></tr>
+<tr><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8053 &plusmn; 0.0083</span></td><td class="num">-</td><td class="num">16.15%</td><td class="num">0.0912</td><td class="num">0.7934</td></tr>
+<tr><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8056 &plusmn; 0.0075</span></td><td class="num">-</td><td class="num">16.86%</td><td class="num">0.0692</td><td class="num">0.8005</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
+<table><thead>
+            <tr><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
+<tr><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8433 &plusmn; 0.0031</span></td><td class="num">-</td><td class="num">13.54%</td><td class="num">0.0947</td><td class="num">0.8402</td></tr>
+<tr><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8489 &plusmn; 0.0085</span></td><td class="num">-</td><td class="num">13.19%</td><td class="num">0.0900</td><td class="num">0.8437</td></tr>
+<tr><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8468 &plusmn; 0.0033</span></td><td class="num">-</td><td class="num">13.41%</td><td class="num">0.0894</td><td class="num">0.8504</td></tr>
+<tr><td class="num">50</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8596</span></td><td class="num">-</td><td class="num">12.52%</td><td class="num">0.0795</td><td class="num">0.8467</td></tr>
 </tbody></table></div>
 </div>
 </div>

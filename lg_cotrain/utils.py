@@ -38,7 +38,7 @@ def get_device(device_override=None):
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-def setup_logging(output_dir: str) -> logging.Logger:
+def setup_logging(output_dir: str, log_filename: str = "experiment.log") -> logging.Logger:
     """Configure logging to both file and console.
 
     The FileHandler is always replaced so that batch runs can redirect
@@ -57,7 +57,7 @@ def setup_logging(output_dir: str) -> logging.Logger:
             h.close()
             logger.removeHandler(h)
 
-    fh = logging.FileHandler(os.path.join(output_dir, "experiment.log"))
+    fh = logging.FileHandler(os.path.join(output_dir, log_filename))
     fh.setLevel(logging.INFO)
     fh.setFormatter(fmt)
     logger.addHandler(fh)
