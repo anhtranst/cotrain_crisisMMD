@@ -1,0 +1,29 @@
+{
+  "task": "informative",
+  "modality": "text_image",
+  "budget": 25,
+  "seed_set": 2,
+  "test_error_rate": 11.147327249022165,
+  "test_macro_f1": 0.8644054654655586,
+  "test_weighted_f1": 0.8840156414087728,
+  "test_macro_precision": 0.9039398139431485,
+  "test_macro_recall": 0.843022807828633,
+  "test_weighted_precision": 0.8933834552661268,
+  "test_weighted_recall": 0.8885267275097783,
+  "test_ece": 0.06443706454012196,
+  "test_per_class_f1": [
+    0.921595598349381,
+    0.8072153325817362
+  ],
+  "dev_error_rate": 13.095994914176734,
+  "dev_macro_f1": 0.8372734650259328,
+  "dev_weighted_f1": 0.8619097092901193,
+  "dev_ece": 0.08014877222937829,
+  "stopping_strategy": "baseline",
+  "phase1_seed_strategy": "last",
+  "phase1_best_epoch": null,
+  "lambda1_mean": 1.0430486098310947,
+  "lambda1_std": 0.09350369399282982,
+  "lambda2_mean": 0.8496861917207013,
+  "lambda2_std": 0.15442537815397006
+}

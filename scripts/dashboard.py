@@ -874,10 +874,15 @@ def _render_cotrain_summary_cards(metrics):
     </div>"""
 
 
-def _render_cotrain_task_tables(task, task_metrics):
-    """Render tables for one task: one table per modality, rows = budgets (averaged across seeds)."""
+def _render_cotrain_task_tables(task, task_metrics, zs_results=None, pseudo_source=None):
+    """Render tables for one task: one table per modality, rows = budgets (averaged across seeds).
+
+    Zero-shot baselines are shown as reference rows at the top of each table.
+    The baseline matching pseudo_source is highlighted.
+    """
     parts = []
     modality_order = ["text_only", "image_only", "text_image"]
+    zs_results = zs_results or []
 
     for modality in modality_order:
         mod_metrics = [m for m in task_metrics if m.get("modality") == modality]
@@ -895,10 +900,59 @@ def _render_cotrain_task_tables(task, task_metrics):
             by_budget.setdefault(b, []).append(m)
 
         parts.append("""<table><thead>
-            <tr><th class="num">Budget</th><th class="num">Seeds</th>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>""")
+
+        # Zero-shot baseline rows (test split only)
+        zs_mod = [m for m in zs_results
+                  if m.get("modality") == modality and m.get("split") == "test"]
+
+        # Extract the highlighted baseline's F1 values for comparison
+        baseline_macro_f1 = None
+        baseline_wf1 = None
+        for m in zs_mod:
+            if pseudo_source and m.get("model_slug") == pseudo_source:
+                baseline_macro_f1 = m.get("macro_f1")
+                baseline_wf1 = m.get("weighted_f1")
+                break
+
+        for m in sorted(zs_mod, key=lambda x: x.get("model_slug", "")):
+            zs_f1 = m.get("macro_f1", 0)
+            zs_wf1 = m.get("weighted_f1")
+            zs_err = (1.0 - m.get("accuracy", 0)) * 100
+            wf1_cell = f"{zs_wf1:.4f}" if zs_wf1 is not None else "-"
+            slug = m.get("model_slug", "?")
+            # Highlight the baseline that was used to generate pseudo-labels
+            is_source = pseudo_source and slug == pseudo_source
+            if is_source:
+                row_style = 'style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"'
+                label = f"ZS: {slug} &#x2B50;"
+            else:
+                row_style = 'style="background:var(--accent-bg); font-style:italic; opacity:0.7;"'
+                label = f"ZS: {slug}"
+            parts.append(
+                f'<tr {row_style}>'
+                f'<td>{label}</td>'
+                f'<td class="num">-</td><td class="num">-</td>'
+                f'<td class="num">{zs_f1:.4f}</td>'
+                f'<td class="num">{wf1_cell}</td>'
+                f'<td class="num">{zs_err:.2f}%</td>'
+                f'<td class="num">-</td><td class="num">-</td></tr>'
+            )
+
+        # Co-training rows
+        def _compare_badge(val, baseline):
+            """Return badge class comparing val against the highlighted baseline."""
+            if baseline is None:
+                return "badge-warning"
+            if val > baseline + 1e-6:
+                return "badge-success"
+            elif val >= baseline - 1e-6:
+                return "badge-warning"
+            else:
+                return "badge-danger"
 
         for budget in sorted(by_budget.keys()):
             runs = by_budget[budget]
@@ -911,18 +965,20 @@ def _render_cotrain_task_tables(task, task_metrics):
             avg_ece = statistics.mean(m.get("test_ece", 0) for m in runs)
             avg_dev_f1 = statistics.mean(m["dev_macro_f1"] for m in runs)
 
-            if avg_f1 >= 0.7:
-                badge = "badge-success"
-            elif avg_f1 >= 0.4:
-                badge = "badge-warning"
-            else:
-                badge = "badge-danger"
-
+            f1_badge = _compare_badge(avg_f1, baseline_macro_f1)
             f1_display = f"{avg_f1:.4f}" if n_seeds == 1 else f"{avg_f1:.4f} &plusmn; {std_f1:.4f}"
-            wf1_display = f"{avg_wf1:.4f}" if avg_wf1 is not None else "-"
+
+            if avg_wf1 is not None:
+                wf1_badge = _compare_badge(avg_wf1, baseline_wf1)
+                std_wf1 = statistics.stdev(v for v in avg_wf1_vals) if len(avg_wf1_vals) > 1 else 0
+                wf1_text = f"{avg_wf1:.4f}" if len(avg_wf1_vals) <= 1 else f"{avg_wf1:.4f} &plusmn; {std_wf1:.4f}"
+                wf1_display = f'<span class="badge {wf1_badge}">{wf1_text}</span>'
+            else:
+                wf1_display = "-"
+
             parts.append(
-                f'<tr><td class="num">{budget}</td><td class="num">{n_seeds}</td>'
-                f'<td class="num"><span class="badge {badge}">{f1_display}</span></td>'
+                f'<tr><td>Co-Train</td><td class="num">{budget}</td><td class="num">{n_seeds}</td>'
+                f'<td class="num"><span class="badge {f1_badge}">{f1_display}</span></td>'
                 f'<td class="num">{wf1_display}</td>'
                 f'<td class="num">{avg_err:.2f}%</td>'
                 f'<td class="num">{avg_ece:.4f}</td>'
@@ -934,7 +990,7 @@ def _render_cotrain_task_tables(task, task_metrics):
     return "\n".join(parts)
 
 
-def _render_results_tab(metrics):
+def _render_results_tab(metrics, zeroshot=None):
     """Render co-training tab with nested subtabs: method -> model -> run_id -> task."""
     if not metrics:
         return """
@@ -1013,7 +1069,8 @@ def _render_results_tab(metrics):
                         continue
                     icon = TASK_ICONS.get(task, "")
                     run_parts.append(f'<div class="section"><div class="section-header"><h2>{icon} {task.title()}</h2></div></div>')
-                    run_parts.append(_render_cotrain_task_tables(task, task_metrics))
+                    zs_for_task = (zeroshot or {}).get(task, [])
+                    run_parts.append(_render_cotrain_task_tables(task, task_metrics, zs_for_task, pseudo_source=source))
 
                 run_contents.append(
                     f'<div id="{run_tab_id}" class="sub-tab-content{active_r}">\n'
@@ -1077,7 +1134,7 @@ def generate_html(data_root: str, results_root: str) -> str:
     total_exp = len(metrics) + total_zs
 
     dataset_html = _render_dataset_overview(ds_stats, event_stats)
-    results_html = _render_results_tab(metrics)
+    results_html = _render_results_tab(metrics, zeroshot)
 
     # Build single Zero-Shot tab with sub-tabs for each task
     zs_tab_button = ""

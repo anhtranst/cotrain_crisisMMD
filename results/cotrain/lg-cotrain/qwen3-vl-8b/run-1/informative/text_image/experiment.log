@@ -6,3 +6,125 @@
 2026-04-02 11:22:01,894 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
 2026-04-02 11:22:01,894 - lg_cotrain - INFO - D_l1: 6, D_l2: 4, D_LG: 9591
 2026-04-02 11:22:01,894 - lg_cotrain - INFO - === Phase 1: Weight Generation ===
+2026-04-02 11:25:49,453 - lg_cotrain - INFO - Phase 1 epoch 1/7: mean_prob1=0.6443, mean_prob2=0.5357
+2026-04-02 11:25:50,318 - lg_cotrain - INFO - Phase 1 epoch 1/7: mean_prob1=0.5021, mean_prob2=0.4801
+2026-04-02 11:29:32,105 - lg_cotrain - INFO - Phase 1 epoch 2/7: mean_prob1=0.6747, mean_prob2=0.5843
+2026-04-02 11:29:34,098 - lg_cotrain - INFO - Phase 1 epoch 2/7: mean_prob1=0.5535, mean_prob2=0.4727
+2026-04-02 11:33:14,675 - lg_cotrain - INFO - Phase 1 epoch 3/7: mean_prob1=0.6926, mean_prob2=0.6093
+2026-04-02 11:33:18,361 - lg_cotrain - INFO - Phase 1 epoch 3/7: mean_prob1=0.5910, mean_prob2=0.4631
+2026-04-02 11:36:54,737 - lg_cotrain - INFO - Phase 1 epoch 4/7: mean_prob1=0.7048, mean_prob2=0.6234
+2026-04-02 11:36:59,237 - lg_cotrain - INFO - Phase 1 epoch 4/7: mean_prob1=0.6210, mean_prob2=0.4559
+2026-04-02 11:40:34,706 - lg_cotrain - INFO - Phase 1 epoch 5/7: mean_prob1=0.7134, mean_prob2=0.6326
+2026-04-02 11:40:41,409 - lg_cotrain - INFO - Phase 1 epoch 5/7: mean_prob1=0.6449, mean_prob2=0.4503
+2026-04-02 11:44:15,161 - lg_cotrain - INFO - Phase 1 epoch 6/7: mean_prob1=0.7194, mean_prob2=0.6391
+2026-04-02 11:44:25,188 - lg_cotrain - INFO - Phase 1 epoch 6/7: mean_prob1=0.6645, mean_prob2=0.4460
+2026-04-02 11:48:11,560 - lg_cotrain - INFO - Phase 1 epoch 7/7: mean_prob1=0.7237, mean_prob2=0.6441
+2026-04-02 11:48:11,560 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-02 11:48:14,455 - lg_cotrain - INFO - LR scheduler: total_steps_1=3100, warmup=310; total_steps_2=3100, warmup=310
+2026-04-02 11:48:14,455 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.7237, range=[0.0057, 0.9967]
+2026-04-02 11:48:14,455 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.6441, range=[0.0157, 0.9942]
+2026-04-02 11:48:20,446 - lg_cotrain - INFO - Phase 1 epoch 7/7: mean_prob1=0.6802, mean_prob2=0.4430
+2026-04-02 11:48:20,446 - lg_cotrain - INFO - === Phase 2: Co-Training ===
+2026-04-02 11:48:23,312 - lg_cotrain - INFO - LR scheduler: total_steps_1=3100, warmup=310; total_steps_2=3100, warmup=310
+2026-04-02 11:48:23,312 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda1: mean=0.6802, range=[0.0039, 0.9969]
+2026-04-02 11:48:23,313 - lg_cotrain - INFO - Phase 1 done -> seeded Phase 2 trackers. lambda2: mean=0.4430, range=[0.0279, 0.9902]
+2026-04-02 11:56:36,842 - lg_cotrain - INFO - Phase 2 epoch 1/10: loss1=0.1558, loss2=0.1650, dev_macro_f1=0.6895, dev_err=21.49%
+2026-04-02 11:56:51,023 - lg_cotrain - INFO - Phase 2 epoch 1/10: loss1=0.1516, loss2=0.1729, dev_macro_f1=0.6428, dev_err=23.71%
+2026-04-02 12:04:45,752 - lg_cotrain - INFO - Phase 2 epoch 2/10: loss1=0.0364, loss2=0.1087, dev_macro_f1=0.7298, dev_err=19.39%
+2026-04-02 12:05:25,568 - lg_cotrain - INFO - Phase 2 epoch 2/10: loss1=0.0348, loss2=0.1074, dev_macro_f1=0.6864, dev_err=21.68%
+2026-04-02 12:13:01,581 - lg_cotrain - INFO - Phase 2 epoch 3/10: loss1=0.0152, loss2=0.0579, dev_macro_f1=0.6993, dev_err=21.04%
+2026-04-02 12:14:21,435 - lg_cotrain - INFO - Phase 2 epoch 3/10: loss1=0.0153, loss2=0.0478, dev_macro_f1=0.7011, dev_err=20.98%
+2026-04-02 12:21:45,171 - lg_cotrain - INFO - Phase 2 epoch 4/10: loss1=0.0114, loss2=0.0393, dev_macro_f1=0.7348, dev_err=19.14%
+2026-04-02 12:23:43,503 - lg_cotrain - INFO - Phase 2 epoch 4/10: loss1=0.0064, loss2=0.0264, dev_macro_f1=0.6932, dev_err=21.36%
+2026-04-02 12:30:10,385 - lg_cotrain - INFO - Phase 2 epoch 5/10: loss1=0.0096, loss2=0.0106, dev_macro_f1=0.7703, dev_err=17.16%
+2026-04-02 12:32:33,160 - lg_cotrain - INFO - Phase 2 epoch 5/10: loss1=0.0057, loss2=0.0109, dev_macro_f1=0.7023, dev_err=20.79%
+2026-04-02 12:38:40,528 - lg_cotrain - INFO - Phase 2 epoch 6/10: loss1=0.0058, loss2=0.0092, dev_macro_f1=0.6938, dev_err=21.30%
+2026-04-02 12:41:45,170 - lg_cotrain - INFO - Phase 2 epoch 6/10: loss1=0.0106, loss2=0.0044, dev_macro_f1=0.6888, dev_err=21.49%
+2026-04-02 12:47:25,357 - lg_cotrain - INFO - Phase 2 epoch 7/10: loss1=0.0032, loss2=0.0031, dev_macro_f1=0.7399, dev_err=18.82%
+2026-04-02 12:50:53,112 - lg_cotrain - INFO - Phase 2 epoch 7/10: loss1=0.0041, loss2=0.0016, dev_macro_f1=0.6944, dev_err=21.23%
+2026-04-02 12:55:42,730 - lg_cotrain - INFO - Phase 2 epoch 8/10: loss1=0.0029, loss2=0.0014, dev_macro_f1=0.7270, dev_err=19.52%
+2026-04-02 12:59:58,903 - lg_cotrain - INFO - Phase 2 epoch 8/10: loss1=0.0019, loss2=0.0009, dev_macro_f1=0.7035, dev_err=20.79%
+2026-04-02 13:04:33,300 - lg_cotrain - INFO - Phase 2 epoch 9/10: loss1=0.0021, loss2=0.0009, dev_macro_f1=0.7200, dev_err=19.90%
+2026-04-02 13:09:19,233 - lg_cotrain - INFO - Phase 2 epoch 9/10: loss1=0.0011, loss2=0.0007, dev_macro_f1=0.7130, dev_err=20.28%
+2026-04-02 13:12:59,252 - lg_cotrain - INFO - Phase 2 epoch 10/10: loss1=0.0012, loss2=0.0007, dev_macro_f1=0.7212, dev_err=19.83%
+2026-04-02 13:12:59,252 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-02 13:13:21,558 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.7240, dev_err=19.71%, es_counter1=0, es_counter2=0
+2026-04-02 13:13:44,044 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.7298, dev_err=19.39%, es_counter1=0, es_counter2=0
+2026-04-02 13:14:06,880 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.7309, dev_err=19.33%, es_counter1=0, es_counter2=0
+2026-04-02 13:14:29,771 - lg_cotrain - INFO - Phase 3 epoch 4: dev_macro_f1=0.7321, dev_err=19.26%, es_counter1=0, es_counter2=0
+2026-04-02 13:14:52,575 - lg_cotrain - INFO - Phase 3 epoch 5: dev_macro_f1=0.7354, dev_err=19.07%, es_counter1=0, es_counter2=0
+2026-04-02 13:15:15,262 - lg_cotrain - INFO - Phase 3 epoch 6: dev_macro_f1=0.7375, dev_err=19.01%, es_counter1=0, es_counter2=0
+2026-04-02 13:15:36,360 - lg_cotrain - INFO - Phase 3 epoch 7: dev_macro_f1=0.7420, dev_err=18.75%, es_counter1=0, es_counter2=0
+2026-04-02 13:15:57,061 - lg_cotrain - INFO - Phase 3 epoch 8: dev_macro_f1=0.7431, dev_err=18.69%, es_counter1=0, es_counter2=0
+2026-04-02 13:16:17,741 - lg_cotrain - INFO - Phase 3 epoch 9: dev_macro_f1=0.7442, dev_err=18.63%, es_counter1=0, es_counter2=0
+2026-04-02 13:16:38,034 - lg_cotrain - INFO - Phase 3 epoch 10: dev_macro_f1=0.7458, dev_err=18.56%, es_counter1=0, es_counter2=0
+2026-04-02 13:16:58,188 - lg_cotrain - INFO - Phase 3 epoch 11: dev_macro_f1=0.7458, dev_err=18.56%, es_counter1=1, es_counter2=1
+2026-04-02 13:17:18,455 - lg_cotrain - INFO - Phase 3 epoch 12: dev_macro_f1=0.7469, dev_err=18.50%, es_counter1=0, es_counter2=0
+2026-04-02 13:17:38,706 - lg_cotrain - INFO - Phase 3 epoch 13: dev_macro_f1=0.7491, dev_err=18.37%, es_counter1=0, es_counter2=0
+2026-04-02 13:17:58,913 - lg_cotrain - INFO - Phase 3 epoch 14: dev_macro_f1=0.7502, dev_err=18.31%, es_counter1=0, es_counter2=0
+2026-04-02 13:18:04,549 - lg_cotrain - INFO - Phase 2 epoch 10/10: loss1=0.0012, loss2=0.0005, dev_macro_f1=0.7142, dev_err=20.22%
+2026-04-02 13:18:04,549 - lg_cotrain - INFO - === Phase 3: Fine-Tuning ===
+2026-04-02 13:18:19,064 - lg_cotrain - INFO - Phase 3 epoch 15: dev_macro_f1=0.7524, dev_err=18.18%, es_counter1=0, es_counter2=0
+2026-04-02 13:18:25,279 - lg_cotrain - INFO - Phase 3 epoch 1: dev_macro_f1=0.7200, dev_err=19.90%, es_counter1=0, es_counter2=0
+2026-04-02 13:18:39,150 - lg_cotrain - INFO - Phase 3 epoch 16: dev_macro_f1=0.7534, dev_err=18.12%, es_counter1=0, es_counter2=0
+2026-04-02 13:18:45,957 - lg_cotrain - INFO - Phase 3 epoch 2: dev_macro_f1=0.7263, dev_err=19.58%, es_counter1=0, es_counter2=0
+2026-04-02 13:18:59,410 - lg_cotrain - INFO - Phase 3 epoch 17: dev_macro_f1=0.7545, dev_err=18.05%, es_counter1=0, es_counter2=0
+2026-04-02 13:19:06,727 - lg_cotrain - INFO - Phase 3 epoch 3: dev_macro_f1=0.7308, dev_err=19.39%, es_counter1=0, es_counter2=0
+2026-04-02 13:19:19,563 - lg_cotrain - INFO - Phase 3 epoch 18: dev_macro_f1=0.7578, dev_err=17.86%, es_counter1=0, es_counter2=0
+2026-04-02 13:19:27,408 - lg_cotrain - INFO - Phase 3 epoch 4: dev_macro_f1=0.7387, dev_err=18.94%, es_counter1=0, es_counter2=0
+2026-04-02 13:19:39,620 - lg_cotrain - INFO - Phase 3 epoch 19: dev_macro_f1=0.7599, dev_err=17.74%, es_counter1=0, es_counter2=0
+2026-04-02 13:19:48,112 - lg_cotrain - INFO - Phase 3 epoch 5: dev_macro_f1=0.7453, dev_err=18.56%, es_counter1=0, es_counter2=0
+2026-04-02 13:19:59,849 - lg_cotrain - INFO - Phase 3 epoch 20: dev_macro_f1=0.7610, dev_err=17.67%, es_counter1=0, es_counter2=0
+2026-04-02 13:20:09,011 - lg_cotrain - INFO - Phase 3 epoch 6: dev_macro_f1=0.7541, dev_err=18.05%, es_counter1=0, es_counter2=0
+2026-04-02 13:20:19,988 - lg_cotrain - INFO - Phase 3 epoch 21: dev_macro_f1=0.7620, dev_err=17.61%, es_counter1=0, es_counter2=0
+2026-04-02 13:20:29,885 - lg_cotrain - INFO - Phase 3 epoch 7: dev_macro_f1=0.7595, dev_err=17.74%, es_counter1=0, es_counter2=0
+2026-04-02 13:20:40,054 - lg_cotrain - INFO - Phase 3 epoch 22: dev_macro_f1=0.7614, dev_err=17.67%, es_counter1=1, es_counter2=1
+2026-04-02 13:20:50,665 - lg_cotrain - INFO - Phase 3 epoch 8: dev_macro_f1=0.7638, dev_err=17.48%, es_counter1=0, es_counter2=0
+2026-04-02 13:21:00,170 - lg_cotrain - INFO - Phase 3 epoch 23: dev_macro_f1=0.7635, dev_err=17.55%, es_counter1=0, es_counter2=0
+2026-04-02 13:21:11,428 - lg_cotrain - INFO - Phase 3 epoch 9: dev_macro_f1=0.7652, dev_err=17.42%, es_counter1=0, es_counter2=0
+2026-04-02 13:21:20,313 - lg_cotrain - INFO - Phase 3 epoch 24: dev_macro_f1=0.7635, dev_err=17.55%, es_counter1=1, es_counter2=1
+2026-04-02 13:21:32,194 - lg_cotrain - INFO - Phase 3 epoch 10: dev_macro_f1=0.7695, dev_err=17.16%, es_counter1=0, es_counter2=0
+2026-04-02 13:21:40,319 - lg_cotrain - INFO - Phase 3 epoch 25: dev_macro_f1=0.7629, dev_err=17.61%, es_counter1=2, es_counter2=2
+2026-04-02 13:21:52,909 - lg_cotrain - INFO - Phase 3 epoch 11: dev_macro_f1=0.7747, dev_err=16.85%, es_counter1=0, es_counter2=0
+2026-04-02 13:22:00,502 - lg_cotrain - INFO - Phase 3 epoch 26: dev_macro_f1=0.7629, dev_err=17.61%, es_counter1=3, es_counter2=3
+2026-04-02 13:22:13,677 - lg_cotrain - INFO - Phase 3 epoch 12: dev_macro_f1=0.7768, dev_err=16.72%, es_counter1=0, es_counter2=0
+2026-04-02 13:22:20,626 - lg_cotrain - INFO - Phase 3 epoch 27: dev_macro_f1=0.7639, dev_err=17.55%, es_counter1=0, es_counter2=0
+2026-04-02 13:22:34,446 - lg_cotrain - INFO - Phase 3 epoch 13: dev_macro_f1=0.7792, dev_err=16.59%, es_counter1=0, es_counter2=0
+2026-04-02 13:22:40,822 - lg_cotrain - INFO - Phase 3 epoch 28: dev_macro_f1=0.7639, dev_err=17.55%, es_counter1=1, es_counter2=1
+2026-04-02 13:22:55,255 - lg_cotrain - INFO - Phase 3 epoch 14: dev_macro_f1=0.7806, dev_err=16.53%, es_counter1=0, es_counter2=0
+2026-04-02 13:23:00,897 - lg_cotrain - INFO - Phase 3 epoch 29: dev_macro_f1=0.7639, dev_err=17.55%, es_counter1=2, es_counter2=2
+2026-04-02 13:23:15,970 - lg_cotrain - INFO - Phase 3 epoch 15: dev_macro_f1=0.7844, dev_err=16.34%, es_counter1=0, es_counter2=0
+2026-04-02 13:23:20,957 - lg_cotrain - INFO - Phase 3 epoch 30: dev_macro_f1=0.7661, dev_err=17.42%, es_counter1=0, es_counter2=0
+2026-04-02 13:23:36,704 - lg_cotrain - INFO - Phase 3 epoch 16: dev_macro_f1=0.7865, dev_err=16.21%, es_counter1=0, es_counter2=0
+2026-04-02 13:23:41,062 - lg_cotrain - INFO - Phase 3 epoch 31: dev_macro_f1=0.7661, dev_err=17.42%, es_counter1=1, es_counter2=1
+2026-04-02 13:23:57,350 - lg_cotrain - INFO - Phase 3 epoch 17: dev_macro_f1=0.7858, dev_err=16.27%, es_counter1=1, es_counter2=1
+2026-04-02 13:24:01,036 - lg_cotrain - INFO - Phase 3 epoch 32: dev_macro_f1=0.7661, dev_err=17.42%, es_counter1=2, es_counter2=2
+2026-04-02 13:24:18,045 - lg_cotrain - INFO - Phase 3 epoch 18: dev_macro_f1=0.7861, dev_err=16.27%, es_counter1=2, es_counter2=2
+2026-04-02 13:24:21,216 - lg_cotrain - INFO - Phase 3 epoch 33: dev_macro_f1=0.7661, dev_err=17.42%, es_counter1=3, es_counter2=3
+2026-04-02 13:24:38,749 - lg_cotrain - INFO - Phase 3 epoch 19: dev_macro_f1=0.7882, dev_err=16.15%, es_counter1=0, es_counter2=0
+2026-04-02 13:24:41,258 - lg_cotrain - INFO - Phase 3 epoch 34: dev_macro_f1=0.7671, dev_err=17.36%, es_counter1=0, es_counter2=0
+2026-04-02 13:24:59,577 - lg_cotrain - INFO - Phase 3 epoch 20: dev_macro_f1=0.7892, dev_err=16.08%, es_counter1=0, es_counter2=0
+2026-04-02 13:25:01,356 - lg_cotrain - INFO - Phase 3 epoch 35: dev_macro_f1=0.7671, dev_err=17.36%, es_counter1=1, es_counter2=1
+2026-04-02 13:25:20,337 - lg_cotrain - INFO - Phase 3 epoch 21: dev_macro_f1=0.7902, dev_err=16.02%, es_counter1=0, es_counter2=0
+2026-04-02 13:25:21,435 - lg_cotrain - INFO - Phase 3 epoch 36: dev_macro_f1=0.7671, dev_err=17.36%, es_counter1=2, es_counter2=2
+2026-04-02 13:25:41,033 - lg_cotrain - INFO - Phase 3 epoch 22: dev_macro_f1=0.7912, dev_err=15.96%, es_counter1=0, es_counter2=0
+2026-04-02 13:25:41,487 - lg_cotrain - INFO - Phase 3 epoch 37: dev_macro_f1=0.7671, dev_err=17.36%, es_counter1=3, es_counter2=3
+2026-04-02 13:26:01,546 - lg_cotrain - INFO - Phase 3 epoch 38: dev_macro_f1=0.7671, dev_err=17.36%, es_counter1=4, es_counter2=4
+2026-04-02 13:26:01,703 - lg_cotrain - INFO - Phase 3 epoch 23: dev_macro_f1=0.7912, dev_err=15.96%, es_counter1=1, es_counter2=1
+2026-04-02 13:26:21,581 - lg_cotrain - INFO - Phase 3 epoch 39: dev_macro_f1=0.7671, dev_err=17.36%, es_counter1=5, es_counter2=5
+2026-04-02 13:26:21,581 - lg_cotrain - INFO - Early stopping at epoch 39
+2026-04-02 13:26:21,607 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-02 13:26:22,378 - lg_cotrain - INFO - Phase 3 epoch 24: dev_macro_f1=0.7922, dev_err=15.89%, es_counter1=0, es_counter2=0
+2026-04-02 13:26:42,967 - lg_cotrain - INFO - Phase 3 epoch 25: dev_macro_f1=0.7922, dev_err=15.89%, es_counter1=1, es_counter2=1
+2026-04-02 13:27:00,870 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain\lg-cotrain\qwen3-vl-8b\run-1\informative\text_image\5_set2\metrics.json
+2026-04-02 13:27:00,870 - lg_cotrain - INFO - Test error rate: 14.93%, Test macro-F1: 0.8046, Test ECE: 0.1097
+2026-04-02 13:27:03,464 - lg_cotrain - INFO - Phase 3 epoch 26: dev_macro_f1=0.7932, dev_err=15.83%, es_counter1=0, es_counter2=0
+2026-04-02 13:27:22,859 - lg_cotrain - INFO - Phase 3 epoch 27: dev_macro_f1=0.7925, dev_err=15.89%, es_counter1=1, es_counter2=1
+2026-04-02 13:27:42,543 - lg_cotrain - INFO - Phase 3 epoch 28: dev_macro_f1=0.7925, dev_err=15.89%, es_counter1=2, es_counter2=2
+2026-04-02 13:28:02,000 - lg_cotrain - INFO - Phase 3 epoch 29: dev_macro_f1=0.7925, dev_err=15.89%, es_counter1=3, es_counter2=3
+2026-04-02 13:28:21,442 - lg_cotrain - INFO - Phase 3 epoch 30: dev_macro_f1=0.7925, dev_err=15.89%, es_counter1=4, es_counter2=4
+2026-04-02 13:28:41,131 - lg_cotrain - INFO - Phase 3 epoch 31: dev_macro_f1=0.7925, dev_err=15.89%, es_counter1=5, es_counter2=5
+2026-04-02 13:28:41,132 - lg_cotrain - INFO - Early stopping at epoch 31
+2026-04-02 13:28:41,143 - lg_cotrain - INFO - === Final Evaluation ===
+2026-04-02 13:29:19,539 - lg_cotrain - INFO - Results saved to D:\Workspace\Cotrain_CrisisMMD\results\cotrain\lg-cotrain\qwen3-vl-8b\run-1\informative\text_image\5_set1\metrics.json
+2026-04-02 13:29:19,539 - lg_cotrain - INFO - Test error rate: 14.93%, Test macro-F1: 0.8087, Test ECE: 0.0932

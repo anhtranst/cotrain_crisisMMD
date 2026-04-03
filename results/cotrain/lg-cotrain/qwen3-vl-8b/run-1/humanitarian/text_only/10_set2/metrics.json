@@ -1,0 +1,32 @@
+{
+  "task": "humanitarian",
+  "modality": "text_only",
+  "budget": 10,
+  "seed_set": 2,
+  "test_error_rate": 27.748691099476442,
+  "test_macro_f1": 0.6266682864134908,
+  "test_weighted_f1": 0.7330936789962158,
+  "test_macro_precision": 0.6217341605545161,
+  "test_macro_recall": 0.7362037975158542,
+  "test_weighted_precision": 0.7907441308714382,
+  "test_weighted_recall": 0.7225130890052356,
+  "test_ece": 0.220590228653703,
+  "test_per_class_f1": [
+    0.24,
+    0.6950354609929078,
+    0.7566938300349243,
+    0.7213740458015268,
+    0.7202380952380952
+  ],
+  "dev_error_rate": 27.15430861723447,
+  "dev_macro_f1": 0.63681864262385,
+  "dev_weighted_f1": 0.7400192924843962,
+  "dev_ece": 0.219209603711455,
+  "stopping_strategy": "baseline",
+  "phase1_seed_strategy": "last",
+  "phase1_best_epoch": null,
+  "lambda1_mean": 1.0648755671304306,
+  "lambda1_std": 0.19101132148548672,
+  "lambda2_mean": 0.5826584694867751,
+  "lambda2_std": 0.1605806456495
+}

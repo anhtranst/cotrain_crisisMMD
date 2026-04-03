@@ -218,17 +218,17 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <header>
     <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
-        Generated <span>2026-04-02 11:41:48</span> &bull;
+        Generated <span>2026-04-03 08:38:42</span> &bull;
         <span>2 tasks</span> &bull;
         <span>3 modalities</span> &bull;
-        <span>65 experiments</span>
+        <span>107 experiments</span>
     </p>
 </header>
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
     <button onclick="showTab('tab-zeroshot', this)">&#x1F50E; Zero-Shot <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">36</span></button>
-    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">29</span></button>
+    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">71</span></button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
@@ -985,7 +985,7 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 
 <div id="tab-results" class="tab-content">
 <div id="ct-method-lg-cotrain" class="sub-tab-content active">
-<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (7)</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-qwen3-vl-8b',this)">qwen3-vl-8b (22)</button></nav>
+<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (7)</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-qwen3-vl-8b',this)">qwen3-vl-8b (64)</button></nav>
 <div id="ct-lg-cotrain-llama-3-2-11b" class="sub-tab-content active">
 <div id="ct-lg-cotrain-llama-3-2-11b-run-1" class="sub-tab-content active">
 
@@ -999,13 +999,16 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <div class="section">
 <div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
 <table><thead>
-            <tr><th class="num">Budget</th><th class="num">Seeds</th>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8060 &plusmn; 0.0060</span></td><td class="num">-</td><td class="num">15.84%</td><td class="num">0.1270</td><td class="num">0.7765</td></tr>
-<tr><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8161 &plusmn; 0.0085</span></td><td class="num">-</td><td class="num">15.23%</td><td class="num">0.1230</td><td class="num">0.7863</td></tr>
-<tr><td class="num">25</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8224</span></td><td class="num">-</td><td class="num">15.45%</td><td class="num">0.1150</td><td class="num">0.8079</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: llama-3.2-11b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.8041</td><td class="num">0.8311</td><td class="num">16.43%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6975</td><td class="num">0.7112</td><td class="num">29.73%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen3-vl-8b</td><td class="num">-</td><td class="num">-</td><td class="num">0.7564</td><td class="num">0.7987</td><td class="num">18.12%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8060 &plusmn; 0.0060</span></td><td class="num">-</td><td class="num">15.84%</td><td class="num">0.1270</td><td class="num">0.7765</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8161 &plusmn; 0.0085</span></td><td class="num">-</td><td class="num">15.23%</td><td class="num">0.1230</td><td class="num">0.7863</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8224</span></td><td class="num">-</td><td class="num">15.45%</td><td class="num">0.1150</td><td class="num">0.8079</td></tr>
 </tbody></table></div>
 </div>
 </div>
@@ -1013,35 +1016,100 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <div id="ct-lg-cotrain-qwen3-vl-8b-run-1" class="sub-tab-content active">
 
     <div class="cards">
-        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">22</div><div class="label">Experiments</div></div>
-        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8184</div><div class="label">Avg Macro-F1</div></div>
-        <div class="card"><div class="icon">&#x274C;</div><div class="value">15.2%</div><div class="label">Avg Error Rate</div></div>
-        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.0936</div><div class="label">Avg ECE</div></div>
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">64</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.7663</div><div class="label">Avg Macro-F1</div></div>
+        <div class="card"><div class="icon">&#x274C;</div><div class="value">17.7%</div><div class="label">Avg Error Rate</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.1119</div><div class="label">Avg ECE</div></div>
     </div>
 <div class="section"><div class="section-header"><h2>&#x1F4CB; Informative</h2></div></div>
 <div class="section">
 <div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
 <table><thead>
-            <tr><th class="num">Budget</th><th class="num">Seeds</th>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7764 &plusmn; 0.0224</span></td><td class="num">-</td><td class="num">17.34%</td><td class="num">0.1198</td><td class="num">0.7537</td></tr>
-<tr><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7891 &plusmn; 0.0236</span></td><td class="num">-</td><td class="num">16.56%</td><td class="num">0.1058</td><td class="num">0.7669</td></tr>
-<tr><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8053 &plusmn; 0.0083</span></td><td class="num">-</td><td class="num">16.15%</td><td class="num">0.0912</td><td class="num">0.7934</td></tr>
-<tr><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8056 &plusmn; 0.0075</span></td><td class="num">-</td><td class="num">16.86%</td><td class="num">0.0692</td><td class="num">0.8005</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8041</td><td class="num">0.8311</td><td class="num">16.43%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6975</td><td class="num">0.7112</td><td class="num">29.73%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.7564</td><td class="num">0.7987</td><td class="num">18.12%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7764 &plusmn; 0.0224</span></td><td class="num">-</td><td class="num">17.34%</td><td class="num">0.1198</td><td class="num">0.7537</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7891 &plusmn; 0.0236</span></td><td class="num">-</td><td class="num">16.56%</td><td class="num">0.1058</td><td class="num">0.7669</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8053 &plusmn; 0.0083</span></td><td class="num">-</td><td class="num">16.15%</td><td class="num">0.0912</td><td class="num">0.7934</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8056 &plusmn; 0.0075</span></td><td class="num">-</td><td class="num">16.86%</td><td class="num">0.0692</td><td class="num">0.8005</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
 <table><thead>
-            <tr><th class="num">Budget</th><th class="num">Seeds</th>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8433 &plusmn; 0.0031</span></td><td class="num">-</td><td class="num">13.54%</td><td class="num">0.0947</td><td class="num">0.8402</td></tr>
-<tr><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8489 &plusmn; 0.0085</span></td><td class="num">-</td><td class="num">13.19%</td><td class="num">0.0900</td><td class="num">0.8437</td></tr>
-<tr><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8468 &plusmn; 0.0033</span></td><td class="num">-</td><td class="num">13.41%</td><td class="num">0.0894</td><td class="num">0.8504</td></tr>
-<tr><td class="num">50</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8596</span></td><td class="num">-</td><td class="num">12.52%</td><td class="num">0.0795</td><td class="num">0.8467</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8297</td><td class="num">0.8546</td><td class="num">13.95%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8533</td><td class="num">0.8717</td><td class="num">12.71%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.8461</td><td class="num">0.8640</td><td class="num">13.62%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.8433 &plusmn; 0.0031</span></td><td class="num">-</td><td class="num">13.54%</td><td class="num">0.0947</td><td class="num">0.8402</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8489 &plusmn; 0.0085</span></td><td class="num">-</td><td class="num">13.19%</td><td class="num">0.0900</td><td class="num">0.8437</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8468 &plusmn; 0.0033</span></td><td class="num">-</td><td class="num">13.41%</td><td class="num">0.0894</td><td class="num">0.8504</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8563 &plusmn; 0.0067</span></td><td class="num"><span class="badge badge-success">0.8716 &plusmn; 0.0093</span></td><td class="num">12.73%</td><td class="num">0.0819</td><td class="num">0.8468</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F4F7; text_image</h3></div>
+<table><thead>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.7607</td><td class="num">0.8027</td><td class="num">17.67%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8025</td><td class="num">0.8321</td><td class="num">15.97%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.7967</td><td class="num">0.8300</td><td class="num">15.71%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8228 &plusmn; 0.0281</span></td><td class="num"><span class="badge badge-success">0.8763</span></td><td class="num">13.91%</td><td class="num">0.0915</td><td class="num">0.8011</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8466 &plusmn; 0.0144</span></td><td class="num"><span class="badge badge-success">0.8689 &plusmn; 0.0109</span></td><td class="num">12.56%</td><td class="num">0.0756</td><td class="num">0.8327</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8630 &plusmn; 0.0031</span></td><td class="num"><span class="badge badge-success">0.8824 &plusmn; 0.0027</span></td><td class="num">11.36%</td><td class="num">0.0682</td><td class="num">0.8445</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8699 &plusmn; 0.0071</span></td><td class="num"><span class="badge badge-success">0.8861 &plusmn; 0.0057</span></td><td class="num">11.30%</td><td class="num">0.0602</td><td class="num">0.8589</td></tr>
+</tbody></table></div>
+<div class="section"><div class="section-header"><h2>&#x1F6D1; Humanitarian</h2></div></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
+<table><thead>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6343</td><td class="num">0.7382</td><td class="num">25.86%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.5848</td><td class="num">0.6927</td><td class="num">28.90%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.6288</td><td class="num">0.7263</td><td class="num">28.17%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.6368 &plusmn; 0.0061</span></td><td class="num"><span class="badge badge-success">0.7413 &plusmn; 0.0098</span></td><td class="num">26.84%</td><td class="num">0.2132</td><td class="num">0.6404</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.6239 &plusmn; 0.0112</span></td><td class="num"><span class="badge badge-success">0.7337 &plusmn; 0.0030</span></td><td class="num">27.57%</td><td class="num">0.2191</td><td class="num">0.6381</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.6376 &plusmn; 0.0039</span></td><td class="num"><span class="badge badge-success">0.7584 &plusmn; 0.0102</span></td><td class="num">25.55%</td><td class="num">0.1821</td><td class="num">0.6411</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.6408 &plusmn; 0.0048</span></td><td class="num"><span class="badge badge-success">0.7607 &plusmn; 0.0074</span></td><td class="num">25.27%</td><td class="num">0.1694</td><td class="num">0.6558</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
+<table><thead>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6275</td><td class="num">0.7571</td><td class="num">23.46%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6593</td><td class="num">0.7681</td><td class="num">22.83%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.7283</td><td class="num">0.8150</td><td class="num">18.53%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.7147 &plusmn; 0.0375</span></td><td class="num"><span class="badge badge-danger">0.8006 &plusmn; 0.0080</span></td><td class="num">19.69%</td><td class="num">0.1294</td><td class="num">0.6708</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7294 &plusmn; 0.0064</span></td><td class="num"><span class="badge badge-danger">0.8115 &plusmn; 0.0045</span></td><td class="num">18.67%</td><td class="num">0.1177</td><td class="num">0.6864</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.7185 &plusmn; 0.0117</span></td><td class="num"><span class="badge badge-danger">0.8079 &plusmn; 0.0129</span></td><td class="num">19.37%</td><td class="num">0.1095</td><td class="num">0.6854</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.6898 &plusmn; 0.0553</span></td><td class="num"><span class="badge badge-danger">0.8012 &plusmn; 0.0383</span></td><td class="num">21.05%</td><td class="num">0.0958</td><td class="num">0.6449</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F4F7; text_image</h3></div>
+<table><thead>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.5947</td><td class="num">0.7360</td><td class="num">25.76%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6697</td><td class="num">0.7712</td><td class="num">22.30%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.6639</td><td class="num">0.7474</td><td class="num">26.28%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7282 &plusmn; 0.0165</span></td><td class="num"><span class="badge badge-success">0.8163 &plusmn; 0.0110</span></td><td class="num">18.95%</td><td class="num">0.0889</td><td class="num">0.6814</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.7630</span></td><td class="num"><span class="badge badge-success">0.8387</span></td><td class="num">16.65%</td><td class="num">0.0767</td><td class="num">0.7054</td></tr>
 </tbody></table></div>
 </div>
 </div>
