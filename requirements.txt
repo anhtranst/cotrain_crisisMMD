@@ -8,6 +8,8 @@
 # Core ML
 transformers>=4.53.0
 numpy>=1.24.0
+protobuf>=3.20.0
+sentencepiece>=0.1.99
 
 # Data processing
 pandas>=2.0.0
