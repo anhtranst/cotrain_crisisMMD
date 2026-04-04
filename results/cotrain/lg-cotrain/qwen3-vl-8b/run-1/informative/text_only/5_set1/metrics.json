@@ -4,20 +4,26 @@
   "budget": 5,
   "seed_set": 1,
   "test_error_rate": 18.05736636245111,
-  "test_macro_f1": 0.7562418432820195,
-  "test_ece": 0.15326294559387996,
+  "test_macro_f1": 0.7549191452006504,
+  "test_weighted_f1": 0.7980332272311016,
+  "test_macro_precision": 0.8793562906223205,
+  "test_macro_recall": 0.7292514254892896,
+  "test_weighted_precision": 0.8492769433572123,
+  "test_weighted_recall": 0.8194263363754889,
+  "test_ece": 0.15228378038362853,
   "test_per_class_f1": [
-    0.8803455723542116,
-    0.6321381142098274
+    0.8806548901335631,
+    0.6291834002677377
   ],
-  "dev_error_rate": 19.453273998728548,
-  "dev_macro_f1": 0.7326327787553991,
-  "dev_ece": 0.16305587099224458,
+  "dev_error_rate": 19.96185632549269,
+  "dev_macro_f1": 0.7241275692582663,
+  "dev_weighted_f1": 0.7738262809576483,
+  "dev_ece": 0.1749904563452738,
   "stopping_strategy": "baseline",
   "phase1_seed_strategy": "last",
   "phase1_best_epoch": null,
-  "lambda1_mean": 1.0763126179582012,
-  "lambda1_std": 0.09757242636321625,
-  "lambda2_mean": 0.7860059916217048,
-  "lambda2_std": 0.09975472254883398
+  "lambda1_mean": 1.0751206166927374,
+  "lambda1_std": 0.10605982889159679,
+  "lambda2_mean": 0.7843796181895544,
+  "lambda2_std": 0.1061443276200764
 }

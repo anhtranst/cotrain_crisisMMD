@@ -99,6 +99,8 @@ def collect_all_metrics(results_root: str) -> list:
     cotrain_dir = Path(results_root) / "cotrain"
     if cotrain_dir.exists():
         for p in sorted(cotrain_dir.rglob("metrics.json")):
+            if "backup" in str(p).lower():
+                continue
             try:
                 with open(p) as f:
                     m = json.load(f)
@@ -252,6 +254,27 @@ header .subtitle span { color: rgba(255,255,255,.85); font-weight: 500; }
     border-left: 4px solid var(--accent);
     background: linear-gradient(135deg, var(--card) 0%, var(--accent-bg) 100%);
     box-shadow: var(--shadow-md);
+}
+.run-notes {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-bg);
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text);
+}
+.run-notes strong { color: var(--accent); font-size: 14px; }
+.run-notes table {
+    margin-top: 10px; border-collapse: collapse; font-size: 12px;
+    background: transparent; box-shadow: none;
+}
+.run-notes td {
+    padding: 2px 12px 2px 0; border: none; vertical-align: top;
+}
+.run-notes td:first-child {
+    font-weight: 600; color: var(--text-secondary); white-space: nowrap;
 }
 .section-header {
     display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
@@ -990,7 +1013,7 @@ def _render_cotrain_task_tables(task, task_metrics, zs_results=None, pseudo_sour
     return "\n".join(parts)
 
 
-def _render_results_tab(metrics, zeroshot=None):
+def _render_results_tab(metrics, zeroshot=None, results_root=None):
     """Render co-training tab with nested subtabs: method -> model -> run_id -> task."""
     if not metrics:
         return """
@@ -1059,8 +1082,46 @@ def _render_results_tab(metrics, zeroshot=None):
                     f'{run_id} ({len(run_metrics)})</button>'
                 )
 
-                # Render run content: summary cards + per-task tables
+                # Render run content: notes + summary cards + per-task tables
                 run_parts = []
+
+                # Look for run_notes.txt
+                if results_root:
+                    notes_path = (
+                        Path(results_root) / "cotrain" / method / source / run_id / "run_notes.tsv"
+                    )
+                    if notes_path.exists():
+                        import csv as _csv
+                        with open(notes_path, encoding="utf-8") as _f:
+                            reader = _csv.DictReader(_f, delimiter="\t")
+                            notes_rows = list(reader)
+
+                        title = ""
+                        items = []
+                        for row in notes_rows:
+                            if row.get("key", "").lower() == "title":
+                                title = row.get("value", "")
+                            else:
+                                items.append((row.get("key", ""), row.get("value", "")))
+
+                        if title or items:
+                            run_parts.append(f'<div class="run-notes">')
+                            if title:
+                                run_parts.append(f'<strong>{title}</strong>')
+                            if items:
+                                run_parts.append('<table><tbody>')
+                                for i in range(0, len(items), 2):
+                                    run_parts.append('<tr>')
+                                    for j in range(2):
+                                        if i + j < len(items):
+                                            k, v = items[i + j]
+                                            run_parts.append(f'<td>{k}:</td><td>{v}</td>')
+                                        else:
+                                            run_parts.append('<td></td><td></td>')
+                                    run_parts.append('</tr>')
+                                run_parts.append('</tbody></table>')
+                            run_parts.append('</div>')
+
                 run_parts.append(_render_cotrain_summary_cards(run_metrics))
 
                 for task in TASKS:
@@ -1134,7 +1195,7 @@ def generate_html(data_root: str, results_root: str) -> str:
     total_exp = len(metrics) + total_zs
 
     dataset_html = _render_dataset_overview(ds_stats, event_stats)
-    results_html = _render_results_tab(metrics, zeroshot)
+    results_html = _render_results_tab(metrics, zeroshot, results_root=results_root)
 
     # Build single Zero-Shot tab with sub-tabs for each task
     zs_tab_button = ""

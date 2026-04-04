@@ -1,0 +1,14 @@
+key	value
+Title	Run 1 -- Paper-default hyperparameters
+Pseudo-labels	Qwen3-VL-8B-Instruct (zero-shot)
+Text model	BERTweet (vinai/bertweet-base)
+Image model	CLIP ViT (clip-vit-base-patch32)
+Multimodal	Late fusion (concat)
+Learning rate	2e-5
+Batch size	32
+Weight decay	0.01
+Warmup	10%
+Phase 1	7 epochs, seed=last
+Phase 2	10 epochs
+Phase 3	patience=5, max=100, stopping=baseline
+Optimizer	AdamW + linear LR scheduler
