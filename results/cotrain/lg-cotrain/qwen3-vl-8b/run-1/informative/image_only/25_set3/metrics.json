@@ -1,0 +1,29 @@
+{
+  "task": "informative",
+  "modality": "image_only",
+  "budget": 25,
+  "seed_set": 3,
+  "test_error_rate": 13.820078226857891,
+  "test_macro_f1": 0.8430657216096853,
+  "test_weighted_f1": 0.8616578328550307,
+  "test_macro_precision": 0.8437756286266924,
+  "test_macro_recall": 0.842371705963939,
+  "test_weighted_precision": 0.8615292014152455,
+  "test_weighted_recall": 0.8617992177314211,
+  "test_ece": 0.0883115603062755,
+  "test_per_class_f1": [
+    0.8972868217054264,
+    0.7888446215139442
+  ],
+  "dev_error_rate": 13.159567705022246,
+  "dev_macro_f1": 0.8481895962100899,
+  "dev_weighted_f1": 0.8671717176607721,
+  "dev_ece": 0.08901000826205711,
+  "stopping_strategy": "baseline",
+  "phase1_seed_strategy": "last",
+  "phase1_best_epoch": null,
+  "lambda1_mean": 1.0343127813540278,
+  "lambda1_std": 0.1206487611263724,
+  "lambda2_mean": 0.8149155931954111,
+  "lambda2_std": 0.20051924079226566
+}

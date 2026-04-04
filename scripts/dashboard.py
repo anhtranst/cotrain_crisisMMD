@@ -55,9 +55,8 @@ def collect_event_stats(data_root: str) -> dict:
     """Count samples per event from the original source files."""
     base = Path(data_root) / "CrisisMMD" / "original"
     prefixes = {
-        "informative": "task_informative_text_img",
-        "humanitarian": "task_humanitarian_text_img",
-        "damage": "task_damage_text_img",
+        "informative": "task_informative_text_img_agreed_lab",
+        "humanitarian": "task_humanitarian_text_img_agreed_lab",
     }
     result = {}
     for task, prefix in prefixes.items():
@@ -1129,7 +1128,11 @@ def _render_results_tab(metrics, zeroshot=None, results_root=None):
                     if not task_metrics:
                         continue
                     icon = TASK_ICONS.get(task, "")
-                    run_parts.append(f'<div class="section"><div class="section-header"><h2>{icon} {task.title()}</h2></div></div>')
+                    run_parts.append(
+                        f'<h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; '
+                        f'padding-bottom:8px; border-bottom:2px solid var(--accent); '
+                        f'color:var(--accent);">{icon} {task.title()}</h2>'
+                    )
                     zs_for_task = (zeroshot or {}).get(task, [])
                     run_parts.append(_render_cotrain_task_tables(task, task_metrics, zs_for_task, pseudo_source=source))
 

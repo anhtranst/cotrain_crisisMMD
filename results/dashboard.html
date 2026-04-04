@@ -239,17 +239,17 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <header>
     <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
-        Generated <span>2026-04-03 22:41:02</span> &bull;
+        Generated <span>2026-04-03 23:20:58</span> &bull;
         <span>2 tasks</span> &bull;
         <span>3 modalities</span> &bull;
-        <span>109 experiments</span>
+        <span>111 experiments</span>
     </p>
 </header>
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
     <button onclick="showTab('tab-zeroshot', this)">&#x1F50E; Zero-Shot <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">36</span></button>
-    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">73</span></button>
+    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">75</span></button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
@@ -284,6 +284,16 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
     
 <div class="section">
 <div class="section-header"><h2>&#x1F30D; Event Distribution</h2><div class="tag">Humanitarian Task &mdash; Training Set</div></div>
+<table><thead><tr><th>Event</th><th class="num">Samples</th><th class="num">Share</th><th style="min-width:250px">Distribution</th></tr></thead><tbody>
+<tr><td><strong>Hurricane Maria</strong></td><td class="num">1,724</td><td class="num">28.1%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:100.0%"><span>28%</span></div></div></td></tr>
+<tr><td><strong>Hurricane Harvey</strong></td><td class="num">1,483</td><td class="num">24.2%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:86.0%"><span>24%</span></div></div></td></tr>
+<tr><td><strong>Hurricane Irma</strong></td><td class="num">1,392</td><td class="num">22.7%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-purple" style="width:80.7%"><span>23%</span></div></div></td></tr>
+<tr><td><strong>Srilanka Floods</strong></td><td class="num">562</td><td class="num">9.2%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:32.6%"><span>9%</span></div></div></td></tr>
+<tr><td><strong>Mexico Earthquake</strong></td><td class="num">428</td><td class="num">7.0%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:24.8%"><span>7%</span></div></div></td></tr>
+<tr><td><strong>California Wildfires</strong></td><td class="num">362</td><td class="num">5.9%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-blue" style="width:21.0%"><span>6%</span></div></div></td></tr>
+<tr><td><strong>Iraq Iran Earthquake</strong></td><td class="num">175</td><td class="num">2.9%</td><td class="bar-cell"><div class="bar-outer"><div class="bar-inner bar-green" style="width:10.2%"><span>3%</span></div></div></td></tr>
+<tr class="total-row"><td>Total</td><td class="num">6,126</td><td class="num">100%</td><td></td></tr>
+</tbody></table>
 </div>
 <div class="section">
 <div class="section-header"><h2>&#x1F4CB; Informative Task</h2><div class="tag">2 classes</div></div>
@@ -1006,7 +1016,7 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 
 <div id="tab-results" class="tab-content">
 <div id="ct-method-lg-cotrain" class="sub-tab-content active">
-<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (7)</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-qwen3-vl-8b',this)">qwen3-vl-8b (66)</button></nav>
+<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (7)</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-qwen3-vl-8b',this)">qwen3-vl-8b (68)</button></nav>
 <div id="ct-lg-cotrain-llama-3-2-11b" class="sub-tab-content active">
 <div id="ct-lg-cotrain-llama-3-2-11b-run-1" class="sub-tab-content active">
 <div class="run-notes">
@@ -1045,7 +1055,7 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
         <div class="card"><div class="icon">&#x274C;</div><div class="value">15.5%</div><div class="label">Avg Error Rate</div></div>
         <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.1236</div><div class="label">Avg ECE</div></div>
     </div>
-<div class="section"><div class="section-header"><h2>&#x1F4CB; Informative</h2></div></div>
+<h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent);">&#x1F4CB; Informative</h2>
 <div class="section">
 <div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
 <table><thead>
@@ -1095,12 +1105,12 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 </div>
 
     <div class="cards">
-        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">66</div><div class="label">Experiments</div></div>
-        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.7547</div><div class="label">Avg Macro-F1</div></div>
-        <div class="card"><div class="icon">&#x274C;</div><div class="value">18.2%</div><div class="label">Avg Error Rate</div></div>
-        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.1079</div><div class="label">Avg ECE</div></div>
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">68</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.7575</div><div class="label">Avg Macro-F1</div></div>
+        <div class="card"><div class="icon">&#x274C;</div><div class="value">18.0%</div><div class="label">Avg Error Rate</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.1074</div><div class="label">Avg ECE</div></div>
     </div>
-<div class="section"><div class="section-header"><h2>&#x1F4CB; Informative</h2></div></div>
+<h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent);">&#x1F4CB; Informative</h2>
 <div class="section">
 <div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
 <table><thead>
@@ -1128,7 +1138,8 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.8461</td><td class="num">0.8640</td><td class="num">13.62%</td><td class="num">-</td><td class="num">-</td></tr>
 <tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.8433 &plusmn; 0.0031</span></td><td class="num"><span class="badge badge-danger">0.8631 &plusmn; 0.0040</span></td><td class="num">13.54%</td><td class="num">0.0947</td><td class="num">0.8402</td></tr>
 <tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.8411 &plusmn; 0.0031</span></td><td class="num"><span class="badge badge-danger">0.8613 &plusmn; 0.0028</span></td><td class="num">13.71%</td><td class="num">0.0920</td><td class="num">0.8389</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">2</td><td class="num"><span class="badge badge-success">0.8557 &plusmn; 0.0007</span></td><td class="num"><span class="badge badge-success">0.8736 &plusmn; 0.0005</span></td><td class="num">12.55%</td><td class="num">0.0797</td><td class="num">0.8489</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8515 &plusmn; 0.0073</span></td><td class="num"><span class="badge badge-success">0.8696 &plusmn; 0.0069</span></td><td class="num">12.97%</td><td class="num">0.0826</td><td class="num">0.8487</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8556</span></td><td class="num"><span class="badge badge-success">0.8724</span></td><td class="num">12.78%</td><td class="num">0.0915</td><td class="num">0.8485</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h3>&#x1F4F7; text_image</h3></div>
@@ -1145,7 +1156,7 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8630 &plusmn; 0.0031</span></td><td class="num"><span class="badge badge-success">0.8824 &plusmn; 0.0027</span></td><td class="num">11.36%</td><td class="num">0.0682</td><td class="num">0.8445</td></tr>
 <tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8699 &plusmn; 0.0071</span></td><td class="num"><span class="badge badge-success">0.8861 &plusmn; 0.0057</span></td><td class="num">11.30%</td><td class="num">0.0602</td><td class="num">0.8589</td></tr>
 </tbody></table></div>
-<div class="section"><div class="section-header"><h2>&#x1F6D1; Humanitarian</h2></div></div>
+<h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent);">&#x1F6D1; Humanitarian</h2>
 <div class="section">
 <div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
 <table><thead>
