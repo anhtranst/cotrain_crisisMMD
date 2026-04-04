@@ -954,13 +954,14 @@ def _render_cotrain_task_tables(task, task_metrics, zs_results=None, pseudo_sour
             else:
                 row_style = 'style="background:var(--accent-bg); font-style:italic; opacity:0.7;"'
                 label = f"ZS: {slug}"
+            wf1_hm = _hm(zs_wf1) if zs_wf1 is not None else ""
             parts.append(
                 f'<tr {row_style}>'
                 f'<td>{label}</td>'
                 f'<td class="num">-</td><td class="num">-</td>'
-                f'<td class="num">{zs_f1:.4f}</td>'
-                f'<td class="num">{wf1_cell}</td>'
-                f'<td class="num">{zs_err:.2f}%</td>'
+                f'<td class="num" {_hm(zs_f1)}>{zs_f1:.4f}</td>'
+                f'<td class="num" {wf1_hm}>{wf1_cell}</td>'
+                f'<td class="num" {_hm(zs_err, inverted=True, lo=10, hi=30)}>{zs_err:.2f}%</td>'
                 f'<td class="num">-</td><td class="num">-</td></tr>'
             )
 
@@ -995,19 +996,219 @@ def _render_cotrain_task_tables(task, task_metrics, zs_results=None, pseudo_sour
                 std_wf1 = statistics.stdev(v for v in avg_wf1_vals) if len(avg_wf1_vals) > 1 else 0
                 wf1_text = f"{avg_wf1:.4f}" if len(avg_wf1_vals) <= 1 else f"{avg_wf1:.4f} &plusmn; {std_wf1:.4f}"
                 wf1_display = f'<span class="badge {wf1_badge}">{wf1_text}</span>'
+                wf1_hm = _hm(avg_wf1)
             else:
                 wf1_display = "-"
+                wf1_hm = ""
 
             parts.append(
                 f'<tr><td>Co-Train</td><td class="num">{budget}</td><td class="num">{n_seeds}</td>'
-                f'<td class="num"><span class="badge {f1_badge}">{f1_display}</span></td>'
-                f'<td class="num">{wf1_display}</td>'
-                f'<td class="num">{avg_err:.2f}%</td>'
-                f'<td class="num">{avg_ece:.4f}</td>'
-                f'<td class="num">{avg_dev_f1:.4f}</td></tr>'
+                f'<td class="num" {_hm(avg_f1)}><span class="badge {f1_badge}">{f1_display}</span></td>'
+                f'<td class="num" {wf1_hm}>{wf1_display}</td>'
+                f'<td class="num" {_hm(avg_err, inverted=True, lo=10, hi=30)}>{avg_err:.2f}%</td>'
+                f'<td class="num" {_hm(avg_ece, inverted=True, lo=0.04, hi=0.20)}>{avg_ece:.4f}</td>'
+                f'<td class="num" {_hm(avg_dev_f1)}>{avg_dev_f1:.4f}</td></tr>'
             )
 
         parts.append("</tbody></table></div>")
+
+    return "\n".join(parts)
+
+
+def _f1_to_heatmap_color(f1):
+    """Map an F1 score (0-1) to a heatmap background color.
+
+    Scale: red (0.6) -> yellow (0.725) -> green (0.85).
+    Tightened to the typical co-training F1 range for better contrast.
+    Returns CSS rgb() string with transparency for readability.
+    """
+    f1 = max(0.6, min(0.85, f1))  # clamp
+    if f1 < 0.725:
+        # red -> yellow
+        t = (f1 - 0.6) / 0.125
+        r, g, b = int(255 - t * 30), int(80 + t * 150), int(80 - t * 20)
+    else:
+        # yellow -> green
+        t = (f1 - 0.725) / 0.125
+        r, g, b = int(225 - t * 165), int(230 - t * 50), int(60 + t * 15)
+    return f"rgba({r},{g},{b},0.35)"
+
+
+def _f1_to_heatmap_inverted(val, lo=10.0, hi=30.0):
+    """Map a lower-is-better metric to heatmap color (inverted: low=green, high=red).
+
+    Args:
+        val: The metric value (e.g., error rate % or ECE).
+        lo: Value at the green end.
+        hi: Value at the red end.
+    """
+    t = max(0.0, min(1.0, (val - lo) / (hi - lo)))  # 0=green (low), 1=red (high)
+    # Reverse: map t=0 to green, t=1 to red
+    return _f1_to_heatmap_color(0.85 - t * 0.25)  # maps to 0.85 (green) -> 0.6 (red)
+
+
+def _hm(val, inverted=False, lo=None, hi=None):
+    """Return heatmap style attribute for a cell value."""
+    if inverted:
+        lo = lo if lo is not None else 10.0
+        hi = hi if hi is not None else 30.0
+        color = _f1_to_heatmap_inverted(val, lo, hi)
+    else:
+        color = _f1_to_heatmap_color(val)
+    return f'style="background:{color}"'
+
+
+def _render_comparison_tab(method_hierarchy, zs_results_by_task):
+    """Render cross-model comparison tables with heatmap coloring."""
+    parts = []
+    models = sorted(method_hierarchy.keys())
+
+    if not models:
+        return ""
+
+    # Pick latest run per model, flatten metrics
+    all_metrics_by_model = {}
+    for source in models:
+        runs = method_hierarchy[source]
+        latest_run = max(sorted(runs.keys()))
+        all_metrics_by_model[source] = runs[latest_run]
+
+    modality_order = ["text_only", "image_only", "text_image"]
+
+    for task in TASKS:
+        task_icon = TASK_ICONS.get(task, "")
+        task_has_data = False
+
+        for modality in modality_order:
+            mod_icon = MODALITY_ICONS.get(modality, "")
+
+            # Build data: budget -> model -> {avg_f1, std_f1, n_seeds}
+            budget_data = {}
+            for source in models:
+                mod_metrics = [m for m in all_metrics_by_model[source]
+                               if m.get("task") == task and m.get("modality") == modality]
+                if not mod_metrics:
+                    continue
+
+                by_budget = {}
+                for m in mod_metrics:
+                    by_budget.setdefault(m.get("budget", 0), []).append(m)
+
+                for budget, runs in by_budget.items():
+                    if budget not in budget_data:
+                        budget_data[budget] = {}
+                    n = len(runs)
+                    avg_f1 = statistics.mean(m["test_macro_f1"] for m in runs)
+                    std_f1 = statistics.stdev(m["test_macro_f1"] for m in runs) if n > 1 else 0
+                    wf1_vals = [m.get("test_weighted_f1") for m in runs if m.get("test_weighted_f1") is not None]
+                    avg_wf1 = statistics.mean(wf1_vals) if wf1_vals else None
+                    std_wf1 = statistics.stdev(wf1_vals) if len(wf1_vals) > 1 else 0
+                    budget_data[budget][source] = {"avg_f1": avg_f1, "std_f1": std_f1,
+                                                   "avg_wf1": avg_wf1, "std_wf1": std_wf1, "n_seeds": n}
+
+            if not budget_data:
+                continue
+
+            if not task_has_data:
+                parts.append(
+                    f'<h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; '
+                    f'padding-bottom:8px; border-bottom:2px solid var(--accent); '
+                    f'color:var(--accent);">{task_icon} {task.title()}</h2>'
+                )
+                task_has_data = True
+
+            # Render table
+            parts.append(f'<div class="section">')
+            parts.append(f'<div class="section-header"><h3>{mod_icon} {modality}</h3></div>')
+
+            # Header — grouped by metric, sub-columns are models
+            n_models = len(models)
+            parts.append('<table><thead>')
+            parts.append(f'<tr><th rowspan="2" style="border-right:3px solid var(--border);">Labels/class</th>')
+            parts.append(f'<th class="num" colspan="{n_models}" style="text-align:center; border-bottom:none; border-right:3px solid var(--border);">Macro F1</th>')
+            parts.append(f'<th class="num" colspan="{n_models}" style="text-align:center; border-bottom:none;">Weighted F1</th>')
+            parts.append('</tr><tr style="border-top:3px solid var(--border);">')
+            for i, source in enumerate(models):
+                border = ' border-right:3px solid var(--border);' if i == n_models - 1 else ''
+                parts.append(f'<th class="num" style="{border}">{source}</th>')
+            for source in models:
+                parts.append(f'<th class="num">{source}</th>')
+            parts.append('</tr></thead><tbody>')
+
+            # Zero-shot row — Macro F1 group first, then W. F1 group
+            zs_task = zs_results_by_task.get(task, [])
+            zs_by_model = {}
+            for source in models:
+                zs_match = [m for m in zs_task
+                            if m.get("model_slug") == source
+                            and m.get("modality") == modality
+                            and m.get("split") == "test"]
+                zs_by_model[source] = zs_match[0] if zs_match else None
+
+            parts.append('<tr style="background:var(--accent-bg); font-style:italic;">')
+            parts.append('<td style="border-right:3px solid var(--border);">Zero-Shot</td>')
+            # Macro F1 columns
+            for i, source in enumerate(models):
+                last = i == n_models - 1
+                m = zs_by_model[source]
+                if m:
+                    zs_f1 = m.get("macro_f1", 0)
+                    hm_color = _f1_to_heatmap_color(zs_f1)
+                    border_css = f"background:{hm_color}; border-right:3px solid var(--border);" if last else f"background:{hm_color};"
+                    parts.append(f'<td class="num" style="{border_css}">{zs_f1:.4f}</td>')
+                else:
+                    border_css = "border-right:3px solid var(--border);" if last else ""
+                    parts.append(f'<td class="num" style="{border_css}">-</td>')
+            # W. F1 columns
+            for source in models:
+                m = zs_by_model[source]
+                if m and m.get("weighted_f1") is not None:
+                    zs_wf1 = m["weighted_f1"]
+                    parts.append(f'<td class="num" {_hm(zs_wf1)}>{zs_wf1:.4f}</td>')
+                else:
+                    parts.append('<td class="num">-</td>')
+            parts.append('</tr>')
+
+            # Budget rows — Macro F1 group first, then W. F1 group
+            for budget in sorted(budget_data.keys()):
+                row_data = budget_data[budget]
+                # Find best Macro F1 and best W. F1 in this row
+                row_f1s = {s: d["avg_f1"] for s, d in row_data.items()}
+                best_f1 = max(row_f1s.values()) if row_f1s else 0
+                row_wf1s = {s: d["avg_wf1"] for s, d in row_data.items() if d.get("avg_wf1") is not None}
+                best_wf1 = max(row_wf1s.values()) if row_wf1s else 0
+
+                parts.append('<tr>')
+                parts.append(f'<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain ({budget})</td>')
+                # Macro F1 columns
+                for i, source in enumerate(models):
+                    border = ' border-right:3px solid var(--border);' if i == n_models - 1 else ''
+                    if source in row_data:
+                        d = row_data[source]
+                        f1_text = f"{d['avg_f1']:.4f}"
+                        if d["n_seeds"] > 1:
+                            f1_text += f" &plusmn; {d['std_f1']:.4f}"
+                        if d["avg_f1"] >= best_f1 - 1e-6:
+                            f1_text = f"<strong>{f1_text}</strong>"
+                        hm_style = _hm(d["avg_f1"]).replace('style="', f'style="{border} ')
+                        parts.append(f'<td class="num" {hm_style}>{f1_text}</td>')
+                    else:
+                        parts.append(f'<td class="num" style="{border}">-</td>')
+                # W. F1 columns
+                for source in models:
+                    if source in row_data and row_data[source].get("avg_wf1") is not None:
+                        d = row_data[source]
+                        wf1_text = f"{d['avg_wf1']:.4f}"
+                        if d["n_seeds"] > 1 and d["std_wf1"] > 0:
+                            wf1_text += f" &plusmn; {d['std_wf1']:.4f}"
+                        if d["avg_wf1"] >= best_wf1 - 1e-6:
+                            wf1_text = f"<strong>{wf1_text}</strong>"
+                        parts.append(f'<td class="num" {_hm(d["avg_wf1"])}>{wf1_text}</td>')
+                    else:
+                        parts.append('<td class="num">-</td>')
+                parts.append('</tr>')
+
+            parts.append('</tbody></table></div>')
 
     return "\n".join(parts)
 
@@ -1054,6 +1255,20 @@ def _render_results_tab(metrics, zeroshot=None, results_root=None):
         model_buttons = []
         model_contents = []
         first_model = True
+
+        # Insert comparison overview tab as first model-level tab
+        if len(hierarchy[method]) > 1:
+            overview_id = f"ct-{method}-overview".replace(".", "-")
+            model_buttons.append(
+                f'<button class="active" onclick="showSubTab(\'{method_id}\',\'{overview_id}\',this)">'
+                f'&#x1F4CA; Comparison</button>'
+            )
+            overview_html = _render_comparison_tab(hierarchy[method], zeroshot or {})
+            model_contents.append(
+                f'<div id="{overview_id}" class="sub-tab-content active">\n'
+                + overview_html + '\n</div>'
+            )
+            first_model = False
 
         for source in sorted(hierarchy[method].keys()):
             model_id = f"ct-{method}-{source}".replace(".", "-")

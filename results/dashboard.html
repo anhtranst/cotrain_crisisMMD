@@ -239,17 +239,17 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 <header>
     <h1>LG-CoTrain &mdash; CrisisMMD</h1>
     <p class="subtitle">
-        Generated <span>2026-04-03 23:20:58</span> &bull;
+        Generated <span>2026-04-04 12:23:11</span> &bull;
         <span>2 tasks</span> &bull;
         <span>3 modalities</span> &bull;
-        <span>111 experiments</span>
+        <span>128 experiments</span>
     </p>
 </header>
 
 <nav class="tab-bar">
     <button class="active" onclick="showTab('tab-data', this)">&#x1F50D; Dataset Exploration</button>
     <button onclick="showTab('tab-zeroshot', this)">&#x1F50E; Zero-Shot <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">36</span></button>
-    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">75</span></button>
+    <button onclick="showTab('tab-results', this)">&#x1F504; Co-Training Results <span style="background:var(--accent);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px">92</span></button>
 </nav>
 
 <div id="tab-data" class="tab-content active">
@@ -1016,8 +1016,300 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 
 <div id="tab-results" class="tab-content">
 <div id="ct-method-lg-cotrain" class="sub-tab-content active">
-<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (7)</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-qwen3-vl-8b',this)">qwen3-vl-8b (68)</button></nav>
-<div id="ct-lg-cotrain-llama-3-2-11b" class="sub-tab-content active">
+<nav class="sub-tab-bar"><button class="active" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-overview',this)">&#x1F4CA; Comparison</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-llama-3-2-11b',this)">llama-3.2-11b (24)</button><button class="" onclick="showSubTab('ct-method-lg-cotrain','ct-lg-cotrain-qwen3-vl-8b',this)">qwen3-vl-8b (68)</button></nav>
+<div id="ct-lg-cotrain-overview" class="sub-tab-content active">
+<h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent);">&#x1F4CB; Informative</h2>
+<div class="section">
+<div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
+<table><thead>
+<tr><th rowspan="2" style="border-right:3px solid var(--border);">Labels/class</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none; border-right:3px solid var(--border);">Macro F1</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none;">Weighted F1</th>
+</tr><tr style="border-top:3px solid var(--border);">
+<th class="num" style="">llama-3.2-11b</th>
+<th class="num" style=" border-right:3px solid var(--border);">qwen3-vl-8b</th>
+<th class="num">llama-3.2-11b</th>
+<th class="num">qwen3-vl-8b</th>
+</tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic;">
+<td style="border-right:3px solid var(--border);">Zero-Shot</td>
+<td class="num" style="background:rgba(120,198,69,0.35);">0.8041</td>
+<td class="num" style="background:rgba(183,217,63,0.35); border-right:3px solid var(--border);">0.7564</td>
+<td class="num" style="background:rgba(84,187,72,0.35)">0.8311</td>
+<td class="num" style="background:rgba(127,200,68,0.35)">0.7987</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (5)</td>
+<td class="num" style=" background:rgba(117,197,69,0.35)"><strong>0.8067 &plusmn; 0.0088</strong></td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(150,207,66,0.35)">0.7812 &plusmn; 0.0233</td>
+<td class="num" style="background:rgba(80,186,73,0.35)"><strong>0.8348 &plusmn; 0.0058</strong></td>
+<td class="num" style="background:rgba(105,193,70,0.35)">0.8158 &plusmn; 0.0154</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (10)</td>
+<td class="num" style=" background:rgba(101,192,71,0.35)"><strong>0.8186 &plusmn; 0.0023</strong></td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(134,202,68,0.35)">0.7934 &plusmn; 0.0160</td>
+<td class="num" style="background:rgba(68,182,74,0.35)"><strong>0.8436 &plusmn; 0.0026</strong></td>
+<td class="num" style="background:rgba(93,190,71,0.35)">0.8250 &plusmn; 0.0104</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (25)</td>
+<td class="num" style=" background:rgba(100,192,71,0.35)"><strong>0.8191 &plusmn; 0.0066</strong></td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(121,198,69,0.35)">0.8031 &plusmn; 0.0034</td>
+<td class="num" style="background:rgba(71,183,73,0.35)"><strong>0.8412 &plusmn; 0.0059</strong></td>
+<td class="num" style="background:rgba(86,187,72,0.35)">0.8302 &plusmn; 0.0023</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (50)</td>
+<td class="num" style=" background:rgba(92,189,72,0.35)"><strong>0.8255 &plusmn; 0.0048</strong></td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(107,194,70,0.35)">0.8142 &plusmn; 0.0100</td>
+<td class="num" style="background:rgba(63,180,74,0.35)"><strong>0.8475 &plusmn; 0.0055</strong></td>
+<td class="num" style="background:rgba(76,185,73,0.35)">0.8374 &plusmn; 0.0099</td>
+</tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
+<table><thead>
+<tr><th rowspan="2" style="border-right:3px solid var(--border);">Labels/class</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none; border-right:3px solid var(--border);">Macro F1</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none;">Weighted F1</th>
+</tr><tr style="border-top:3px solid var(--border);">
+<th class="num" style="">llama-3.2-11b</th>
+<th class="num" style=" border-right:3px solid var(--border);">qwen3-vl-8b</th>
+<th class="num">llama-3.2-11b</th>
+<th class="num">qwen3-vl-8b</th>
+</tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic;">
+<td style="border-right:3px solid var(--border);">Zero-Shot</td>
+<td class="num" style="background:rgba(86,188,72,0.35);">0.8297</td>
+<td class="num" style="background:rgba(65,181,74,0.35); border-right:3px solid var(--border);">0.8461</td>
+<td class="num" style="background:rgba(60,180,75,0.35)">0.8546</td>
+<td class="num" style="background:rgba(60,180,75,0.35)">0.8640</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (5)</td>
+<td class="num" style=" background:rgba(104,193,70,0.35)">0.8159 &plusmn; 0.0094</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(68,182,74,0.35)"><strong>0.8433 &plusmn; 0.0031</strong></td>
+<td class="num" style="background:rgba(68,182,74,0.35)">0.8433 &plusmn; 0.0070</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8631 &plusmn; 0.0040</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (10)</td>
+<td class="num" style=" background:rgba(98,191,71,0.35)">0.8210 &plusmn; 0.0145</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(71,183,73,0.35)"><strong>0.8411 &plusmn; 0.0031</strong></td>
+<td class="num" style="background:rgba(63,180,74,0.35)">0.8476 &plusmn; 0.0109</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8613 &plusmn; 0.0028</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (25)</td>
+<td class="num" style=" background:rgba(75,184,73,0.35)">0.8385 &plusmn; 0.0111</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(60,180,75,0.35)"><strong>0.8515 &plusmn; 0.0073</strong></td>
+<td class="num" style="background:rgba(60,180,75,0.35)">0.8604 &plusmn; 0.0081</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8696 &plusmn; 0.0069</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (50)</td>
+<td class="num" style=" background:rgba(60,180,74,0.35)">0.8496 &plusmn; 0.0063</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(60,180,75,0.35)"><strong>0.8556</strong></td>
+<td class="num" style="background:rgba(60,180,75,0.35)">0.8684 &plusmn; 0.0044</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8724</strong></td>
+</tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F4F7; text_image</h3></div>
+<table><thead>
+<tr><th rowspan="2" style="border-right:3px solid var(--border);">Labels/class</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none; border-right:3px solid var(--border);">Macro F1</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none;">Weighted F1</th>
+</tr><tr style="border-top:3px solid var(--border);">
+<th class="num" style="">llama-3.2-11b</th>
+<th class="num" style=" border-right:3px solid var(--border);">qwen3-vl-8b</th>
+<th class="num">llama-3.2-11b</th>
+<th class="num">qwen3-vl-8b</th>
+</tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic;">
+<td style="border-right:3px solid var(--border);">Zero-Shot</td>
+<td class="num" style="background:rgba(177,215,64,0.35);">0.7607</td>
+<td class="num" style="background:rgba(130,201,68,0.35); border-right:3px solid var(--border);">0.7967</td>
+<td class="num" style="background:rgba(122,198,69,0.35)">0.8027</td>
+<td class="num" style="background:rgba(86,188,72,0.35)">0.8300</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (5)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(60,180,75,0.35)"><strong>0.8552</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8763</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (10)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(64,181,74,0.35)"><strong>0.8466 &plusmn; 0.0144</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8689 &plusmn; 0.0109</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (25)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(60,180,75,0.35)"><strong>0.8630 &plusmn; 0.0031</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8824 &plusmn; 0.0027</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (50)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(60,180,75,0.35)"><strong>0.8699 &plusmn; 0.0071</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(60,180,75,0.35)"><strong>0.8861 &plusmn; 0.0057</strong></td>
+</tr>
+</tbody></table></div>
+<h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent);">&#x1F6D1; Humanitarian</h2>
+<div class="section">
+<div class="section-header"><h3>&#x1F4DD; text_only</h3></div>
+<table><thead>
+<tr><th rowspan="2" style="border-right:3px solid var(--border);">Labels/class</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none; border-right:3px solid var(--border);">Macro F1</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none;">Weighted F1</th>
+</tr><tr style="border-top:3px solid var(--border);">
+<th class="num" style="">llama-3.2-11b</th>
+<th class="num" style=" border-right:3px solid var(--border);">qwen3-vl-8b</th>
+<th class="num">llama-3.2-11b</th>
+<th class="num">qwen3-vl-8b</th>
+</tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic;">
+<td style="border-right:3px solid var(--border);">Zero-Shot</td>
+<td class="num" style="background:rgba(246,121,74,0.35);">0.6343</td>
+<td class="num" style="background:rgba(248,114,75,0.35); border-right:3px solid var(--border);">0.6288</td>
+<td class="num" style="background:rgba(207,224,61,0.35)">0.7382</td>
+<td class="num" style="background:rgba(223,229,60,0.35)">0.7263</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (5)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(246,124,74,0.35)"><strong>0.6368 &plusmn; 0.0061</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(203,223,61,0.35)"><strong>0.7413 &plusmn; 0.0098</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (10)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(249,108,76,0.35)"><strong>0.6239 &plusmn; 0.0112</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(213,226,61,0.35)"><strong>0.7337 &plusmn; 0.0030</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (25)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(245,125,73,0.35)"><strong>0.6376 &plusmn; 0.0039</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(180,216,64,0.35)"><strong>0.7584 &plusmn; 0.0102</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (50)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(245,129,73,0.35)"><strong>0.6408 &plusmn; 0.0048</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(177,215,64,0.35)"><strong>0.7607 &plusmn; 0.0074</strong></td>
+</tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
+<table><thead>
+<tr><th rowspan="2" style="border-right:3px solid var(--border);">Labels/class</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none; border-right:3px solid var(--border);">Macro F1</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none;">Weighted F1</th>
+</tr><tr style="border-top:3px solid var(--border);">
+<th class="num" style="">llama-3.2-11b</th>
+<th class="num" style=" border-right:3px solid var(--border);">qwen3-vl-8b</th>
+<th class="num">llama-3.2-11b</th>
+<th class="num">qwen3-vl-8b</th>
+</tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic;">
+<td style="border-right:3px solid var(--border);">Zero-Shot</td>
+<td class="num" style="background:rgba(248,112,75,0.35);">0.6275</td>
+<td class="num" style="background:rgba(220,228,60,0.35); border-right:3px solid var(--border);">0.7283</td>
+<td class="num" style="background:rgba(182,217,63,0.35)">0.7571</td>
+<td class="num" style="background:rgba(106,194,70,0.35)">0.8150</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (5)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(227,217,61,0.35)"><strong>0.7147 &plusmn; 0.0375</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(125,199,69,0.35)"><strong>0.8006 &plusmn; 0.0080</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (10)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(219,228,60,0.35)"><strong>0.7294 &plusmn; 0.0064</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(110,195,70,0.35)"><strong>0.8115 &plusmn; 0.0045</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (25)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(226,222,61,0.35)"><strong>0.7185 &plusmn; 0.0117</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(115,196,69,0.35)"><strong>0.8079 &plusmn; 0.0129</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (50)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(233,187,65,0.35)"><strong>0.6898 &plusmn; 0.0553</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(124,199,69,0.35)"><strong>0.8012 &plusmn; 0.0383</strong></td>
+</tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F4F7; text_image</h3></div>
+<table><thead>
+<tr><th rowspan="2" style="border-right:3px solid var(--border);">Labels/class</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none; border-right:3px solid var(--border);">Macro F1</th>
+<th class="num" colspan="2" style="text-align:center; border-bottom:none;">Weighted F1</th>
+</tr><tr style="border-top:3px solid var(--border);">
+<th class="num" style="">llama-3.2-11b</th>
+<th class="num" style=" border-right:3px solid var(--border);">qwen3-vl-8b</th>
+<th class="num">llama-3.2-11b</th>
+<th class="num">qwen3-vl-8b</th>
+</tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-style:italic;">
+<td style="border-right:3px solid var(--border);">Zero-Shot</td>
+<td class="num" style="background:rgba(255,80,80,0.35);">0.5947</td>
+<td class="num" style="background:rgba(239,156,69,0.35); border-right:3px solid var(--border);">0.6639</td>
+<td class="num" style="background:rgba(210,225,61,0.35)">0.7360</td>
+<td class="num" style="background:rgba(195,221,62,0.35)">0.7474</td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (5)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(220,228,60,0.35)"><strong>0.7282 &plusmn; 0.0165</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(104,193,70,0.35)"><strong>0.8163 &plusmn; 0.0110</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (10)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(220,228,60,0.35)"><strong>0.7283 &plusmn; 0.0311</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(97,191,71,0.35)"><strong>0.8213 &plusmn; 0.0152</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (25)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(225,225,60,0.35)"><strong>0.7209 &plusmn; 0.0185</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(96,191,71,0.35)"><strong>0.8224 &plusmn; 0.0128</strong></td>
+</tr>
+<tr>
+<td class="num" style="border-right:3px solid var(--border);">LG-CoTrain (50)</td>
+<td class="num" style="">-</td>
+<td class="num" style=" border-right:3px solid var(--border); background:rgba(225,227,60,0.35)"><strong>0.7233 &plusmn; 0.0152</strong></td>
+<td class="num">-</td>
+<td class="num" style="background:rgba(81,186,73,0.35)"><strong>0.8337 &plusmn; 0.0044</strong></td>
+</tr>
+</tbody></table></div>
+</div>
+<div id="ct-lg-cotrain-llama-3-2-11b" class="sub-tab-content">
 <div id="ct-lg-cotrain-llama-3-2-11b-run-1" class="sub-tab-content active">
 <div class="run-notes">
 <strong>Run 1 -- Paper-default hyperparameters</strong>
@@ -1050,10 +1342,10 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
 </div>
 
     <div class="cards">
-        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">7</div><div class="label">Experiments</div></div>
-        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8127</div><div class="label">Avg Macro-F1</div></div>
-        <div class="card"><div class="icon">&#x274C;</div><div class="value">15.5%</div><div class="label">Avg Error Rate</div></div>
-        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.1236</div><div class="label">Avg ECE</div></div>
+        <div class="card"><div class="icon">&#x1F9EA;</div><div class="value">24</div><div class="label">Experiments</div></div>
+        <div class="card"><div class="icon">&#x1F3AF;</div><div class="value">0.8244</div><div class="label">Avg Macro-F1</div></div>
+        <div class="card"><div class="icon">&#x274C;</div><div class="value">14.8%</div><div class="label">Avg Error Rate</div></div>
+        <div class="card"><div class="icon">&#x1F4CF;</div><div class="value">0.1083</div><div class="label">Avg ECE</div></div>
     </div>
 <h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent);">&#x1F4CB; Informative</h2>
 <div class="section">
@@ -1063,12 +1355,28 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: llama-3.2-11b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.8041</td><td class="num">0.8311</td><td class="num">16.43%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6975</td><td class="num">0.7112</td><td class="num">29.73%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen3-vl-8b</td><td class="num">-</td><td class="num">-</td><td class="num">0.7564</td><td class="num">0.7987</td><td class="num">18.12%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8060 &plusmn; 0.0060</span></td><td class="num">-</td><td class="num">15.84%</td><td class="num">0.1270</td><td class="num">0.7765</td></tr>
-<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8161 &plusmn; 0.0085</span></td><td class="num">-</td><td class="num">15.23%</td><td class="num">0.1230</td><td class="num">0.7863</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8224</span></td><td class="num">-</td><td class="num">15.45%</td><td class="num">0.1150</td><td class="num">0.8079</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: llama-3.2-11b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(120,198,69,0.35)">0.8041</td><td class="num" style="background:rgba(84,187,72,0.35)">0.8311</td><td class="num" style="background:rgba(166,212,65,0.35)">16.43%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(231,197,64,0.35)">0.6975</td><td class="num" style="background:rgba(228,213,62,0.35)">0.7112</td><td class="num" style="background:rgba(254,84,79,0.35)">29.73%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen3-vl-8b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(183,217,63,0.35)">0.7564</td><td class="num" style="background:rgba(127,200,68,0.35)">0.7987</td><td class="num" style="background:rgba(193,220,62,0.35)">18.12%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num" style="background:rgba(117,197,69,0.35)"><span class="badge badge-success">0.8067 &plusmn; 0.0088</span></td><td class="num" style="background:rgba(80,186,73,0.35)"><span class="badge badge-success">0.8348 &plusmn; 0.0058</span></td><td class="num" style="background:rgba(156,209,66,0.35)">15.86%</td><td class="num" style="background:rgba(229,205,63,0.35)">0.1333</td><td class="num" style="background:rgba(157,209,66,0.35)">0.7761</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(101,192,71,0.35)"><span class="badge badge-success">0.8186 &plusmn; 0.0023</span></td><td class="num" style="background:rgba(68,182,74,0.35)"><span class="badge badge-success">0.8436 &plusmn; 0.0026</span></td><td class="num" style="background:rgba(145,206,67,0.35)">15.21%</td><td class="num" style="background:rgba(225,228,60,0.35)">0.1208</td><td class="num" style="background:rgba(139,203,67,0.35)">0.7901</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(100,192,71,0.35)"><span class="badge badge-success">0.8191 &plusmn; 0.0066</span></td><td class="num" style="background:rgba(71,183,73,0.35)"><span class="badge badge-success">0.8412 &plusmn; 0.0059</span></td><td class="num" style="background:rgba(155,208,66,0.35)">15.80%</td><td class="num" style="background:rgba(219,228,60,0.35)">0.1172</td><td class="num" style="background:rgba(124,199,69,0.35)">0.8013</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num" style="background:rgba(92,189,72,0.35)"><span class="badge badge-success">0.8255 &plusmn; 0.0048</span></td><td class="num" style="background:rgba(63,180,74,0.35)"><span class="badge badge-success">0.8475 &plusmn; 0.0055</span></td><td class="num" style="background:rgba(143,205,67,0.35)">15.08%</td><td class="num" style="background:rgba(183,217,63,0.35)">0.0996</td><td class="num" style="background:rgba(123,199,69,0.35)">0.8016</td></tr>
+</tbody></table></div>
+<div class="section">
+<div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
+<table><thead>
+            <tr><th>Method</th><th class="num">Budget</th><th class="num">Seeds</th>
+            <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
+            <th class="num">Test Err%</th>
+            <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: llama-3.2-11b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(86,188,72,0.35)">0.8297</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8546</td><td class="num" style="background:rgba(125,199,69,0.35)">13.95%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8533</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8717</td><td class="num" style="background:rgba(104,193,70,0.35)">12.71%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen3-vl-8b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(65,181,74,0.35)">0.8461</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8640</td><td class="num" style="background:rgba(119,198,69,0.35)">13.62%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num" style="background:rgba(104,193,70,0.35)"><span class="badge badge-danger">0.8159 &plusmn; 0.0094</span></td><td class="num" style="background:rgba(68,182,74,0.35)"><span class="badge badge-danger">0.8433 &plusmn; 0.0070</span></td><td class="num" style="background:rgba(141,204,67,0.35)">14.93%</td><td class="num" style="background:rgba(210,225,61,0.35)">0.1128</td><td class="num" style="background:rgba(124,199,69,0.35)">0.8013</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(98,191,71,0.35)"><span class="badge badge-danger">0.8210 &plusmn; 0.0145</span></td><td class="num" style="background:rgba(63,180,74,0.35)"><span class="badge badge-danger">0.8476 &plusmn; 0.0109</span></td><td class="num" style="background:rgba(134,202,68,0.35)">14.54%</td><td class="num" style="background:rgba(203,223,61,0.35)">0.1098</td><td class="num" style="background:rgba(123,199,69,0.35)">0.8022</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(75,184,73,0.35)"><span class="badge badge-success">0.8385 &plusmn; 0.0111</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8604 &plusmn; 0.0081</span></td><td class="num" style="background:rgba(119,198,69,0.35)">13.60%</td><td class="num" style="background:rgba(175,215,64,0.35)">0.0962</td><td class="num" style="background:rgba(97,191,71,0.35)">0.8219</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num" style="background:rgba(60,180,74,0.35)"><span class="badge badge-success">0.8496 &plusmn; 0.0063</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8684 &plusmn; 0.0044</span></td><td class="num" style="background:rgba(110,195,70,0.35)">13.04%</td><td class="num" style="background:rgba(136,203,68,0.35)">0.0771</td><td class="num" style="background:rgba(74,184,73,0.35)">0.8393</td></tr>
 </tbody></table></div>
 </div>
 </div>
@@ -1118,13 +1426,13 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8041</td><td class="num">0.8311</td><td class="num">16.43%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6975</td><td class="num">0.7112</td><td class="num">29.73%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.7564</td><td class="num">0.7987</td><td class="num">18.12%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7812 &plusmn; 0.0233</span></td><td class="num"><span class="badge badge-success">0.8158 &plusmn; 0.0154</span></td><td class="num">17.14%</td><td class="num">0.1195</td><td class="num">0.7639</td></tr>
-<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7934 &plusmn; 0.0160</span></td><td class="num"><span class="badge badge-success">0.8250 &plusmn; 0.0104</span></td><td class="num">16.49%</td><td class="num">0.1019</td><td class="num">0.7719</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8031 &plusmn; 0.0034</span></td><td class="num"><span class="badge badge-success">0.8302 &plusmn; 0.0023</span></td><td class="num">16.51%</td><td class="num">0.0840</td><td class="num">0.7960</td></tr>
-<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8142 &plusmn; 0.0100</span></td><td class="num"><span class="badge badge-success">0.8374 &plusmn; 0.0099</span></td><td class="num">16.10%</td><td class="num">0.0539</td><td class="num">0.8074</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(120,198,69,0.35)">0.8041</td><td class="num" style="background:rgba(84,187,72,0.35)">0.8311</td><td class="num" style="background:rgba(166,212,65,0.35)">16.43%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(231,197,64,0.35)">0.6975</td><td class="num" style="background:rgba(228,213,62,0.35)">0.7112</td><td class="num" style="background:rgba(254,84,79,0.35)">29.73%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(183,217,63,0.35)">0.7564</td><td class="num" style="background:rgba(127,200,68,0.35)">0.7987</td><td class="num" style="background:rgba(193,220,62,0.35)">18.12%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num" style="background:rgba(150,207,66,0.35)"><span class="badge badge-success">0.7812 &plusmn; 0.0233</span></td><td class="num" style="background:rgba(105,193,70,0.35)"><span class="badge badge-success">0.8158 &plusmn; 0.0154</span></td><td class="num" style="background:rgba(177,215,64,0.35)">17.14%</td><td class="num" style="background:rgba(224,229,60,0.35)">0.1195</td><td class="num" style="background:rgba(173,214,64,0.35)">0.7639</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(134,202,68,0.35)"><span class="badge badge-success">0.7934 &plusmn; 0.0160</span></td><td class="num" style="background:rgba(93,190,71,0.35)"><span class="badge badge-success">0.8250 &plusmn; 0.0104</span></td><td class="num" style="background:rgba(167,212,65,0.35)">16.49%</td><td class="num" style="background:rgba(187,218,63,0.35)">0.1019</td><td class="num" style="background:rgba(163,211,65,0.35)">0.7719</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(121,198,69,0.35)"><span class="badge badge-success">0.8031 &plusmn; 0.0034</span></td><td class="num" style="background:rgba(86,187,72,0.35)"><span class="badge badge-success">0.8302 &plusmn; 0.0023</span></td><td class="num" style="background:rgba(167,212,65,0.35)">16.51%</td><td class="num" style="background:rgba(150,207,66,0.35)">0.0840</td><td class="num" style="background:rgba(131,201,68,0.35)">0.7960</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num" style="background:rgba(107,194,70,0.35)"><span class="badge badge-success">0.8142 &plusmn; 0.0100</span></td><td class="num" style="background:rgba(76,185,73,0.35)"><span class="badge badge-success">0.8374 &plusmn; 0.0099</span></td><td class="num" style="background:rgba(160,210,65,0.35)">16.10%</td><td class="num" style="background:rgba(88,188,72,0.35)">0.0539</td><td class="num" style="background:rgba(116,197,69,0.35)">0.8074</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
@@ -1133,13 +1441,13 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8297</td><td class="num">0.8546</td><td class="num">13.95%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8533</td><td class="num">0.8717</td><td class="num">12.71%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.8461</td><td class="num">0.8640</td><td class="num">13.62%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.8433 &plusmn; 0.0031</span></td><td class="num"><span class="badge badge-danger">0.8631 &plusmn; 0.0040</span></td><td class="num">13.54%</td><td class="num">0.0947</td><td class="num">0.8402</td></tr>
-<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.8411 &plusmn; 0.0031</span></td><td class="num"><span class="badge badge-danger">0.8613 &plusmn; 0.0028</span></td><td class="num">13.71%</td><td class="num">0.0920</td><td class="num">0.8389</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8515 &plusmn; 0.0073</span></td><td class="num"><span class="badge badge-success">0.8696 &plusmn; 0.0069</span></td><td class="num">12.97%</td><td class="num">0.0826</td><td class="num">0.8487</td></tr>
-<tr><td>Co-Train</td><td class="num">50</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8556</span></td><td class="num"><span class="badge badge-success">0.8724</span></td><td class="num">12.78%</td><td class="num">0.0915</td><td class="num">0.8485</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(86,188,72,0.35)">0.8297</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8546</td><td class="num" style="background:rgba(125,199,69,0.35)">13.95%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8533</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8717</td><td class="num" style="background:rgba(104,193,70,0.35)">12.71%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(65,181,74,0.35)">0.8461</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8640</td><td class="num" style="background:rgba(119,198,69,0.35)">13.62%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num" style="background:rgba(68,182,74,0.35)"><span class="badge badge-danger">0.8433 &plusmn; 0.0031</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-danger">0.8631 &plusmn; 0.0040</span></td><td class="num" style="background:rgba(118,197,69,0.35)">13.54%</td><td class="num" style="background:rgba(172,214,64,0.35)">0.0947</td><td class="num" style="background:rgba(72,183,73,0.35)">0.8402</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(71,183,73,0.35)"><span class="badge badge-danger">0.8411 &plusmn; 0.0031</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-danger">0.8613 &plusmn; 0.0028</span></td><td class="num" style="background:rgba(121,198,69,0.35)">13.71%</td><td class="num" style="background:rgba(167,212,65,0.35)">0.0920</td><td class="num" style="background:rgba(74,184,73,0.35)">0.8389</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8515 &plusmn; 0.0073</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8696 &plusmn; 0.0069</span></td><td class="num" style="background:rgba(109,194,70,0.35)">12.97%</td><td class="num" style="background:rgba(147,206,67,0.35)">0.0826</td><td class="num" style="background:rgba(61,180,74,0.35)">0.8487</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">1</td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8556</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8724</span></td><td class="num" style="background:rgba(105,193,70,0.35)">12.78%</td><td class="num" style="background:rgba(166,212,65,0.35)">0.0915</td><td class="num" style="background:rgba(61,180,74,0.35)">0.8485</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h3>&#x1F4F7; text_image</h3></div>
@@ -1148,13 +1456,13 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.7607</td><td class="num">0.8027</td><td class="num">17.67%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.8025</td><td class="num">0.8321</td><td class="num">15.97%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.7967</td><td class="num">0.8300</td><td class="num">15.71%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr><td>Co-Train</td><td class="num">5</td><td class="num">1</td><td class="num"><span class="badge badge-success">0.8552</span></td><td class="num"><span class="badge badge-success">0.8763</span></td><td class="num">11.86%</td><td class="num">0.0715</td><td class="num">0.8431</td></tr>
-<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8466 &plusmn; 0.0144</span></td><td class="num"><span class="badge badge-success">0.8689 &plusmn; 0.0109</span></td><td class="num">12.56%</td><td class="num">0.0756</td><td class="num">0.8327</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8630 &plusmn; 0.0031</span></td><td class="num"><span class="badge badge-success">0.8824 &plusmn; 0.0027</span></td><td class="num">11.36%</td><td class="num">0.0682</td><td class="num">0.8445</td></tr>
-<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.8699 &plusmn; 0.0071</span></td><td class="num"><span class="badge badge-success">0.8861 &plusmn; 0.0057</span></td><td class="num">11.30%</td><td class="num">0.0602</td><td class="num">0.8589</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(177,215,64,0.35)">0.7607</td><td class="num" style="background:rgba(122,198,69,0.35)">0.8027</td><td class="num" style="background:rgba(186,218,63,0.35)">17.67%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(122,199,69,0.35)">0.8025</td><td class="num" style="background:rgba(83,187,72,0.35)">0.8321</td><td class="num" style="background:rgba(158,209,66,0.35)">15.97%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(130,201,68,0.35)">0.7967</td><td class="num" style="background:rgba(86,188,72,0.35)">0.8300</td><td class="num" style="background:rgba(154,208,66,0.35)">15.71%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">1</td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8552</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8763</span></td><td class="num" style="background:rgba(90,189,72,0.35)">11.86%</td><td class="num" style="background:rgba(124,199,69,0.35)">0.0715</td><td class="num" style="background:rgba(69,182,74,0.35)">0.8431</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(64,181,74,0.35)"><span class="badge badge-success">0.8466 &plusmn; 0.0144</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8689 &plusmn; 0.0109</span></td><td class="num" style="background:rgba(102,192,71,0.35)">12.56%</td><td class="num" style="background:rgba(133,202,68,0.35)">0.0756</td><td class="num" style="background:rgba(82,186,72,0.35)">0.8327</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8630 &plusmn; 0.0031</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8824 &plusmn; 0.0027</span></td><td class="num" style="background:rgba(82,186,72,0.35)">11.36%</td><td class="num" style="background:rgba(118,197,69,0.35)">0.0682</td><td class="num" style="background:rgba(67,182,74,0.35)">0.8445</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8699 &plusmn; 0.0071</span></td><td class="num" style="background:rgba(60,180,75,0.35)"><span class="badge badge-success">0.8861 &plusmn; 0.0057</span></td><td class="num" style="background:rgba(81,186,73,0.35)">11.30%</td><td class="num" style="background:rgba(101,192,71,0.35)">0.0602</td><td class="num" style="background:rgba(60,180,75,0.35)">0.8589</td></tr>
 </tbody></table></div>
 <h2 style="font-size:20px; font-weight:700; margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent);">&#x1F6D1; Humanitarian</h2>
 <div class="section">
@@ -1164,13 +1472,13 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6343</td><td class="num">0.7382</td><td class="num">25.86%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.5848</td><td class="num">0.6927</td><td class="num">28.90%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.6288</td><td class="num">0.7263</td><td class="num">28.17%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.6368 &plusmn; 0.0061</span></td><td class="num"><span class="badge badge-success">0.7413 &plusmn; 0.0098</span></td><td class="num">26.84%</td><td class="num">0.2132</td><td class="num">0.6404</td></tr>
-<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.6239 &plusmn; 0.0112</span></td><td class="num"><span class="badge badge-success">0.7337 &plusmn; 0.0030</span></td><td class="num">27.57%</td><td class="num">0.2191</td><td class="num">0.6381</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.6376 &plusmn; 0.0039</span></td><td class="num"><span class="badge badge-success">0.7584 &plusmn; 0.0102</span></td><td class="num">25.55%</td><td class="num">0.1821</td><td class="num">0.6411</td></tr>
-<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.6408 &plusmn; 0.0048</span></td><td class="num"><span class="badge badge-success">0.7607 &plusmn; 0.0074</span></td><td class="num">25.27%</td><td class="num">0.1694</td><td class="num">0.6558</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(246,121,74,0.35)">0.6343</td><td class="num" style="background:rgba(207,224,61,0.35)">0.7382</td><td class="num" style="background:rgba(242,142,71,0.35)">25.86%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(255,80,80,0.35)">0.5848</td><td class="num" style="background:rgba(232,191,65,0.35)">0.6927</td><td class="num" style="background:rgba(251,96,77,0.35)">28.90%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(248,114,75,0.35)">0.6288</td><td class="num" style="background:rgba(223,229,60,0.35)">0.7263</td><td class="num" style="background:rgba(249,107,76,0.35)">28.17%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num" style="background:rgba(246,124,74,0.35)"><span class="badge badge-success">0.6368 &plusmn; 0.0061</span></td><td class="num" style="background:rgba(203,223,61,0.35)"><span class="badge badge-success">0.7413 &plusmn; 0.0098</span></td><td class="num" style="background:rgba(245,127,73,0.35)">26.84%</td><td class="num" style="background:rgba(255,80,80,0.35)">0.2132</td><td class="num" style="background:rgba(245,128,73,0.35)">0.6404</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(249,108,76,0.35)"><span class="badge badge-danger">0.6239 &plusmn; 0.0112</span></td><td class="num" style="background:rgba(213,226,61,0.35)"><span class="badge badge-success">0.7337 &plusmn; 0.0030</span></td><td class="num" style="background:rgba(247,116,75,0.35)">27.57%</td><td class="num" style="background:rgba(255,80,80,0.35)">0.2191</td><td class="num" style="background:rgba(245,125,73,0.35)">0.6381</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(245,125,73,0.35)"><span class="badge badge-success">0.6376 &plusmn; 0.0039</span></td><td class="num" style="background:rgba(180,216,64,0.35)"><span class="badge badge-success">0.7584 &plusmn; 0.0102</span></td><td class="num" style="background:rgba(241,146,71,0.35)">25.55%</td><td class="num" style="background:rgba(248,113,75,0.35)">0.1821</td><td class="num" style="background:rgba(245,129,73,0.35)">0.6411</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num" style="background:rgba(245,129,73,0.35)"><span class="badge badge-success">0.6408 &plusmn; 0.0048</span></td><td class="num" style="background:rgba(177,215,64,0.35)"><span class="badge badge-success">0.7607 &plusmn; 0.0074</span></td><td class="num" style="background:rgba(240,150,70,0.35)">25.27%</td><td class="num" style="background:rgba(243,137,72,0.35)">0.1694</td><td class="num" style="background:rgba(241,146,71,0.35)">0.6558</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h3>&#x1F5BC; image_only</h3></div>
@@ -1179,13 +1487,13 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6275</td><td class="num">0.7571</td><td class="num">23.46%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6593</td><td class="num">0.7681</td><td class="num">22.83%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.7283</td><td class="num">0.8150</td><td class="num">18.53%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.7147 &plusmn; 0.0375</span></td><td class="num"><span class="badge badge-danger">0.8006 &plusmn; 0.0080</span></td><td class="num">19.69%</td><td class="num">0.1294</td><td class="num">0.6708</td></tr>
-<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7294 &plusmn; 0.0064</span></td><td class="num"><span class="badge badge-danger">0.8115 &plusmn; 0.0045</span></td><td class="num">18.67%</td><td class="num">0.1177</td><td class="num">0.6864</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.7185 &plusmn; 0.0117</span></td><td class="num"><span class="badge badge-danger">0.8079 &plusmn; 0.0129</span></td><td class="num">19.37%</td><td class="num">0.1095</td><td class="num">0.6854</td></tr>
-<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-danger">0.6898 &plusmn; 0.0553</span></td><td class="num"><span class="badge badge-danger">0.8012 &plusmn; 0.0383</span></td><td class="num">21.05%</td><td class="num">0.0958</td><td class="num">0.6449</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(248,112,75,0.35)">0.6275</td><td class="num" style="background:rgba(182,217,63,0.35)">0.7571</td><td class="num" style="background:rgba(235,178,66,0.35)">23.46%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(240,151,70,0.35)">0.6593</td><td class="num" style="background:rgba(168,212,65,0.35)">0.7681</td><td class="num" style="background:rgba(233,187,65,0.35)">22.83%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(220,228,60,0.35)">0.7283</td><td class="num" style="background:rgba(106,194,70,0.35)">0.8150</td><td class="num" style="background:rgba(200,222,62,0.35)">18.53%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num" style="background:rgba(227,217,61,0.35)"><span class="badge badge-danger">0.7147 &plusmn; 0.0375</span></td><td class="num" style="background:rgba(125,199,69,0.35)"><span class="badge badge-danger">0.8006 &plusmn; 0.0080</span></td><td class="num" style="background:rgba(219,228,60,0.35)">19.69%</td><td class="num" style="background:rgba(228,212,62,0.35)">0.1294</td><td class="num" style="background:rgba(238,164,68,0.35)">0.6708</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(219,228,60,0.35)"><span class="badge badge-success">0.7294 &plusmn; 0.0064</span></td><td class="num" style="background:rgba(110,195,70,0.35)"><span class="badge badge-danger">0.8115 &plusmn; 0.0045</span></td><td class="num" style="background:rgba(203,223,61,0.35)">18.67%</td><td class="num" style="background:rgba(220,228,60,0.35)">0.1177</td><td class="num" style="background:rgba(234,183,66,0.35)">0.6864</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(226,222,61,0.35)"><span class="badge badge-danger">0.7185 &plusmn; 0.0117</span></td><td class="num" style="background:rgba(115,196,69,0.35)"><span class="badge badge-danger">0.8079 &plusmn; 0.0129</span></td><td class="num" style="background:rgba(214,226,60,0.35)">19.37%</td><td class="num" style="background:rgba(203,223,61,0.35)">0.1095</td><td class="num" style="background:rgba(234,182,66,0.35)">0.6854</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num" style="background:rgba(233,187,65,0.35)"><span class="badge badge-danger">0.6898 &plusmn; 0.0553</span></td><td class="num" style="background:rgba(124,199,69,0.35)"><span class="badge badge-danger">0.8012 &plusmn; 0.0383</span></td><td class="num" style="background:rgba(228,214,62,0.35)">21.05%</td><td class="num" style="background:rgba(175,214,64,0.35)">0.0958</td><td class="num" style="background:rgba(244,133,72,0.35)">0.6449</td></tr>
 </tbody></table></div>
 <div class="section">
 <div class="section-header"><h3>&#x1F4F7; text_image</h3></div>
@@ -1194,13 +1502,13 @@ th.sortable.sort-desc::after { content: ' \25BC'; opacity: .8; }
             <th class="num">Test Macro-F1</th><th class="num">Test W. F1</th>
             <th class="num">Test Err%</th>
             <th class="num">Test ECE</th><th class="num">Dev Macro-F1</th></tr></thead><tbody>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num">0.5947</td><td class="num">0.7360</td><td class="num">25.76%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num">0.6697</td><td class="num">0.7712</td><td class="num">22.30%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num">0.6639</td><td class="num">0.7474</td><td class="num">26.28%</td><td class="num">-</td><td class="num">-</td></tr>
-<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7282 &plusmn; 0.0165</span></td><td class="num"><span class="badge badge-success">0.8163 &plusmn; 0.0110</span></td><td class="num">18.95%</td><td class="num">0.0889</td><td class="num">0.6814</td></tr>
-<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7283 &plusmn; 0.0311</span></td><td class="num"><span class="badge badge-success">0.8213 &plusmn; 0.0152</span></td><td class="num">18.88%</td><td class="num">0.0892</td><td class="num">0.6951</td></tr>
-<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7209 &plusmn; 0.0185</span></td><td class="num"><span class="badge badge-success">0.8224 &plusmn; 0.0128</span></td><td class="num">18.78%</td><td class="num">0.0652</td><td class="num">0.7017</td></tr>
-<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num"><span class="badge badge-success">0.7233 &plusmn; 0.0152</span></td><td class="num"><span class="badge badge-success">0.8337 &plusmn; 0.0044</span></td><td class="num">18.01%</td><td class="num">0.0676</td><td class="num">0.6987</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: llama-3.2-11b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(255,80,80,0.35)">0.5947</td><td class="num" style="background:rgba(210,225,61,0.35)">0.7360</td><td class="num" style="background:rgba(242,143,71,0.35)">25.76%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-style:italic; opacity:0.7;"><td>ZS: qwen2.5-vl-7b</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(238,163,68,0.35)">0.6697</td><td class="num" style="background:rgba(164,211,65,0.35)">0.7712</td><td class="num" style="background:rgba(231,195,64,0.35)">22.30%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr style="background:var(--accent-bg); font-weight:700; border-left:4px solid var(--accent);"><td>ZS: qwen3-vl-8b &#x2B50;</td><td class="num">-</td><td class="num">-</td><td class="num" style="background:rgba(239,156,69,0.35)">0.6639</td><td class="num" style="background:rgba(195,221,62,0.35)">0.7474</td><td class="num" style="background:rgba(243,135,72,0.35)">26.28%</td><td class="num">-</td><td class="num">-</td></tr>
+<tr><td>Co-Train</td><td class="num">5</td><td class="num">3</td><td class="num" style="background:rgba(220,228,60,0.35)"><span class="badge badge-success">0.7282 &plusmn; 0.0165</span></td><td class="num" style="background:rgba(104,193,70,0.35)"><span class="badge badge-success">0.8163 &plusmn; 0.0110</span></td><td class="num" style="background:rgba(207,224,61,0.35)">18.95%</td><td class="num" style="background:rgba(160,210,65,0.35)">0.0889</td><td class="num" style="background:rgba(235,177,66,0.35)">0.6814</td></tr>
+<tr><td>Co-Train</td><td class="num">10</td><td class="num">3</td><td class="num" style="background:rgba(220,228,60,0.35)"><span class="badge badge-success">0.7283 &plusmn; 0.0311</span></td><td class="num" style="background:rgba(97,191,71,0.35)"><span class="badge badge-success">0.8213 &plusmn; 0.0152</span></td><td class="num" style="background:rgba(206,224,61,0.35)">18.88%</td><td class="num" style="background:rgba(161,210,65,0.35)">0.0892</td><td class="num" style="background:rgba(232,194,64,0.35)">0.6951</td></tr>
+<tr><td>Co-Train</td><td class="num">25</td><td class="num">3</td><td class="num" style="background:rgba(225,225,60,0.35)"><span class="badge badge-success">0.7209 &plusmn; 0.0185</span></td><td class="num" style="background:rgba(96,191,71,0.35)"><span class="badge badge-success">0.8224 &plusmn; 0.0128</span></td><td class="num" style="background:rgba(204,223,61,0.35)">18.78%</td><td class="num" style="background:rgba(112,195,70,0.35)">0.0652</td><td class="num" style="background:rgba(230,202,63,0.35)">0.7017</td></tr>
+<tr><td>Co-Train</td><td class="num">50</td><td class="num">3</td><td class="num" style="background:rgba(225,227,60,0.35)"><span class="badge badge-success">0.7233 &plusmn; 0.0152</span></td><td class="num" style="background:rgba(81,186,73,0.35)"><span class="badge badge-success">0.8337 &plusmn; 0.0044</span></td><td class="num" style="background:rgba(192,220,62,0.35)">18.01%</td><td class="num" style="background:rgba(116,197,69,0.35)">0.0676</td><td class="num" style="background:rgba(231,198,64,0.35)">0.6987</td></tr>
 </tbody></table></div>
 </div>
 </div>
