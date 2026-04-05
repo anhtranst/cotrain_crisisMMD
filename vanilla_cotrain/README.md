@@ -228,15 +228,15 @@ For `text_image`, Model A receives only text features and Model B receives only 
 ```mermaid
 graph LR
     subgraph "Vanilla Co-Training"
-        V1["Train 2 models"] --> V2["Each predicts<br/>on unlabeled"]
-        V2 --> V3["Select confident<br/>(hard labels)"]
-        V3 --> V4["Add to other's<br/>training set"]
+        V1["Train 2 models"] --> V2["Predict on unlabeled"]
+        V2 --> V3["Select confident samples"]
+        V3 --> V4["Add to other model"]
         V4 --> V1
     end
 
     subgraph "LG-CoTrain"
-        L1["Phase 1:<br/>Weight Generation"] --> L2["Phase 2:<br/>Weighted Co-Training<br/>(lambda weights)"]
-        L2 --> L3["Phase 3:<br/>Fine-Tuning"]
+        L1["Phase 1: Weight Gen"] --> L2["Phase 2: Weighted Co-Training"]
+        L2 --> L3["Phase 3: Fine-Tuning"]
     end
 ```
 
