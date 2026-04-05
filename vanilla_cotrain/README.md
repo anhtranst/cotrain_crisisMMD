@@ -196,13 +196,13 @@ Final predictions use ensemble averaging: softmax probabilities from both models
 
 ```mermaid
 graph LR
-    INPUT["Test Sample"] --> A["Model A<br/>(view A features)"]
-    INPUT --> B["Model B<br/>(view B features)"]
+    INPUT["Test Sample"] --> MA["Model A<br/>view A features"]
+    INPUT --> MB["Model B<br/>view B features"]
 
-    A --> PA["Softmax<br/>Probabilities A"]
-    B --> PB["Softmax<br/>Probabilities B"]
+    MA --> PA["Softmax Probs A"]
+    MB --> PB["Softmax Probs B"]
 
-    PA --> AVG["Average<br/>(P_A + P_B) / 2"]
+    PA --> AVG["Average Probs"]
     PB --> AVG
 
     AVG --> ARGMAX["Argmax"]
